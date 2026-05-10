@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FPSS Administração Central</title>
+
+  <style>
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+      font-family:Arial,sans-serif;
+    }
+
+    body{
+      background:linear-gradient(135deg,#8b1111,#c91d1d);
+      min-height:100vh;
+      padding:30px;
+      color:#fff;
+    }
+
+    .container{
+      max-width:1200px;
+      margin:auto;
+    }
+
+    .topo{
+      text-align:center;
+      margin-bottom:35px;
+    }
+
+    .topo h1{
+      font-size:42px;
+      margin-bottom:10px;
+    }
+
+    .topo p{
+      font-size:18px;
+      opacity:0.95;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:20px;
+    }
+
+    .card{
+      background:#ffffff;
+      color:#222;
+      border-radius:18px;
+      padding:25px;
+      text-align:center;
+      box-shadow:0 8px 25px rgba(0,0,0,0.18);
+      transition:0.25s;
+    }
+
+    .card:hover{
+      transform:translateY(-6px);
+    }
+
+    .icone{
+      font-size:48px;
+      margin-bottom:15px;
+    }
+
+    .card h2{
+      font-size:22px;
+      color:#8b1111;
+      margin-bottom:10px;
+    }
+
+    .card p{
+      font-size:14px;
+      margin-bottom:18px;
+      color:#555;
+      min-height:40px;
+    }
+
+    .btn{
+      display:inline-block;
+      text-decoration:none;
+      background:#228b22;
+      color:#fff;
+      padding:12px 18px;
+      border-radius:10px;
+      font-weight:bold;
+    }
+
+    .btn.red{
+      background:#8b1111;
+    }
+
+    .rodape{
+      margin-top:35px;
+      text-align:center;
+      font-size:14px;
+      opacity:0.9;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="topo">
+    <h1>🔐 FPSS Administração</h1>
+    <p>Painel central da 6ª Festa do Padroeiro São Sebastião</p>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="icone">📊</div>
+      <h2>Dashboard</h2>
+      <p>Visualizar métricas, vendas, pagamentos e retiradas.</p>
+      <a href="/admin/dashboard-metricas.html" class="btn">Abrir Dashboard</a>
+    </div>
+
+    <div class="card">
+      <div class="icone">📦</div>
+      <h2>Produtos</h2>
+      <p>Cadastrar produtos, imagens, preços e estoque.</p>
+      <a href="/admin/produtos.html" class="btn">Abrir Produtos</a>
+    </div>
+
+    <div class="card">
+      <div class="icone">📋</div>
+      <h2>Pedidos</h2>
+      <p>Consultar pedidos, pagamentos e comprovantes.</p>
+      <a href="/admin/pedidos.html" class="btn">Abrir Pedidos</a>
+    </div>
+
+    <div class="card">
+      <div class="icone">🍖</div>
+      <h2>Retirada</h2>
+      <p>Validar retirada de churrasco e pedidos pagos.</p>
+      <a href="/admin/retirada.html" class="btn">Abrir Retirada</a>
+    </div>
+
+    <div class="card">
+      <div class="icone">📷</div>
+      <h2>Leitor QR</h2>
+      <p>Escanear QR Code oficial para retirada rápida.</p>
+      <a href="/admin/leitor.html" class="btn">Abrir Leitor</a>
+    </div>
+
+    <div class="card">
+      <div class="icone">🌐</div>
+      <h2>Site Oficial</h2>
+      <p>Abrir página principal pública.</p>
+      <a href="/index.html" class="btn">Abrir Site</a>
+    </div>
+
+    <div class="card">
+      <div class="icone">🚪</div>
+      <h2>Sair</h2>
+      <p>Retornar para tela de login.</p>
+      <a href="/admin/login.html" class="btn red">Logout</a>
+    </div>
+
+  </div>
+
+  <div class="rodape">
+    FPSS 2027 • Administração Central
+  </div>
+
+</div>
+
+</body>
+</html>

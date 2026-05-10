@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedidos FPSS</title>
+
+  <style>
+    *{
+      box-sizing:border-box;
+    }
+
+    body{
+      margin:0;
+      font-family:Arial,sans-serif;
+      background:#f4f4f4;
+      padding:20px;
+    }
+
+    .container{
+      max-width:1400px;
+      margin:auto;
+    }
+
+    h1{
+      text-align:center;
+      color:#8b1111;
+      margin-bottom:10px;
+    }
+
+    .sub{
+      text-align:center;
+      color:#666;
+      margin-bottom:25px;
+    }
+
+    .top-nav{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:center;
+      margin-bottom:25px;
+    }
+
+    .top-nav a{
+      text-decoration:none;
+      background:#8b1111;
+      color:#fff;
+      padding:10px 16px;
+      border-radius:10px;
+      font-weight:bold;
+    }
+
+    .top-nav a:hover{
+      opacity:0.92;
+    }
+
+    .busca{
+      width:100%;
+      padding:16px;
+      font-size:16px;
+      border:1px solid #ccc;
+      border-radius:10px;
+      margin-bottom:20px;
+    }
+
+    .topbar{
+      display:flex;
+      gap:10px;
+      margin-bottom:20px;
+      flex-wrap:wrap;
+    }
+
+    button{
+      padding:14px 20px;
+      border:none;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:bold;
+      color:#fff;
+      background:#8b1111;
+    }
+
+    button:hover{
+      opacity:0.95;
+    }
+
+    .tabela-wrap{
+      overflow:auto;
+      background:#fff;
+      border-radius:12px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:1200px;
+    }
+
+    th, td{
+      padding:14px;
+      text-align:left;
+      border-bottom:1px solid #eee;
+      font-size:14px;
+    }
+
+    th{
+      background:#8b1111;
+      color:#fff;
+      position:sticky;
+      top:0;
+    }
+
+    tr:hover{
+      background:#fafafa;
+    }
+
+    .pago{
+      color:green;
+      font-weight:bold;
+    }
+
+    .pendente{
+      color:orange;
+      font-weight:bold;
+    }
+
+    .retirado{
+      color:red;
+      font-weight:bold;
+    }
+
+    .contador{
+      margin-bottom:15px;
+      font-weight:bold;
+      color:#333;
+    }
+
+    .erro{
+      color:red;
+      text-align:center;
+      font-weight:bold;
+      margin-bottom:15px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <h1>📋 Pedidos FPSS 2027</h1>
+  <p class="sub">Controle completo de compradores</p>
+
+  <div class="top-nav">
+    <a href="/admin/dashboard.html">Admin Central</a>
+    <a href="/admin/dashboard-metricas.html">Dashboard</a>
+    <a href="/admin/produtos.html">Produtos</a>
+    <a href="/admin/retirada.html">Retirada</a>
+    <a href="/admin/leitor.html">Leitor QR</a>
+    <a href="/index.html">Site Oficial</a>
+  </div>
+
+  <div id="erro" class="erro"></div>
+
+  <input
+    type="text"
+    id="busca"
+    class="busca"
+    placeholder="Buscar por nome, CPF, código..."
+    oninput="filtrarPedidos()"
+  >
+
+  <div class="topbar">
+    <button onclick="carregarPedidos()">🔄 Atualizar</button>
+    <button onclick="exportarCSV()">📁 Exportar CSV</button>
+  </div>
+
+  <div class="contador" id="contador">
+    Carregando...
+  </div>
+
+  <div class="tabela-wrap">
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Código</th>
+          <th>Nome</th>
+          <th>CPF</th>
+          <th>Telefone</th>
+          <th>Qtd</th>
+          <th>Total</th>
+          <th>Pagamento</th>
+          <th>Retirada</th>
+          <th>Horário</th>
+        </tr>
+      </thead>
+
+      <tbody id="tabelaPedidos"></tbody>
+
+    </table>
+
+  </div>
+
+</div>
+
+<script>
+const API_BASE = "https://fpss-backend.onrender.com";
+
+let pedidosOriginais = [];
+
+/* =========================================
+   MOEDA
+========================================= */
+function moeda(valor) {
+  return "R$ " + Number(valor || 0)
+    .toFixed(2)
+    .replace(".", ",");
+}
+
+/* =========================================
+   RENDER
+========================================= */
+function renderPedidos(lista) {
+
+  const tabela = document.getElementById("tabelaPedidos");
+
+  tabela.innerHTML = "";
+
+  document.getElementById("contador").innerText =
+    `Total exibido: ${lista.length}`;
+
+  lista.forEach(pedido => {
+
+    tabela.innerHTML += `
+      <tr>
+        <td>${pedido.id}</td>
+
+        <td>${pedido.codigo_pedido || "-"}</td>
+
+        <td>${pedido.nome} ${pedido.sobrenome || ""}</td>
+
+        <td>${pedido.cpf || "-"}</td>
+
+        <td>${pedido.telefone || "-"}</td>
+
+        <td>${pedido.quantidade || 0}</td>
+
+        <td>${moeda(pedido.valor_total)}</td>
+
+        <td class="${
+          pedido.status_pagamento === "pago"
+            ? "pago"
+            : "pendente"
+        }">
+          ${pedido.status_pagamento || "pendente"}
+        </td>
+
+        <td class="${
+          pedido.status_retirada === "retirado"
+            ? "retirado"
+            : ""
+        }">
+          ${pedido.status_retirada || "nao_retirado"}
+        </td>
+
+        <td>${pedido.horario_retirada || "-"}</td>
+      </tr>
+    `;
+  });
+}
+
+/* =========================================
+   CARREGAR
+========================================= */
+async function carregarPedidos() {
+
+  try {
+
+    document.getElementById("erro").innerHTML = "";
+
+    const res = await fetch(
+      `${API_BASE}/admin/pedidos`
+    );
+
+    const dados = await res.json();
+
+    if (!dados.sucesso) {
+      document.getElementById("erro").innerHTML =
+        "❌ Erro ao carregar pedidos.";
+      return;
+    }
+
+    pedidosOriginais = dados.pedidos || [];
+
+    renderPedidos(pedidosOriginais);
+
+  } catch (e) {
+
+    document.getElementById("erro").innerHTML =
+      "❌ Erro de conexão com servidor.";
+  }
+}
+
+/* =========================================
+   FILTRO
+========================================= */
+function filtrarPedidos() {
+
+  const termo = document.getElementById("busca")
+    .value
+    .toLowerCase()
+    .trim();
+
+  if (!termo) {
+    renderPedidos(pedidosOriginais);
+    return;
+  }
+
+  const filtrados = pedidosOriginais.filter(p => {
+
+    return (
+      String(p.nome || "").toLowerCase().includes(termo) ||
+      String(p.sobrenome || "").toLowerCase().includes(termo) ||
+      String(p.cpf || "").toLowerCase().includes(termo) ||
+      String(p.codigo_pedido || "").toLowerCase().includes(termo)
+    );
+  });
+
+  renderPedidos(filtrados);
+}
+
+/* =========================================
+   EXPORTAR CSV
+========================================= */
+function exportarCSV() {
+
+  if (!pedidosOriginais || !pedidosOriginais.length) {
+    alert("❌ Nenhum pedido para exportar.");
+    return;
+  }
+
+  const cabecalho = [
+    "ID",
+    "Código Pedido",
+    "Nome",
+    "Sobrenome",
+    "CPF",
+    "Telefone",
+    "Email",
+    "Quantidade",
+    "Valor Total",
+    "Status Pagamento",
+    "Status Retirada",
+    "Horário Retirada",
+    "Payment ID"
+  ];
+
+  const linhas = pedidosOriginais.map(p => [
+    p.id || "",
+    p.codigo_pedido || "",
+    p.nome || "",
+    p.sobrenome || "",
+    p.cpf || "",
+    p.telefone || "",
+    p.email || "",
+    p.quantidade || "",
+    p.valor_total || "",
+    p.status_pagamento || "",
+    p.status_retirada || "",
+    p.horario_retirada || "",
+    p.payment_id || ""
+  ]);
+
+  let csvConteudo = "";
+
+  csvConteudo += cabecalho.join(";") + "\n";
+
+  linhas.forEach(linha => {
+
+    const linhaSegura = linha.map(valor =>
+      `"${String(valor).replace(/"/g, '""')}"`
+    );
+
+    csvConteudo += linhaSegura.join(";") + "\n";
+  });
+
+  const blob = new Blob(
+    ["\uFEFF" + csvConteudo],
+    {
+      type: "text/csv;charset=utf-8;"
+    }
+  );
+
+  const link = document.createElement("a");
+
+  const url = URL.createObjectURL(blob);
+
+  const data = new Date();
+
+  const nomeArquivo =
+    `pedidos-fpss-${data.getFullYear()}-${String(data.getMonth()+1).padStart(2,"0")}-${String(data.getDate()).padStart(2,"0")}.csv`;
+
+  link.setAttribute("href", url);
+  link.setAttribute("download", nomeArquivo);
+
+  document.body.appendChild(link);
+
+  link.click();
+
+  document.body.removeChild(link);
+}
+
+/* =========================================
+   START
+========================================= */
+carregarPedidos();
+</script>
+
+</body>
+</html>

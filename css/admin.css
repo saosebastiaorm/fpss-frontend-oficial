@@ -1,0 +1,324 @@
+/* =====================================================
+   FPSS ADMIN CSS MASTER PREMIUM
+   ARQUIVO: /css/admin.css
+   DASHBOARD PROFISSIONAL
+===================================================== */
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:
+        linear-gradient(
+            135deg,
+            #fff5f5 0%,
+            #f4f4f4 40%,
+            #fff 100%
+        );
+    color:#222;
+}
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+.container{
+    max-width:1500px;
+    margin:auto;
+    padding:25px;
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+header{
+    text-align:center;
+    margin-bottom:35px;
+    background:linear-gradient(135deg,#8b1111,#c61d1d);
+    color:#fff;
+    padding:28px 20px;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(139,17,17,.22);
+}
+
+header h1{
+    margin:0 0 10px;
+    font-size:38px;
+    font-weight:900;
+    letter-spacing:.5px;
+}
+
+header p{
+    margin:0;
+    font-size:18px;
+    opacity:.95;
+}
+
+/* =====================================================
+   RESUMO CARDS
+===================================================== */
+.resumo{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:22px;
+    margin-bottom:30px;
+}
+
+.card{
+    background:#fff;
+    padding:28px 20px;
+    border-radius:18px;
+    box-shadow:0 8px 22px rgba(0,0,0,.08);
+    text-align:center;
+    border-top:6px solid #8b1111;
+    transition:.25s ease;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 14px 30px rgba(0,0,0,.12);
+}
+
+.card h3{
+    margin:0;
+    font-size:18px;
+    color:#555;
+}
+
+.card span{
+    display:block;
+    margin-top:14px;
+    font-size:34px;
+    font-weight:900;
+    color:#1b7f1b;
+}
+
+/* =====================================================
+   FILTROS
+===================================================== */
+.filtros{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:25px;
+    background:#fff;
+    padding:18px;
+    border-radius:16px;
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
+}
+
+.filtros input,
+.filtros select,
+.filtros button{
+    padding:14px 16px;
+    border-radius:12px;
+    border:1px solid #d6d6d6;
+    font-size:16px;
+    transition:.2s ease;
+    outline:none;
+}
+
+.filtros input{
+    flex:1;
+    min-width:260px;
+}
+
+.filtros input:focus,
+.filtros select:focus{
+    border-color:#8b1111;
+    box-shadow:0 0 0 3px rgba(139,17,17,.12);
+}
+
+.filtros select{
+    min-width:200px;
+    background:#fff;
+}
+
+.filtros button{
+    background:linear-gradient(135deg,#8b1111,#c61d1d);
+    color:#fff;
+    font-weight:900;
+    cursor:pointer;
+    border:none;
+    min-width:180px;
+    letter-spacing:.4px;
+}
+
+.filtros button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 16px rgba(139,17,17,.25);
+}
+
+/* =====================================================
+   TABELA BOX
+===================================================== */
+.tabela-box{
+    overflow:auto;
+    background:#fff;
+    border-radius:18px;
+    padding:18px;
+    box-shadow:0 8px 24px rgba(0,0,0,.08);
+}
+
+/* =====================================================
+   TABELA
+===================================================== */
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:1200px;
+}
+
+th,td{
+    padding:14px 12px;
+    border-bottom:1px solid #ececec;
+    text-align:left;
+    font-size:14px;
+}
+
+th{
+    background:linear-gradient(135deg,#8b1111,#c61d1d);
+    color:white;
+    font-size:14px;
+    text-transform:uppercase;
+    position:sticky;
+    top:0;
+    z-index:2;
+}
+
+tbody tr:nth-child(even){
+    background:#fafafa;
+}
+
+tbody tr:hover{
+    background:#fff4f4;
+}
+
+/* =====================================================
+   STATUS
+===================================================== */
+.status{
+    font-weight:900;
+    padding:6px 10px;
+    border-radius:8px;
+    display:inline-block;
+    font-size:12px;
+}
+
+.approved{
+    color:#0f6d0f;
+    background:#dff7df;
+}
+
+.pending{
+    color:#a66300;
+    background:#fff1d6;
+}
+
+.cancelled{
+    color:#b30000;
+    background:#ffdede;
+}
+
+/* =====================================================
+   BOTÕES TABELA
+===================================================== */
+td button{
+    background:linear-gradient(135deg,#1b7f1b,#28a428);
+    color:white;
+    border:none;
+    padding:10px 14px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:900;
+    transition:.2s ease;
+    white-space:nowrap;
+}
+
+td button:hover{
+    transform:scale(1.04);
+    box-shadow:0 6px 14px rgba(27,127,27,.25);
+}
+
+/* =====================================================
+   SCROLLBAR
+===================================================== */
+::-webkit-scrollbar{
+    height:10px;
+    width:10px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#c9c9c9;
+    border-radius:20px;
+}
+
+/* =====================================================
+   RESPONSIVO
+===================================================== */
+@media(max-width:992px){
+
+    header h1{
+        font-size:30px;
+    }
+
+    header p{
+        font-size:16px;
+    }
+
+    .card span{
+        font-size:28px;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .container{
+        padding:12px;
+    }
+
+    header{
+        padding:22px 14px;
+        border-radius:14px;
+    }
+
+    header h1{
+        font-size:24px;
+    }
+
+    header p{
+        font-size:14px;
+    }
+
+    .resumo{
+        grid-template-columns:1fr;
+    }
+
+    .card{
+        padding:22px 14px;
+    }
+
+    .card span{
+        font-size:24px;
+    }
+
+    .filtros{
+        flex-direction:column;
+        padding:14px;
+    }
+
+    .filtros input,
+    .filtros select,
+    .filtros button{
+        width:100%;
+        min-width:unset;
+    }
+
+    table{
+        min-width:1000px;
+    }
+
+}

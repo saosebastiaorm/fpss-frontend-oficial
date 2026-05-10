@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard FPSS</title>
+
+  <style>
+    *{
+      box-sizing:border-box;
+    }
+
+    body{
+      margin:0;
+      font-family:Arial,sans-serif;
+      background:#f4f4f4;
+      padding:20px;
+    }
+
+    .container{
+      max-width:1200px;
+      margin:auto;
+    }
+
+    h1{
+      text-align:center;
+      color:#8b1111;
+      margin-bottom:10px;
+    }
+
+    .sub{
+      text-align:center;
+      color:#666;
+      margin-bottom:30px;
+    }
+
+    .top-nav{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:center;
+      margin-bottom:25px;
+    }
+
+    .top-nav a{
+      text-decoration:none;
+      background:#8b1111;
+      color:#fff;
+      padding:10px 16px;
+      border-radius:10px;
+      font-weight:bold;
+    }
+
+    .top-nav a:hover{
+      opacity:0.92;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
+    }
+
+    .card{
+      background:#fff;
+      padding:25px;
+      border-radius:15px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.08);
+      border-top:5px solid #8b1111;
+      text-align:center;
+    }
+
+    .card h2{
+      margin:0;
+      font-size:16px;
+      color:#555;
+    }
+
+    .numero{
+      font-size:38px;
+      font-weight:bold;
+      margin-top:15px;
+      color:#1d7f2a;
+    }
+
+    .refresh{
+      width:100%;
+      margin-top:30px;
+      padding:18px;
+      border:none;
+      border-radius:12px;
+      background:#8b1111;
+      color:#fff;
+      font-size:18px;
+      font-weight:bold;
+      cursor:pointer;
+    }
+
+    .refresh:hover{
+      opacity:0.95;
+    }
+
+    .rodape{
+      margin-top:20px;
+      text-align:center;
+      color:#666;
+      font-size:14px;
+    }
+
+    .erro{
+      color:red;
+      text-align:center;
+      margin-top:20px;
+      font-weight:bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <h1>📊 Dashboard FPSS 2027</h1>
+  <p class="sub">Controle geral de vendas, pagamentos e retiradas</p>
+
+  <div class="top-nav">
+    <a href="/admin/dashboard.html">Admin Central</a>
+    <a href="/admin/pedidos.html">Pedidos</a>
+    <a href="/admin/produtos.html">Produtos</a>
+    <a href="/admin/retirada.html">Retirada</a>
+    <a href="/admin/leitor.html">Leitor QR</a>
+    <a href="/index.html">Site Oficial</a>
+  </div>
+
+  <div id="erro" class="erro"></div>
+
+  <div class="grid" id="dashboardGrid">
+
+    <div class="card">
+      <h2>Total de Pedidos</h2>
+      <div class="numero" id="totalPedidos">--</div>
+    </div>
+
+    <div class="card">
+      <h2>Pagos</h2>
+      <div class="numero" id="totalPago">--</div>
+    </div>
+
+    <div class="card">
+      <h2>Pendentes</h2>
+      <div class="numero" id="totalPendente">--</div>
+    </div>
+
+    <div class="card">
+      <h2>Retirados</h2>
+      <div class="numero" id="totalRetirado">--</div>
+    </div>
+
+    <div class="card">
+      <h2>Itens Vendidos</h2>
+      <div class="numero" id="itensVendidos">--</div>
+    </div>
+
+    <div class="card">
+      <h2>Itens Retirados</h2>
+      <div class="numero" id="itensRetirados">--</div>
+    </div>
+
+    <div class="card">
+      <h2>Receita Total</h2>
+      <div class="numero" id="receitaTotal">--</div>
+    </div>
+
+    <div class="card">
+      <h2>Receita Confirmada</h2>
+      <div class="numero" id="receitaConfirmada">--</div>
+    </div>
+
+  </div>
+
+  <button class="refresh" onclick="carregarDashboard()">
+    🔄 ATUALIZAR AGORA
+  </button>
+
+  <div class="rodape">
+    Atualização automática a cada 30 segundos
+  </div>
+
+</div>
+
+<script>
+/* =========================================
+   CONFIG API
+========================================= */
+const API_BASE = "https://fpss-backend.onrender.com";
+
+/* =========================================
+   FORMATAR MOEDA
+========================================= */
+function moeda(valor) {
+  return "R$ " + Number(valor || 0)
+    .toFixed(2)
+    .replace(".", ",");
+}
+
+/* =========================================
+   CARREGAR DASHBOARD
+========================================= */
+async function carregarDashboard() {
+
+  try {
+
+    document.getElementById("erro").innerHTML = "";
+
+    const res = await fetch(`${API_BASE}/admin/dashboard`);
+
+    const dados = await res.json();
+
+    if (!dados.sucesso) {
+      document.getElementById("erro").innerHTML =
+        "❌ Não foi possível carregar dashboard.";
+      return;
+    }
+
+    document.getElementById("totalPedidos").innerText =
+      dados.total_pedidos;
+
+    document.getElementById("totalPago").innerText =
+      dados.total_pago;
+
+    document.getElementById("totalPendente").innerText =
+      dados.total_pendente;
+
+    document.getElementById("totalRetirado").innerText =
+      dados.total_retirado;
+
+    document.getElementById("itensVendidos").innerText =
+      dados.itens_vendidos;
+
+    document.getElementById("itensRetirados").innerText =
+      dados.itens_retirados;
+
+    document.getElementById("receitaTotal").innerText =
+      moeda(dados.receita_total);
+
+    document.getElementById("receitaConfirmada").innerText =
+      moeda(dados.receita_confirmada);
+
+  } catch (e) {
+
+    document.getElementById("erro").innerHTML =
+      "❌ Erro de conexão com servidor.";
+  }
+}
+
+/* =========================================
+   AUTO START
+========================================= */
+carregarDashboard();
+
+/* =========================================
+   AUTO REFRESH
+========================================= */
+setInterval(carregarDashboard, 30000);
+</script>
+
+</body>
+</html>

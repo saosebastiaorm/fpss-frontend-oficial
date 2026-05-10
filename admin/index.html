@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo FPSS</title>
+
+    <link rel="stylesheet" href="/css/admin.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        <h1>📊 Painel Administrativo FPSS</h1>
+        <p>Controle oficial de pedidos</p>
+    </header>
+
+    <section class="resumo">
+
+        <div class="card">
+            <h3>Total Arrecadado</h3>
+            <span id="totalArrecadado">R$ 0,00</span>
+        </div>
+
+        <div class="card">
+            <h3>Churrascos Vendidos</h3>
+            <span id="totalQtd">0</span>
+        </div>
+
+        <div class="card">
+            <h3>Total de Pedidos</h3>
+            <span id="totalPedidos">0</span>
+        </div>
+
+        <div class="card">
+            <h3>🍖 Retirada</h3>
+            <span>
+                <a href="/admin/retirada.html" class="btn">
+                    Abrir Retirada
+                </a>
+            </span>
+        </div>
+
+        <div class="card">
+            <h3>📷 Leitor QR</h3>
+            <span>
+                <a href="/admin/leitor.html" class="btn">
+                    Abrir Leitor QR
+                </a>
+            </span>
+        </div>
+
+    </section>
+
+    <section class="filtros">
+
+        <input
+            type="text"
+            id="busca"
+            placeholder="Buscar nome, CPF ou telefone..."
+        >
+
+        <select id="filtroStatus">
+            <option value="">Todos Status</option>
+            <option value="PENDING">PENDENTE</option>
+            <option value="APPROVED">APROVADO</option>
+            <option value="CANCELLED">CANCELADO</option>
+        </select>
+
+        <button id="btnAtualizar">
+            ATUALIZAR
+        </button>
+
+    </section>
+
+    <section class="tabela-box">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Pedido</th>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Telefone</th>
+                    <th>Qtd</th>
+                    <th>Total</th>
+                    <th>Retirada</th>
+                    <th>Status</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+
+            <tbody id="tabelaPedidos"></tbody>
+
+        </table>
+
+    </section>
+
+</div>
+
+<script src="/js/admin.js"></script>
+
+</body>
+</html>

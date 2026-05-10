@@ -1,0 +1,386 @@
+/* =========================================
+   FPSS CONVERSÃO MASTER 2027 - CORREÇÃO VISUAL
+========================================= */
+
+body{
+    background:#f7f1e8 !important;
+    color:#222 !important;
+    margin:0;
+    padding:0;
+}
+
+.wrap{
+    width:min(1200px,92%);
+    margin:auto;
+}
+
+/* BARRA */
+.barra-urgencia{
+    background:linear-gradient(90deg,#8b1111,#ff2b2b) !important;
+    color:#fff !important;
+    text-align:center !important;
+    padding:14px !important;
+    font-size:18px !important;
+    font-weight:900 !important;
+    position:sticky !important;
+    top:0 !important;
+    z-index:99999 !important;
+    box-shadow:0 4px 14px rgba(0,0,0,.25) !important;
+}
+
+/* HERO */
+.hero-vendas{
+    background:linear-gradient(135deg,#8b1111,#c41515) !important;
+    color:#fff !important;
+    padding:80px 20px !important;
+}
+
+.hero-grid{
+    display:grid !important;
+    grid-template-columns:1.4fr .8fr !important;
+    gap:35px !important;
+    align-items:center !important;
+}
+
+.hero h1{
+    color:#fff !important;
+    font-size:clamp(42px,6vw,76px) !important;
+    font-weight:900 !important;
+    line-height:1.05 !important;
+    margin-bottom:20px !important;
+}
+
+.subhero{
+    color:#fff !important;
+    font-size:24px !important;
+    font-weight:700 !important;
+    line-height:1.6 !important;
+}
+
+/* BADGE */
+.badge-topo{
+    display:inline-block !important;
+    background:#ffd700 !important;
+    color:#8b1111 !important;
+    padding:10px 18px !important;
+    border-radius:999px !important;
+    font-weight:900 !important;
+    margin-bottom:18px !important;
+}
+
+/* CTA */
+.cta-group{
+    display:flex !important;
+    flex-wrap:wrap !important;
+    gap:16px !important;
+    margin-top:22px !important;
+}
+
+.btn,
+a.btn,
+button.btn{
+    display:inline-block !important;
+    padding:18px 30px !important;
+    border-radius:14px !important;
+    text-decoration:none !important;
+    font-weight:900 !important;
+    font-size:22px !important;
+    text-align:center !important;
+    border:none !important;
+    cursor:pointer !important;
+    box-shadow:0 8px 18px rgba(0,0,0,.2) !important;
+}
+
+.btn.red{
+    background:#a30d0d !important;
+    color:#fff !important;
+}
+
+.btn.green{
+    background:#1faa4a !important;
+    color:#fff !important;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+}
+
+/* MINI INFO */
+.mini-info{
+    display:flex !important;
+    flex-wrap:wrap !important;
+    gap:14px !important;
+    margin-top:22px !important;
+    color:#fff !important;
+    font-weight:700 !important;
+}
+
+/* PRICE */
+.price-card{
+    background:#fff !important;
+    color:#8b1111 !important;
+    padding:24px !important;
+    border-radius:18px !important;
+    text-align:center !important;
+    box-shadow:0 8px 20px rgba(0,0,0,.18) !important;
+}
+
+.price-card.destaque{
+    border:4px solid #ffd700 !important;
+}
+
+.price-card .valor{
+    font-size:42px !important;
+    font-weight:900 !important;
+}
+
+/* CARD BASE */
+.card{
+    background:#f3f3f3 !important;
+    border-radius:22px !important;
+    padding:55px 0 !important;
+    margin:18px auto !important;
+}
+
+.section-title{
+    color:#8b1111 !important;
+    font-size:clamp(30px,4vw,56px) !important;
+    font-weight:900 !important;
+    text-align:center !important;
+    margin-bottom:20px !important;
+}
+
+/* CONTADOR */
+.contador-grid{
+    display:flex !important;
+    justify-content:center !important;
+    gap:18px !important;
+    flex-wrap:wrap !important;
+}
+
+.tempo-box{
+    background:#8b1111 !important;
+    color:#fff !important;
+    padding:22px !important;
+    min-width:110px !important;
+    border-radius:18px !important;
+}
+
+.tempo-box span{
+    font-size:42px !important;
+    font-weight:900 !important;
+}
+
+/* GRID */
+.grid-2{
+    display:grid !important;
+    grid-template-columns:repeat(2,1fr) !important;
+    gap:24px !important;
+}
+
+/* VENDA */
+.venda-box{
+    background:#fff !important;
+    border:2px solid #f2bcbc !important;
+    border-radius:22px !important;
+    padding:28px !important;
+    position:relative !important;
+    box-shadow:0 8px 18px rgba(0,0,0,.08) !important;
+}
+
+.venda-box h3{
+    color:#222 !important;
+}
+
+.venda-box ul,
+.venda-box li{
+    color:#333 !important;
+}
+
+.venda-box::before{
+    content:"🔥 OFERTA LIMITADA";
+    position:absolute;
+    top:12px;
+    right:12px;
+    background:linear-gradient(135deg,#ff2b2b,#d60000);
+    color:#fff;
+    padding:8px 14px;
+    border-radius:10px;
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:.4px;
+    box-shadow:0 4px 10px rgba(0,0,0,.18);
+    z-index:5;
+}
+
+.price-box{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    width:100% !important;
+    min-height:70px !important;
+    background:linear-gradient(135deg,#16a34a,#1faa4a) !important;
+    color:#ffffff !important;
+    font-size:48px !important;
+    font-weight:900 !important;
+    text-align:center !important;
+    margin:18px 0 !important;
+    border-radius:14px !important;
+    box-shadow:0 6px 14px rgba(0,0,0,.12) !important;
+    letter-spacing:1px !important;
+}
+}
+
+/* BOTÕES DENTRO DOS CARDS */
+.venda-box a{
+    display:block !important;
+    width:100% !important;
+    background:#1faa4a !important;
+    color:#fff !important;
+    text-align:center !important;
+    padding:18px !important;
+    border-radius:14px !important;
+    text-decoration:none !important;
+    font-weight:900 !important;
+    font-size:22px !important;
+    box-sizing:border-box !important;
+}
+
+.venda-box a:hover{
+    background:#18853a !important;
+}
+
+/* DOAÇÃO */
+.doacao-cta{
+    background:linear-gradient(135deg,#f7fff7,#ebffeb) !important;
+    padding:70px 0 !important;
+}
+
+.doacao-box-main{
+    background:#fff !important;
+    border:3px solid #1faa4a !important;
+    border-radius:24px !important;
+    padding:34px !important;
+    text-align:center !important;
+}
+
+.doacao-box-main h2,
+.doacao-box-main p,
+.doacao-box-main small{
+    color:#222 !important;
+}
+
+/* ENQUETE */
+#enquete p{
+    color:#222 !important;
+}
+
+/* VIP */
+.vip-fpss{
+    background:linear-gradient(135deg,#8b1111,#c41515) !important;
+    padding:80px 20px !important;
+}
+
+.vip-box{
+    background:rgba(255,255,255,.12) !important;
+    color:#fff !important;
+    border-radius:24px !important;
+    padding:40px !important;
+    max-width:760px !important;
+    margin:auto !important;
+    box-shadow:0 10px 28px rgba(0,0,0,.2) !important;
+}
+
+.vip-box h2,
+.vip-box p{
+    color:#fff !important;
+    text-align:center !important;
+}
+
+.vip-box input{
+    width:100% !important;
+    padding:16px !important;
+    margin-bottom:14px !important;
+    border-radius:12px !important;
+    border:none !important;
+    box-sizing:border-box !important;
+}
+
+.vip-box button{
+    width:100% !important;
+    background:#1faa4a !important;
+    color:#fff !important;
+    padding:18px !important;
+    border:none !important;
+    border-radius:14px !important;
+    font-size:22px !important;
+    font-weight:900 !important;
+}
+
+.vip-box button:hover{
+    background:#18853a !important;
+}
+
+/* WHATS */
+.whatsapp-fixo{
+    position:fixed !important;
+    right:20px !important;
+    bottom:20px !important;
+    background:#1faa4a !important;
+    color:#fff !important;
+    padding:18px 24px !important;
+    border-radius:999px !important;
+    text-decoration:none !important;
+    font-weight:900 !important;
+    font-size:20px !important;
+    z-index:99999 !important;
+}
+
+/* FOOTER */
+footer{
+    background:#111 !important;
+    color:#fff !important;
+    text-align:center !important;
+    padding:28px !important;
+}
+
+.admin-footer{
+    background:#000 !important;
+    text-align:center !important;
+    padding:16px !important;
+}
+
+.admin-footer a{
+    color:#ffd700 !important;
+    text-decoration:none !important;
+    font-weight:900 !important;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+
+    .hero-grid{
+        grid-template-columns:1fr !important;
+    }
+
+    .grid-2{
+        grid-template-columns:1fr !important;
+    }
+
+    .hero h1{
+        font-size:40px !important;
+    }
+
+    .subhero{
+        font-size:19px !important;
+    }
+
+    .btn{
+        width:100% !important;
+    }
+
+    .venda-box a{
+        font-size:20px !important;
+    }
+
+}
