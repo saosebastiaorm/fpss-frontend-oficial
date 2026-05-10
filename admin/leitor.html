@@ -121,6 +121,22 @@
       font-size:18px;
       margin-top:15px;
     }
+
+        .btn-trocar-camera{
+      margin-top:15px;
+      background:#007bff;
+      color:#fff;
+      border:none;
+      padding:12px 20px;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:bold;
+      font-size:16px;
+    }
+
+.btn-trocar-camera:hover{
+  opacity:0.9;
+}
   </style>
 </head>
 <body>
@@ -140,6 +156,10 @@
   </div>
 
   <div id="reader"></div>
+
+  <button class="btn-trocar-camera" onclick="trocarCamera()">
+🔄 Trocar Câmera
+</button>
 
   <div id="erro" class="erro"></div>
 
@@ -295,25 +315,42 @@ async function confirmarRetirada() {
 /* =========================================
    START CAMERA
 ========================================= */
+let html5QrCode;
+let cameras = [];
+let currentCameraIndex = 0;
+
+/* =========================================
+   START CAMERA
+========================================= */
 async function iniciarLeitor() {
 
   try {
 
     html5QrCode = new Html5Qrcode("reader");
 
-    const devices = await Html5Qrcode.getCameras();
+    cameras = await Html5Qrcode.getCameras();
 
-    if (!devices || !devices.length) {
+    if (!cameras || !cameras.length) {
       document.getElementById("erro").innerHTML =
         "❌ Nenhuma câmera encontrada.";
       return;
     }
 
+    // Prioriza câmera traseira
+    const traseiraIndex = cameras.findIndex(camera =>
+      camera.label.toLowerCase().includes("back") ||
+      camera.label.toLowerCase().includes("rear") ||
+      camera.label.toLowerCase().includes("environment") ||
+      camera.label.toLowerCase().includes("traseira")
+    );
+
+    currentCameraIndex = traseiraIndex >= 0 ? traseiraIndex : 0;
+
     await html5QrCode.start(
-      devices[0].id,
+      cameras[currentCameraIndex].id,
       {
-        fps:10,
-        qrbox:250
+        fps: 10,
+        qrbox: 250
       },
       onScanSuccess
     );
@@ -324,7 +361,33 @@ async function iniciarLeitor() {
       "❌ Câmera não encontrada ou permissão negada.";
   }
 }
+async function trocarCamera() {
 
+  if (!cameras.length || cameras.length < 2) {
+    alert("❌ Apenas uma câmera disponível.");
+    return;
+  }
+
+  try {
+
+    await html5QrCode.stop();
+
+    currentCameraIndex =
+      (currentCameraIndex + 1) % cameras.length;
+
+    await html5QrCode.start(
+      cameras[currentCameraIndex].id,
+      {
+        fps: 10,
+        qrbox: 250
+      },
+      onScanSuccess
+    );
+
+  } catch (err) {
+    alert("❌ Erro ao trocar câmera.");
+  }
+}
 iniciarLeitor();
 </script>
 
