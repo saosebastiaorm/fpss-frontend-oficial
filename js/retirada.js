@@ -141,11 +141,14 @@ async function buscarPedido() {
             padding:12px;
             margin-bottom:12px;
             background:${
-              pedido.status_retirada === "retirado"
-                ? "#ffe5e5"
-                : pedido.status_pagamento === "pago"
-                  ? "#e8f7e8"
-                  : "#fff8d6"
+
+            pedido.status_retirada === "retirado"
+            ? "#dbeafe"
+            : pedido.status_pagamento === "pago"
+              ? "#e8f7e8"
+              : "#fff8d6" 
+
+
             };
           ">
 
