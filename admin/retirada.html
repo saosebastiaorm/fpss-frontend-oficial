@@ -645,14 +645,34 @@ async function toggleScanner() {
         fps: 10,
         qrbox: { width: 220, height: 220 }
       },
-      (decodedText) => {
+      
+(decodedText) => {
 
-        const codigo = decodedText.split("|")[0];
+  try {
 
-        document.getElementById("busca").value = codigo;
+    const codigo = decodedText.split("|")[0].trim();
 
-        buscarPedido();
-      }
+    document.getElementById("busca").value = codigo;
+
+    html5QrCode.stop().then(() => {
+
+      scannerAtivo = false;
+
+      document.getElementById("scannerArea").style.display = "none";
+
+      buscarPedido();
+
+    });
+
+  } catch (e) {
+
+    console.log("ERRO QR:", e);
+
+    alert("❌ QR inválido.");
+  }
+}
+
+
     );
 
     scannerAtivo = true;
@@ -691,14 +711,33 @@ async function trocarCamera() {
         fps: 10,
         qrbox: { width: 220, height: 220 }
       },
+      
       (decodedText) => {
 
-        const codigo = decodedText.split("|")[0];
+  try {
 
-        document.getElementById("busca").value = codigo;
+    const codigo = decodedText.split("|")[0].trim();
 
-        buscarPedido();
-      }
+    document.getElementById("busca").value = codigo;
+
+    html5QrCode.stop().then(() => {
+
+      scannerAtivo = false;
+
+      document.getElementById("scannerArea").style.display = "none";
+
+      buscarPedido();
+
+    });
+
+  } catch (e) {
+
+    console.log("ERRO QR:", e);
+
+    alert("❌ QR inválido.");
+  }
+}
+
     );
 
   } catch (err) {
