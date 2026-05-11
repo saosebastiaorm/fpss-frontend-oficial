@@ -221,11 +221,11 @@ async function buscarPedido() {
     return;
   }
 
-  try {
-
-    let url = "";
+      let url = "";
+    let buscaPorCodigo = false;
 
     if (termo.toUpperCase().startsWith("FPSS-")) {
+      buscaPorCodigo = true;
       url = `${API_BASE}/pedido/codigo/${encodeURIComponent(termo)}`;
     } else {
       url = `${API_BASE}/pedido/cpf/${termo.replace(/\D/g,'')}`;
@@ -239,13 +239,76 @@ async function buscarPedido() {
       return;
     }
 
-    pedidoAtual = dados.pedido;
-
     /* =========================================
-       VERIFICAR PAGAMENTO REAL
+       BUSCA POR CÓDIGO (INDIVIDUAL)
     ========================================= */
-    if (pedidoAtual.payment_id) {
+    if (buscaPorCodigo) {
 
+      pedidoAtual = dados.pedido;
+
+      if (pedidoAtual.payment_id) {
+        try {
+          const pagamento = await fetch(
+            `${API_BASE}/verificar-pagamento/${pedidoAtual.payment_id}`
+          );
+
+          const pagamentoDados = await pagamento.json();
+
+          if (pagamentoDados.sucesso) {
+            pedidoAtual.status_pagamento = pagamentoDados.status_interno;
+          }
+
+        } catch(e){}
+      }
+
+      renderizarPedidoIndividual(pedidoAtual);
+
+    } else {
+
+      /* =========================================
+         BUSCA POR CPF (MÚLTIPLOS)
+      ========================================= */
+
+      const pedidos = dados.pedidos;
+
+      resultado.style.display = "block";
+
+      resultado.innerHTML = `
+        <h2>📋 Pedidos encontrados (${pedidos.length})</h2>
+
+        ${pedidos.map(pedido => `
+          <div style="
+            border:1px solid #ddd;
+            border-radius:10px;
+            padding:12px;
+            margin-bottom:12px;
+            background:${
+              pedido.status_retirada === "retirado"
+                ? "#ffe5e5"
+                : pedido.status_pagamento === "pago"
+                  ? "#e8f7e8"
+                  : "#fff8d6"
+            };
+          ">
+
+            <div><strong>Nome:</strong> ${pedido.nome}</div>
+            <div><strong>Código:</strong> ${pedido.codigo_pedido}</div>
+            <div><strong>Horário:</strong> ${pedido.horario_retirada || "Não definido"}</div>
+            <div><strong>Pagamento:</strong> ${pedido.status_pagamento}</div>
+            <div><strong>Retirada:</strong> ${pedido.status_retirada}</div>
+
+            ${
+              pedido.status_retirada === "retirado"
+                ? `<div class="bloqueio">⚠️ Já retirado</div>`
+                : pedido.status_pagamento !== "pago"
+                  ? `<div class="bloqueio">⚠️ Pagamento pendente</div>`
+                  : `<button onclick="confirmarRetiradaPorCodigo('${pedido.codigo_pedido}')">✅ Confirmar Retirada</button>`
+            }
+
+          </div>
+        `).join("")}
+      `;
+    }```
       try {
 
         const pagamentoRes = await fetch(
@@ -351,6 +414,42 @@ async function confirmarRetirada() {
       alert("✅ Retirada confirmada com sucesso!");
 
       buscarPedido();
+
+    } else {
+
+      alert("❌ " + dados.erro);
+    }
+
+  } catch (e) {
+
+    alert("❌ Erro ao confirmar retirada.");
+  }
+}
+
+async function confirmarRetiradaPorCodigo(codigoPedido) {
+
+  const confirmar = confirm(
+    `Confirmar retirada do pedido ${codigoPedido}?`
+  );
+
+  if (!confirmar) return;
+
+  try {
+
+    const res = await fetch(
+      `${API_BASE}/retirada/${codigoPedido}`,
+      {
+        method:"POST"
+      }
+    );
+
+    const dados = await res.json();
+
+    if (dados.sucesso) {
+
+      alert("✅ Retirada confirmada com sucesso!");
+
+      location.reload();
 
     } else {
 
