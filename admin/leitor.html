@@ -63,6 +63,12 @@
 
     #reader{
       margin-top:20px;
+      width:100%;
+    }
+
+    #reader video{
+      width:100% !important;
+      border-radius:12px;
     }
 
     .resultado{
@@ -122,7 +128,7 @@
       margin-top:15px;
     }
 
-        .btn-trocar-camera{
+    .btn-trocar-camera{
       margin-top:15px;
       background:#007bff;
       color:#fff;
@@ -134,12 +140,38 @@
       font-size:16px;
     }
 
-.btn-trocar-camera:hover{
-  opacity:0.9;
-}
+    .btn-trocar-camera:hover{
+      opacity:0.9;
+    }
+
+    /* Remove botão flutuante no admin */
+    .admin-page .botao-flutuante,
+    .admin-page .botao-comprar-flutuante,
+    .admin-page .comprar-flutuante{
+      display:none !important;
+    }
+
+    @media(max-width:768px){
+      body{
+        padding:10px;
+      }
+
+      .container{
+        padding:18px;
+      }
+
+      h1{
+        font-size:42px;
+      }
+
+      .top-nav a{
+        flex:1 1 calc(50% - 10px);
+        text-align:center;
+      }
+    }
   </style>
 </head>
-<body>
+<body class="admin-page">
 
 <div class="container">
 
@@ -158,8 +190,8 @@
   <div id="reader"></div>
 
   <button class="btn-trocar-camera" onclick="trocarCamera()">
-🔄 Trocar Câmera
-</button>
+    🔄 Trocar Câmera
+  </button>
 
   <div id="erro" class="erro"></div>
 
@@ -172,7 +204,10 @@ const API_BASE = "https://fpss-backend.onrender.com";
 
 let pedidoAtual = null;
 let leituraEmProcesso = false;
+
 let html5QrCode = null;
+let cameras = [];
+let currentCameraIndex = 0;
 
 /* =========================================
    PROCESSAR QR
@@ -211,13 +246,8 @@ async function onScanSuccess(decodedText) {
 
     pedidoAtual = dados.pedido;
 
-    /* =========================================
-       VERIFICA PAGAMENTO REAL
-    ========================================= */
     if (pedidoAtual.payment_id) {
-
       try {
-
         const pagamento = await fetch(
           `${API_BASE}/verificar-pagamento/${pedidoAtual.payment_id}`
         );
@@ -228,7 +258,7 @@ async function onScanSuccess(decodedText) {
           pedidoAtual.status_pagamento = pagamentoDados.status_interno;
         }
 
-      } catch(e) {}
+      } catch(e){}
     }
 
     document.getElementById("resultado").style.display = "block";
@@ -298,7 +328,6 @@ async function confirmarRetirada() {
     if (dados.sucesso) {
 
       alert("✅ Entrega confirmada com sucesso!");
-
       location.reload();
 
     } else {
@@ -311,13 +340,6 @@ async function confirmarRetirada() {
     alert("❌ Erro ao confirmar retirada.");
   }
 }
-
-/* =========================================
-   START CAMERA
-========================================= */
-let html5QrCode;
-let cameras = [];
-let currentCameraIndex = 0;
 
 /* =========================================
    START CAMERA
@@ -336,7 +358,6 @@ async function iniciarLeitor() {
       return;
     }
 
-    // Prioriza câmera traseira
     const traseiraIndex = cameras.findIndex(camera =>
       camera.label.toLowerCase().includes("back") ||
       camera.label.toLowerCase().includes("rear") ||
@@ -347,10 +368,11 @@ async function iniciarLeitor() {
     currentCameraIndex = traseiraIndex >= 0 ? traseiraIndex : 0;
 
     await html5QrCode.start(
-      cameras[currentCameraIndex].id,
+      { deviceId: { exact: cameras[currentCameraIndex].id } },
       {
         fps: 10,
-        qrbox: 250
+        qrbox: { width: 250, height: 250 },
+        facingMode: "environment"
       },
       onScanSuccess
     );
@@ -361,6 +383,10 @@ async function iniciarLeitor() {
       "❌ Câmera não encontrada ou permissão negada.";
   }
 }
+
+/* =========================================
+   TROCAR CÂMERA
+========================================= */
 async function trocarCamera() {
 
   if (!cameras.length || cameras.length < 2) {
@@ -376,18 +402,23 @@ async function trocarCamera() {
       (currentCameraIndex + 1) % cameras.length;
 
     await html5QrCode.start(
-      cameras[currentCameraIndex].id,
+      { deviceId: { exact: cameras[currentCameraIndex].id } },
       {
         fps: 10,
-        qrbox: 250
+        qrbox: { width: 250, height: 250 }
       },
       onScanSuccess
     );
 
   } catch (err) {
+
     alert("❌ Erro ao trocar câmera.");
   }
 }
+
+/* =========================================
+   INIT
+========================================= */
 iniciarLeitor();
 </script>
 
