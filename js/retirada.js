@@ -295,7 +295,30 @@ function processarCodigoLido(decodedText) {
       document.getElementById("scannerArea").style.display = "none";
 
       setTimeout(() => {
+
         document.querySelector(".buscar").click();
+
+        setTimeout(() => {
+
+          const resultado = document.getElementById("resultado");
+
+          if (resultado) {
+
+            resultado.classList.add("resultado-destaque");
+
+            resultado.scrollIntoView({
+              behavior:"smooth",
+              block:"start"
+            });
+
+            setTimeout(() => {
+              resultado.classList.remove("resultado-destaque");
+            }, 2500);
+
+          }
+
+        }, 700);
+
       }, 500);
 
     });
