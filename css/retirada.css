@@ -329,3 +329,22 @@ button{
     box-shadow:0 0 0 rgba(0,0,0,0);
   }
 }
+.pendente-status{
+  color:#b91c1c !important;
+  background:#fee2e2 !important;
+  padding:8px;
+  border-radius:8px;
+  text-align:center;
+  font-weight:bold;
+  margin-top:10px;
+}
+
+.retirado-status{
+  color:#1d4ed8 !important;
+  background:#dbeafe !important;
+  padding:8px;
+  border-radius:8px;
+  text-align:center;
+  font-weight:bold;
+  margin-top:10px;
+}
