@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento PIX - 6ª FPSS</title>
+
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script src="../js/qrcode.min.js"></script>
+
+    <style>
+        body{
+            background:#f4f4f4;
+            font-family:Arial,sans-serif;
+        }
+
+        .pix-container{
+            max-width:650px;
+            margin:30px auto;
+            background:#fff;
+            border-radius:16px;
+            padding:30px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.12);
+            border-top:6px solid #228b22;
+        }
+
+        h1{
+            text-align:center;
+            color:#8b1111;
+            margin-bottom:10px;
+        }
+
+        .sub{
+            text-align:center;
+            color:#666;
+            margin-bottom:25px;
+        }
+
+        .codigo-box{
+            background:#f8f9fa;
+            padding:15px;
+            border-radius:10px;
+            text-align:center;
+            margin-bottom:20px;
+            border:1px solid #ddd;
+        }
+
+        .codigo{
+            font-size:22px;
+            font-weight:bold;
+            color:#8b1111;
+        }
+
+        .qrcode-area{
+            display:flex;
+            justify-content:center;
+            margin:25px 0;
+        }
+
+        #qrcode{
+            padding:15px;
+            background:#fff;
+            border:1px solid #ddd;
+            border-radius:12px;
+        }
+
+        .pix-copia{
+            margin-top:20px;
+        }
+
+        .pix-copia textarea{
+            width:100%;
+            height:120px;
+            padding:12px;
+            border-radius:10px;
+            border:1px solid #ccc;
+            resize:none;
+            font-size:14px;
+        }
+
+        .btn{
+            width:100%;
+            padding:16px;
+            border:none;
+            border-radius:10px;
+            font-size:18px;
+            font-weight:bold;
+            cursor:pointer;
+            margin-top:15px;
+        }
+
+        .btn-copiar{
+            background:#228b22;
+            color:#fff;
+        }
+
+        .btn-whatsapp{
+            background:#25d366;
+            color:#fff;
+        }
+
+        .status{
+            margin-top:25px;
+            text-align:center;
+            font-size:18px;
+            font-weight:bold;
+            color:#d62828;
+        }
+
+        .info{
+            margin-top:20px;
+            background:#fff8d6;
+            padding:15px;
+            border-radius:10px;
+            font-size:14px;
+            line-height:1.6;
+            border:1px solid #f4d35e;
+        }
+    </style>
+</head>
+<body>
+
+<div class="pix-container">
+
+    <h1>🚀 PIX Gerado com Sucesso</h1>
+
+    <p class="sub">
+        Escaneie o QR Code ou copie o código PIX
+    </p>
+
+    <div class="codigo-box">
+        <div>Seu Pedido:</div>
+        <div class="codigo" id="codigoPedido">Carregando...</div>
+        <div id="valorPedido" style="margin-top:8px;font-weight:bold;"></div>
+    </div>
+
+    <div class="qrcode-area">
+        <div id="qrcode"></div>
+    </div>
+
+    <div class="pix-copia">
+        <label><strong>Código PIX Copia e Cola:</strong></label>
+
+        <textarea id="pixCode" readonly></textarea>
+
+        <button class="btn btn-copiar" onclick="copiarPix()">
+            📋 COPIAR CÓDIGO PIX
+        </button>
+
+        <button class="btn btn-whatsapp" onclick="enviarWhatsApp()">
+            📲 ENVIAR COMPROVANTE / PEDIDO
+        </button>
+    </div>
+
+    <div class="status">
+        ⏳ Aguardando pagamento...
+    </div>
+
+    <div class="info">
+        ⚠️ <strong>IMPORTANTE:</strong><br>
+        Após o pagamento, leve seu código de pedido + CPF para retirada.<br>
+        Sem pagamento aprovado, a entrega não será liberada.
+    </div>
+
+</div>
+
+<script>
+/* =========================================
+   CARREGAR DADOS PIX
+========================================= */
+const pixData = JSON.parse(localStorage.getItem("pixData"));
+
+if (!pixData) {
+    alert("❌ Nenhum pagamento encontrado.");
+    window.location.href = "/venda/compra-churrasco.html";
+}
+
+/* =========================================
+   PREENCHER DADOS
+========================================= */
+document.getElementById("codigoPedido").innerText =
+    pixData.codigo_pedido || "N/D";
+
+document.getElementById("valorPedido").innerText =
+    `Valor: R$ ${Number(pixData.total || 0).toFixed(2).replace(".", ",")}`;
+
+document.getElementById("pixCode").value =
+    pixData.qr_code || "";
+
+/* =========================================
+   GERAR QR
+========================================= */
+if (pixData.qr_code) {
+    new QRCode(
+        document.getElementById("qrcode"),
+        {
+            text: pixData.qr_code,
+            width: 220,
+            height: 220
+        }
+    );
+}
+
+/* =========================================
+   COPIAR PIX
+========================================= */
+function copiarPix() {
+
+    const campo = document.getElementById("pixCode");
+
+    campo.select();
+    campo.setSelectionRange(0, 99999);
+
+    navigator.clipboard.writeText(campo.value);
+
+    alert("✅ Código PIX copiado!");
+}
+
+/* =========================================
+   WHATSAPP
+========================================= */
+function enviarWhatsApp() {
+
+    const texto =
+`Olá! Meu pedido FPSS foi gerado.%0A
+Código: ${pixData.codigo_pedido}%0A
+CPF: ${pixData.cpf}%0A
+Valor: R$ ${Number(pixData.total).toFixed(2).replace(".", ",")}`;
+
+    window.open(
+        `https://wa.me/?text=${texto}`,
+        "_blank"
+    );
+}
+</script>
+
+</body>
+</html>
