@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Painel de Retirada FPSS</title>
 
+  <script src="/js/html5-qrcode.min.js"></script>
+
   <style>
     *{
       box-sizing:border-box;
@@ -163,6 +165,54 @@
         font-size:16px;
       }
     }
+
+        .acoes-topo{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      margin-bottom:20px;
+      flex-wrap:wrap;
+    }
+
+    .mini-btn{
+      width:auto;
+      padding:10px 16px;
+      font-size:15px;
+      border:none;
+      border-radius:10px;
+      font-weight:bold;
+      cursor:pointer;
+    }
+
+    .qr-btn{
+      background:#007bff;
+      color:#fff;
+    }
+
+    .camera-btn{
+      background:#444;
+      color:#fff;
+    }
+
+    #scannerArea{
+      margin-bottom:20px;
+    }
+
+    #reader{
+      width:100%;
+      max-width:280px;
+      margin:0 auto;
+      border:3px solid #8b1111;
+      border-radius:14px;
+      overflow:hidden;
+      background:#000;
+    }
+
+    #reader video{
+      width:100% !important;
+      height:auto !important;
+    }
+
   </style>
 </head>
 <body>
@@ -171,7 +221,25 @@
 
   <h1>🍖 Painel de Retirada FPSS</h1>
   <p class="sub">
-    Consulte por Código FPSS ou CPF
+    <p class="sub">
+  Escaneie QR Code automaticamente ou consulte por Código / CPF
+</p>
+
+<div class="acoes-topo">
+
+  <button class="mini-btn qr-btn" onclick="toggleScanner()">
+    📷 QR Scanner
+  </button>
+
+  <button class="mini-btn camera-btn" onclick="trocarCamera()">
+    🔄 Trocar
+  </button>
+
+</div>
+
+<div id="scannerArea" style="display:none;">
+  <div id="reader"></div>
+</div>
   </p>
 
   <div class="top-nav">
@@ -473,6 +541,109 @@ document.getElementById("busca").addEventListener("keypress", function(e){
     buscarPedido();
   }
 });
+/* =========================================
+   QR + CÂMERA
+========================================= */
+let html5QrCode = null;
+let cameras = [];
+let currentCameraIndex = 0;
+let scannerAtivo = false;
+
+async function toggleScanner() {
+
+  const scannerArea = document.getElementById("scannerArea");
+
+  if (scannerAtivo) {
+
+    if (html5QrCode) {
+      await html5QrCode.stop();
+    }
+
+    scannerArea.style.display = "none";
+    scannerAtivo = false;
+    return;
+  }
+
+  scannerArea.style.display = "block";
+
+  try {
+
+    html5QrCode = new Html5Qrcode("reader");
+
+    cameras = await Html5Qrcode.getCameras();
+
+    if (!cameras.length) {
+      alert("❌ Nenhuma câmera encontrada.");
+      return;
+    }
+
+    const traseiraIndex = cameras.findIndex(camera =>
+      camera.label.toLowerCase().includes("back") ||
+      camera.label.toLowerCase().includes("rear") ||
+      camera.label.toLowerCase().includes("environment") ||
+      camera.label.toLowerCase().includes("traseira")
+    );
+
+    currentCameraIndex = traseiraIndex >= 0 ? traseiraIndex : 0;
+
+    await html5QrCode.start(
+      { deviceId: { exact: cameras[currentCameraIndex].id } },
+      {
+        fps: 10,
+        qrbox: { width: 220, height: 220 }
+      },
+      (decodedText) => {
+
+        const codigo = decodedText.split("|")[0];
+
+        document.getElementById("busca").value = codigo;
+
+        buscarPedido();
+      }
+    );
+
+    scannerAtivo = true;
+
+  } catch (err) {
+
+    alert("❌ Erro ao iniciar câmera.");
+  }
+}
+
+async function trocarCamera() {
+
+  if (!scannerAtivo || cameras.length < 2) {
+    return;
+  }
+
+  try {
+
+    await html5QrCode.stop();
+
+    currentCameraIndex =
+      (currentCameraIndex + 1) % cameras.length;
+
+    await html5QrCode.start(
+      { deviceId: { exact: cameras[currentCameraIndex].id } },
+      {
+        fps: 10,
+        qrbox: { width: 220, height: 220 }
+      },
+      (decodedText) => {
+
+        const codigo = decodedText.split("|")[0];
+
+        document.getElementById("busca").value = codigo;
+
+        buscarPedido();
+      }
+    );
+
+  } catch (err) {
+
+    alert("❌ Erro ao trocar câmera.");
+  }
+}
 </script>
 
 </body>
