@@ -296,24 +296,30 @@ function processarCodigoLido(decodedText) {
 
       setTimeout(() => {
 
-        document.querySelector(".buscar").click();
+        buscarPedido();
 
         setTimeout(() => {
 
-          const resultado = document.getElementById("resultado");
+          setTimeout(() => {
 
-          if (resultado) {
+  const resultado = document.getElementById("resultado");
 
-            resultado.classList.add("resultado-destaque");
+  if (resultado && resultado.innerHTML.trim() !== "") {
 
-            resultado.scrollIntoView({
-              behavior:"smooth",
-              block:"start"
-            });
+    resultado.classList.add("resultado-destaque");
 
-            setTimeout(() => {
-              resultado.classList.remove("resultado-destaque");
-            }, 2500);
+    resultado.scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+
+    setTimeout(() => {
+      resultado.classList.remove("resultado-destaque");
+    }, 2500);
+
+  }
+
+}, 1200);
 
           }
 
