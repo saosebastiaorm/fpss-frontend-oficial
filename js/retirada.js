@@ -182,7 +182,7 @@ async function buscarPedido() {
                 ? `<div class="bloqueio retirado-status">✅ Pedido já retirado</div>`
                 : pedido.status_pagamento !== "pago"
                   ? `<div class="bloqueio pendente-status">❌ Pagamento pendente. Entrega bloqueada.</div>`
-                  : `<button onclick="confirmarRetiradaPorCodigo('${pedido.codigo_pedido}')">✅ Confirmar Retirada</button>`
+                  : `<button onclick="confirmarRetiradaPorCodigo('${pedido.codigo_pedido}')">✅ Confirmar Retirada❓</button>`
             }
 
           </div>
