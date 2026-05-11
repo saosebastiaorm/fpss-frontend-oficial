@@ -654,15 +654,19 @@ async function toggleScanner() {
 
     document.getElementById("busca").value = codigo;
 
-    html5QrCode.stop().then(() => {
+    
+    html5QrCode.stop().then(async () => {
 
-      scannerAtivo = false;
+  scannerAtivo = false;
 
-      document.getElementById("scannerArea").style.display = "none";
+  document.getElementById("scannerArea").style.display = "none";
 
-      buscarPedido();
+  setTimeout(() => {
+    buscarPedido();
+  }, 300);
 
-    });
+});
+
 
   } catch (e) {
 
@@ -720,15 +724,18 @@ async function trocarCamera() {
 
     document.getElementById("busca").value = codigo;
 
-    html5QrCode.stop().then(() => {
+   html5QrCode.stop().then(async () => {
 
-      scannerAtivo = false;
+  scannerAtivo = false;
 
-      document.getElementById("scannerArea").style.display = "none";
+  document.getElementById("scannerArea").style.display = "none";
 
-      buscarPedido();
+  setTimeout(() => {
+    buscarPedido();
+  }, 300);
 
-    });
+});
+
 
   } catch (e) {
 
