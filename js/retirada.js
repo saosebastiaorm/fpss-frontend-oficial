@@ -109,9 +109,9 @@ async function buscarPedido() {
 
         ${
           pedidoAtual.status_retirada === "retirado"
-            ? `<p class="erro">⚠️ Pedido já retirado.</p>`
+            ? `<div class="bloqueio retirado-status">✅ Pedido já retirado</div>`
             : pedidoAtual.status_pagamento !== "pago"
-              ? `<p class="erro">⚠️ Pagamento pendente. Entrega bloqueada.</p>`
+              ? `<div class="bloqueio pendente-status">❌ Pagamento pendente. Entrega bloqueada.</div>`
               : `<button class="retirar" onclick="confirmarRetirada()">✅ CONFIRMAR ENTREGA</button>`
         }
 
@@ -141,14 +141,11 @@ async function buscarPedido() {
             padding:12px;
             margin-bottom:12px;
             background:${
-
-            pedido.status_retirada === "retirado"
-            ? "#dbeafe"
-            : pedido.status_pagamento === "pago"
-              ? "#e8f7e8"
-              : "#fff8d6" 
-
-
+              pedido.status_retirada === "retirado"
+                ? "#dbeafe"
+                : pedido.status_pagamento === "pago"
+                  ? "#e8f7e8"
+                  : "#fff8d6"
             };
           ">
 
@@ -160,15 +157,31 @@ async function buscarPedido() {
 
             <div><strong>Horário:</strong> ${pedido.horario_retirada || "Não definido"}</div>
 
-            <div><strong>Pagamento:</strong> ${pedido.status_pagamento}</div>
+            <div>
+              <strong>Pagamento:</strong>
+              <span style="
+                color:${pedido.status_pagamento === "pago" ? "green" : "red"};
+                font-weight:bold;
+              ">
+                ${pedido.status_pagamento}
+              </span>
+            </div>
 
-            <div><strong>Retirada:</strong> ${pedido.status_retirada}</div>
+            <div>
+              <strong>Retirada:</strong>
+              <span style="
+                color:${pedido.status_retirada === "retirado" ? "#1d4ed8" : "#444"};
+                font-weight:bold;
+              ">
+                ${pedido.status_retirada}
+              </span>
+            </div>
 
             ${
               pedido.status_retirada === "retirado"
-                ? `<div class="bloqueio">⚠️ Já retirado</div>`
+                ? `<div class="bloqueio retirado-status">✅ Pedido já retirado</div>`
                 : pedido.status_pagamento !== "pago"
-                  ? `<div class="bloqueio">⚠️ Pagamento pendente</div>`
+                  ? `<div class="bloqueio pendente-status">❌ Pagamento pendente. Entrega bloqueada.</div>`
                   : `<button onclick="confirmarRetiradaPorCodigo('${pedido.codigo_pedido}')">✅ Confirmar Retirada</button>`
             }
 
