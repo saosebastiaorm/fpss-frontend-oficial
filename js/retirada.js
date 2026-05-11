@@ -294,38 +294,32 @@ function processarCodigoLido(decodedText) {
 
       document.getElementById("scannerArea").style.display = "none";
 
-      setTimeout(() => {
+      setTimeout(async () => {
 
-        buscarPedido();
+        await buscarPedido();
 
         setTimeout(() => {
 
-          setTimeout(() => {
+          const resultado = document.getElementById("resultado");
 
-  const resultado = document.getElementById("resultado");
+          if (resultado && resultado.innerHTML.trim() !== "") {
 
-  if (resultado && resultado.innerHTML.trim() !== "") {
+            resultado.classList.add("resultado-destaque");
 
-    resultado.classList.add("resultado-destaque");
+            resultado.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
 
-    resultado.scrollIntoView({
-      behavior:"smooth",
-      block:"start"
-    });
-
-    setTimeout(() => {
-      resultado.classList.remove("resultado-destaque");
-    }, 2500);
-
-  }
-
-}, 1200);
+            setTimeout(() => {
+              resultado.classList.remove("resultado-destaque");
+            }, 2500);
 
           }
 
-        }, 700);
+        }, 1200);
 
-      }, 500);
+      }, 400);
 
     });
 

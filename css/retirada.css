@@ -292,7 +292,8 @@ button{
   }
 
   #reader{
-    max-width:220px;
+    max-width:190px;
+    max-height:190px;
   }
 
   .resultado{
@@ -303,7 +304,9 @@ button{
   .linha{
     font-size:15px;
   }
-  .resultado-destaque{
+}
+
+.resultado-destaque{
   animation:piscarResultado 1.2s ease-in-out 2;
   border:2px solid #1d7f2a !important;
 }
@@ -321,7 +324,4 @@ button{
     transform:scale(1);
     box-shadow:0 0 0 rgba(0,0,0,0);
   }
-}
-}
-
 }
