@@ -221,13 +221,22 @@ async function buscarPedido() {
     return;
   }
 
-      let url = "";
+  try {
+
+    let url = "";
     let buscaPorCodigo = false;
 
+    /* =========================================
+       DEFINIR TIPO DE BUSCA
+    ========================================= */
     if (termo.toUpperCase().startsWith("FPSS-")) {
+
       buscaPorCodigo = true;
+
       url = `${API_BASE}/pedido/codigo/${encodeURIComponent(termo)}`;
+
     } else {
+
       url = `${API_BASE}/pedido/cpf/${termo.replace(/\D/g,'')}`;
     }
 
@@ -240,33 +249,91 @@ async function buscarPedido() {
     }
 
     /* =========================================
-       BUSCA POR CÓDIGO (INDIVIDUAL)
+       BUSCA POR CÓDIGO (PEDIDO ÚNICO)
     ========================================= */
     if (buscaPorCodigo) {
 
       pedidoAtual = dados.pedido;
 
+      /* =========================================
+         VERIFICA PAGAMENTO EM TEMPO REAL
+      ========================================= */
       if (pedidoAtual.payment_id) {
+
         try {
-          const pagamento = await fetch(
+
+          const pagamentoRes = await fetch(
             `${API_BASE}/verificar-pagamento/${pedidoAtual.payment_id}`
           );
 
-          const pagamentoDados = await pagamento.json();
+          const pagamentoDados = await pagamentoRes.json();
 
           if (pagamentoDados.sucesso) {
             pedidoAtual.status_pagamento = pagamentoDados.status_interno;
           }
 
-        } catch(e){}
+        } catch (e) {
+          console.log("Falha ao verificar pagamento em tempo real.");
+        }
       }
 
-      renderizarPedidoIndividual(pedidoAtual);
+      resultado.style.display = "block";
+
+      resultado.innerHTML = `
+        <h2>✅ Pedido Localizado</h2>
+
+        <div class="linha"><strong>Nome:</strong> ${pedidoAtual.nome} ${pedidoAtual.sobrenome || ""}</div>
+
+        <div class="linha"><strong>Código:</strong> ${pedidoAtual.codigo_pedido}</div>
+
+        <div class="linha"><strong>CPF:</strong> ${pedidoAtual.cpf}</div>
+
+        <div class="linha"><strong>Telefone:</strong> ${pedidoAtual.telefone || "Não informado"}</div>
+
+        <div class="linha"><strong>Quantidade:</strong> ${pedidoAtual.quantidade}</div>
+
+        <div class="linha"><strong>Horário:</strong> ${pedidoAtual.horario_retirada || "Não definido"}</div>
+
+        <div class="linha">
+          <strong>Status Pagamento:</strong>
+          <span class="${
+            pedidoAtual.status_pagamento === "pago"
+              ? "status-pago"
+              : "status-pendente"
+          }">
+            ${pedidoAtual.status_pagamento}
+          </span>
+        </div>
+
+        <div class="linha">
+          <strong>Status Retirada:</strong>
+          <span class="${
+            pedidoAtual.status_retirada === "retirado"
+              ? "status-retirado"
+              : "ok"
+          }">
+            ${pedidoAtual.status_retirada}
+          </span>
+        </div>
+
+        ${
+          pedidoAtual.status_retirada === "retirado"
+            ? `<p class="erro">⚠️ Pedido já retirado.</p>`
+            : pedidoAtual.status_pagamento !== "pago"
+              ? `<p class="erro">⚠️ Pagamento pendente. Entrega bloqueada.</p>`
+              : `<button class="retirar" onclick="confirmarRetirada()">✅ CONFIRMAR ENTREGA</button>`
+        }
+
+        <div class="alerta">
+          ⚠️ Confirme nome + CPF antes de entregar.<br>
+          Sem pagamento aprovado, a entrega permanece bloqueada.
+        </div>
+      `;
 
     } else {
 
       /* =========================================
-         BUSCA POR CPF (MÚLTIPLOS)
+         BUSCA POR CPF (MÚLTIPLOS PEDIDOS)
       ========================================= */
 
       const pedidos = dados.pedidos;
@@ -291,10 +358,16 @@ async function buscarPedido() {
             };
           ">
 
-            <div><strong>Nome:</strong> ${pedido.nome}</div>
+            <div><strong>Nome:</strong> ${pedido.nome} ${pedido.sobrenome || ""}</div>
+
             <div><strong>Código:</strong> ${pedido.codigo_pedido}</div>
+
+            <div><strong>Quantidade:</strong> ${pedido.quantidade}</div>
+
             <div><strong>Horário:</strong> ${pedido.horario_retirada || "Não definido"}</div>
+
             <div><strong>Pagamento:</strong> ${pedido.status_pagamento}</div>
+
             <div><strong>Retirada:</strong> ${pedido.status_retirada}</div>
 
             ${
@@ -308,83 +381,13 @@ async function buscarPedido() {
           </div>
         `).join("")}
       `;
-    }```
-      try {
-
-        const pagamentoRes = await fetch(
-          `${API_BASE}/verificar-pagamento/${pedidoAtual.payment_id}`
-        );
-
-        const pagamentoDados = await pagamentoRes.json();
-
-        if (pagamentoDados.sucesso) {
-          pedidoAtual.status_pagamento = pagamentoDados.status_interno;
-        }
-
-      } catch (e) {
-        console.log("Falha ao verificar pagamento em tempo real.");
-      }
     }
-
-    resultado.style.display = "block";
-
-    resultado.innerHTML = `
-      <h2>✅ Pedido Localizado</h2>
-
-      <div class="linha"><strong>Nome:</strong> ${pedidoAtual.nome} ${pedidoAtual.sobrenome || ""}</div>
-
-      <div class="linha"><strong>Código:</strong> ${pedidoAtual.codigo_pedido}</div>
-
-      <div class="linha"><strong>CPF:</strong> ${pedidoAtual.cpf}</div>
-
-      <div class="linha"><strong>Telefone:</strong> ${pedidoAtual.telefone || "Não informado"}</div>
-
-      <div class="linha"><strong>Quantidade:</strong> ${pedidoAtual.quantidade}</div>
-
-      <div class="linha"><strong>Horário:</strong> ${pedidoAtual.horario_retirada || "Não definido"}</div>
-
-      <div class="linha">
-        <strong>Status Pagamento:</strong>
-        <span class="${
-          pedidoAtual.status_pagamento === "pago"
-            ? "status-pago"
-            : "status-pendente"
-        }">
-          ${pedidoAtual.status_pagamento}
-        </span>
-      </div>
-
-      <div class="linha">
-        <strong>Status Retirada:</strong>
-        <span class="${
-          pedidoAtual.status_retirada === "retirado"
-            ? "status-retirado"
-            : "ok"
-        }">
-          ${pedidoAtual.status_retirada}
-        </span>
-      </div>
-
-      ${
-        pedidoAtual.status_retirada === "retirado"
-          ? `<p class="erro">⚠️ Pedido já retirado.</p>`
-          : pedidoAtual.status_pagamento !== "pago"
-            ? `<p class="erro">⚠️ Pagamento pendente. Entrega bloqueada.</p>`
-            : `<button class="retirar" onclick="confirmarRetirada()">✅ CONFIRMAR ENTREGA</button>`
-      }
-
-      <div class="alerta">
-        ⚠️ Confirme nome + CPF antes de entregar.<br>
-        Sem pagamento aprovado, a entrega permanece bloqueada.
-      </div>
-    `;
 
   } catch (e) {
 
     erro.innerHTML = "❌ Erro ao buscar pedido.";
   }
 }
-
 /* =========================================
    CONFIRMAR RETIRADA
 ========================================= */
