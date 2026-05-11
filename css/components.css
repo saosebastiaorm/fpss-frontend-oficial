@@ -1,3 +1,4 @@
+
 /* BOTÕES */
 .btn{
   display:inline-block;
@@ -7,14 +8,22 @@
   transition:.3s;
 }
 
-.btn-green{
+.btn.green{
   background:#1fae42;
   color:#fff;
 }
 
-.btn-red{
-  background:#c61f1f;
-  color:#fff;
+.btn.red {
+    background: linear-gradient(135deg, #ff8c00, #ffcc00);
+    color: #ffffff;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+}
+
+.btn.red:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
 }
 
 .btn:hover{

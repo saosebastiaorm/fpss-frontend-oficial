@@ -151,12 +151,18 @@
             📋 COPIAR CÓDIGO PIX
         </button>
 
-        <button class="btn btn-whatsapp" onclick="enviarWhatsApp()">
+        <button
+            class="btn btn-whatsapp"
+            id="btnWhatsapp"
+            onclick="enviarWhatsApp()"
+            style="display:none;"
+        >
             📲 ENVIAR COMPROVANTE / PEDIDO
         </button>
+
     </div>
 
-    <div class="status">
+    <div class="status" id="statusPagamento">
         ⏳ Aguardando pagamento...
     </div>
 
@@ -236,6 +242,49 @@ Valor: R$ ${Number(pixData.total).toFixed(2).replace(".", ",")}`;
         "_blank"
     );
 }
+
+/* =========================================
+   VERIFICAR STATUS PAGAMENTO
+========================================= */
+async function verificarPagamento() {
+
+    if (!pixData.payment_id) return;
+
+    try {
+
+        const res = await fetch(
+            `https://fpss-backend.onrender.com/verificar-pagamento/${pixData.payment_id}`
+        );
+
+        const dados = await res.json();
+
+        if (
+            dados.sucesso &&
+            dados.status_interno === "pago"
+        ) {
+
+            document.getElementById("statusPagamento").innerHTML =
+                "✅ PAGAMENTO APROVADO!";
+
+            document.getElementById("statusPagamento").style.color =
+                "green";
+
+            document.getElementById("btnWhatsapp").style.display =
+                "block";
+
+        }
+
+    } catch (e) {
+        console.log("Erro ao verificar pagamento.");
+    }
+}
+
+/* =========================================
+   AUTO VERIFICAÇÃO
+========================================= */
+verificarPagamento();
+
+setInterval(verificarPagamento, 5000);
 </script>
 
 </body>

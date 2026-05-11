@@ -91,9 +91,25 @@ button.btn{
     box-shadow:0 8px 18px rgba(0,0,0,.2) !important;
 }
 
-.btn.red{
-    background:#a30d0d !important;
-    color:#fff !important;
+.btn.red,
+a.btn.red,
+.hero .btn.red,
+.cta-group .btn.red {
+    background: linear-gradient(135deg, #ffffff, #fff3cd) !important;
+    color: #8b1111 !important;
+    font-weight: 900 !important;
+    border: 4px solid #ffcc00 !important;
+    box-shadow: 0 8px 18px rgba(0,0,0,.25) !important;
+    text-transform: uppercase !important;
+    letter-spacing: .5px !important;
+}
+
+.btn.red:hover,
+a.btn.red:hover,
+.hero .btn.red:hover,
+.cta-group .btn.red:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
 }
 
 .btn.green{
@@ -228,7 +244,6 @@ button.btn{
     border-radius:14px !important;
     box-shadow:0 6px 14px rgba(0,0,0,.12) !important;
     letter-spacing:1px !important;
-}
 }
 
 /* BOTÕES DENTRO DOS CARDS */
@@ -383,4 +398,29 @@ footer{
         font-size:20px !important;
     }
 
+}
+
+
+.hero .cta-group a.btn.red{
+    background: linear-gradient(135deg, #ffffff, #fff3cd) !important;
+    color: #8b1111 !important;
+    border: 4px solid #ffcc00 !important;
+    text-transform: uppercase !important;
+    letter-spacing: .5px !important;
+}
+
+header.hero.hero-vendas .cta-group a.btn.red,
+header.hero.hero-vendas .cta-group a.btn.red:link,
+header.hero.hero-vendas .cta-group a.btn.red:visited {
+    background: linear-gradient(135deg, #ffffff, #fff3cd) !important;
+    background-color: #ffffff !important;
+    color: #8b1111 !important;
+    border: 4px solid #ffcc00 !important;
+    box-shadow: 0 8px 18px rgba(0,0,0,.25) !important;
+    text-transform: uppercase !important;
+    letter-spacing: .5px !important;
+}
+header.hero.hero-vendas .cta-group a.btn.red:hover{
+    filter: brightness(1.05) !important;
+    transform: translateY(-3px) !important;
 }

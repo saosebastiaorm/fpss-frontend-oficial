@@ -8,8 +8,7 @@
   <title>6ª Festa do Padroeiro São Sebastião 2027</title>
 
   <meta name="description"
-    content="24 de Janeiro de 2027. Churrasco R$60, Cartela R$20 e R$25 mil em prêmios. Garanta já sua participação.">
-
+  content="24 de Janeiro de 2027. Produtos oficiais FPSS, churrasco, cartela e prêmios. Garanta já sua participação.">
   <!-- CSS (ORDEM CORRETA) -->
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
@@ -39,8 +38,8 @@
 
           <h1>6ª Festa do Padroeiro São Sebastião</h1>
 
-          <p class="subhero">
-            🍖 Churrasco R$ 60 • 🎟 Cartela R$ 20 <br>
+          <p class="subhero" id="heroValores">
+            🍖 Carregando valores...<br>
             💰 Concorra a <strong>R$ 25 MIL em prêmios</strong>
           </p>
 
@@ -249,7 +248,14 @@ async function carregarProdutosHome() {
     }
 
     container.innerHTML = "";
+    const churrasco = data.produtos.find(p => p.codigo === "CHU");
+    const cartela = data.produtos.find(p => p.codigo === "CAR");
 
+    document.getElementById("heroValores").innerHTML = `
+      🍖 Churrasco R$ ${Number(churrasco?.preco || 0).toFixed(2).replace(".", ",")} •
+      🎟 Cartela R$ ${Number(cartela?.preco || 0).toFixed(2).replace(".", ",")} <br>
+      💰 Concorra a <strong>R$ 25 MIL em prêmios</strong>
+    `;
     data.produtos.forEach(produto => {
      let link = "https://wa.me/5569981102306?text=Olá,%20quero%20comprar%20" + encodeURIComponent(produto.nome);
      let botao = "📲 Comprar Agora";
@@ -293,7 +299,7 @@ const card = `
       R$ ${Number(produto.preco).toFixed(2).replace(".", ",")}
     </div>
 
-    <a href="${link}" class="btn green full" target="_blank">
+    <a href="${link}" class="btn green full">
       ${botao}
     </a>
 
