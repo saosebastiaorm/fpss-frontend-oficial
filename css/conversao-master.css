@@ -606,3 +606,51 @@ footer{
 .bandeira-direita{
     display:none !important;
 }
+
+/* ==========================================
+MENU MOBILE ULTRA OTIMIZADO
+========================================== */
+@media(max-width:768px){
+
+  .menu-master{
+    display:grid !important;
+    grid-template-columns:1fr 1fr !important;
+    gap:8px !important;
+    padding:12px !important;
+    margin-top:10px !important;
+  }
+
+  .menu-master a{
+    min-height:42px !important;
+    padding:10px 8px !important;
+    font-size:13px !important;
+    border-radius:12px !important;
+    justify-content:center !important;
+    text-align:center !important;
+    line-height:1.2 !important;
+  }
+
+  .menu-destaque{
+    grid-column:1 / -1 !important;
+    min-height:46px !important;
+    font-size:14px !important;
+  }
+
+  .brand-fpss{
+    padding:10px 12px !important;
+  }
+
+  .brand-logo{
+    width:52px !important;
+    height:52px !important;
+  }
+
+  .brand-title{
+    font-size:28px !important;
+  }
+
+  .brand-sub{
+    font-size:11px !important;
+  }
+
+}
