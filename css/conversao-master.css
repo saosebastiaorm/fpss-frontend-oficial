@@ -449,20 +449,6 @@ a.btn{
     border:none;
 }
 
-/* WHATSAPP FIXO */
-.whatsapp-fixo{
-    position:fixed;
-    right:20px;
-    bottom:20px;
-    background:#1faa4a;
-    color:#fff;
-    padding:18px 24px;
-    border-radius:999px;
-    text-decoration:none;
-    font-weight:900;
-    font-size:20px;
-    z-index:99999;
-}
 
 /* FOOTER */
 footer{
