@@ -608,49 +608,80 @@ footer{
 }
 
 /* ==========================================
-MENU MOBILE ULTRA OTIMIZADO
+MENU MOBILE COMPACTO REAL
 ========================================== */
 @media(max-width:768px){
 
-  .menu-master{
-    display:grid !important;
-    grid-template-columns:1fr 1fr !important;
-    gap:8px !important;
-    padding:12px !important;
-    margin-top:10px !important;
-  }
-
-  .menu-master a{
-    min-height:42px !important;
-    padding:10px 8px !important;
-    font-size:13px !important;
-    border-radius:12px !important;
-    justify-content:center !important;
-    text-align:center !important;
-    line-height:1.2 !important;
-  }
-
-  .menu-destaque{
-    grid-column:1 / -1 !important;
-    min-height:46px !important;
-    font-size:14px !important;
+  /* TOPO */
+  .topbar-fpss{
+    padding:8px 10px !important;
   }
 
   .brand-fpss{
-    padding:10px 12px !important;
+    gap:8px !important;
+    padding:4px 0 !important;
+    margin-bottom:10px !important;
   }
 
   .brand-logo{
-    width:52px !important;
-    height:52px !important;
+    width:44px !important;
+    height:44px !important;
+    min-width:44px !important;
+  }
+
+  .brand-kicker{
+    font-size:10px !important;
   }
 
   .brand-title{
-    font-size:28px !important;
+    font-size:16px !important;
+    line-height:1 !important;
   }
 
   .brand-sub{
+    font-size:9px !important;
+    line-height:1.2 !important;
+  }
+
+  /* MENU */
+  .menu-master{
+    display:grid !important;
+    grid-template-columns:1fr 1fr !important;
+    gap:6px !important;
+    padding:0 !important;
+    margin:8px 0 0 0 !important;
+    width:100% !important;
+  }
+
+  .menu-master a,
+  .menu-link,
+  .menu-destaque{
+    min-height:auto !important;
+    height:36px !important;
+    padding:6px 6px !important;
     font-size:11px !important;
+    font-weight:700 !important;
+    border-radius:10px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    text-align:center !important;
+    line-height:1 !important;
+    white-space:nowrap !important;
+  }
+
+  /* BOTÃO FINAL */
+  .menu-destaque{
+    grid-column:1 / -1 !important;
+    height:38px !important;
+    margin-top:4px !important;
+  }
+
+  /* BARRA OFICIAL */
+  .barra-oficial,
+  .topbar-aviso{
+    font-size:10px !important;
+    padding:6px 8px !important;
   }
 
 }
