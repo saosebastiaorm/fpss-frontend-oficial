@@ -646,7 +646,7 @@ MENU MOBILE COMPACTO REAL
   /* MENU */
   .menu-master{
     display:grid !important;
-    grid-template-columns:1fr 1fr !important;
+    grid-template-columns:repeat(3,1fr) !important;
     gap:6px !important;
     padding:0 !important;
     margin:8px 0 0 0 !important;
