@@ -2,21 +2,32 @@
 DOAÇÃO - HOME (FPSS PADRÃO)
 ========================= */
 
+/* =========================
+DOAÇÃO - HOME (FPSS PADRÃO)
+========================= */
+
 .doacao-cta{
-  padding:70px 20px;
-  background:linear-gradient(135deg,#8b1111,#c61f1f);
+  padding:90px 20px;
+  background:#dfeee0;
+}
+
+.doacao-cta .wrap{
+  width:100%;
+  max-width:620px;
+  margin:0 auto;
 }
 
 /* CAIXA CENTRAL */
 .doacao-box-main{
   max-width:620px;
   margin:0 auto;
-  background:#fff;
+  background:#f3f3f3;
   padding:40px 30px;
   border-radius:22px;
   text-align:center;
-  box-shadow:0 20px 50px rgba(0,0,0,.25);
+  box-shadow:0 16px 40px rgba(0,0,0,.12);
   position:relative;
+  border:3px solid #1fae42;
 }
 
 /* TÍTULO */

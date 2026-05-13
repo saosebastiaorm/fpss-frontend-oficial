@@ -3,8 +3,9 @@ FPSS VIP - VISUAL PROFISSIONAL
 =============================== */
 
 .vip-fpss{
-  padding:70px 20px;
-  background:linear-gradient(135deg,#8b1111,#c61f1f);
+  padding:90px 20px;
+  background:transparent !important;
+  background-color:#f7f1e8 !important;
   display:flex;
   justify-content:center;
 }
@@ -13,27 +14,52 @@ FPSS VIP - VISUAL PROFISSIONAL
 .vip-box{
   max-width:620px;
   width:100%;
-  background:#ffffff;
-  padding:40px 30px;
-  border-radius:22px;
-  box-shadow:0 20px 60px rgba(0,0,0,.35);
+  background:linear-gradient(180deg,#ffffff,#fff8ef);
+  padding:48px 34px;
+  border-radius:26px;
+  box-shadow:0 24px 70px rgba(0,0,0,.35);
   text-align:center;
+  border-top:6px solid #ffd700;
+  position:relative;
 }
 
 /* TÍTULO */
 .vip-box h2{
-  font-size:30px;
+  font-size:36px;
   color:#8b1111;
   margin-bottom:10px;
-  line-height:1.2;
+  line-height:1.12;
+  font-weight:900;
+  text-transform:uppercase;
 }
 
 /* TEXTO */
 .vip-box p{
-  color:#666;
+  color:#555;
   font-size:16px;
-  margin-bottom:25px;
-  line-height:1.5;
+  margin-bottom:28px;
+  line-height:1.6;
+  font-weight:600;
+}
+
+/* ================================
+GRUPOS + LABELS
+=============================== */
+.vip-form-group{
+  text-align:left;
+  margin-bottom:22px;
+}
+
+.vip-form-group label{
+  display:block !important;
+  font-size:15px !important;
+  font-weight:900 !important;
+  color:#8b1111 !important;
+  margin-bottom:10px !important;
+  padding-left:2px !important;
+  letter-spacing:.2px;
+  opacity:1 !important;
+  visibility:visible !important;
 }
 
 /* ================================
@@ -41,21 +67,28 @@ INPUTS (ESTILO PREMIUM)
 =============================== */
 .vip-box input{
   width:100%;
-  padding:16px 14px;
-  margin-bottom:14px;
-  border:2px solid #eee;
+  padding:19px 16px;
+  border:3px solid #8f8068;
   border-radius:14px;
   font-size:15px;
-  background:#f9f9f9;
+  font-weight:700;
+  background:#ffffff;
+  color:#222;
   transition:.25s;
   outline:none;
+  margin-bottom:0;
+  box-shadow:
+    inset 0 2px 4px rgba(0,0,0,.04),
+    0 3px 6px rgba(0,0,0,.08);
 }
 
 /* FOCO */
 .vip-box input:focus{
   border-color:#8b1111;
   background:#fff;
-  box-shadow:0 0 0 4px rgba(139,17,17,.10);
+  box-shadow:
+    0 0 0 4px rgba(139,17,17,.12),
+    0 4px 10px rgba(139,17,17,.08);
 }
 
 /* PLACEHOLDER */
@@ -66,20 +99,26 @@ INPUTS (ESTILO PREMIUM)
 /* ================================
 BOTÃO
 =============================== */
+/* ================================
+BOTÃO
+=============================== */
 .vip-box button{
   width:100%;
-  padding:18px;
+  padding:21px;
   border:none;
   border-radius:14px;
-  background:linear-gradient(135deg,#1fae42,#158c34);
+  background:linear-gradient(135deg,#16a34a,#22c55e);
   color:#fff;
-  font-size:17px;
-  font-weight:800;
+  font-size:20px;
+  font-weight:900;
+  letter-spacing:.5px;
   cursor:pointer;
   transition:.25s;
-  margin-top:10px;
-  box-shadow:0 10px 25px rgba(31,174,66,.25);
+  margin-top:16px;
+  box-shadow:0 14px 32px rgba(31,174,66,.30);
+  border-bottom:4px solid rgba(0,0,0,.18);
 }
+
 
 /* HOVER */
 .vip-box button:hover{
@@ -90,8 +129,10 @@ BOTÃO
 /* MENSAGEM */
 #msgVIP{
   margin-top:18px;
-  font-weight:bold;
+  font-weight:800;
   font-size:15px;
+  color:#15803d;
+  text-align:center;
 }
 
 /* ================================

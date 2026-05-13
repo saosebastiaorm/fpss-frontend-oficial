@@ -22,25 +22,61 @@
 
     <form id="formVIP">
 
-      <!-- IMPORTANTE: ORIGEM -->
+      <!-- ORIGEM -->
       <input type="hidden" name="origem" value="VIP">
 
-      <input type="text" name="nome" placeholder="Nome completo" required>
+      <!-- NOME -->
+      <div class="vip-form-group">
+        <label for="vip-nome">Nome Completo</label>
+        <input
+          type="text"
+          id="vip-nome"
+          name="nome"
+          placeholder="Digite seu nome completo"
+          required>
+      </div>
 
-      <input type="tel" name="whatsapp" id="whatsapp" placeholder="WhatsApp" required>
+      <!-- WHATSAPP -->
+      <div class="vip-form-group">
+        <label for="vip-whatsapp">WhatsApp</label>
+        <input
+          type="tel"
+          id="vip-whatsapp"
+          name="whatsapp"
+          placeholder="(69) 99999-9999"
+          required>
+      </div>
 
-      <input type="text" name="cidade" placeholder="Cidade" required>
+      <!-- CIDADE -->
+      <div class="vip-form-group">
+        <label for="vip-cidade">Cidade</label>
+        <input
+          type="text"
+          id="vip-cidade"
+          name="cidade"
+          placeholder="Sua cidade"
+          required>
+      </div>
 
-      <input type="text" name="bairro" placeholder="Bairro" required>
+      <!-- BAIRRO -->
+      <div class="vip-form-group">
+        <label for="vip-bairro">Bairro</label>
+        <input
+          type="text"
+          id="vip-bairro"
+          name="bairro"
+          placeholder="Seu bairro"
+          required>
+      </div>
 
-      <input type="hidden" name="origem" value="VIP">
-
+      <!-- BOTÃO -->
       <button type="submit">
         ENTRAR NO VIP 🚀
       </button>
 
     </form>
 
+    <!-- MENSAGEM -->
     <div id="msgVIP"></div>
 
   </div>
