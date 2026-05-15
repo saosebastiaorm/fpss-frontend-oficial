@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprovante FPSS</title>
+
+    <link rel="stylesheet" href="../css/comprovante.css">
+
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</head>
+<body>
+
+<div class="comprovante" id="comprovante">
+
+    <h1>🎉 Comprovante Oficial FPSS</h1>
+
+    <div class="sub">
+        6ª Festa do Padroeiro São Sebastião 2027
+    </div>
+
+    <div class="linha">
+        <strong>Status:</strong> PAGAMENTO APROVADO
+    </div>
+
+    <div class="linha">
+        <strong>Código do Pedido:</strong>
+        <span id="codigoPedido"></span>
+    </div>
+
+    <div class="linha">
+        <strong>CPF:</strong>
+        <span id="cpf"></span>
+    </div>
+
+    <div class="linha">
+        <strong>Valor Pago:</strong>
+        <span id="valor"></span>
+    </div>
+
+    <div class="linha">
+        <strong>Produto:</strong>
+        <span id="produto"></span>
+    </div>
+
+    <div class="linha">
+        <strong>Status Retirada:</strong> NÃO RETIRADO
+    </div>
+
+    <div class="qr">
+        <p><strong>QR Code para retirada:</strong></p>
+
+        <img
+            id="qrRetirada"
+            src=""
+            alt="QR Code para retirada"
+        >
+    </div>
+
+    <div class="rodape">
+        ⚠️ <strong>IMPORTANTE:</strong><br>
+        Apresente este comprovante + CPF na retirada.<br>
+        Este documento funciona como comprovante oficial FPSS.
+    </div>
+
+    <div class="acoes">
+        <button
+            class="btn btn-print"
+            onclick="imprimirComprovante()"
+        >
+            📄 SALVAR PDF / IMPRIMIR
+        </button>
+
+        <button
+            class="btn btn-share"
+            onclick="compartilharComprovante()"
+        >
+            📲 COMPARTILHAR IMAGEM
+        </button>
+    </div>
+
+</div>
+
+<script src="../js/comprovante.js"></script>
+
+</body>
+</html>
