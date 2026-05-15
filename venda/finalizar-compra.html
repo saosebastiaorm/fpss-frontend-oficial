@@ -276,7 +276,13 @@ function enviarWhatsApp() {
 
     const conteudo = gerarHtmlComprovante(true);
 
-    const novaJanela = window.open("", "_self");
+    const novaJanela = window.open("", "_blank");
+
+    if (!novaJanela) {
+        alert("⚠️ Seu navegador bloqueou a nova aba. Permita pop-ups.");
+        return;
+    }
+
     novaJanela.document.write(conteudo);
     novaJanela.document.close();
 }
