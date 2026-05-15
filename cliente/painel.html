@@ -3,374 +3,103 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meu Painel - FPSS</title>
+  <title>Painel do Cliente - FPSS</title>
+
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/conversao-master.css">
 
   <style>
-    *{
-      box-sizing:border-box;
-    }
-
     body{
-      margin:0;
-      background:linear-gradient(135deg,#f4efe6,#e7dfd1);
+      background:#f7f1e8;
+      padding:20px;
       font-family:Arial, sans-serif;
-      min-height:100vh;
-      padding:30px;
-    }
-
-    .painel-layout{
-      max-width:1600px;
-      margin:auto;
-      display:grid;
-      grid-template-columns:240px minmax(0,1fr);
-      gap:24px;
-      align-items:start;
-    }
-
-    .sidebar-cliente{
-      background:linear-gradient(180deg,#8b1111,#6f0d0d);
-      color:#fff;
-      padding:24px;
-      border-radius:24px;
-      box-shadow:0 15px 35px rgba(0,0,0,.25);
-      position:sticky;
-      top:20px;
-    }
-
-    .sidebar-cliente h2{
-      margin-top:0;
-      text-align:center;
-      border-bottom:1px solid rgba(255,255,255,.2);
-      padding-bottom:14px;
-      font-size:38px;
-    }
-
-    .sidebar-cliente a{
-      display:block;
-      color:#fff;
-      text-decoration:none;
-      padding:14px;
-      margin:10px 0;
-      border-radius:10px;
-      font-weight:800;
-      background:rgba(255,255,255,.12);
-      border:1px solid rgba(255,255,255,.08);
-      transition:.3s;
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,.04);
-    }
-
-    .sidebar-cliente a:hover,
-    .sidebar-cliente a.ativo{
-      background:rgba(255,255,255,.22);
-      transform:translateX(4px);
     }
 
     .painel-box{
-      width:100%;
-      background:rgba(255,255,255,.96);
-      backdrop-filter:blur(8px);
+      max-width:900px;
+      margin:auto;
+      background:#fff;
+      padding:35px;
       border-radius:24px;
-      padding:34px;
-      box-shadow:0 15px 40px rgba(0,0,0,.25);
+      box-shadow:0 12px 30px rgba(0,0,0,.12);
+      border-top:6px solid #ffd700;
     }
 
-    .topo-painel{
-      display:flex;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      gap:20px;
-      align-items:center;
-      border-bottom:2px solid #eee;
-      padding-bottom:20px;
-      margin-bottom:30px;
-    }
-
-    .cliente-info h1{
-      margin:0;
+    h1{
       color:#8b1111;
-      font-size:clamp(34px,4vw,52px);
-      line-height:1.1;
+      text-align:center;
+      margin-bottom:25px;
+    }
+
+    .cliente-info{
+      display:grid;
+      gap:12px;
+      margin-bottom:30px;
+      padding:20px;
+      background:#f8f8f8;
+      border-radius:16px;
     }
 
     .cliente-info p{
-      margin:8px 0;
-      color:#444;
-      font-weight:700;
-      font-size:20px;
-      line-height:1.5;
+      margin:0;
+      font-size:16px;
     }
 
-    .logout-btn{
-      background:#8b1111;
-      color:#fff;
-      border:none;
-      padding:14px 20px;
-      border-radius:12px;
-      font-weight:900;
-      cursor:pointer;
-      box-shadow:0 8px 18px rgba(0,0,0,.18);
-      transition:.3s;
-    }
-
-    .logout-btn:hover{
-      transform:translateY(-2px);
-      background:#6f0d0d;
-    }
-
-    .secao-cliente{
-      animation:fadeSecao .25s ease;
-    }
-
-    @keyframes fadeSecao{
-      from{
-        opacity:0;
-        transform:translateY(8px);
-      }
-      to{
-        opacity:1;
-        transform:translateY(0);
-      }
-    }
-
-    .cards-pedidos{
+    #clientePedidos{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-      gap:22px;
+      gap:16px;
     }
 
     .pedido-card{
-      border:2px solid #eee;
-      border-radius:18px;
-      padding:22px;
-      background:linear-gradient(180deg,#ffffff,#f8f8f8);
-      box-shadow:0 8px 20px rgba(0,0,0,.06);
+      background:#fff8ef;
+      border:1px solid #f0d8b0;
+      border-radius:16px;
+      padding:18px;
     }
 
     .pedido-card h3{
-      margin-top:0;
       color:#8b1111;
-      font-size:32px;
+      margin-bottom:10px;
     }
 
-    .pedido-card p{
-      font-size:22px;
-      color:#333;
-      margin:10px 0;
-    }
-
-    .status{
-      display:inline-block;
-      padding:10px 16px;
-      border-radius:999px;
-      font-weight:900;
-      margin-top:10px;
-      font-size:20px;
-    }
-
-    .pendente{
-      background:#fff3cd;
-      color:#856404;
-    }
-
-    .pago{
-      background:#d4edda;
-      color:#155724;
-    }
-
-    .btn-acao{
+    .logout-btn{
+      width:100%;
+      margin-top:30px;
+      padding:16px;
       border:none;
-      padding:14px 18px;
-      border-radius:12px;
+      border-radius:14px;
+      background:#8b1111;
+      color:#fff;
+      font-size:18px;
       font-weight:900;
       cursor:pointer;
-      text-decoration:none;
-      color:#fff;
-      display:inline-block;
-      box-shadow:0 6px 14px rgba(0,0,0,.15);
-      font-size:18px;
-      transition:.3s;
-    }
-
-    .btn-acao:hover{
-      transform:translateY(-2px);
-    }
-
-    .btn-acao.verde{
-      background:#1faa4a;
-    }
-
-    .btn-acao.vinho{
-      background:#8b1111;
-    }
-
-    .btn-acao.azul{
-      background:#0d6efd;
-    }
-
-    @media(max-width:900px){
-      body{
-        padding:15px;
-      }
-
-      .painel-layout{
-        grid-template-columns:1fr;
-      }
-
-      .sidebar-cliente{
-        position:relative;
-        top:auto;
-      }
-
-      .cards-pedidos{
-        grid-template-columns:1fr;
-      }
-
-      .pedido-card h3{
-        font-size:26px;
-      }
-
-      .pedido-card p{
-        font-size:18px;
-      }
-
-      .status{
-        font-size:16px;
-      }
     }
   </style>
+
 </head>
 <body>
 
-<div class="painel-layout">
-
-  <aside class="sidebar-cliente">
-    <h2>🧾 FPSS</h2>
-
-    <a href="#" class="ativo" onclick="mostrarSecao('pedidos');return false;">📦 Meus Pedidos</a>
-    <a href="#" onclick="mostrarSecao('pagamentos');return false;">💳 Pagamentos</a>
-    <a href="#" onclick="mostrarSecao('cartelas');return false;">🎟 Cartelas</a>
-    <a href="#" onclick="mostrarSecao('conta');return false;">👤 Minha Conta</a>
-  </aside>
-
   <div class="painel-box">
 
-    <div class="topo-painel">
-      <div class="cliente-info">
-        <h1>🧾 Central do Cliente FPSS</h1>
-        <p><strong>CPF:</strong> <span id="cpfCliente"></span></p>
-        <p><strong>WhatsApp:</strong> <span id="whatsappCliente"></span></p>
-      </div>
+    <h1>📄 Meus Pedidos FPSS</h1>
 
-      <button class="logout-btn" onclick="logoutCliente()">🚪 Sair</button>
+    <div class="cliente-info">
+      <p><strong>Nome:</strong> <span id="clienteNome"></span></p>
+      <p><strong>CPF:</strong> <span id="clienteCPF"></span></p>
+      <p><strong>WhatsApp:</strong> <span id="clienteWhatsApp"></span></p>
     </div>
 
-    <!-- PEDIDOS -->
-    <div id="secao-pedidos" class="secao-cliente">
-      <h2 style="color:#8b1111; font-size:42px;">📦 Meus Pedidos</h2>
+    <div id="clientePedidos"></div>
 
-      <div class="cards-pedidos">
-
-        <div class="pedido-card">
-          <h3>🍖 Churrasco Oficial</h3>
-          <p>Quantidade: 1</p>
-          <p>Retirada: 24/01/2027 às 11:00</p>
-          <span class="status pendente">Pagamento Pendente</span>
-
-          <div style="margin-top:18px; display:flex; gap:10px; flex-wrap:wrap;">
-            <a href="../venda/compra-churrasco.html" class="btn-acao verde">💳 Finalizar Pagamento</a>
-            <button class="btn-acao vinho" onclick="alert('QR Code disponível após confirmação de pagamento.')">📲 Ver QR Code</button>
-          </div>
-        </div>
-
-        <div class="pedido-card">
-          <h3>🎟 Cartela FPSS</h3>
-          <p>Quantidade: 2</p>
-          <p>Números vinculados após pagamento</p>
-          <span class="status pago">Pagamento Confirmado</span>
-
-          <div style="margin-top:18px; display:flex; gap:10px; flex-wrap:wrap;">
-            <button class="btn-acao verde" onclick="alert('Abrindo cartelas...')">🎟 Ver Cartelas</button>
-            <button class="btn-acao azul" onclick="alert('QR Code liberado.')">📥 Baixar QR Code</button>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- PAGAMENTOS -->
-    <div id="secao-pagamentos" class="secao-cliente" style="display:none;">
-      <h2 style="color:#8b1111; font-size:42px;">💳 Pagamentos</h2>
-
-      <div class="pedido-card">
-        <h3>Resumo Financeiro</h3>
-        <p>Pedido Churrasco: Pendente</p>
-        <p>Cartelas: Pagas</p>
-        <p>Total Pago: R$ 40,00</p>
-        <p>Total Pendente: R$ 1,00</p>
-      </div>
-    </div>
-
-    <!-- CARTELAS -->
-    <div id="secao-cartelas" class="secao-cliente" style="display:none;">
-      <h2 style="color:#8b1111; font-size:42px;">🎟 Minhas Cartelas</h2>
-
-      <div class="pedido-card">
-        <h3>Cartelas Ativas</h3>
-        <p>Número 1: 00025</p>
-        <p>Número 2: 00026</p>
-      </div>
-    </div>
-
-    <!-- CONTA -->
-    <div id="secao-conta" class="secao-cliente" style="display:none;">
-      <h2 style="color:#8b1111; font-size:42px;">👤 Minha Conta</h2>
-
-      <div class="pedido-card">
-        <p><strong>CPF:</strong> <span id="cpfConta"></span></p>
-        <p><strong>WhatsApp:</strong> <span id="whatsappConta"></span></p>
-        <button class="btn-acao vinho">🔒 Alterar Dados Futuramente</button>
-      </div>
-    </div>
+    <button id="logoutCliente" class="logout-btn">
+      🚪 Sair da Central
+    </button>
 
   </div>
-</div>
 
-<script>
-  const cpf = localStorage.getItem("cliente_cpf");
-  const whatsapp = localStorage.getItem("cliente_whatsapp");
-
-  if(!cpf || !whatsapp){
-    window.location.href = "login.html";
-  }
-
-  document.getElementById("cpfCliente").innerText = cpf;
-  document.getElementById("whatsappCliente").innerText = whatsapp;
-
-  document.getElementById("cpfConta").innerText = cpf;
-  document.getElementById("whatsappConta").innerText = whatsapp;
-
-  function logoutCliente(){
-    localStorage.removeItem("cliente_cpf");
-    localStorage.removeItem("cliente_whatsapp");
-    window.location.href = "login.html";
-  }
-
-  function mostrarSecao(secao){
-    const secoes = ["pedidos","pagamentos","cartelas","conta"];
-
-    secoes.forEach(item=>{
-      document.getElementById("secao-" + item).style.display = "none";
-    });
-
-    document.getElementById("secao-" + secao).style.display = "block";
-
-    document.querySelectorAll(".sidebar-cliente a").forEach(link=>{
-      link.classList.remove("ativo");
-    });
-
-    event.target.classList.add("ativo");
-  }
-</script>
+  <script src="../js/cliente-painel.js"></script>
 
 </body>
 </html>
