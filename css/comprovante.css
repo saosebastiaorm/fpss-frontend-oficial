@@ -40,8 +40,8 @@ h1{
 }
 
 .qr img{
-    max-width:240px;
-    width:100%;
+    max-width:100%;
+    width:220px;
     border:1px solid #ccc;
     padding:10px;
     border-radius:12px;
@@ -84,9 +84,72 @@ h1{
 }
 
 @media(max-width:768px){
-    body{padding:10px;}
-    .comprovante{padding:18px;}
-    .linha{font-size:15px;}
+
+    body{
+        padding:4px;
+        margin:0;
+    }
+
+    .comprovante{
+        max-width:100%;
+        width:100%;
+        padding:10px;
+        border-radius:10px;
+        box-sizing:border-box;
+    }
+
+    h1{
+        font-size:26px;
+        margin-bottom:6px;
+    }
+
+    .sub{
+        font-size:12px;
+        margin-bottom:14px;
+    }
+
+    .linha{
+        font-size:13px;
+        padding:7px 0;
+        line-height:1.4;
+    }
+
+    .qr{
+        margin-top:14px;
+    }
+
+    .qr img{
+        max-width:150px;
+        width:150px;
+        padding:4px;
+    }
+
+    .rodape{
+        margin-top:14px;
+        padding:10px;
+        font-size:12px;
+        line-height:1.4;
+    }
+
+    .acoes{
+        margin-top:14px;
+        gap:8px;
+    }
+
+    .btn{
+        padding:11px;
+        font-size:14px;
+        border-radius:8px;
+    }
+
+    p{
+        margin:6px 0;
+    }
+
+    strong{
+        word-break:break-word;
+    }
+
 }
 
 @media print{
