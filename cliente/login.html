@@ -170,33 +170,9 @@
   <script src="../js/cliente-login.js"></script>
 
 <script>
-document.getElementById("loginCliente").addEventListener("submit", function(){
+<form id="loginCliente">
 
-  const cpf = document.getElementById("cpf").value;
-  const whatsapp = document.getElementById("whatsapp").value;
-
-  localStorage.setItem("clienteFPSS", JSON.stringify({
-    nome:"Cliente FPSS",
-    cpf:cpf,
-    whatsapp:whatsapp,
-    pedidos:[
-      {
-        tipo:"Churrasco",
-        status:"Pago",
-        valor:55,
-        codigo:"FPSS001"
-      },
-      {
-        tipo:"Cartela",
-        status:"Reservado",
-        valor:20,
-        codigo:"FPSS002"
-      }
-    ]
-  }));
-
-});
 </script>
-
+<script src="../js/cliente-login.js"></script>
 </body>
 </html>
