@@ -140,7 +140,7 @@
   <p>Consulte seus pedidos, pagamentos e QR Code com segurança.</p>
 </div>
 
-    <form id="loginCliente">
+    <form id="loginCliente" action="painel.html">
 
       <div class="campo">
         <label>CPF do comprador:</label>
@@ -168,5 +168,35 @@
 
   </div>
   <script src="../js/cliente-login.js"></script>
+
+<script>
+document.getElementById("loginCliente").addEventListener("submit", function(){
+
+  const cpf = document.getElementById("cpf").value;
+  const whatsapp = document.getElementById("whatsapp").value;
+
+  localStorage.setItem("clienteFPSS", JSON.stringify({
+    nome:"Cliente FPSS",
+    cpf:cpf,
+    whatsapp:whatsapp,
+    pedidos:[
+      {
+        tipo:"Churrasco",
+        status:"Pago",
+        valor:55,
+        codigo:"FPSS001"
+      },
+      {
+        tipo:"Cartela",
+        status:"Reservado",
+        valor:20,
+        codigo:"FPSS002"
+      }
+    ]
+  }));
+
+});
+</script>
+
 </body>
 </html>

@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if(!dados){
     alert("Faça login primeiro.");
-    window.location.href = "login.html";
+    window.location.href = "/cliente/login.html";
     return;
   }
 
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if(logout){
     logout.addEventListener("click", () => {
       localStorage.removeItem("clienteFPSS");
-      window.location.href = "login.html";
+      window.location.href = "/cliente/login.html";
     });
   }
 
