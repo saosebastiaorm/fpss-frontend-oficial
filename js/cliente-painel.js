@@ -39,9 +39,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const listaPedidos = cliente.pedidos || [];
 
   const totalPedidos = listaPedidos.length;
-  const pagos = listaPedidos.filter(p => (p.status_pagamento || "").toLowerCase() === "pago").length;
-  const pendentes = listaPedidos.filter(p => (p.status_pagamento || "").toLowerCase() === "pendente").length;
-  const totalInvestido = listaPedidos.reduce((acc, p) => acc + Number(p.valor_total || 0), 0);
+
+  const pagos = listaPedidos.filter(
+    p => (p.status_pagamento || "").toLowerCase() === "pago"
+  ).length;
+
+  const pendentes = listaPedidos.filter(
+    p => (p.status_pagamento || "").toLowerCase() === "pendente"
+  ).length;
+
+  const retirados = listaPedidos.filter(
+    p => (p.status_retirada || "").toLowerCase() === "retirado"
+  ).length;
+
+  const naoRetirados = listaPedidos.filter(
+    p => (p.status_retirada || "").toLowerCase() !== "retirado"
+  ).length;
+
+  const totalInvestido = listaPedidos.reduce(
+    (acc, p) => acc + Number(p.valor_total || 0),
+    0
+  );
 
   if (pedidos) {
 
@@ -52,6 +70,8 @@ document.addEventListener("DOMContentLoaded", () => {
         <p><strong>Pagos:</strong> ${pagos}</p>
         <p><strong>Pendentes:</strong> ${pendentes}</p>
         <p><strong>Total investido:</strong> R$ ${totalInvestido.toFixed(2).replace(".", ",")}</p>
+        <p><strong>🎉 Retirados:</strong> ${retirados}</p>
+        <p><strong>📍 Não retirados:</strong> ${naoRetirados}</p>
       </div>
     `;
 
