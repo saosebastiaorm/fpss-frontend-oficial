@@ -11,70 +11,155 @@
   <link rel="stylesheet" href="../css/conversao-master.css">
 
   <style>
+    *{
+      box-sizing:border-box;
+    }
+
     body{
-      background:#f7f1e8;
+      margin:0;
+      background:linear-gradient(180deg,#f7f1e8,#efe4d1);
       padding:20px;
-      font-family:Arial, sans-serif;
+      font-family:Arial,sans-serif;
+      color:#333;
     }
 
     .painel-box{
-      max-width:900px;
+      max-width:980px;
       margin:auto;
-      background:#fff;
+      background:#ffffff;
       padding:35px;
-      border-radius:24px;
-      box-shadow:0 12px 30px rgba(0,0,0,.12);
-      border-top:6px solid #ffd700;
+      border-radius:28px;
+      box-shadow:0 18px 45px rgba(0,0,0,.12);
+      border-top:8px solid #ffd700;
     }
 
-    h1{
-      color:#8b1111;
+    .painel-header{
       text-align:center;
-      margin-bottom:25px;
+      margin-bottom:30px;
+      padding-bottom:20px;
+      border-bottom:2px solid #f3e2b8;
+    }
+
+    .painel-header h1{
+      color:#8b1111;
+      margin:0;
+      font-size:2.2rem;
+    }
+
+    .painel-header p{
+      margin-top:8px;
+      color:#666;
+      font-size:1rem;
+      font-weight:600;
     }
 
     .cliente-info{
       display:grid;
-      gap:12px;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:16px;
       margin-bottom:30px;
-      padding:20px;
-      background:#f8f8f8;
-      border-radius:16px;
+      padding:22px;
+      background:linear-gradient(135deg,#fffaf0,#f8f3ea);
+      border-radius:18px;
+      border:1px solid #ecd9b0;
     }
 
     .cliente-info p{
       margin:0;
-      font-size:16px;
+      font-size:15px;
+      line-height:1.5;
     }
 
     #clientePedidos{
       display:grid;
-      gap:16px;
+      gap:18px;
     }
 
     .pedido-card{
       background:#fff8ef;
       border:1px solid #f0d8b0;
-      border-radius:16px;
-      padding:18px;
+      border-left:6px solid #ffd700;
+      border-radius:18px;
+      padding:20px;
+      transition:.25s;
+      box-shadow:0 6px 14px rgba(0,0,0,.05);
+    }
+
+    .pedido-card:hover{
+      transform:translateY(-3px);
     }
 
     .pedido-card h3{
       color:#8b1111;
-      margin-bottom:10px;
+      margin-top:0;
+      margin-bottom:12px;
+      font-size:1.2rem;
+    }
+
+    .pedido-card p{
+      margin:6px 0;
+      font-size:15px;
+    }
+
+    .resumo-cliente{
+      background:linear-gradient(135deg,#8b1111,#b71c1c);
+      color:#fff;
+      border:none;
+      border-left:none;
+    }
+
+    .resumo-cliente h3,
+    .resumo-cliente p{
+      color:#fff;
     }
 
     .logout-btn{
       width:100%;
-      margin-top:30px;
-      padding:16px;
+      margin-top:35px;
+      padding:18px;
       border:none;
-      border-radius:14px;
-      background:#8b1111;
+      border-radius:16px;
+      background:linear-gradient(135deg,#8b1111,#b71c1c);
       color:#fff;
       font-size:18px;
       font-weight:900;
       cursor:pointer;
+      box-shadow:0 10px 20px rgba(139,17,17,.25);
+      transition:.25s;
+    }
+
+    .logout-btn:hover{
+      transform:translateY(-2px);
+    }
+
+    @media(max-width:768px){
+
+      body{
+        padding:12px;
+      }
+
+      .painel-box{
+        padding:22px;
+        border-radius:22px;
+      }
+
+      .painel-header h1{
+        font-size:1.7rem;
+      }
+
+      .cliente-info{
+        grid-template-columns:1fr;
+      }
+
+      .pedido-card{
+        padding:16px;
+      }
+
+      .logout-btn{
+        font-size:16px;
+        padding:16px;
+      }
+
     }
   </style>
 
@@ -83,12 +168,15 @@
 
   <div class="painel-box">
 
-    <h1>📄 Meus Pedidos FPSS</h1>
+    <div class="painel-header">
+      <h1>📄 Meus Pedidos FPSS</h1>
+      <p>Acompanhe pagamentos, retirada e histórico completo.</p>
+    </div>
 
     <div class="cliente-info">
-      <p><strong>Nome:</strong> <span id="clienteNome"></span></p>
-      <p><strong>CPF:</strong> <span id="clienteCPF"></span></p>
-      <p><strong>WhatsApp:</strong> <span id="clienteWhatsApp"></span></p>
+      <p><strong>👤 Nome:</strong> <span id="clienteNome"></span></p>
+      <p><strong>🪪 CPF:</strong> <span id="clienteCPF"></span></p>
+      <p><strong>📲 WhatsApp:</strong> <span id="clienteWhatsApp"></span></p>
     </div>
 
     <div id="clientePedidos"></div>
