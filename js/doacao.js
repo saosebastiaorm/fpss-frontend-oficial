@@ -1,4 +1,4 @@
-const URL_SCRIPT = "https://script.google.com/macros/s/AKfycbzc4p873RcAhbAegYAC1Wc1esCyhKsI8pNPhvfCYavGPBAHES3ppfeduiKdVE08IUd_/exec";
+const URL_SCRIPT_DOACAO = = "https://script.google.com/macros/s/AKfycbzc4p873RcAhbAegYAC1Wc1esCyhKsI8pNPhvfCYavGPBAHES3ppfeduiKdVE08IUd_/exec";
 
 document.addEventListener("DOMContentLoaded", function(){
 
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
       }
 
-      await fetch(URL_SCRIPT,{
+      await fetch(URL_SCRIPT_DOACAO,{
         method:"POST",
         body:dados
       });

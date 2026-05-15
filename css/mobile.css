@@ -244,3 +244,144 @@ padding:13px;
   }
 
 }
+
+
+/* =========================================
+FPSS HOME MOBILE MASTER FIX
+========================================= */
+@media (max-width:768px){
+
+  /* TOPO MASTER */
+  .topbar-master{
+    padding:8px 10px !important;
+    position:sticky;
+    top:0;
+    z-index:9999;
+  }
+
+  .topbar-wrap{
+    display:flex !important;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+  }
+
+  .brand-fpss{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    text-decoration:none;
+  }
+
+  .brand-logo img{
+    max-width:120px !important;
+    max-height:120px !important;
+    width:auto !important;
+    height:auto !important;
+  }
+
+  .brand-title{
+    font-size:20px !important;
+    line-height:1.1;
+  }
+
+  .brand-sub{
+    font-size:12px !important;
+  }
+
+  .brand-kicker{
+    font-size:11px !important;
+  }
+
+  /* MENU */
+  .menu-master{
+    display:flex !important;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:6px;
+    width:100%;
+  }
+
+  .menu-link,
+  .menu-destaque{
+    font-size:12px !important;
+    padding:6px 8px !important;
+    border-radius:10px;
+  }
+
+  /* HERO */
+  .hero{
+    padding:26px 14px 40px !important;
+    min-height:auto !important;
+    overflow:hidden;
+    position:relative;
+  }
+
+  .hero-grid{
+    grid-template-columns:1fr !important;
+    text-align:center;
+    gap:18px;
+    position:relative;
+    z-index:2;
+  }
+
+  .hero h1{
+    font-size:32px !important;
+  }
+
+  .subhero{
+    font-size:16px !important;
+  }
+
+  .hero-side{
+    max-width:100%;
+    margin:auto;
+  }
+
+  /* REMOVE EXCESSO VISUAL MOBILE */
+  .hero-igreja{
+    max-width:140px !important;
+    opacity:.95;
+    position:relative !important;
+    left:auto !important;
+    bottom:auto !important;
+    margin:18px auto 0;
+    display:block;
+  }
+
+  .hero-barraca,
+  .hero-baloes,
+  .bandeira-esquerda,
+  .bandeira-direita{
+    display:none !important;
+  }
+
+  /* CONTADOR */
+  .contador-grid{
+    justify-content:center;
+  }
+
+  /* PRODUTOS */
+  .grid-2{
+    grid-template-columns:1fr !important;
+  }
+
+  .venda-box img{
+    height:190px !important;
+  }
+
+}
+
+    .price-box{
+        min-height:44px;
+        font-size:34px;
+        padding:8px 10px;
+        margin:12px 0;
+    }
+
+    .venda-box a{
+        padding:14px;
+        font-size:18px;
+    }

@@ -1,4 +1,4 @@
-const URL_SCRIPT = "https://script.google.com/macros/s/AKfycbzc4p873RcAhbAegYAC1Wc1esCyhKsI8pNPhvfCYavGPBAHES3ppfeduiKdVE08IUd_/exec";
+const URL_SCRIPT_VIP = "https://script.google.com/macros/s/AKfycbzc4p873RcAhbAegYAC1Wc1esCyhKsI8pNPhvfCYavGPBAHES3ppfeduiKdVE08IUd_/exec";
 
 document.addEventListener("DOMContentLoaded", function(){
 
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     msg.innerHTML = "⏳ Enviando...";
 
-    fetch(URL_SCRIPT, {
+    fetch(URL_SCRIPT_VIP, {
       method: "POST",
       body: dados
     })

@@ -393,13 +393,15 @@ a.btn{
     align-items:center;
     justify-content:center;
     width:100%;
-    min-height:70px;
+    min-height:52px;
+    padding:10px 14px;
     background:linear-gradient(135deg,#16a34a,#1faa4a);
     color:#fff;
-    font-size:48px;
+    font-size:42px;
     font-weight:900;
-    margin:18px 0;
+    margin:14px 0;
     border-radius:14px;
+    line-height:1;
 }
 
 .venda-box a{
