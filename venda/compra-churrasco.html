@@ -103,52 +103,90 @@
             transform:scale(1.02);
         }
 
-        @media(max-width:768px){
+       @media(max-width:768px){
 
-            body{
-                margin:0;
-                padding:4px;
-                background:#f4f4f4;
-            }
+    body{
+        margin:0;
+        padding:4px;
+        background:#f4f4f4;
+    }
 
-            .checkout-box{
-                width:100%;
-                max-width:100%;
-                margin:8px auto;
-                padding:12px;
-                border-radius:10px;
-                box-sizing:border-box;
-            }
+    .checkout-box{
+        width:100%;
+        max-width:100%;
+        margin:8px auto;
+        padding:14px;
+        border-radius:10px;
+        box-sizing:border-box;
+    }
 
-            .form-row{
-                grid-template-columns:1fr;
-                gap:0;
-            }
+    h2{
+        font-size:20px;
+        text-align:center;
+    }
 
-            h2{
-                font-size:22px;
-            }
+    .urgencia-venda{
+        font-size:12px;
+        line-height:1.4;
+        padding:10px;
+    }
 
-            .campo input,
-            .campo select{
-                padding:10px;
-                font-size:14px;
-            }
+    /* Nome e sobrenome empilham */
+    .form-row{
+        grid-template-columns:1fr;
+        gap:0;
+    }
 
-            .btn-finalizar{
-                padding:14px;
-                font-size:16px;
-            }
+    .campo{
+        margin-bottom:12px;
+    }
 
-            .total-destaque{
-                font-size:1.1rem;
-            }
+    .campo label{
+        font-size:14px;
+    }
 
-            .urgencia-venda,
-            .aviso-retirada{
-                font-size:12px;
-            }
-        }
+    .campo input,
+    .campo select{
+        padding:10px;
+        font-size:16px;
+    }
+
+    /* BLOCO QUANTIDADE + HORARIO */
+    .linha-retirada{
+        display:grid;
+        grid-template-columns:90px 1fr;
+        gap:10px;
+        align-items:end;
+    }
+
+    .qtd-mini{
+        max-width:90px;
+    }
+
+    .aviso-retirada{
+        margin-top:12px;
+        font-size:12px;
+        line-height:1.45;
+        padding:10px;
+    }
+
+    .resumo-venda{
+        margin-top:16px;
+        padding:14px;
+    }
+
+    .total-destaque{
+        font-size:1.2rem;
+    }
+
+    .btn-finalizar{
+        width:100%;
+        padding:16px;
+        font-size:18px;
+        margin-top:14px;
+    }
+
+}
     </style>
 </head>
 
@@ -168,31 +206,33 @@
             6ª Festa do Padroeiro São Sebastião
         </p>
 
-        <form id="formCheckout">
+   <form id="formCheckout">
 
-            <div class="form-row">
+    <div class="form-row">
 
-                <div class="campo">
-                    <label>Nome:</label>
-                    <input
-                        type="text"
-                        name="nome"
-                        placeholder="Ex: Marcos"
-                        required
-                    >
-                </div>
+        <div class="campo">
+            <label>Nome:</label>
+            <input
+                type="text"
+                id="nome"
+                name="nome"
+                placeholder="Ex: Marcos"
+                required
+            >
+        </div>
 
-                <div class="campo">
-                    <label>Sobrenome:</label>
-                    <input
-                        type="text"
-                        name="sobrenome"
-                        placeholder="Ex: Silva"
-                        required
-                    >
-                </div>
+        <div class="campo">
+            <label>Sobrenome:</label>
+            <input
+                type="text"
+                id="sobrenome"
+                name="sobrenome"
+                placeholder="Ex: Silva"
+                required
+            >
+        </div>
 
-            </div>
+    </div>
 
             <div class="campo">
                 <label>Telefone / WhatsApp:</label>
@@ -211,8 +251,8 @@
                 <label>CPF (para segurança na retirada):</label>
                 <input
                     type="text"
-                    name="cpf"
                     id="cpf"
+                    name="cpf"
                     placeholder="000.000.000-00"
                     required
                     inputmode="numeric"
@@ -220,40 +260,39 @@
                     oninput="mascaraCPF(this)"
                 >
             </div>
+<div class="linha-retirada">
 
-            <div class="form-row">
+    <div class="campo qtd-mini">
+        <label>Quantidade:</label>
+        <input
+            type="number"
+            id="qtd"
+            name="quantidade"
+            value="1"
+            min="1"
+            max="10"
+            oninput="calcularTotal()"
+        >
+    </div>
 
-                <div class="campo">
-                    <label>Quantidade:</label>
-                    <input
-                        type="number"
-                        id="qtd"
-                        name="quantidade"
-                        value="1"
-                        min="1"
-                        max="10"
-                        oninput="calcularTotal()"
-                    >
-                </div>
+    <div class="campo">
+        <label>Previsão de Retirada:</label>
+        <select
+            name="horario_retirada"
+            id="horario_retirada"
+            required
+        >
+            <option value="">Selecione o horário</option>
+            <option value="09:00">09:00 hs</option>
+            <option value="10:00">10:00 hs</option>
+            <option value="11:00">11:00 hs</option>
+            <option value="12:00">12:00 hs</option>
+            <option value="13:00">13:00 hs</option>
+            <option value="14:00">14:00 hs</option>
+        </select>
+    </div>
 
-                <div class="campo">
-                    <label>Previsão de Retirada:</label>
-                    <select
-                        name="horario_retirada"
-                        id="horario_retirada"
-                        required
-                    >
-                        <option value="">Selecione o horário</option>
-                        <option value="09:00">09:00 hs</option>
-                        <option value="10:00">10:00 hs</option>
-                        <option value="11:00">11:00 hs</option>
-                        <option value="12:00">12:00 hs</option>
-                        <option value="13:00">13:00 hs</option>
-                        <option value="14:00">14:00 hs</option>
-                    </select>
-                </div>
-
-            </div>
+</div>
 
             <div class="aviso-retirada">
                 ℹ️ <strong>Atenção:</strong>
