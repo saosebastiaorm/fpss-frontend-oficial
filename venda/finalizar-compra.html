@@ -184,9 +184,6 @@
 </div>
 
 <script>
-/* =========================================
-   CARREGAR DADOS PIX
-========================================= */
 const pixData = JSON.parse(localStorage.getItem("pixData"));
 
 if (!pixData) {
@@ -194,9 +191,6 @@ if (!pixData) {
     window.location.href = "/venda/compra-churrasco.html";
 }
 
-/* =========================================
-   PREENCHER DADOS
-========================================= */
 document.getElementById("codigoPedido").innerText =
     pixData.codigo_pedido || "N/D";
 
@@ -206,9 +200,6 @@ document.getElementById("valorPedido").innerText =
 document.getElementById("pixCode").value =
     pixData.qr_code || "";
 
-/* =========================================
-   GERAR QR
-========================================= */
 if (pixData.qr_code) {
     new QRCode(
         document.getElementById("qrcode"),
@@ -220,24 +211,14 @@ if (pixData.qr_code) {
     );
 }
 
-/* =========================================
-   COPIAR PIX
-========================================= */
 function copiarPix() {
-
     const campo = document.getElementById("pixCode");
-
     campo.select();
     campo.setSelectionRange(0, 99999);
-
     navigator.clipboard.writeText(campo.value);
-
     alert("✅ Código PIX copiado!");
 }
 
-/* =========================================
-   WHATSAPP
-========================================= */
 function enviarWhatsApp() {
 
     const texto =
@@ -253,6 +234,14 @@ Valor: R$ ${Number(pixData.total).toFixed(2).replace(".", ",")}`;
 }
 
 function gerarComprovante() {
+
+    if (
+        (pixData.status_pagamento || "").toLowerCase() !== "pago" ||
+        (pixData.status_retirada || "").toLowerCase() === "retirado"
+    ) {
+        alert("Este comprovante não está mais disponível. Pedido já retirado ou pagamento pendente.");
+        return;
+    }
 
     const conteudo = `
         <html>
@@ -287,6 +276,20 @@ function gerarComprovante() {
                 <p><strong>CPF:</strong> ${pixData.cpf}</p>
                 <p><strong>Valor Pago:</strong> R$ ${Number(pixData.total).toFixed(2).replace(".", ",")}</p>
                 <p><strong>Produto:</strong> ${pixData.produto_tipo || "Churrasco"}</p>
+                <p><strong>Status Retirada:</strong> NÃO RETIRADO</p>
+
+                <div style="margin-top:25px;text-align:center;">
+                    <p><strong>QR Code para retirada:</strong></p>
+                    <img
+                        src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(pixData.codigo_pedido)}"
+                        alt="QR Code Pedido"
+                        style="border:1px solid #ccc;padding:10px;border-radius:12px;"
+                    >
+                    <p style="font-size:14px;margin-top:10px;">
+                        Código: ${pixData.codigo_pedido}
+                    </p>
+                </div>
+
                 <p><strong>Instrução:</strong> Apresente este comprovante + CPF na retirada.</p>
                 <p><strong>FPSS:</strong> 6ª Festa do Padroeiro São Sebastião 2027</p>
             </div>
@@ -301,16 +304,10 @@ function gerarComprovante() {
     `;
 
     const novaJanela = window.open("", "_blank");
-
     novaJanela.document.write(conteudo);
     novaJanela.document.close();
-
 }
 
-
-/* =========================================
-   VERIFICAR STATUS PAGAMENTO
-========================================= */
 async function verificarPagamento() {
 
     if (!pixData.payment_id) return;
@@ -323,22 +320,47 @@ async function verificarPagamento() {
 
         const dados = await res.json();
 
-        if (
-            dados.sucesso &&
-            dados.status_interno === "pago"
-        ) {
+        if (dados.sucesso) {
 
-            document.getElementById("statusPagamento").innerHTML =
-                "✅ PAGAMENTO APROVADO!";
+            pixData.status_pagamento = dados.status_interno || "";
+            pixData.status_retirada = dados.status_retirada || "";
 
-            document.getElementById("statusPagamento").style.color =
-                "green";
+            localStorage.setItem("pixData", JSON.stringify(pixData));
 
-            document.getElementById("btnWhatsapp").style.display =
-                "block";
+            if (
+                (dados.status_interno || "").toLowerCase() === "pago" &&
+                (dados.status_retirada || "").toLowerCase() !== "retirado"
+            ) {
 
-            document.getElementById("btnComprovante").style.display =
-                "block";
+                document.getElementById("statusPagamento").innerHTML =
+                    "✅ PAGAMENTO APROVADO!";
+
+                document.getElementById("statusPagamento").style.color =
+                    "green";
+
+                document.getElementById("btnWhatsapp").style.display =
+                    "block";
+
+                document.getElementById("btnComprovante").style.display =
+                    "block";
+
+            } else if (
+                (dados.status_retirada || "").toLowerCase() === "retirado"
+            ) {
+
+                document.getElementById("statusPagamento").innerHTML =
+                    "🎉 PRODUTO JÁ RETIRADO";
+
+                document.getElementById("statusPagamento").style.color =
+                    "#8b1111";
+
+                document.getElementById("btnWhatsapp").style.display =
+                    "none";
+
+                document.getElementById("btnComprovante").style.display =
+                    "none";
+
+            }
 
         }
 
@@ -347,11 +369,7 @@ async function verificarPagamento() {
     }
 }
 
-/* =========================================
-   AUTO VERIFICAÇÃO
-========================================= */
 verificarPagamento();
-
 setInterval(verificarPagamento, 5000);
 </script>
 
