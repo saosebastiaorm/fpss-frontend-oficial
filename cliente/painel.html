@@ -174,6 +174,35 @@
       }
 
     }
+
+.filtros-pedidos{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:25px;
+  justify-content:center;
+}
+
+.filtro-btn{
+  padding:10px 18px;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:800;
+  background:#f3e2b8;
+  color:#8b1111;
+  transition:.2s;
+}
+
+.filtro-btn:hover{
+  transform:translateY(-2px);
+}
+
+.filtro-btn.ativo{
+  background:#8b1111;
+  color:#fff;
+}
+
   </style>
 
 </head>
@@ -192,7 +221,14 @@
       <p><strong>📲 WhatsApp:</strong> <span id="clienteWhatsApp"></span></p>
     </div>
 
-    <div id="clientePedidos"></div>
+    <div class="filtros-pedidos">
+  <button class="filtro-btn ativo" data-filtro="todos">Todos</button>
+  <button class="filtro-btn" data-filtro="pago">Pagos</button>
+  <button class="filtro-btn" data-filtro="pendente">Pendentes</button>
+  <button class="filtro-btn" data-filtro="retirado">Retirados</button>
+</div>
+
+<div id="clientePedidos"></div>
 
     <button id="logoutCliente" class="logout-btn">
       🚪 Sair da Central
@@ -200,7 +236,7 @@
 
   </div>
 
-  <script src="../js/cliente-painel.js?v=2"></script>
+  <script src="../js/cliente-painel.js?v=4"></script>
 
 </body>
 </html>

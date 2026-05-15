@@ -102,7 +102,62 @@ document.addEventListener("DOMContentLoaded", () => {
 
 }).join("");
 
-    pedidos.innerHTML = resumoHTML + pedidosHTML;
+    pedidos.innerHTML = resumoHTML + `<div id="listaPedidosCards">${pedidosHTML}</div>`;
+
+const botoesFiltro = document.querySelectorAll(".filtro-btn");
+const listaContainer = document.getElementById("listaPedidosCards");
+
+botoesFiltro.forEach(botao => {
+  botao.addEventListener("click", () => {
+
+    botoesFiltro.forEach(b => b.classList.remove("ativo"));
+    botao.classList.add("ativo");
+
+    const filtro = botao.dataset.filtro;
+
+    const pedidosFiltrados = listaPedidos.filter(pedido => {
+
+      const statusPagamento = (pedido.status_pagamento || "").toLowerCase();
+      const statusRetirada = (pedido.status_retirada || "").toLowerCase();
+
+      if (filtro === "todos") return true;
+      if (filtro === "pago") return statusPagamento === "pago";
+      if (filtro === "pendente") return statusPagamento === "pendente";
+      if (filtro === "retirado") return statusRetirada === "retirado";
+
+      return true;
+
+    });
+
+    listaContainer.innerHTML = pedidosFiltrados.map(pedido => {
+
+      const statusPagamento = (pedido.status_pagamento || "").toLowerCase();
+      const statusRetirada = (pedido.status_retirada || "").toLowerCase();
+
+      let classeStatus = "pedido-normal";
+
+      if (statusRetirada === "retirado") {
+        classeStatus = "pedido-retirado";
+      } else if (statusPagamento === "pago") {
+        classeStatus = "pedido-pago";
+      } else if (statusPagamento === "pendente") {
+        classeStatus = "pedido-pendente";
+      }
+
+      return `
+        <div class="pedido-card ${classeStatus}">
+          <h3>${traduzirProduto(pedido.produto_tipo)}</h3>
+          <p><strong>Status:</strong> ${traduzirStatus(pedido.status_pagamento)}</p>
+          <p><strong>Valor:</strong> R$ ${Number(pedido.valor_total || 0).toFixed(2).replace(".", ",")}</p>
+          <p><strong>Código:</strong> ${pedido.codigo_pedido || "-"}</p>
+          <p><strong>Retirada:</strong> ${pedido.status_retirada === "retirado" ? "🎉 Retirado" : "📍 Não retirado"}</p>
+        </div>
+      `;
+
+    }).join("");
+
+  });
+});
 
   }
 
