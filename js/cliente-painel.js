@@ -75,15 +75,32 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
 
-    let pedidosHTML = listaPedidos.map(pedido => `
-      <div class="pedido-card">
-        <h3>${traduzirProduto(pedido.produto_tipo)}</h3>
-        <p><strong>Status:</strong> ${traduzirStatus(pedido.status_pagamento)}</p>
-        <p><strong>Valor:</strong> R$ ${Number(pedido.valor_total || 0).toFixed(2).replace(".", ",")}</p>
-        <p><strong>Código:</strong> ${pedido.codigo_pedido || "-"}</p>
-        <p><strong>Retirada:</strong> ${pedido.status_retirada === "retirado" ? "🎉 Retirado" : "📍 Não retirado"}</p>
-      </div>
-    `).join("");
+ let pedidosHTML = listaPedidos.map(pedido => {
+
+  const statusPagamento = (pedido.status_pagamento || "").toLowerCase();
+  const statusRetirada = (pedido.status_retirada || "").toLowerCase();
+
+  let classeStatus = "pedido-normal";
+
+  if (statusRetirada === "retirado") {
+    classeStatus = "pedido-retirado";
+  } else if (statusPagamento === "pago") {
+    classeStatus = "pedido-pago";
+  } else if (statusPagamento === "pendente") {
+    classeStatus = "pedido-pendente";
+  }
+
+  return `
+    <div class="pedido-card ${classeStatus}">
+      <h3>${traduzirProduto(pedido.produto_tipo)}</h3>
+      <p><strong>Status:</strong> ${traduzirStatus(pedido.status_pagamento)}</p>
+      <p><strong>Valor:</strong> R$ ${Number(pedido.valor_total || 0).toFixed(2).replace(".", ",")}</p>
+      <p><strong>Código:</strong> ${pedido.codigo_pedido || "-"}</p>
+      <p><strong>Retirada:</strong> ${pedido.status_retirada === "retirado" ? "🎉 Retirado" : "📍 Não retirado"}</p>
+    </div>
+  `;
+
+}).join("");
 
     pedidos.innerHTML = resumoHTML + pedidosHTML;
 
