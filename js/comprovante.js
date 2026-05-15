@@ -22,6 +22,28 @@ function carregarComprovante() {
     document.getElementById("qrRetirada").src =
         "https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=" +
         encodeURIComponent(pixData.codigo_pedido || "");
+
+    document.getElementById("nome").innerText =
+        pixData.nome || "N/D";
+
+    document.getElementById("telefone").innerText =
+        pixData.telefone || "N/D";
+
+    document.getElementById("quantidade").innerText =
+        pixData.quantidade || "1";
+
+    document.getElementById("horarioRetirada").innerText =
+        pixData.horario_retirada || "N/D";
+
+    document.getElementById("dataCompra").innerText =
+        pixData.created_at || "N/D";
+
+    document.getElementById("dataPagamento").innerText =
+        pixData.data_pagamento ||
+        pixData.updated_at ||
+        "N/D";
+
+
 }
 
 function imprimirComprovante() {
