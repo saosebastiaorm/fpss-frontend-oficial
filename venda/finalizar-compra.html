@@ -264,6 +264,31 @@ function gerarComprovante() {
 /* =========================
    WHATSAPP / COMPARTILHAR
 ========================= */
+
+function enviarWhatsApp() {
+
+    if (
+        (pixData.status_pagamento || "").toLowerCase() !== "pago" ||
+        (pixData.status_retirada || "").toLowerCase() === "retirado"
+    ) {
+        alert("Comprovante disponível somente após pagamento aprovado.");
+        return;
+    }
+
+    const conteudo = gerarHtmlComprovante(true);
+
+    const novaJanela = window.open("", "_blank");
+
+    if (!novaJanela) {
+        alert("⚠️ Seu navegador bloqueou a nova aba. Permita pop-ups.");
+        return;
+    }
+
+    novaJanela.document.open();
+    novaJanela.document.write(conteudo);
+    novaJanela.document.close();
+}
+
 function gerarHtmlComprovante(modoCompartilhar = false) {
 
     const botaoCompartilhar = modoCompartilhar ? `
