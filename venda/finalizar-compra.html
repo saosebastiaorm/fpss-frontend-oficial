@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <title>Pagamento PIX - 6ª FPSS</title>
 
     <link rel="stylesheet" href="../css/base.css">
@@ -12,7 +11,6 @@
     <link rel="stylesheet" href="../css/style.css">
 
     <script src="../js/qrcode.min.js"></script>
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
     <style>
         body{
@@ -158,29 +156,15 @@
 
         <textarea id="pixCode" readonly></textarea>
 
-        <button
-            class="btn btn-copiar"
-            id="btnCopiarPix"
-            onclick="copiarPix()"
-        >
+        <button class="btn btn-copiar" id="btnCopiarPix" onclick="copiarPix()">
             📋 COPIAR CÓDIGO PIX
         </button>
 
-        <button
-            class="btn btn-whatsapp"
-            id="btnWhatsapp"
-            onclick="enviarWhatsApp()"
-            style="display:none;"
-        >
+        <button class="btn btn-whatsapp" id="btnWhatsapp" onclick="enviarWhatsApp()" style="display:none;">
             📲 ENVIAR PARA WHATSAPP
         </button>
 
-        <button
-            class="btn btn-comprovante"
-            id="btnComprovante"
-            onclick="gerarComprovante()"
-            style="display:none;"
-        >
+        <button class="btn btn-comprovante" id="btnComprovante" onclick="gerarComprovante()" style="display:none;">
             📄 SALVAR PDF / IMPRIMIR
         </button>
     </div>
@@ -237,9 +221,6 @@ function copiarPix() {
     alert("✅ Código copiado!");
 }
 
-/* =========================
-   COMPROVANTE PDF / IMPRESSÃO
-========================= */
 function gerarComprovante() {
 
     if (
@@ -250,20 +231,9 @@ function gerarComprovante() {
         return;
     }
 
-    const conteudo = gerarHtmlComprovante(false);
-
-    const novaJanela = window.open("", "_blank");
-    novaJanela.document.write(conteudo);
-    novaJanela.document.close();
-
-    setTimeout(() => {
-        novaJanela.print();
-    }, 500);
+    window.open("/venda/comprovante.html", "_blank");
 }
 
-/* =========================
-   WHATSAPP / COMPARTILHAR
-========================= */
 function enviarWhatsApp() {
 
     if (
@@ -274,209 +244,9 @@ function enviarWhatsApp() {
         return;
     }
 
-    const novaJanela = window.open("", "_blank");
-
-    if (!novaJanela) {
-        alert("⚠️ Permita pop-ups para compartilhar.");
-        return;
-    }
-
-    novaJanela.document.write(gerarHtmlComprovante(true));
-    novaJanela.document.close();
-}
-
-function gerarHtmlComprovante(modoCompartilhar = false) {
-
-    const botao = modoCompartilhar ? `
-        <div style="margin-top:25px;text-align:center;">
-            <button onclick="compartilharComprovante()" style="
-                width:100%;
-                padding:16px;
-                font-size:16px;
-                border:none;
-                border-radius:10px;
-                background:#25d366;
-                color:#fff;
-                font-weight:bold;
-                cursor:pointer;
-            ">
-                📲 Compartilhar imagem via WhatsApp / Apps
-            </button>
-        </div>
-    ` : "";
-
-    return `<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Comprovante FPSS</title>
-<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-
-<style>
-body{
-    font-family:Arial,sans-serif;
-    background:#f4f4f4;
-    margin:0;
-    padding:20px;
-}
-
-.comprovante{
-    max-width:800px;
-    margin:auto;
-    background:#fff;
-    border-radius:16px;
-    padding:30px;
-    border-top:8px solid #228b22;
-    box-shadow:0 10px 25px rgba(0,0,0,.12);
-}
-
-h1{
-    text-align:center;
-    color:#8b1111;
-}
-
-.sub{
-    text-align:center;
-    color:#666;
-    margin-bottom:25px;
-}
-
-.linha{
-    padding:12px 0;
-    border-bottom:1px solid #eee;
-    font-size:18px;
-}
-
-.qr{
-    text-align:center;
-    margin-top:30px;
-}
-
-.qr img{
-    max-width:240px;
-    width:100%;
-    border:1px solid #ccc;
-    padding:10px;
-    border-radius:12px;
-    background:#fff;
-}
-
-.rodape{
-    margin-top:30px;
-    padding:18px;
-    background:#fff8d6;
-    border:1px solid #f4d35e;
-    border-radius:12px;
-    line-height:1.7;
-}
-
-@media(max-width:768px){
-    body{padding:10px;}
-    .comprovante{padding:18px;}
-    .linha{font-size:15px;}
-}
-
-@media print{
-    button{display:none;}
-    body{background:#fff;padding:0;}
-    .comprovante{box-shadow:none;border:none;}
-}
-</style>
-</head>
-
-<body>
-
-<div class="comprovante" id="comprovante">
-
-    <h1>🎉 Comprovante Oficial FPSS</h1>
-
-    <div class="sub">
-        6ª Festa do Padroeiro São Sebastião 2027
-    </div>
-
-    <div class="linha"><strong>Status:</strong> PAGAMENTO APROVADO</div>
-    <div class="linha"><strong>Código do Pedido:</strong> ${pixData.codigo_pedido || "N/D"}</div>
-    <div class="linha"><strong>CPF:</strong> ${pixData.cpf || "N/D"}</div>
-    <div class="linha"><strong>Valor Pago:</strong> R$ ${Number(pixData.total || 0).toFixed(2).replace(".", ",")}</div>
-    <div class="linha"><strong>Produto:</strong> ${pixData.produto_tipo || "Churrasco"}</div>
-    <div class="linha"><strong>Status Retirada:</strong> NÃO RETIRADO</div>
-
-    <div class="qr">
-        <p><strong>QR Code para retirada:</strong></p>
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(pixData.codigo_pedido || "")}">
-        <p><strong>${pixData.codigo_pedido || ""}</strong></p>
-    </div>
-
-    <div class="rodape">
-        ⚠️ <strong>IMPORTANTE:</strong><br>
-        Apresente este comprovante + CPF na retirada.<br>
-        Este documento funciona como comprovante oficial FPSS.
-    </div>
-
-    ${botao}
-
-</div>
-
-<script>
-
-
-async function compartilharComprovante(){
-
-    try{
-
-        const elemento = document.getElementById("comprovante");
-
-        const canvas = await html2canvas(elemento,{
-            scale:2,
-            useCORS:true
-        });
-
-        canvas.toBlob(async function(blob){
-
-            const file = new File(
-                [blob],
-                "comprovante-fpss.png",
-                {type:"image/png"}
-            );
-
-            if(
-                navigator.canShare &&
-                navigator.canShare({files:[file]})
-            ){
-
-                await navigator.share({
-                    title:"Comprovante FPSS",
-                    text:"Comprovante Oficial FPSS",
-                    files:[file]
-                });
-
-            }else{
-
-                const link = document.createElement("a");
-                link.href = canvas.toDataURL("image/png");
-                link.download = "comprovante-fpss.png";
-                link.click();
-
-                alert("✅ Imagem salva. Compartilhe manualmente.");
-
-            }
-
-        },"image/png");
-
-    }catch(e){
-
-        alert("Erro ao compartilhar comprovante.");
-
-    }
+    window.open("/venda/comprovante.html?acao=whatsapp", "_blank");
 
 }
-</script>
-
-</body>
-</html>`;
-}
-
 
 async function verificarPagamento() {
 
@@ -500,7 +270,6 @@ async function verificarPagamento() {
             JSON.stringify(pixData)
         );
 
-        /* PAGO + NÃO RETIRADO */
         if (
             (dados.status_interno || "").toLowerCase() === "pago" &&
             (dados.status_retirada || "").toLowerCase() !== "retirado"
@@ -534,7 +303,6 @@ async function verificarPagamento() {
 
         }
 
-        /* JÁ RETIRADO */
         else if (
             (dados.status_retirada || "").toLowerCase() === "retirado"
         ) {
@@ -586,7 +354,6 @@ async function verificarPagamento() {
 
         }
 
-        /* PENDENTE */
         else {
 
             document.getElementById("statusPagamento").innerHTML =

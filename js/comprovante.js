@@ -79,4 +79,4 @@ async function compartilharComprovante() {
 
 }
 
-carregarComprovante();
+window.onload = carregarComprovante;
