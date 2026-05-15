@@ -179,8 +179,7 @@
             onclick="gerarComprovante()"
             style="display:none;"
         >
-            📤 COMPARTILHAR COMPROVANTE
-
+            📄 SALVAR PDF / IMPRIMIR
         </button>
     </div>
 
@@ -236,20 +235,9 @@ function copiarPix() {
     alert("✅ Código copiado!");
 }
 
-function enviarWhatsApp() {
-
-    const texto =
-`Olá! Segue meu pedido FPSS:%0A
-Código: ${pixData.codigo_pedido}%0A
-CPF: ${pixData.cpf}%0A
-Valor: R$ ${Number(pixData.total).toFixed(2).replace(".", ",")}`;
-
-    window.open(
-        `https://wa.me/?text=${texto}`,
-        "_blank"
-    );
-}
-
+/* =========================
+   COMPROVANTE PDF / IMPRESSÃO
+========================= */
 function gerarComprovante() {
 
     if (
@@ -260,7 +248,43 @@ function gerarComprovante() {
         return;
     }
 
-    const conteudo = `
+    const conteudo = gerarHtmlComprovante(false);
+
+    const novaJanela = window.open("", "_blank");
+    novaJanela.document.write(conteudo);
+    novaJanela.document.close();
+
+    setTimeout(() => {
+        novaJanela.print();
+    }, 500);
+}
+
+/* =========================
+   WHATSAPP / COMPARTILHAR
+========================= */
+function enviarWhatsApp() {
+
+    if (
+        (pixData.status_pagamento || "").toLowerCase() !== "pago" ||
+        (pixData.status_retirada || "").toLowerCase() === "retirado"
+    ) {
+        alert("Comprovante disponível somente após pagamento aprovado.");
+        return;
+    }
+
+    const conteudo = gerarHtmlComprovante(true);
+
+    const novaJanela = window.open("", "_blank");
+    novaJanela.document.write(conteudo);
+    novaJanela.document.close();
+}
+
+/* =========================
+   HTML BASE COMPROVANTE
+========================= */
+function gerarHtmlComprovante(modoCompartilhar = false) {
+
+    return `
         <html>
         <head>
             <title>Comprovante FPSS</title>
@@ -407,26 +431,24 @@ function gerarComprovante() {
                     Este documento funciona como comprovante oficial FPSS.
                 </div>
 
-                <div class="share">
-                    <button onclick="window.print()">
-                        📤 Compartilhar / Salvar PDF / Imprimir
-                    </button>
-                </div>
+                ${
+                    modoCompartilhar
+                    ? `
+                    <div class="share">
+                        <button onclick="window.print()">
+                            📲 Compartilhar / Salvar PDF / Imprimir
+                        </button>
+                    </div>
+                    `
+                    : ""
+                }
 
             </div>
 
         </body>
         </html>
     `;
-
-    const novaJanela = window.open("", "_blank");
-
-    novaJanela.document.write(conteudo);
-
-    novaJanela.document.close();
-
 }
-
 
 async function verificarPagamento() {
 
