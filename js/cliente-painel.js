@@ -21,51 +21,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function traduzirProduto(tipo) {
     switch (tipo) {
-      case "CHU":
-        return "🍖 Churrasco";
-      case "CAR":
-        return "🎟️ Cartela";
-      default:
-        return tipo || "Pedido";
+      case "CHU": return "🍖 Churrasco";
+      case "CAR": return "🎟️ Cartela";
+      default: return tipo || "Pedido";
     }
   }
 
   function traduzirStatus(status) {
     switch ((status || "").toLowerCase()) {
-      case "pago":
-        return "✅ Pago";
-      case "pendente":
-        return "⏳ Pendente";
-      case "cancelado":
-        return "❌ Cancelado";
-      default:
-        return status || "Processando";
+      case "pago": return "✅ Pago";
+      case "pendente": return "⏳ Pendente";
+      case "cancelado": return "❌ Cancelado";
+      default: return status || "Processando";
     }
   }
 
+  const listaPedidos = cliente.pedidos || [];
+
+  const totalPedidos = listaPedidos.length;
+  const pagos = listaPedidos.filter(p => (p.status_pagamento || "").toLowerCase() === "pago").length;
+  const pendentes = listaPedidos.filter(p => (p.status_pagamento || "").toLowerCase() === "pendente").length;
+  const totalInvestido = listaPedidos.reduce((acc, p) => acc + Number(p.valor_total || 0), 0);
+
   if (pedidos) {
 
-    if (cliente.pedidos && cliente.pedidos.length > 0) {
+    let resumoHTML = `
+      <div class="pedido-card resumo-cliente">
+        <h3>📊 Resumo Geral</h3>
+        <p><strong>Total de pedidos:</strong> ${totalPedidos}</p>
+        <p><strong>Pagos:</strong> ${pagos}</p>
+        <p><strong>Pendentes:</strong> ${pendentes}</p>
+        <p><strong>Total investido:</strong> R$ ${totalInvestido.toFixed(2).replace(".", ",")}</p>
+      </div>
+    `;
 
-      pedidos.innerHTML = cliente.pedidos.map(pedido => `
-        <div class="pedido-card">
-          <h3>${traduzirProduto(pedido.produto_tipo)}</h3>
-          <p><strong>Status:</strong> ${traduzirStatus(pedido.status_pagamento)}</p>
-          <p><strong>Valor:</strong> R$ ${Number(pedido.valor_total || 0).toFixed(2).replace(".", ",")}</p>
-          <p><strong>Código:</strong> ${pedido.codigo_pedido || "-"}</p>
-          <p><strong>Retirada:</strong> ${pedido.status_retirada || "não informado"}</p>
-        </div>
-      `).join("");
+    let pedidosHTML = listaPedidos.map(pedido => `
+      <div class="pedido-card">
+        <h3>${traduzirProduto(pedido.produto_tipo)}</h3>
+        <p><strong>Status:</strong> ${traduzirStatus(pedido.status_pagamento)}</p>
+        <p><strong>Valor:</strong> R$ ${Number(pedido.valor_total || 0).toFixed(2).replace(".", ",")}</p>
+        <p><strong>Código:</strong> ${pedido.codigo_pedido || "-"}</p>
+        <p><strong>Retirada:</strong> ${pedido.status_retirada === "retirado" ? "🎉 Retirado" : "📍 Não retirado"}</p>
+      </div>
+    `).join("");
 
-    } else {
-
-      pedidos.innerHTML = `
-        <div class="pedido-card">
-          <p>Nenhum pedido encontrado.</p>
-        </div>
-      `;
-
-    }
+    pedidos.innerHTML = resumoHTML + pedidosHTML;
 
   }
 
