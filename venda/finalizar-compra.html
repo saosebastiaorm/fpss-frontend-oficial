@@ -435,8 +435,24 @@ function gerarHtmlComprovante(modoCompartilhar = false) {
                     modoCompartilhar
                     ? `
                     <div class="share">
-                        <button onclick="window.print()">
-                            📲 Compartilhar / Salvar PDF / Imprimir
+                        <button onclick="
+                            if (navigator.share) {
+                                navigator.share({
+                                    title: 'Comprovante FPSS',
+                                    text: 'Comprovante Oficial FPSS - Pedido ${pixData.codigo_pedido}',
+                                    url: window.location.href
+                                });
+                            } else {
+                                window.open(
+                                    'https://wa.me/?text=' +
+                                    encodeURIComponent(
+                                        'Comprovante FPSS - Pedido ${pixData.codigo_pedido} - CPF ${pixData.cpf}'
+                                    ),
+                                    '_blank'
+                                );
+                            }
+                        ">
+                            📲 Compartilhar via WhatsApp / Apps
                         </button>
                     </div>
                     `
