@@ -79,4 +79,28 @@ async function compartilharComprovante() {
 
 }
 
-window.onload = carregarComprovante;
+window.onload = async function() {
+
+    carregarComprovante();
+
+    const params = new URLSearchParams(window.location.search);
+    const acao = params.get("acao");
+
+    if (acao === "whatsapp") {
+
+        setTimeout(async () => {
+            await compartilharComprovante();
+            window.close();
+        }, 700);
+
+    }
+
+    else if (acao === "pdf") {
+
+        setTimeout(() => {
+            window.print();
+        }, 700);
+
+    }
+
+};

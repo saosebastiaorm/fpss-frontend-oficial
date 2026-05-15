@@ -231,7 +231,7 @@ function gerarComprovante() {
         return;
     }
 
-    window.open("/venda/comprovante.html", "_blank");
+    window.open("/venda/comprovante.html?acao=pdf", "_blank");
 }
 
 function enviarWhatsApp() {
@@ -245,7 +245,6 @@ function enviarWhatsApp() {
     }
 
     window.open("/venda/comprovante.html?acao=whatsapp", "_blank");
-
 }
 
 async function verificarPagamento() {
