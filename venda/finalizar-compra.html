@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <title>Pagamento PIX - 6ª FPSS</title>
 
     <link rel="stylesheet" href="../css/base.css">
@@ -11,6 +12,7 @@
     <link rel="stylesheet" href="../css/style.css">
 
     <script src="../js/qrcode.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
     <style>
         body{
@@ -432,27 +434,51 @@ function gerarHtmlComprovante(modoCompartilhar = false) {
                 </div>
 
                 ${
-                    modoCompartilhar
+                   modoCompartilhar
                     ? `
                     <div class="share">
                         <button onclick="
-                            if (navigator.share) {
-                                navigator.share({
-                                    title: 'Comprovante FPSS',
-                                    text: 'Comprovante Oficial FPSS - Pedido ${pixData.codigo_pedido}',
-                                    url: window.location.href
+                            (async () => {
+                                const elemento = document.querySelector('.comprovante');
+
+                                const canvas = await html2canvas(elemento);
+
+                                canvas.toBlob(async (blob) => {
+
+                                    const file = new File(
+                                        [blob],
+                                        'comprovante-fpss.png',
+                                        { type: 'image/png' }
+                                    );
+
+                                    if (
+                                        navigator.canShare &&
+                                        navigator.canShare({ files: [file] })
+                                    ) {
+
+                                        await navigator.share({
+                                            title: 'Comprovante FPSS',
+                                            text: 'Comprovante Oficial FPSS',
+                                            files: [file]
+                                        });
+
+                                    } else {
+
+                                        window.open(
+                                            'https://wa.me/?text=' +
+                                            encodeURIComponent(
+                                                'Comprovante FPSS - Pedido ${pixData.codigo_pedido}'
+                                            ),
+                                            '_blank'
+                                        );
+
+                                    }
+
                                 });
-                            } else {
-                                window.open(
-                                    'https://wa.me/?text=' +
-                                    encodeURIComponent(
-                                        'Comprovante FPSS - Pedido ${pixData.codigo_pedido} - CPF ${pixData.cpf}'
-                                    ),
-                                    '_blank'
-                                );
-                            }
+
+                            })();
                         ">
-                            📲 Compartilhar via WhatsApp / Apps
+                            📲 Compartilhar imagem via WhatsApp / Apps
                         </button>
                     </div>
                     `
