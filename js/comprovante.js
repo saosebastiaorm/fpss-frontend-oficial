@@ -86,14 +86,23 @@ window.onload = async function() {
     const params = new URLSearchParams(window.location.search);
     const acao = params.get("acao");
 
-    if (acao === "whatsapp") {
+  if (acao === "whatsapp") {
 
-        setTimeout(async () => {
+    setTimeout(async () => {
+
+        try {
+
             await compartilharComprovante();
-            window.close();
-        }, 700);
 
-    }
+        } catch(e) {
+
+            alert("Erro ao compartilhar comprovante.");
+
+        }
+
+    }, 1200);
+
+}
 
     else if (acao === "pdf") {
 
