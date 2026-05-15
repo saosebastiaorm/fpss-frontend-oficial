@@ -107,6 +107,11 @@
             color:#fff;
         }
 
+        .btn-comprovante{
+            background:#8b1111;
+            color:#fff;
+        }
+
         .status{
             margin-top:25px;
             text-align:center;
@@ -147,11 +152,15 @@
     </div>
 
     <div class="pix-copia" id="pixCopiaArea">
-        <label><strong>Código PIX Copia e Cola:</strong></label>
+        <label id="labelPix"><strong>Código PIX Copia e Cola:</strong></label>
 
         <textarea id="pixCode" readonly></textarea>
 
-        <button class="btn btn-copiar" onclick="copiarPix()">
+        <button
+            class="btn btn-copiar"
+            id="btnCopiarPix"
+            onclick="copiarPix()"
+        >
             📋 COPIAR CÓDIGO PIX
         </button>
 
@@ -161,14 +170,14 @@
             onclick="enviarWhatsApp()"
             style="display:none;"
         >
-            📲 ENVIAR COMPROVANTE / PEDIDO
+            📲 ENVIAR PARA WHATSAPP
         </button>
 
         <button
-            class="btn btn-copiar"
+            class="btn btn-comprovante"
             id="btnComprovante"
             onclick="gerarComprovante()"
-            style="display:none;background:#8b1111;"
+            style="display:none;"
         >
             📄 BAIXAR / IMPRIMIR COMPROVANTE
         </button>
@@ -203,36 +212,33 @@ document.getElementById("valorPedido").innerText =
 document.getElementById("pixCode").value =
     pixData.qr_code || "";
 
-/* QR PIX inicial */
-function gerarQrPix() {
+function gerarQr(texto) {
     document.getElementById("qrcode").innerHTML = "";
 
-    if (pixData.qr_code) {
-        new QRCode(
-            document.getElementById("qrcode"),
-            {
-                text: pixData.qr_code,
-                width: 220,
-                height: 220
-            }
-        );
-    }
+    new QRCode(
+        document.getElementById("qrcode"),
+        {
+            text: texto,
+            width: 220,
+            height: 220
+        }
+    );
 }
 
-gerarQrPix();
+gerarQr(pixData.qr_code || "");
 
 function copiarPix() {
     const campo = document.getElementById("pixCode");
     campo.select();
     campo.setSelectionRange(0, 99999);
     navigator.clipboard.writeText(campo.value);
-    alert("✅ Código PIX copiado!");
+    alert("✅ Código copiado!");
 }
 
 function enviarWhatsApp() {
 
     const texto =
-`Olá! Meu pedido FPSS foi gerado.%0A
+`Olá! Segue meu pedido FPSS:%0A
 Código: ${pixData.codigo_pedido}%0A
 CPF: ${pixData.cpf}%0A
 Valor: R$ ${Number(pixData.total).toFixed(2).replace(".", ",")}`;
@@ -249,7 +255,7 @@ function gerarComprovante() {
         (pixData.status_pagamento || "").toLowerCase() !== "pago" ||
         (pixData.status_retirada || "").toLowerCase() === "retirado"
     ) {
-        alert("Este comprovante não está mais disponível. Pedido já retirado ou pagamento pendente.");
+        alert("Este comprovante não está disponível.");
         return;
     }
 
@@ -292,16 +298,11 @@ function gerarComprovante() {
                     <p><strong>QR Code para retirada:</strong></p>
                     <img
                         src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(pixData.codigo_pedido)}"
-                        alt="QR Code Pedido"
                         style="border:1px solid #ccc;padding:10px;border-radius:12px;"
                     >
-                    <p style="font-size:14px;margin-top:10px;">
-                        Código: ${pixData.codigo_pedido}
-                    </p>
                 </div>
 
                 <p><strong>Instrução:</strong> Apresente este comprovante + CPF na retirada.</p>
-                <p><strong>FPSS:</strong> 6ª Festa do Padroeiro São Sebastião 2027</p>
             </div>
 
             <script>
@@ -358,19 +359,16 @@ async function verificarPagamento() {
             document.getElementById("btnComprovante").style.display =
                 "block";
 
-            document.getElementById("pixCopiaArea").style.display =
+            document.getElementById("btnCopiarPix").style.display =
                 "none";
 
-            document.getElementById("qrcode").innerHTML = "";
+            document.getElementById("labelPix").style.display =
+                "none";
 
-            new QRCode(
-                document.getElementById("qrcode"),
-                {
-                    text: pixData.codigo_pedido,
-                    width: 220,
-                    height: 220
-                }
-            );
+            document.getElementById("pixCode").style.display =
+                "none";
+
+            gerarQr(pixData.codigo_pedido);
 
             document.getElementById("subtituloStatus").innerHTML =
                 "📦 Apresente este QR Code ou CPF para retirada";
@@ -438,19 +436,25 @@ async function verificarPagamento() {
             document.getElementById("statusPagamento").style.color =
                 "#d62828";
 
-            document.getElementById("pixCopiaArea").style.display =
-                "block";
-
             document.getElementById("btnWhatsapp").style.display =
                 "none";
 
             document.getElementById("btnComprovante").style.display =
                 "none";
 
+            document.getElementById("btnCopiarPix").style.display =
+                "block";
+
+            document.getElementById("labelPix").style.display =
+                "block";
+
+            document.getElementById("pixCode").style.display =
+                "block";
+
             document.getElementById("subtituloStatus").innerHTML =
                 "Escaneie o QR Code ou copie o código PIX";
 
-            gerarQrPix();
+            gerarQr(pixData.qr_code || "");
 
         }
 
