@@ -160,12 +160,8 @@
             📋 COPIAR CÓDIGO PIX
         </button>
 
-        <button class="btn btn-whatsapp" id="btnWhatsapp" onclick="enviarWhatsApp()" style="display:none;">
-            📲 ENVIAR PARA WHATSAPP
-        </button>
-
         <button class="btn btn-comprovante" id="btnComprovante" onclick="gerarComprovante()" style="display:none;">
-            📄 SALVAR PDF / IMPRIMIR
+            📄 VISUALIZAR COMPROVANTE
         </button>
     </div>
 
@@ -231,21 +227,10 @@ function gerarComprovante() {
         return;
     }
 
-    window.open("/venda/comprovante.html?acao=pdf", "_blank");
+    window.open("/venda/comprovante.html", "_blank");
 }
 
-function enviarWhatsApp() {
 
-    if (
-        (pixData.status_pagamento || "").toLowerCase() !== "pago" ||
-        (pixData.status_retirada || "").toLowerCase() === "retirado"
-    ) {
-        alert("Comprovante disponível somente após pagamento aprovado.");
-        return;
-    }
-
-    window.open("/venda/comprovante.html?acao=whatsapp", "_blank");
-}
 
 async function verificarPagamento() {
 
@@ -279,10 +264,6 @@ async function verificarPagamento() {
 
             document.getElementById("statusPagamento").style.color =
                 "green";
-
-            document.getElementById("btnWhatsapp").style.display =
-                "block";
-
             document.getElementById("btnComprovante").style.display =
                 "block";
 
@@ -316,11 +297,8 @@ async function verificarPagamento() {
             document.getElementById("statusPagamento").style.color =
                 "#8b1111";
 
-            document.getElementById("btnWhatsapp").style.display =
-                "none";
-
             document.getElementById("btnComprovante").style.display =
-                "none";
+                 "none";
 
             document.getElementById("pixCopiaArea").style.display =
                 "none";
