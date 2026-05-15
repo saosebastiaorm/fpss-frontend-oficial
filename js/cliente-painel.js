@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const dados = localStorage.getItem("clienteFPSS");
 
-  if(!dados){
+  if (!dados) {
     alert("Faça login primeiro.");
     window.location.href = "/cliente/login.html";
     return;
@@ -15,20 +15,45 @@ document.addEventListener("DOMContentLoaded", () => {
   const whatsapp = document.getElementById("clienteWhatsApp");
   const pedidos = document.getElementById("clientePedidos");
 
-  if(nome) nome.textContent = cliente.nome || "Cliente";
-  if(cpf) cpf.textContent = cliente.cpf || "-";
-  if(whatsapp) whatsapp.textContent = cliente.whatsapp || "-";
+  if (nome) nome.textContent = cliente.nome || "Cliente";
+  if (cpf) cpf.textContent = cliente.cpf || "-";
+  if (whatsapp) whatsapp.textContent = cliente.telefone || cliente.whatsapp || "-";
 
-  if(pedidos){
+  function traduzirProduto(tipo) {
+    switch (tipo) {
+      case "CHU":
+        return "🍖 Churrasco";
+      case "CAR":
+        return "🎟️ Cartela";
+      default:
+        return tipo || "Pedido";
+    }
+  }
 
-    if(cliente.pedidos && cliente.pedidos.length > 0){
+  function traduzirStatus(status) {
+    switch ((status || "").toLowerCase()) {
+      case "pago":
+        return "✅ Pago";
+      case "pendente":
+        return "⏳ Pendente";
+      case "cancelado":
+        return "❌ Cancelado";
+      default:
+        return status || "Processando";
+    }
+  }
+
+  if (pedidos) {
+
+    if (cliente.pedidos && cliente.pedidos.length > 0) {
 
       pedidos.innerHTML = cliente.pedidos.map(pedido => `
         <div class="pedido-card">
-          <h3>${pedido.tipo || "Pedido"}</h3>
-          <p><strong>Status:</strong> ${pedido.status || "Processando"}</p>
-          <p><strong>Valor:</strong> R$ ${Number(pedido.valor || 0).toFixed(2).replace(".", ",")}</p>
-          <p><strong>Código:</strong> ${pedido.codigo || "-"}</p>
+          <h3>${traduzirProduto(pedido.produto_tipo)}</h3>
+          <p><strong>Status:</strong> ${traduzirStatus(pedido.status_pagamento)}</p>
+          <p><strong>Valor:</strong> R$ ${Number(pedido.valor_total || 0).toFixed(2).replace(".", ",")}</p>
+          <p><strong>Código:</strong> ${pedido.codigo_pedido || "-"}</p>
+          <p><strong>Retirada:</strong> ${pedido.status_retirada || "não informado"}</p>
         </div>
       `).join("");
 
@@ -46,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const logout = document.getElementById("logoutCliente");
 
-  if(logout){
+  if (logout) {
     logout.addEventListener("click", () => {
       localStorage.removeItem("clienteFPSS");
       window.location.href = "/cliente/login.html";
