@@ -179,7 +179,8 @@
             onclick="gerarComprovante()"
             style="display:none;"
         >
-            📄 BAIXAR / IMPRIMIR COMPROVANTE
+            📤 COMPARTILHAR COMPROVANTE
+
         </button>
     </div>
 
@@ -263,61 +264,169 @@ function gerarComprovante() {
         <html>
         <head>
             <title>Comprovante FPSS</title>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <style>
                 body{
                     font-family:Arial,sans-serif;
-                    padding:30px;
+                    background:#f4f4f4;
+                    padding:20px;
                     color:#333;
                 }
+
+                .comprovante{
+                    max-width:800px;
+                    margin:auto;
+                    background:#fff;
+                    border-radius:16px;
+                    padding:30px;
+                    border-top:8px solid #228b22;
+                    box-shadow:0 10px 25px rgba(0,0,0,.12);
+                }
+
                 h1{
                     color:#8b1111;
+                    text-align:center;
+                    margin-bottom:10px;
                 }
-                .box{
-                    border:2px solid #8b1111;
-                    padding:20px;
-                    border-radius:12px;
-                    max-width:700px;
+
+                .sub{
+                    text-align:center;
+                    color:#666;
+                    margin-bottom:25px;
                 }
-                p{
+
+                .linha{
+                    padding:12px 0;
+                    border-bottom:1px solid #eee;
                     font-size:18px;
-                    line-height:1.8;
+                }
+
+                .qr{
+                    text-align:center;
+                    margin-top:30px;
+                }
+
+                .qr img{
+                    border:1px solid #ccc;
+                    padding:10px;
+                    border-radius:12px;
+                    background:#fff;
+                }
+
+                .rodape{
+                    margin-top:30px;
+                    padding:18px;
+                    background:#fff8d6;
+                    border:1px solid #f4d35e;
+                    border-radius:12px;
+                    line-height:1.7;
+                }
+
+                .share{
+                    text-align:center;
+                    margin-top:25px;
+                }
+
+                .share button{
+                    padding:14px 22px;
+                    font-size:16px;
+                    border:none;
+                    border-radius:10px;
+                    background:#25d366;
+                    color:#fff;
+                    cursor:pointer;
+                    font-weight:bold;
+                }
+
+                @media print{
+                    .share{
+                        display:none;
+                    }
+
+                    body{
+                        background:#fff;
+                    }
+
+                    .comprovante{
+                        box-shadow:none;
+                    }
                 }
             </style>
         </head>
         <body>
-            <div class="box">
-                <h1>🎉 Comprovante Oficial FPSS</h1>
-                <p><strong>Status:</strong> PAGAMENTO APROVADO</p>
-                <p><strong>Código do Pedido:</strong> ${pixData.codigo_pedido}</p>
-                <p><strong>CPF:</strong> ${pixData.cpf}</p>
-                <p><strong>Valor Pago:</strong> R$ ${Number(pixData.total).toFixed(2).replace(".", ",")}</p>
-                <p><strong>Produto:</strong> ${pixData.produto_tipo || "Churrasco"}</p>
-                <p><strong>Status Retirada:</strong> NÃO RETIRADO</p>
 
-                <div style="margin-top:25px;text-align:center;">
-                    <p><strong>QR Code para retirada:</strong></p>
-                    <img
-                        src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(pixData.codigo_pedido)}"
-                        style="border:1px solid #ccc;padding:10px;border-radius:12px;"
-                    >
+            <div class="comprovante">
+
+                <h1>🎉 Comprovante Oficial FPSS</h1>
+
+                <div class="sub">
+                    6ª Festa do Padroeiro São Sebastião 2027
                 </div>
 
-                <p><strong>Instrução:</strong> Apresente este comprovante + CPF na retirada.</p>
+                <div class="linha">
+                    <strong>Status:</strong> PAGAMENTO APROVADO
+                </div>
+
+                <div class="linha">
+                    <strong>Código do Pedido:</strong> ${pixData.codigo_pedido}
+                </div>
+
+                <div class="linha">
+                    <strong>CPF:</strong> ${pixData.cpf}
+                </div>
+
+                <div class="linha">
+                    <strong>Valor Pago:</strong> R$ ${Number(pixData.total).toFixed(2).replace(".", ",")}
+                </div>
+
+                <div class="linha">
+                    <strong>Produto:</strong> ${pixData.produto_tipo || "Churrasco"}
+                </div>
+
+                <div class="linha">
+                    <strong>Status Retirada:</strong> NÃO RETIRADO
+                </div>
+
+                <div class="qr">
+                    <p><strong>QR Code para retirada:</strong></p>
+
+                    <img
+                        src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(pixData.codigo_pedido)}"
+                        alt="QR Code"
+                    >
+
+                    <p>
+                        <strong>${pixData.codigo_pedido}</strong>
+                    </p>
+                </div>
+
+                <div class="rodape">
+                    ⚠️ <strong>IMPORTANTE:</strong><br>
+                    Apresente este comprovante + CPF na retirada.<br>
+                    Este documento funciona como comprovante oficial FPSS.
+                </div>
+
+                <div class="share">
+                    <button onclick="window.print()">
+                        📤 Compartilhar / Salvar PDF / Imprimir
+                    </button>
+                </div>
+
             </div>
 
-            <script>
-                window.onload = function(){
-                    window.print();
-                }
-            <\/script>
         </body>
         </html>
     `;
 
     const novaJanela = window.open("", "_blank");
+
     novaJanela.document.write(conteudo);
+
     novaJanela.document.close();
+
 }
+
 
 async function verificarPagamento() {
 
