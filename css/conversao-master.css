@@ -1,96 +1,696 @@
-const URL_CLIENTE = "https://fpss-backend.onrender.com/cliente/login";
+/* =========================================
+   FPSS CONVERSÃO MASTER 2027
+   VERSÃO LIMPA • ESTRUTURA PROFISSIONAL • HERO CORRIGIDO
+========================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+/* RESET BASE */
 
-  const form = document.getElementById("loginCliente");
+body{
+    background:#f7f1e8;
+    color:#222;
+    font-family:Arial, Helvetica, sans-serif;
+    overflow-x:hidden;
+}
 
-  if(!form) return;
+.wrap{
+    width:min(1600px,94%);
+    margin:auto;
+}
 
-  const cpfInput = document.getElementById("cpf");
-  const whatsappInput = document.getElementById("whatsapp");
+/* =========================================
+   TOPBAR MASTER
+========================================= */
+.topbar-master{
+    background:linear-gradient(180deg,#7d0c0c,#991111);
+    padding:18px 0;
+    border-bottom:2px solid rgba(255,196,0,.35);
+    position:sticky;
+    top:0;
+    z-index:9999;
+    box-shadow:0 8px 24px rgba(0,0,0,.28);
+}
 
-  /* =========================
-     MÁSCARA CPF
-  ========================= */
-  cpfInput.addEventListener("input", () => {
-    let v = cpfInput.value.replace(/\D/g,"").slice(0,11);
+.topbar-wrap{
+    width:min(1600px,94%);
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:30px;
+    flex-wrap:wrap;
+}
 
-    v = v.replace(/(\d{3})(\d)/,"$1.$2");
-    v = v.replace(/(\d{3})(\d)/,"$1.$2");
-    v = v.replace(/(\d{3})(\d{1,2})$/,"$1-$2");
+.brand-fpss{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    text-decoration:none;
+}
 
-    cpfInput.value = v;
-  });
+.brand-logo{
+    width:74px;
+    height:74px;
+    border-radius:18px;
+    overflow:hidden;
+    background:linear-gradient(135deg,#fff7cc,#ffd700);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 8px 18px rgba(0,0,0,.22);
+    flex-shrink:0;
+}
 
-  /* =========================
-     MÁSCARA WHATSAPP
-  ========================= */
-  whatsappInput.addEventListener("input", () => {
-    let v = whatsappInput.value.replace(/\D/g,"").slice(0,11);
+.brand-logo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
 
-    if(v.length > 10){
-      v = v.replace(/^(\d{2})(\d{5})(\d{4}).*/,"($1) $2-$3");
-    }else{
-      v = v.replace(/^(\d{2})(\d{4})(\d{0,4}).*/,"($1) $2-$3");
+.brand-text{
+    display:flex;
+    flex-direction:column;
+    line-height:1.1;
+}
+
+.brand-kicker{
+    color:#ffd700;
+    font-size:13px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+.brand-title{
+    color:#fff;
+    font-size:32px;
+    font-weight:900;
+}
+
+.brand-sub{
+    color:#ffe9b3;
+    font-size:14px;
+    font-weight:700;
+}
+
+.menu-master{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.menu-master a{
+    text-decoration:none;
+    padding:13px 18px;
+    border-radius:14px;
+    font-size:15px;
+    font-weight:900;
+    transition:.3s;
+    white-space:nowrap;
+}
+
+.menu-link{
+    color:#fff;
+    background:rgba(255,255,255,.08);
+}
+
+.menu-link:hover{
+    background:rgba(255,255,255,.18);
+    transform:translateY(-2px);
+}
+
+.menu-destaque{
+    background:linear-gradient(135deg,#ffffff,#fff3cd);
+    color:#8b1111;
+    border:3px solid #ffd700;
+    box-shadow:0 8px 18px rgba(0,0,0,.18);
+}
+
+.menu-destaque:hover{
+    transform:translateY(-3px);
+}
+
+/* =========================================
+   BARRA URGÊNCIA
+========================================= */
+.barra-urgencia{
+    background:linear-gradient(90deg,#8b1111,#ff2b2b);
+    color:#fff;
+    text-align:center;
+    padding:14px;
+    font-size:18px;
+    font-weight:900;
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
+}
+
+/* =========================================
+   HERO MASTER
+========================================= */
+.hero-vendas{
+    background:
+      radial-gradient(circle at top left, rgba(255,215,0,.14), transparent 38%),
+      radial-gradient(circle at top right, rgba(255,255,255,.08), transparent 28%),
+      linear-gradient(135deg,#8b1111,#c41515 55%,#d60000);
+    color:#fff;
+    padding:95px 0 95px;
+    min-height:760px;
+    display:flex;
+    align-items:center;
+}
+
+.hero-vendas .wrap{
+    width:min(1600px,94%);
+    margin:auto;
+    position:relative;
+    z-index:5;
+}
+
+.hero-vendas .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    gap:40px;
+    align-items:center;
+    max-width:1400px;
+    margin:0 auto;
+}
+
+.hero-vendas .hero-grid > div:first-child{
+    width:100%;
+    min-width:0;
+    padding-left:0;
+    max-width:760px;
+}
+
+.badge-topo{
+    display:inline-block;
+    background:#ffd700;
+    color:#8b1111;
+    padding:10px 18px;
+    border-radius:999px;
+    font-weight:900;
+    margin-bottom:22px;
+    font-size:16px;
+}
+.hero-vendas h1{
+    font-size:clamp(82px,6vw,128px);
+    line-height:.9;
+    font-weight:900;
+    color:#fff;
+    margin-bottom:22px;
+    text-shadow:0 10px 28px rgba(0,0,0,.34);
+    white-space:normal;
+    letter-spacing:-2.5px;
+    max-width:760px;
+}
+.destaque-santo{
+    display:block;
+    color:#ffd700;
+    font-size:.98em;
+    line-height:.88;
+    text-shadow:0 4px 12px rgba(0,0,0,.28);
+}
+
+.subhero{
+    color:#fff;
+    font-size:30px;
+    font-weight:800;
+    line-height:1.45;
+    margin-bottom:30px;
+    max-width:760px;
+}
+/* CTA */
+.cta-group{
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    margin-top:26px;
+}
+
+.btn,
+a.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px 34px;
+    border-radius:14px;
+    text-decoration:none;
+    font-weight:900;
+    font-size:24px;
+    border:none;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 8px 18px rgba(0,0,0,.2);
+}
+
+.btn.red{
+    background:linear-gradient(135deg,#ffffff,#fff3cd);
+    color:#8b1111;
+    border:4px solid #ffcc00;
+    text-transform:uppercase;
+}
+
+.btn.green{
+    background:#1faa4a;
+    color:#fff;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+}
+
+/* MINI INFO */
+.mini-info{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    margin-top:26px;
+    color:#fff;
+    font-weight:700;
+}
+
+.mini-info span{
+    background:rgba(255,255,255,.08);
+    padding:10px 14px;
+    border-radius:10px;
+}
+
+/* =========================================
+   HERO SIDE
+========================================= */
+.hero-side{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    align-items:stretch;
+    max-width:420px;
+    width:100%;
+}
+
+.price-card{
+    background:#fff;
+    color:#8b1111;
+    padding:26px 22px;
+    border-radius:22px;
+    text-align:center;
+    box-shadow:0 14px 30px rgba(0,0,0,.22);
+    min-height:160px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    width:100%;
+    min-width:unset;
+    max-width:100%;
+}
+
+.price-card.destaque{
+    border:4px solid #ffd700;
+}
+
+.price-card h3{
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+.price-card .valor{
+    font-size:clamp(46px,4vw,64px);
+    font-weight:900;
+    line-height:1;
+    margin:8px 0;
+}
+
+/* =========================================
+   CARD BASE
+========================================= */
+.card{
+    background:#f3f3f3;
+    border-radius:22px;
+    padding:55px 0;
+    margin:18px auto;
+}
+
+.section-title{
+    color:#8b1111;
+    font-size:clamp(30px,4vw,56px);
+    font-weight:900;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+/* CONTADOR */
+.contador-grid{
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    flex-wrap:wrap;
+}
+
+.tempo-box{
+    background:#8b1111;
+    color:#fff;
+    padding:22px;
+    min-width:110px;
+    border-radius:18px;
+    text-align:center;
+}
+
+.tempo-box span{
+    font-size:42px;
+    font-weight:900;
+}
+
+/* GRID PRODUTOS */
+.grid-2{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:24px;
+}
+
+/* VENDA BOX */
+.venda-box{
+    background:#fff;
+    border:2px solid #f2bcbc;
+    border-radius:22px;
+    padding:28px;
+    position:relative;
+    box-shadow:0 8px 18px rgba(0,0,0,.08);
+}
+
+.venda-box::before{
+    content:"🔥 OFERTA LIMITADA";
+    position:absolute;
+    top:12px;
+    right:12px;
+    background:linear-gradient(135deg,#ff2b2b,#d60000);
+    color:#fff;
+    padding:8px 14px;
+    border-radius:10px;
+    font-size:11px;
+    font-weight:900;
+}
+
+.price-box{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    min-height:70px;
+    background:linear-gradient(135deg,#16a34a,#1faa4a);
+    color:#fff;
+    font-size:48px;
+    font-weight:900;
+    margin:18px 0;
+    border-radius:14px;
+}
+
+.venda-box a{
+    display:block;
+    width:100%;
+    background:#1faa4a;
+    color:#fff;
+    text-align:center;
+    padding:18px;
+    border-radius:14px;
+    text-decoration:none;
+    font-weight:900;
+    font-size:22px;
+}
+
+/* DOAÇÃO */
+.doacao-cta{
+    background:linear-gradient(135deg,#f7fff7,#ebffeb);
+    padding:70px 0;
+}
+
+.doacao-box-main{
+    background:#fff;
+    border:3px solid #1faa4a;
+    border-radius:24px;
+    padding:34px;
+    text-align:center;
+}
+
+
+
+.vip-box{
+    background:rgba(255,255,255,.12);
+    color:#fff;
+    border-radius:24px;
+    padding:40px;
+    max-width:760px;
+    margin:auto;
+}
+
+.vip-box input,
+.vip-box button{
+    width:100%;
+    padding:16px;
+    margin-bottom:14px;
+    border-radius:12px;
+    border:none;
+}
+
+
+/* FOOTER */
+footer{
+    background:#111;
+    color:#fff;
+    text-align:center;
+    padding:28px;
+}
+
+.admin-footer{
+    background:#000;
+    text-align:center;
+    padding:16px;
+}
+
+.admin-footer a{
+    color:#ffd700;
+    text-decoration:none;
+    font-weight:900;
+}
+
+/* =========================================
+   RESPONSIVO
+========================================= */
+@media(max-width:1200px){
+
+    .hero-vendas .hero-grid{
+        grid-template-columns:1fr;
+        gap:40px;
     }
 
-    whatsappInput.value = v;
-  });
+.hero-vendas .hero-grid > div:first-child{
+    min-width:unset;
+    padding-left:0;
+}
 
-  /* =========================
-     LOGIN CLIENTE
-  ========================= */
-  form.addEventListener("submit", async (e) => {
-
-    e.preventDefault();
-
-    const cpf = cpfInput.value.replace(/\D/g,"");
-    const whatsapp = whatsappInput.value.replace(/\D/g,"");
-
-    if(cpf.length !== 11){
-      alert("Digite um CPF válido.");
-      return;
+    .hero-vendas h1{
+        font-size:clamp(54px,12vw,88px);
+        line-height:1;
     }
 
-    if(whatsapp.length < 10){
-      alert("Digite um WhatsApp válido.");
-      return;
+    .subhero{
+        font-size:24px;
     }
 
-    try{
-
-      const resposta = await fetch(URL_CLIENTE,{
-        method:"POST",
-        headers:{
-          "Content-Type":"application/json"
-        },
-        body:JSON.stringify({
-          cpf,
-          whatsapp
-        })
-      });
-
-      const dados = await resposta.json();
-
-      if(!dados.sucesso){
-        alert(dados.mensagem || "Cadastro não encontrado.");
-        return;
-      }
-
-      /* SALVA SESSÃO */
-      localStorage.setItem("clienteFPSS", JSON.stringify(dados.cliente));
-
-      /* REDIRECIONA */
-      window.location.href = "painel.html";
-
-    }catch(erro){
-
-      console.error("Erro login cliente:", erro);
-
-      alert("Erro ao acessar central. Tente novamente.");
-
+    .hero-side{
+        width:100%;
     }
 
-  });
+    .price-card{
+        max-width:100%;
+    }
 
-});
+}
+
+@media(max-width:900px){
+
+    .grid-2{
+        grid-template-columns:1fr;
+    }
+
+    .topbar-wrap{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .menu-master{
+        width:100%;
+        justify-content:flex-start;
+    }
+
+    .btn,
+    a.btn{
+        width:100%;
+    }
+
+}
+
+@media(max-width:700px){
+
+    .brand-title{
+        font-size:22px;
+    }
+
+    .brand-sub{
+        font-size:12px;
+    }
+
+    .brand-logo{
+        width:58px;
+        height:58px;
+    }
+
+    .menu-master{
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+        width:100%;
+    }
+
+    .menu-master a{
+        text-align:center;
+        width:100%;
+    }
+
+    .hero-vendas h1{
+        font-size:clamp(42px,11vw,64px);
+        letter-spacing:-1px;
+    }
+
+    .subhero{
+        font-size:20px;
+    }
+
+}
+/* =========================================
+  /* =========================================
+   HERO DECORAÇÃO DESATIVADA TEMPORARIAMENTE
+========================================= */
+
+.hero-vendas{
+    position:relative;
+    overflow:hidden;
+}
+
+.hero-vendas .wrap{
+    position:relative;
+    z-index:5;
+}
+
+.hero-grid,
+.hero-side{
+    position:relative;
+    z-index:5;
+}
+
+/* Decoração pausada para foco em estrutura */
+.hero-igreja,
+.hero-barraca,
+.hero-baloes,
+.bandeira-esquerda,
+.bandeira-direita{
+    display:none !important;
+}
+
+/* ==========================================
+MENU MOBILE COMPACTO REAL
+========================================== */
+@media(max-width:768px){
+
+  /* TOPO */
+  .topbar-fpss{
+    padding:8px 10px !important;
+  }
+
+  .brand-fpss{
+    gap:8px !important;
+    padding:4px 0 !important;
+    margin-bottom:10px !important;
+  }
+
+  .brand-logo{
+    width:44px !important;
+    height:44px !important;
+    min-width:44px !important;
+  }
+
+  .brand-kicker{
+    font-size:10px !important;
+  }
+
+  .brand-title{
+    font-size:16px !important;
+    line-height:1 !important;
+  }
+
+  .brand-sub{
+    font-size:9px !important;
+    line-height:1.2 !important;
+  }
+
+  /* MENU */
+  .menu-master{
+    display:grid !important;
+    grid-template-columns:repeat(3,1fr) !important;
+    gap:6px !important;
+    padding:0 !important;
+    margin:8px 0 0 0 !important;
+    width:100% !important;
+  }
+
+  .menu-master a,
+  .menu-link,
+  .menu-destaque{
+    min-height:auto !important;
+    height:36px !important;
+    padding:6px 6px !important;
+    font-size:11px !important;
+    font-weight:700 !important;
+    border-radius:10px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    text-align:center !important;
+    line-height:1 !important;
+    white-space:nowrap !important;
+  }
+
+  /* BOTÃO FINAL */
+  .menu-destaque{
+    grid-column:1 / -1 !important;
+    height:38px !important;
+    margin-top:4px !important;
+  }
+
+  /* BARRA OFICIAL */
+  .barra-oficial,
+  .topbar-aviso{
+    font-size:10px !important;
+    padding:6px 8px !important;
+  }
+
+}
+
+/* ==========================================
+BOTÃO FLUTUANTE MOBILE REDUZIDO
+========================================== */
+@media(max-width:768px){
+
+  .btn-flutuante,
+  .comprar-flutuante,
+  .botao-flutuante,
+  .floating-buy{
+    transform:scale(.78) !important;
+    transform-origin:bottom right !important;
+    right:8px !important;
+    bottom:8px !important;
+    max-width:160px !important;
+    min-height:auto !important;
+    padding:10px 14px !important;
+    font-size:13px !important;
+    border-radius:999px !important;
+    z-index:40 !important;
+  }
+
+}
