@@ -61,7 +61,7 @@ function horarioValido(h){
 
   if(!h) return false;
 
-  return h >= "09:00" && h <= "16:00";
+  return h >= "09:00" && h <= "14:00";
 
 }
 
@@ -126,7 +126,7 @@ window.enviarPedidoWhats = function(){
   }
 
   if(!horarioValido(horario)){
-    alert("Horário inválido. Escolha entre 09:00 e 16:00.");
+    alert("Horário inválido. Escolha entre 09:00 e 14:00.");
     campoHorario?.focus();
     return;
   }
