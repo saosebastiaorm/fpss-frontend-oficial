@@ -276,7 +276,7 @@ function enviarWhatsApp() {
 
     const conteudo = gerarHtmlComprovante(true);
 
-    const novaJanela = window.open("", "_blank");
+    const novaJanela = window.open("", "_self");
     novaJanela.document.write(conteudo);
     novaJanela.document.close();
 }
@@ -292,6 +292,7 @@ function gerarHtmlComprovante(modoCompartilhar = false) {
             <title>Comprovante FPSS</title>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
             <style>
                 body{
                     font-family:Arial,sans-serif;
@@ -378,6 +379,40 @@ function gerarHtmlComprovante(modoCompartilhar = false) {
                         box-shadow:none;
                     }
                 }
+
+                    @media(max-width:768px){
+
+                    body{
+                        padding:10px;
+                    }
+
+                    .comprovante{
+                        padding:18px;
+                        border-radius:12px;
+                    }
+
+                    h1{
+                        font-size:1.5rem;
+                    }
+
+                    .linha{
+                        font-size:15px;
+                        padding:10px 0;
+                    }
+
+                    .qr img{
+                        width:180px;
+                        max-width:100%;
+                        height:auto;
+                    }
+
+                    .share button{
+                        width:100%;
+                        font-size:16px;
+                        padding:16px;
+                    }
+
+                }
             </style>
         </head>
         <body>
@@ -434,55 +469,76 @@ function gerarHtmlComprovante(modoCompartilhar = false) {
                 </div>
 
                 ${
-                   modoCompartilhar
-                    ? `
-                    <div class="share">
-                        <button onclick="
-                            (async () => {
-                                const elemento = document.querySelector('.comprovante');
+                 modoCompartilhar
+                        ? `
+                        <div class="share">
+                            <button onclick="
+                                (async () => {
 
-                                const canvas = await html2canvas(elemento);
+                                    try {
 
-                                canvas.toBlob(async (blob) => {
+                                        const elemento = document.querySelector('.comprovante');
 
-                                    const file = new File(
-                                        [blob],
-                                        'comprovante-fpss.png',
-                                        { type: 'image/png' }
-                                    );
-
-                                    if (
-                                        navigator.canShare &&
-                                        navigator.canShare({ files: [file] })
-                                    ) {
-
-                                        await navigator.share({
-                                            title: 'Comprovante FPSS',
-                                            text: 'Comprovante Oficial FPSS',
-                                            files: [file]
+                                        const canvas = await html2canvas(elemento, {
+                                            scale: 2,
+                                            useCORS: true
                                         });
 
-                                    } else {
+                                        canvas.toBlob(async (blob) => {
 
-                                        window.open(
-                                            'https://wa.me/?text=' +
-                                            encodeURIComponent(
-                                                'Comprovante FPSS - Pedido ${pixData.codigo_pedido}'
-                                            ),
-                                            '_blank'
-                                        );
+                                            try {
+
+                                                const file = new File(
+                                                    [blob],
+                                                    'comprovante-fpss.png',
+                                                    { type: 'image/png' }
+                                                );
+
+                                                if (
+                                                    navigator.canShare &&
+                                                    navigator.canShare({ files: [file] })
+                                                ) {
+
+                                                    await navigator.share({
+                                                        title: 'Comprovante FPSS',
+                                                        text: 'Comprovante Oficial FPSS',
+                                                        files: [file]
+                                                    });
+
+                                                } else {
+
+                                                    const imageData = canvas.toDataURL('image/png');
+
+                                                    const link = document.createElement('a');
+                                                    link.href = imageData;
+                                                    link.download = 'comprovante-fpss.png';
+                                                    link.click();
+
+                                                    alert('✅ Imagem salva. Compartilhe manualmente pelo WhatsApp.');
+
+                                                }
+
+                                            } catch(e) {
+
+                                                alert('Erro ao compartilhar comprovante.');
+
+                                            }
+
+                                        }, 'image/png');
+
+                                    } catch(err) {
+
+                                        alert('Erro ao gerar imagem do comprovante.');
 
                                     }
 
-                                });
-
-                            })();
-                        ">
-                            📲 Compartilhar imagem via WhatsApp / Apps
-                        </button>
-                    </div>
-                    `
-                    : ""
+                                })();
+                            ">
+                                📲 Compartilhar imagem via WhatsApp / Apps
+                            </button>
+                        </div>
+                        `
+                        : ""
                 }
 
             </div>
