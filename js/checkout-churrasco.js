@@ -178,21 +178,30 @@ document.getElementById("btnSubmit").addEventListener("click", async function(){
         /* ======================================
            SALVA DADOS PARA FINALIZAR-COMPRA
         ====================================== */
-        localStorage.setItem("pixData", JSON.stringify({
-            payment_id: resultado.payment_id,
-            codigo_pedido: resultado.codigo_pedido,
-            produto_tipo: resultado.produto_tipo,
+            localStorage.setItem("pixData", JSON.stringify({
 
-            total: resultado.total,
+                payment_id: resultado.payment_id,
+                codigo_pedido: resultado.codigo_pedido,
+                produto_tipo: resultado.produto_tipo,
 
-            cpf: cpf,
+                total: resultado.total,
 
-            qr_code: resultado.qr_code,
-            qr_code_base64: resultado.qr_code_base64,
+                nome: `${nome} ${sobrenome}`.trim(),
+                telefone: telefone,
+                cpf: cpf,
 
-            qr_code_retirada: resultado.qr_code_retirada,
-            token_retirada: resultado.token_retirada
-        }));
+                quantidade: quantidade,
+                horario_retirada: horario_retirada,
+
+                data_compra: new Date().toLocaleString("pt-BR"),
+
+                qr_code: resultado.qr_code,
+                qr_code_base64: resultado.qr_code_base64,
+
+                qr_code_retirada: resultado.qr_code_retirada,
+                token_retirada: resultado.token_retirada
+
+            }));
 
         /* ======================================
            REDIRECIONA PARA COMPROVANTE NOVO
