@@ -160,6 +160,15 @@
             📲 ENVIAR COMPROVANTE / PEDIDO
         </button>
 
+        <button
+            class="btn btn-copiar"
+            id="btnComprovante"
+            onclick="gerarComprovante()"
+            style="display:none;background:#8b1111;"
+        >
+            📄 BAIXAR / IMPRIMIR COMPROVANTE
+        </button>
+
     </div>
 
     <div class="status" id="statusPagamento">
@@ -243,6 +252,62 @@ Valor: R$ ${Number(pixData.total).toFixed(2).replace(".", ",")}`;
     );
 }
 
+function gerarComprovante() {
+
+    const conteudo = `
+        <html>
+        <head>
+            <title>Comprovante FPSS</title>
+            <style>
+                body{
+                    font-family:Arial,sans-serif;
+                    padding:30px;
+                    color:#333;
+                }
+                h1{
+                    color:#8b1111;
+                }
+                .box{
+                    border:2px solid #8b1111;
+                    padding:20px;
+                    border-radius:12px;
+                    max-width:700px;
+                }
+                p{
+                    font-size:18px;
+                    line-height:1.8;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="box">
+                <h1>🎉 Comprovante Oficial FPSS</h1>
+                <p><strong>Status:</strong> PAGAMENTO APROVADO</p>
+                <p><strong>Código do Pedido:</strong> ${pixData.codigo_pedido}</p>
+                <p><strong>CPF:</strong> ${pixData.cpf}</p>
+                <p><strong>Valor Pago:</strong> R$ ${Number(pixData.total).toFixed(2).replace(".", ",")}</p>
+                <p><strong>Produto:</strong> ${pixData.produto_tipo || "Churrasco"}</p>
+                <p><strong>Instrução:</strong> Apresente este comprovante + CPF na retirada.</p>
+                <p><strong>FPSS:</strong> 6ª Festa do Padroeiro São Sebastião 2027</p>
+            </div>
+
+            <script>
+                window.onload = function(){
+                    window.print();
+                }
+            <\/script>
+        </body>
+        </html>
+    `;
+
+    const novaJanela = window.open("", "_blank");
+
+    novaJanela.document.write(conteudo);
+    novaJanela.document.close();
+
+}
+
+
 /* =========================================
    VERIFICAR STATUS PAGAMENTO
 ========================================= */
@@ -270,6 +335,9 @@ async function verificarPagamento() {
                 "green";
 
             document.getElementById("btnWhatsapp").style.display =
+                "block";
+
+            document.getElementById("btnComprovante").style.display =
                 "block";
 
         }
