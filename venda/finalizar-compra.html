@@ -264,293 +264,263 @@ function gerarComprovante() {
 /* =========================
    WHATSAPP / COMPARTILHAR
 ========================= */
-function enviarWhatsApp() {
-
-    if (
-        (pixData.status_pagamento || "").toLowerCase() !== "pago" ||
-        (pixData.status_retirada || "").toLowerCase() === "retirado"
-    ) {
-        alert("Comprovante disponível somente após pagamento aprovado.");
-        return;
-    }
-
-    const conteudo = gerarHtmlComprovante(true);
-
-    const novaJanela = window.open("", "_blank");
-
-    if (!novaJanela) {
-        alert("⚠️ Seu navegador bloqueou a nova aba. Permita pop-ups.");
-        return;
-    }
-
-    novaJanela.document.write(conteudo);
-    novaJanela.document.close();
-}
-
-/* =========================
-   HTML BASE COMPROVANTE
-========================= */
 function gerarHtmlComprovante(modoCompartilhar = false) {
 
+    const botaoCompartilhar = modoCompartilhar ? `
+        <div class="share">
+            <button onclick="compartilharComprovante()">
+                📲 Compartilhar imagem via WhatsApp / Apps
+            </button>
+        </div>
+    ` : "";
+
     return `
-        <html>
-        <head>
-            <title>Comprovante FPSS</title>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-            <style>
+    <html lang="pt-BR">
+    <head>
+        <title>Comprovante FPSS</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+        <style>
+            body{
+                font-family:Arial,sans-serif;
+                background:#f4f4f4;
+                padding:20px;
+                color:#333;
+                margin:0;
+            }
+
+            .comprovante{
+                max-width:800px;
+                margin:auto;
+                background:#fff;
+                border-radius:16px;
+                padding:30px;
+                border-top:8px solid #228b22;
+                box-shadow:0 10px 25px rgba(0,0,0,.12);
+            }
+
+            h1{
+                color:#8b1111;
+                text-align:center;
+                margin-bottom:10px;
+                line-height:1.4;
+            }
+
+            .sub{
+                text-align:center;
+                color:#666;
+                margin-bottom:25px;
+            }
+
+            .linha{
+                padding:12px 0;
+                border-bottom:1px solid #eee;
+                font-size:18px;
+                word-break:break-word;
+            }
+
+            .qr{
+                text-align:center;
+                margin-top:30px;
+            }
+
+            .qr img{
+                border:1px solid #ccc;
+                padding:10px;
+                border-radius:12px;
+                background:#fff;
+                max-width:100%;
+                height:auto;
+            }
+
+            .rodape{
+                margin-top:30px;
+                padding:18px;
+                background:#fff8d6;
+                border:1px solid #f4d35e;
+                border-radius:12px;
+                line-height:1.7;
+            }
+
+            .share{
+                text-align:center;
+                margin-top:25px;
+            }
+
+            .share button{
+                width:100%;
+                padding:16px;
+                font-size:16px;
+                border:none;
+                border-radius:10px;
+                background:#25d366;
+                color:#fff;
+                cursor:pointer;
+                font-weight:bold;
+            }
+
+            @media print{
+                .share{ display:none; }
+
                 body{
-                    font-family:Arial,sans-serif;
-                    background:#f4f4f4;
-                    padding:20px;
-                    color:#333;
+                    background:#fff;
+                    padding:0;
                 }
 
                 .comprovante{
-                    max-width:800px;
-                    margin:auto;
-                    background:#fff;
-                    border-radius:16px;
-                    padding:30px;
-                    border-top:8px solid #228b22;
-                    box-shadow:0 10px 25px rgba(0,0,0,.12);
+                    box-shadow:none;
+                    border:none;
+                }
+            }
+
+            @media(max-width:768px){
+
+                body{
+                    padding:10px;
+                }
+
+                .comprovante{
+                    padding:18px;
+                    border-radius:12px;
                 }
 
                 h1{
-                    color:#8b1111;
-                    text-align:center;
-                    margin-bottom:10px;
-                }
-
-                .sub{
-                    text-align:center;
-                    color:#666;
-                    margin-bottom:25px;
+                    font-size:1.4rem;
                 }
 
                 .linha{
-                    padding:12px 0;
-                    border-bottom:1px solid #eee;
-                    font-size:18px;
-                }
-
-                .qr{
-                    text-align:center;
-                    margin-top:30px;
+                    font-size:15px;
+                    padding:10px 0;
                 }
 
                 .qr img{
-                    border:1px solid #ccc;
-                    padding:10px;
-                    border-radius:12px;
-                    background:#fff;
+                    width:180px;
                 }
 
-                .rodape{
-                    margin-top:30px;
-                    padding:18px;
-                    background:#fff8d6;
-                    border:1px solid #f4d35e;
-                    border-radius:12px;
-                    line-height:1.7;
-                }
+            }
+        </style>
+    </head>
 
-                .share{
-                    text-align:center;
-                    margin-top:25px;
-                }
+    <body>
 
-                .share button{
-                    padding:14px 22px;
-                    font-size:16px;
-                    border:none;
-                    border-radius:10px;
-                    background:#25d366;
-                    color:#fff;
-                    cursor:pointer;
-                    font-weight:bold;
-                }
+        <div class="comprovante">
 
-                @media print{
-                    .share{
-                        display:none;
-                    }
+            <h1>🎉 Comprovante Oficial FPSS</h1>
 
-                    body{
-                        background:#fff;
-                    }
-
-                    .comprovante{
-                        box-shadow:none;
-                    }
-                }
-
-                    @media(max-width:768px){
-
-                    body{
-                        padding:10px;
-                    }
-
-                    .comprovante{
-                        padding:18px;
-                        border-radius:12px;
-                    }
-
-                    h1{
-                        font-size:1.5rem;
-                    }
-
-                    .linha{
-                        font-size:15px;
-                        padding:10px 0;
-                    }
-
-                    .qr img{
-                        width:180px;
-                        max-width:100%;
-                        height:auto;
-                    }
-
-                    .share button{
-                        width:100%;
-                        font-size:16px;
-                        padding:16px;
-                    }
-
-                }
-            </style>
-        </head>
-        <body>
-
-            <div class="comprovante">
-
-                <h1>🎉 Comprovante Oficial FPSS</h1>
-
-                <div class="sub">
-                    6ª Festa do Padroeiro São Sebastião 2027
-                </div>
-
-                <div class="linha">
-                    <strong>Status:</strong> PAGAMENTO APROVADO
-                </div>
-
-                <div class="linha">
-                    <strong>Código do Pedido:</strong> ${pixData.codigo_pedido}
-                </div>
-
-                <div class="linha">
-                    <strong>CPF:</strong> ${pixData.cpf}
-                </div>
-
-                <div class="linha">
-                    <strong>Valor Pago:</strong> R$ ${Number(pixData.total).toFixed(2).replace(".", ",")}
-                </div>
-
-                <div class="linha">
-                    <strong>Produto:</strong> ${pixData.produto_tipo || "Churrasco"}
-                </div>
-
-                <div class="linha">
-                    <strong>Status Retirada:</strong> NÃO RETIRADO
-                </div>
-
-                <div class="qr">
-                    <p><strong>QR Code para retirada:</strong></p>
-
-                    <img
-                        src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(pixData.codigo_pedido)}"
-                        alt="QR Code"
-                    >
-
-                    <p>
-                        <strong>${pixData.codigo_pedido}</strong>
-                    </p>
-                </div>
-
-                <div class="rodape">
-                    ⚠️ <strong>IMPORTANTE:</strong><br>
-                    Apresente este comprovante + CPF na retirada.<br>
-                    Este documento funciona como comprovante oficial FPSS.
-                </div>
-
-                ${
-                 modoCompartilhar
-                        ? `
-                        <div class="share">
-                            <button onclick="
-                                (async () => {
-
-                                    try {
-
-                                        const elemento = document.querySelector('.comprovante');
-
-                                        const canvas = await html2canvas(elemento, {
-                                            scale: 2,
-                                            useCORS: true
-                                        });
-
-                                        canvas.toBlob(async (blob) => {
-
-                                            try {
-
-                                                const file = new File(
-                                                    [blob],
-                                                    'comprovante-fpss.png',
-                                                    { type: 'image/png' }
-                                                );
-
-                                                if (
-                                                    navigator.canShare &&
-                                                    navigator.canShare({ files: [file] })
-                                                ) {
-
-                                                    await navigator.share({
-                                                        title: 'Comprovante FPSS',
-                                                        text: 'Comprovante Oficial FPSS',
-                                                        files: [file]
-                                                    });
-
-                                                } else {
-
-                                                    const imageData = canvas.toDataURL('image/png');
-
-                                                    const link = document.createElement('a');
-                                                    link.href = imageData;
-                                                    link.download = 'comprovante-fpss.png';
-                                                    link.click();
-
-                                                    alert('✅ Imagem salva. Compartilhe manualmente pelo WhatsApp.');
-
-                                                }
-
-                                            } catch(e) {
-
-                                                alert('Erro ao compartilhar comprovante.');
-
-                                            }
-
-                                        }, 'image/png');
-
-                                    } catch(err) {
-
-                                        alert('Erro ao gerar imagem do comprovante.');
-
-                                    }
-
-                                })();
-                            ">
-                                📲 Compartilhar imagem via WhatsApp / Apps
-                            </button>
-                        </div>
-                        `
-                        : ""
-                }
-
+            <div class="sub">
+                6ª Festa do Padroeiro São Sebastião 2027
             </div>
 
-        </body>
-        </html>
+            <div class="linha">
+                <strong>Status:</strong> PAGAMENTO APROVADO
+            </div>
+
+            <div class="linha">
+                <strong>Código do Pedido:</strong> ${pixData.codigo_pedido || "N/D"}
+            </div>
+
+            <div class="linha">
+                <strong>CPF:</strong> ${pixData.cpf || "N/D"}
+            </div>
+
+            <div class="linha">
+                <strong>Valor Pago:</strong> R$ ${Number(pixData.total || 0).toFixed(2).replace(".", ",")}
+            </div>
+
+            <div class="linha">
+                <strong>Produto:</strong> ${pixData.produto_tipo || "Churrasco"}
+            </div>
+
+            <div class="linha">
+                <strong>Status Retirada:</strong> NÃO RETIRADO
+            </div>
+
+            <div class="qr">
+                <p><strong>QR Code para retirada:</strong></p>
+
+                <img
+                    src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(pixData.codigo_pedido || "")}"
+                    alt="QR Code"
+                >
+
+                <p><strong>${pixData.codigo_pedido || ""}</strong></p>
+            </div>
+
+            <div class="rodape">
+                ⚠️ <strong>IMPORTANTE:</strong><br>
+                Apresente este comprovante + CPF na retirada.<br>
+                Este documento funciona como comprovante oficial FPSS.
+            </div>
+
+            ${botaoCompartilhar}
+
+        </div>
+
+        <script>
+        async function compartilharComprovante() {
+
+            try {
+
+                const elemento = document.querySelector('.comprovante');
+
+                const canvas = await html2canvas(elemento, {
+                    scale: 2,
+                    useCORS: true
+                });
+
+                canvas.toBlob(async function(blob) {
+
+                    try {
+
+                        const file = new File(
+                            [blob],
+                            'comprovante-fpss.png',
+                            { type: 'image/png' }
+                        );
+
+                        if (
+                            navigator.canShare &&
+                            navigator.canShare({ files: [file] })
+                        ) {
+
+                            await navigator.share({
+                                title: 'Comprovante FPSS',
+                                text: 'Comprovante Oficial FPSS',
+                                files: [file]
+                            });
+
+                        } else {
+
+                            const link = document.createElement('a');
+                            link.href = canvas.toDataURL('image/png');
+                            link.download = 'comprovante-fpss.png';
+                            link.click();
+
+                            alert('✅ Imagem salva. Compartilhe manualmente.');
+
+                        }
+
+                    } catch(e) {
+
+                        alert('Erro ao compartilhar.');
+
+                    }
+
+                }, 'image/png');
+
+            } catch(err) {
+
+                alert('Erro ao gerar comprovante.');
+
+            }
+
+        }
+        </script>
+
+    </body>
+    </html>
     `;
 }
 
