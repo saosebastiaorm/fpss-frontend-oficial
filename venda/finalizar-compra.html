@@ -66,6 +66,10 @@
             background:#fff;
             border:1px solid #ddd;
             border-radius:12px;
+            min-height:220px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
         }
 
         .pix-copia{
@@ -128,7 +132,7 @@
 
     <h1>🚀 PIX Gerado com Sucesso</h1>
 
-    <p class="sub">
+    <p class="sub" id="subtituloStatus">
         Escaneie o QR Code ou copie o código PIX
     </p>
 
@@ -142,7 +146,7 @@
         <div id="qrcode"></div>
     </div>
 
-    <div class="pix-copia">
+    <div class="pix-copia" id="pixCopiaArea">
         <label><strong>Código PIX Copia e Cola:</strong></label>
 
         <textarea id="pixCode" readonly></textarea>
@@ -168,7 +172,6 @@
         >
             📄 BAIXAR / IMPRIMIR COMPROVANTE
         </button>
-
     </div>
 
     <div class="status" id="statusPagamento">
@@ -200,16 +203,23 @@ document.getElementById("valorPedido").innerText =
 document.getElementById("pixCode").value =
     pixData.qr_code || "";
 
-if (pixData.qr_code) {
-    new QRCode(
-        document.getElementById("qrcode"),
-        {
-            text: pixData.qr_code,
-            width: 220,
-            height: 220
-        }
-    );
+/* QR PIX inicial */
+function gerarQrPix() {
+    document.getElementById("qrcode").innerHTML = "";
+
+    if (pixData.qr_code) {
+        new QRCode(
+            document.getElementById("qrcode"),
+            {
+                text: pixData.qr_code,
+                width: 220,
+                height: 220
+            }
+        );
+    }
 }
+
+gerarQrPix();
 
 function copiarPix() {
     const campo = document.getElementById("pixCode");
@@ -320,53 +330,136 @@ async function verificarPagamento() {
 
         const dados = await res.json();
 
-        if (dados.sucesso) {
+        if (!dados.sucesso) return;
 
-            pixData.status_pagamento = dados.status_interno || "";
-            pixData.status_retirada = dados.status_retirada || "";
+        pixData.status_pagamento = dados.status_interno || "";
+        pixData.status_retirada = dados.status_retirada || "";
 
-            localStorage.setItem("pixData", JSON.stringify(pixData));
+        localStorage.setItem(
+            "pixData",
+            JSON.stringify(pixData)
+        );
 
-            if (
-                (dados.status_interno || "").toLowerCase() === "pago" &&
-                (dados.status_retirada || "").toLowerCase() !== "retirado"
-            ) {
+        /* PAGO + NÃO RETIRADO */
+        if (
+            (dados.status_interno || "").toLowerCase() === "pago" &&
+            (dados.status_retirada || "").toLowerCase() !== "retirado"
+        ) {
 
-                document.getElementById("statusPagamento").innerHTML =
-                    "✅ PAGAMENTO APROVADO!";
+            document.getElementById("statusPagamento").innerHTML =
+                "✅ PAGAMENTO APROVADO!";
 
-                document.getElementById("statusPagamento").style.color =
-                    "green";
+            document.getElementById("statusPagamento").style.color =
+                "green";
 
-                document.getElementById("btnWhatsapp").style.display =
-                    "block";
+            document.getElementById("btnWhatsapp").style.display =
+                "block";
 
-                document.getElementById("btnComprovante").style.display =
-                    "block";
+            document.getElementById("btnComprovante").style.display =
+                "block";
 
-            } else if (
-                (dados.status_retirada || "").toLowerCase() === "retirado"
-            ) {
+            document.getElementById("pixCopiaArea").style.display =
+                "none";
 
-                document.getElementById("statusPagamento").innerHTML =
-                    "🎉 PRODUTO JÁ RETIRADO";
+            document.getElementById("qrcode").innerHTML = "";
 
-                document.getElementById("statusPagamento").style.color =
-                    "#8b1111";
+            new QRCode(
+                document.getElementById("qrcode"),
+                {
+                    text: pixData.codigo_pedido,
+                    width: 220,
+                    height: 220
+                }
+            );
 
-                document.getElementById("btnWhatsapp").style.display =
-                    "none";
+            document.getElementById("subtituloStatus").innerHTML =
+                "📦 Apresente este QR Code ou CPF para retirada";
 
-                document.getElementById("btnComprovante").style.display =
-                    "none";
+        }
 
-            }
+        /* JÁ RETIRADO */
+        else if (
+            (dados.status_retirada || "").toLowerCase() === "retirado"
+        ) {
+
+            document.getElementById("statusPagamento").innerHTML =
+                `🎉 PRODUTO JÁ RETIRADO<br><small>Retirado em: ${
+                    dados.data_retirada ||
+                    dados.updated_at ||
+                    "Data não informada"
+                }</small>`;
+
+            document.getElementById("statusPagamento").style.color =
+                "#8b1111";
+
+            document.getElementById("btnWhatsapp").style.display =
+                "none";
+
+            document.getElementById("btnComprovante").style.display =
+                "none";
+
+            document.getElementById("pixCopiaArea").style.display =
+                "none";
+
+            document.getElementById("qrcode").innerHTML = `
+                <div style="
+                    padding:30px;
+                    text-align:center;
+                    font-size:22px;
+                    color:#8b1111;
+                    font-weight:bold;
+                    border:2px solid #8b1111;
+                    border-radius:12px;
+                    background:#fff8ef;
+                ">
+                    🎉 PRODUTO JÁ RETIRADO
+                    <br><br>
+                    <span style="font-size:14px;">
+                        ${
+                            dados.data_retirada ||
+                            dados.updated_at ||
+                            ""
+                        }
+                    </span>
+                </div>
+            `;
+
+            document.getElementById("subtituloStatus").innerHTML =
+                "✅ Pedido finalizado";
+
+        }
+
+        /* PENDENTE */
+        else {
+
+            document.getElementById("statusPagamento").innerHTML =
+                "⏳ Aguardando pagamento...";
+
+            document.getElementById("statusPagamento").style.color =
+                "#d62828";
+
+            document.getElementById("pixCopiaArea").style.display =
+                "block";
+
+            document.getElementById("btnWhatsapp").style.display =
+                "none";
+
+            document.getElementById("btnComprovante").style.display =
+                "none";
+
+            document.getElementById("subtituloStatus").innerHTML =
+                "Escaneie o QR Code ou copie o código PIX";
+
+            gerarQrPix();
 
         }
 
     } catch (e) {
-        console.log("Erro ao verificar pagamento.");
+
+        console.log("Erro ao verificar pagamento.", e);
+
     }
+
 }
 
 verificarPagamento();
