@@ -24,32 +24,6 @@
 
 <body>
 
-<div class="topbar-master">
-  <div class="topbar-wrap">
-
-    <a href="#" class="brand-fpss">
-  <div class="brand-logo">
-    <img src="assets/imagens/logo/fpss/fpss-logo.png" alt="FPSS">
-  </div>
-
-  <div class="brand-text">
-    <span class="brand-kicker">EVENTO OFICIAL</span>
-    <span class="brand-title">FPSS</span>
-    <span class="brand-sub">Festa do Padroeiro São Sebastião</span>
-  </div>
-</a>
-
-    <nav class="menu-master">
-      <a href="/index.html" class="menu-link">🏠 Início</a>
-      <a href="/venda/compra-churrasco.html" class="menu-link">🍖 Churrasco</a>
-      <a href="https://wa.me/5569992014424?text=Olá,%20quero%20comprar%20cartela%20FPSS" target="_blank" class="menu-link">🎟 Cartela</a>
-      <a href="/doacao/doacao.html" class="menu-link">💚 Doação</a>
-      <a href="cliente/login.html" class="menu-link">📄 Central do Cliente</a>
-      <a href="https://wa.me/5569992014424" target="_blank" class="menu-link">📲 WhatsApp</a>
-      <a href="#comprar" class="menu-destaque">🛒 Comprar Agora</a>
-        </nav>
-  </div>
-</div>
 
   <!-- BARRA -->
   <div class="barra-urgencia">
@@ -57,68 +31,34 @@
   </div>
 
   <!-- HERO -->
-<header class="hero hero-vendas">
-  <div class="wrap">
-    <div class="hero-grid">
+<header class="topbar-master" id="topbarMaster">
 
-      <!-- LADO ESQUERDO -->
-      <div>
-  <span class="badge-topo">🔥 EVENTO OFICIAL • 24 JAN 2027</span>
+  <div class="header-main">
 
-  <h1>
-    6ª Festa do Padroeiro
-    <span class="destaque-santo">São Sebastião</span>
-  </h1>
+    <button class="menu-toggle" id="menuToggle">☰</button>
 
-  <p class="subhero" id="heroValores">
-    🍖 Carregando valores...<br>
-    💰 Concorra a <strong>R$ 25 MIL em prêmios</strong>
-  </p>
-
-  <div class="cta-group">
-    <a href="./venda/compra-churrasco.html" class="btn red">
-      🔥 Garantir Churrasco
-    </a>
-
-    <a target="_blank"
-       href="https://wa.me/5569992014424?text=Olá,%20quero%20comprar%20cartela%20FPSS"
-       class="btn green">
-       🎟 Comprar Cartela
-    </a>
-  </div>
-
-  <div class="mini-info">
-    <span>⚠️ Quantidades Limitadas</span>
-    <span>📲 Compra em 1 clique</span>
-    <span>🎉 Evento Tradicional</span>
-  </div>
-</div>
-
-      <!-- LADO DIREITO -->
-      <div class="hero-side">
-
-        <div class="price-card destaque">
-          <h3>💰 R$ 25 MIL</h3>
-          <div class="valor">PRÊMIOS</div>
-          <p>Sorteio Oficial</p>
-        </div>
-
-        <div class="price-card">
-          <h3>⏰ Falta Pouco</h3>
-          <div class="valor">24 JAN</div>
-          <p>Garanta antecipado</p>
-        </div>
-
+    <div class="brand-area">
+      <img src="img/logo-fpss.png" alt="FPSS" class="brand-logo">
+      <div class="brand-text">
+        <span class="brand-top">EVENTO OFICIAL</span>
+        <h1>FPSS</h1>
+        <p>Festa do Padroeiro São Sebastião</p>
       </div>
-
     </div>
+
+    <a href="#comprar" class="btn-header-buy">🛒 Comprar</a>
+
   </div>
-<!-- DECORAÇÃO HERO -->
-<img src="assets/imagens/home/igreja-fpss.png" alt="Igreja São Sebastião" class="hero-igreja">
-<img src="assets/imagens/home/barraca-fpss.png" alt="Barraca Festa" class="hero-barraca">
-<img src="assets/imagens/home/baloes-fpss.png" alt="Balões Festa" class="hero-baloes">
-<img src="assets/imagens/home/bandeirinhas-topo.png" alt="Bandeirinha Esquerda" class="bandeira-esquerda">
-<img src="assets/imagens/home/bandeirinhas-topo.png" alt="Bandeirinha Direita" class="bandeira-direita">
+
+  <nav class="menu-master" id="menuMaster">
+    <a href="#inicio">🏠 Início</a>
+    <a href="#churrasco">🍖 Churrasco</a>
+    <a href="#cartela">🎟️ Cartelas</a>
+    <a href="#doacao">💚 Doação</a>
+    <a href="#cliente">📄 Central do Cliente</a>
+    <a href="#whatsapp">📲 WhatsApp</a>
+  </nav>
+
 </header>
 
 
@@ -325,11 +265,7 @@ async function carregarProdutosHome() {
     const churrasco = data.produtos.find(p => p.codigo === "CHU");
     const cartela = data.produtos.find(p => p.codigo === "CAR");
 
-    document.getElementById("heroValores").innerHTML = `
-      🍖 Churrasco R$ ${Number(churrasco?.preco || 0).toFixed(2).replace(".", ",")} •
-      🎟 Cartela R$ ${Number(cartela?.preco || 0).toFixed(2).replace(".", ",")} <br>
-      💰 Concorra a <strong>R$ 25 MIL em prêmios</strong>
-    `;
+   
     data.produtos.forEach(produto => {
      let link = "https://wa.me/5569992014424?text=Olá,%20quero%20comprar%20" + encodeURIComponent(produto.nome);
      let botao = "📲 Comprar Agora";
@@ -402,6 +338,37 @@ carregarProdutosHome();
   <script src="js/lightbox.js"></script>
   <script src="js/vip.js"></script>
   <script src="js/doacao.js"></script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const topbar = document.getElementById("topbarMaster");
+  const menuToggle = document.getElementById("menuToggle");
+
+  if(!topbar) return;
+
+  /* SCROLL INTELIGENTE */
+  window.addEventListener("scroll", () => {
+
+    if(window.scrollY > 80){
+      topbar.classList.add("compact");
+    }else{
+      topbar.classList.remove("compact");
+      topbar.classList.remove("menu-open");
+    }
+
+  });
+
+  /* MENU HAMBÚRGUER */
+  if(menuToggle){
+    menuToggle.addEventListener("click", () => {
+      topbar.classList.toggle("menu-open");
+    });
+  }
+
+});
+</script>
 
 </body>
 </html>

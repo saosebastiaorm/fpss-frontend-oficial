@@ -20,14 +20,186 @@ body{
 /* =========================================
    TOPBAR MASTER
 ========================================= */
+/* ==========================================
+HEADER MASTER INTELIGENTE FPSS
+========================================== */
+
 .topbar-master{
-    background:linear-gradient(180deg,#7d0c0c,#991111);
-    padding:8px 0;
-    border-bottom:2px solid rgba(255,196,0,.35);
     position:sticky;
     top:0;
     z-index:9999;
-    box-shadow:0 8px 24px rgba(0,0,0,.28);
+    background:linear-gradient(180deg,#8b0000,#b30000);
+    box-shadow:0 4px 14px rgba(0,0,0,.18);
+    padding:3px 8px;
+    transition:all .35s ease;
+}
+
+.header-main{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    flex-wrap:nowrap;
+    min-height:52px;
+}
+
+.menu-toggle{
+  display:none;
+  background:rgba(255,255,255,.08);
+  border:none;
+  color:#fff;
+  font-size:26px;
+  padding:6px 10px;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.brand-area{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  min-width:auto;
+  flex-shrink:0;
+}
+
+.brand-logo{
+    width:42px;
+    height:42px;
+    object-fit:contain;
+    flex-shrink:0;
+}
+
+.brand-text{
+  display:flex;
+  flex-direction:column;
+  line-height:1.05;
+}
+
+.brand-top{
+  color:#ffd54a;
+  font-size:11px;
+  font-weight:800;
+}
+
+.brand-text h1{
+    font-size:24px;
+    line-height:.9;
+    margin:0;
+}
+
+.brand-text p{
+    font-size:9px;
+    margin:0;
+    line-height:1.1;
+}
+
+.btn-header-buy{
+    padding:7px 14px;
+    font-size:13px;
+    border-radius:10px;
+    font-weight:900;
+}
+
+.menu-master{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:8px;
+}
+
+.menu-master a{
+  flex:1;
+  text-align:center;
+  background:rgba(255,255,255,.08);
+  color:#fff;
+  text-decoration:none;
+  padding:8px 10px;
+  border-radius:12px;
+  font-size:13px;
+  font-weight:700;
+}
+
+/* HEADER COMPACTO AO ROLAR */
+.topbar-master.compact{
+  padding:4px 8px;
+}
+
+.topbar-master.compact .brand-logo{
+  width:34px;
+  height:34px;
+}
+
+.topbar-master.compact .brand-text h1{
+  font-size:18px;
+}
+
+.topbar-master.compact .brand-text p{
+  font-size:9px;
+}
+
+.topbar-master.compact .brand-top{
+  font-size:9px;
+}
+
+.topbar-master.compact .menu-master{
+  display:none;
+}
+
+.topbar-master.compact .menu-toggle{
+  display:block;
+}
+
+/* MENU ABERTO */
+.topbar-master.menu-open .menu-master{
+  display:flex !important;
+  margin-top:8px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+  .topbar-master{
+    padding:4px 8px;
+  }
+
+  .brand-logo{
+    width:38px;
+    height:38px;
+  }
+
+  .brand-text h1{
+    font-size:20px;
+  }
+
+  .brand-text p{
+    font-size:9px;
+  }
+
+  .brand-top{
+    font-size:9px;
+  }
+
+  .btn-header-buy{
+    padding:8px 10px;
+    font-size:12px;
+  }
+
+  .menu-master{
+    gap:6px;
+    margin-top:6px;
+  }
+
+  .menu-master a{
+    padding:7px 6px;
+    font-size:11px;
+    border-radius:10px;
+  }
+
+  .topbar-master.compact .menu-toggle{
+    display:block;
+    order:-1;
+  }
+
 }
 
 .topbar-wrap{
@@ -95,17 +267,20 @@ body{
 .menu-master{
     display:flex;
     align-items:center;
-    gap:12px;
-    flex-wrap:wrap;
+    justify-content:flex-end;
+    gap:8px;
+    flex-wrap:nowrap;
+    margin-top:0;
+    margin-left:auto;
+    width:auto;
 }
 
 .menu-master a{
     text-decoration:none;
-    padding:8px 12px;
-    border-radius:14px;
-    font-size:15px;
-    font-weight:900;
-    transition:.3s;
+    padding:6px 9px;
+    border-radius:10px;
+    font-size:12px;
+    font-weight:800;
     white-space:nowrap;
 }
 
@@ -134,13 +309,14 @@ body{
    BARRA URGÊNCIA
 ========================================= */
 .barra-urgencia{
-    background:linear-gradient(90deg,#8b1111,#ff2b2b);
+    background:linear-gradient(90deg,#ff1f1f,#c40000);
     color:#fff;
     text-align:center;
-    padding:14px;
-    font-size:18px;
+    font-size:12px;
     font-weight:900;
-    box-shadow:0 4px 14px rgba(0,0,0,.25);
+    padding:5px 8px;
+    letter-spacing:.3px;
+    line-height:1.2;
 }
 
 /* =========================================
@@ -277,56 +453,86 @@ a.btn{
 /* =========================================
    HERO SIDE
 ========================================= */
-.hero-side{
-    display:flex;
-    flex-direction:column;
-    gap:18px;
-    align-items:stretch;
-    max-width:420px;
-    width:100%;
-}
+/* ==========================================
+CARDS PRÊMIOS / DATA
+========================================== */
 
 .price-card{
-    background:#fff;
-    color:#8b1111;
-    padding:12px 12px;
-    border-radius:22px;
-    text-align:center;
-    box-shadow:0 14px 30px rgba(0,0,0,.22);
-    min-height:118px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    width:100%;
-    min-width:unset;
-    max-width:100%;
+  background:#fff;
+  border:3px solid #f1c40f;
+  border-radius:18px;
+  padding:10px 12px;
+  min-height:96px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:4px;
+  box-shadow:0 6px 16px rgba(0,0,0,.12);
 }
 
 .price-card.destaque{
-    border:4px solid #ffd700;
+  border:3px solid #ffd700;
 }
 
 .price-card h3{
-    font-size:22px;
-    margin-bottom:10px;
+  font-size:18px;
+  margin:0;
+  color:#8b0000;
+  font-weight:900;
+  line-height:1;
 }
 
 .price-card .valor{
-    font-size:clamp(30px,3vw,46px);
-    font-weight:900;
-    line-height:1;
-    margin:8px 0;
+  font-size:clamp(34px,4vw,52px);
+  font-weight:900;
+  color:#b30000;
+  line-height:.95;
+  text-align:center;
+  margin:2px 0;
+}
+
+.price-card .subtexto{
+  text-align:center;
+  font-size:13px;
+  font-weight:700;
+  color:#8b0000;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+  .price-card{
+    min-height:72px !important;
+    padding:8px !important;
+    border-radius:14px !important;
+  }
+
+  .price-card h3{
+    font-size:14px !important;
+  }
+
+  .price-card .valor{
+    font-size:32px !important;
+  }
+
+  .price-card .subtexto{
+    font-size:11px !important;
+  }
+
 }
 
 /* =========================================
    CARD BASE
 ========================================= */
+
 .card{
-    background:#f3f3f3;
-    border-radius:22px;
-    padding:28px 0;
-    margin:18px auto;
+    background:#f8f1df;
+    border-radius:18px;
+    padding:14px 0;
+    margin:8px auto;
+    border:1px solid rgba(139,17,17,.08);
 }
+
 
 .section-title{
     color:#8b1111;
