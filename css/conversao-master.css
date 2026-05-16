@@ -675,59 +675,14 @@ MENU MOBILE COMPACTO REAL
 
 }
 
-   .hero-vendas{
-    padding:18px 0 14px !important;
-    min-height:auto !important;
-  }
-
-  .hero-vendas h1{
-    font-size:clamp(34px,8vw,48px) !important;
-    margin-bottom:10px !important;
-    line-height:.95 !important;
-  }
-
-  .subhero{
-    font-size:15px !important;
-    margin-bottom:12px !important;
-  }
-
-  .price-card{
-    min-height:92px !important;
-    padding:14px !important;
-  }
-
-  .price-card .valor{
-    font-size:34px !important;
-  }
-
-  .card{
-    padding:18px 0 !important;
-  }
-
-  .venda-box{
-    padding:14px !important;
-  }
-
-  .venda-box img{
-    max-height:140px !important;
-    object-fit:cover !important;
-  }
-
-  .price-box{
-    min-height:40px !important;
-    font-size:28px !important;
-  }
-
-  .venda-box a{
-    padding:12px !important;
-    font-size:16px !important;
-  } 
-
+   
 /* ==========================================
-BOTÃO FLUTUANTE MOBILE REDUZIDO
+BOTÃO FLUTUANTE + MOBILE MASTER FINAL
 ========================================== */
+
 @media(max-width:768px){
 
+  /* BOTÃO FLUTUANTE */
   .btn-flutuante,
   .comprar-flutuante,
   .botao-flutuante,
@@ -742,6 +697,161 @@ BOTÃO FLUTUANTE MOBILE REDUZIDO
     font-size:13px !important;
     border-radius:999px !important;
     z-index:40 !important;
+  }
+
+  /* HERO */
+  .hero-vendas{
+    padding:8px 0 6px !important;
+    min-height:auto !important;
+  }
+
+  .hero-vendas h1{
+    font-size:clamp(30px,7vw,42px) !important;
+    margin-bottom:8px !important;
+    line-height:.92 !important;
+    letter-spacing:-1px !important;
+  }
+
+  .badge-topo{
+    padding:6px 12px !important;
+    font-size:11px !important;
+    margin-bottom:10px !important;
+  }
+
+  .subhero{
+    font-size:13px !important;
+    margin-bottom:10px !important;
+    line-height:1.35 !important;
+  }
+
+  .cta-group{
+    gap:10px !important;
+    margin-top:12px !important;
+  }
+
+  .btn,
+  a.btn{
+    padding:10px 12px !important;
+    font-size:14px !important;
+    border-radius:10px !important;
+  }
+
+  .mini-info{
+    gap:8px !important;
+    margin-top:12px !important;
+  }
+
+  .mini-info span{
+    padding:6px 8px !important;
+    font-size:11px !important;
+  }
+
+  /* HERO SIDE */
+  .hero-side{
+    gap:10px !important;
+  }
+
+  .price-card{
+    min-height:72px !important;
+    padding:10px !important;
+    border-radius:16px !important;
+  }
+
+  .price-card h3{
+    font-size:18px !important;
+    margin-bottom:4px !important;
+  }
+
+  .price-card .valor{
+    font-size:26px !important;
+  }
+
+  /* CARDS */
+  .card{
+    padding:12px 0 !important;
+    margin:10px auto !important;
+  }
+
+  .section-title{
+    font-size:28px !important;
+    margin-bottom:12px !important;
+  }
+
+  /* CONTADOR */
+  .contador-grid{
+    gap:8px !important;
+  }
+
+  .tempo-box{
+    min-width:52px !important;
+    padding:8px !important;
+    border-radius:12px !important;
+  }
+
+  .tempo-box span{
+    font-size:18px !important;
+  }
+
+  /* PRODUTOS */
+  .venda-box{
+    padding:12px !important;
+  }
+
+  .venda-box img{
+    max-height:130px !important;
+    object-fit:cover !important;
+  }
+
+  .price-box{
+    min-height:36px !important;
+    font-size:24px !important;
+    margin:10px 0 !important;
+  }
+
+  .venda-box a{
+    padding:10px !important;
+    font-size:15px !important;
+  }
+
+  /* DOAÇÃO */
+  .doacao-cta{
+    padding:14px 0 !important;
+  }
+
+  .doacao-box-main{
+    padding:18px !important;
+  }
+
+  /* VIP */
+  .vip-box{
+    padding:14px !important;
+    border-radius:18px !important;
+  }
+
+  .vip-box h2{
+    font-size:28px !important;
+    line-height:1.1 !important;
+    margin-bottom:10px !important;
+  }
+
+  .vip-box input{
+    padding:10px !important;
+    font-size:13px !important;
+    margin-bottom:8px !important;
+  }
+
+  .vip-box button{
+    padding:12px !important;
+    font-size:16px !important;
+  }
+
+  /* FOOTER */
+  footer{
+    padding:10px !important;
+  }
+
+  .admin-footer{
+    padding:6px !important;
   }
 
 }
