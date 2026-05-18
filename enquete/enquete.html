@@ -1,109 +1,441 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
+  
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Enquete FPSS 2027</title>
+  <title>Enquete Oficial • 6ª FPSS 2027</title>
 
-<link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../css/enquete.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/mobile.css">
+  <link rel="stylesheet" href="../css/conversao-master.css">
 
+  <style>
+    /* Força o fundo claro original da identidade visual festiva */
+    body {
+      background-color: #f7f3eb !important;
+      color: #111 !important;
+    }
+
+    .enquete-container {
+      max-width: 700px;
+      margin: 25px auto;
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    
+    .enquete-intro {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .enquete-intro p {
+      color: #4b5563;
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    /* Grid de Alta Densidade Cadastral Clean */
+    .form-grid-3 {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 12px;
+    }
+
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 580px) {
+      .form-grid-3, .form-grid-2 {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 700;
+      font-size: 12px;
+      color: #374151;
+      margin-bottom: 4px;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="tel"],
+    .form-group input[type="date"],
+    .form-group select {
+      width: 100%;
+      padding: 9px;
+      font-size: 13px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      background: #f9fafb;
+      outline: none;
+      transition: border 0.2s;
+      color: #333;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: #8b1111;
+    }
+
+    /* Estilização proporcional dos itens de voto */
+    .opcoes-voto {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 8px 0;
+    }
+
+    .opcao-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #f3f4f6;
+      padding: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-size: 13px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .opcao-item:hover {
+      background: #e5e7eb;
+    }
+
+    .opcao-item input[type="radio"] {
+      transform: scale(1.1);
+      accent-color: #8b1111;
+    }
+
+    .divisor-sessao {
+      border-top: 1px solid #e5e7eb;
+      margin: 18px 0;
+      padding-top: 12px;
+    }
+
+    .divisor-sessao h3 {
+      font-size: 14px;
+      color: #8b1111;
+      font-weight: 800;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    #msgEnquete {
+      margin-top: 15px;
+      font-weight: 700;
+      font-size: 14px;
+      text-align: center;
+    }
+  </style>
 </head>
 
 <body>
 
-<section class="enquete-fpss">
-
-<div class="enquete-box">
-
-<div class="enquete-topo">
-
-  <div class="badge-enquete">
-    🎯 PARTICIPAÇÃO OFICIAL FPSS 2027
+  <div class="barra-urgencia">
+    🔥 PARTICIPAR DA ENQUETE E CONCORRER A UMA CAMISETA OFICIAL DA FESTA!
   </div>
 
-  <h1>🔥 Enquete Oficial da Festa do Padroeiro São Sebastião</h1>
+  <div class="topbar-master" id="topbarMaster">
+    <div class="wrap">
+      <div class="header-main">
+        
+        <button class="menu-toggle" id="menuToggle" onclick="document.getElementById('topbarMaster').classList.toggle('menu-open'); event.stopPropagation();">☰</button>
 
-  <p>
-    Sua opinião ajuda a melhorar a festa e ainda te coloca na disputa de uma camiseta da 6ª FPSS - Festa do Padroeiro São Sebastião.
-  </p>
+        <div class="brand-area">
+          <div class="brand-text">
+            <h1>6ª FPSS 2027</h1>
+            <p>Festa de São Sebastião</p>
+          </div>
+        </div>
 
-  <div class="alerta-topo">
-    ⚠️ Responda em menos de 2 minutos e concorra automaticamente
+        <nav class="menu-master">
+          <a href="../index.html">Início</a>
+          <a href="../index.html#comprar">Prêmios</a>
+          <a href="./enquete.html">Enquete</a>
+          <a href="../index.html#vip">Grupo VIP</a>
+        </nav>
+
+        <a href="../index.html#comprar" class="btn-header-buy">🛒 COMPRAR AGORA</a>
+
+      </div>
+    </div>
   </div>
 
-</div>
+  <main class="wrap">
+    <div class="enquete-container">
+      
+      <div class="enquete-intro">
+        <h2 class="section-title" style="margin-bottom: 3px; color: #8b1111; font-size: 24px;">Enquete Oficial</h2>
+        <p>Por favor, preencha a ficha completa abaixo para registrar suas opiniões e validar sua inscrição no sorteio!</p>
+      </div>
 
-<form id="formEnquete">
+      <form id="formEnquete">
+        
+        <div class="form-grid-3">
+          <div class="form-group">
+            <label for="nome">Nome Completo:</label>
+            <input type="text" id="nome" required placeholder="Nome do participante">
+          </div>
+          <div class="form-group">
+            <label for="whatsapp">WhatsApp:</label>
+            <input type="tel" id="whatsapp" required placeholder="(00) 00000-0000">
+          </div>
+          <div class="form-group">
+            <label for="aniversario">Data de Nascimento:</label>
+            <input type="date" id="aniversario" required>
+          </div>
+        </div>
 
-<input type="hidden" name="origem" value="ENQUETE">
+        <div class="form-grid-3">
+          <div class="form-group">
+            <label for="cep">CEP:</label>
+            <input type="text" id="cep" required placeholder="00000-000" onblur="buscarEnderecoPorCEP()">
+          </div>
+          <div class="form-group">
+            <label for="cidade">Cidade:</label>
+            <input type="text" id="cidade" required placeholder="Sua cidade">
+          </div>
+          <div class="form-group">
+            <label for="bairro">Bairro:</label>
+            <input type="text" id="bairro" required placeholder="Seu bairro">
+          </div>
+        </div>
 
-<!-- DADOS -->
-<h2>📌 Dados pessoais</h2>
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="rua">Rua / Logradouro:</label>
+            <input type="text" id="rua" required placeholder="Av, Rua, Travessa...">
+          </div>
+          <div class="form-group">
+            <label for="endereco_numero">Número / Complemento:</label>
+            <input type="text" id="endereco_numero" required placeholder="Nº, apto ou referência">
+          </div>
+        </div>
 
-<label>Nome</label>
-<input type="text" name="nome" required>
+        <div class="form-group">
+          <label for="comprou_antes">Você já comprou cartelas em edições anteriores da Festa?</label>
+          <select id="comprou_antes" required>
+            <option value="" disabled selected>Selecione uma opção...</option>
+            <option value="Sim, sempre compro">Sim, sempre compro e participo</option>
+            <option value="Já comprei algumas vezes">Já comprei algumas vezes</option>
+            <option value="Não, essa será minha primeira vez">Não, essa será a minha primeira vez</option>
+          </select>
+        </div>
 
-<label>Sobrenome</label>
-<input type="text" name="sobrenome" required>
 
-<label>WhatsApp</label>
-<input type="tel" name="whatsapp" id="whatsapp" required>
+        <div class="divisor-sessao">
+          <h3>1. Como você avalia a organização geral da última Festa do Padroeiro?</h3>
+          <div class="form-group">
+            <div class="opcoes-voto">
+              <label class="opcao-item">
+                <input type="radio" name="p1" value="Excelente" required>
+                ⭐ Excelente (Tudo muito bem organizado)
+              </label>
+              <label class="opcao-item">
+                <input type="radio" name="p1" value="Boa">
+                👍 Boa (Atendeu bem as expectativas)
+              </label>
+              <label class="opcao-item">
+                <input type="radio" name="p1" value="Regular">
+                😐 Regular (Teve pontos positivos e negativos)
+              </label>
+              <label class="opcao-item">
+                <input type="radio" name="p1" value="Ruim">
+                👎 Ruim (Precisa melhorar drasticamente)
+              </label>
+            </div>
+          </div>
+        </div>
 
-<label>Data de nascimento</label>
-<input type="date" name="nascimento" required>
 
-<label>CEP</label>
-<input type="text" name="cep" id="cep" required>
+        <div class="divisor-sessao">
+          <h3>2. Qual setor ou melhoria estrutural deve ser a prioridade da comissão organizadora?</h3>
+          <div class="form-group">
+            <div class="opcoes-voto">
+              <label class="opcao-item">
+                <input type="radio" name="p2" value="Mais Shows Musicais" required>
+                🎵 Mais Shows Culturais e Atrações Musicais
+              </label>
+              <label class="opcao-item">
+                <input type="radio" name="p2" value="Ampliar Espaço Coberto">
+                🎪 Ampliar a Área Coberta com Tendas e Mesas
+              </label>
+              <label class="opcao-item">
+                <input type="radio" name="p2" value="Mais Variedade de Comidas">
+                🍲 Aumentar o número de Barracas de Alimentação
+              </label>
+              <label class="opcao-item">
+                <input type="radio" name="p2" value="Espaço Kids Maior">
+                🎈 Expandir a Área Infantil e de Brinquedos
+              </label>
+            </div>
+          </div>
+        </div>
 
-<label>Cidade</label>
-<input type="text" name="cidade" id="cidade" required>
 
-<label>Bairro</label>
-<input type="text" name="bairro" id="bairro" required>
+        <div class="divisor-sessao">
+          <h3>3. Em relação ao atendimento nos caixas e retirada de produtos (Churrasco/Bebidas):</h3>
+          <div class="form-group">
+            <div class="opcoes-voto">
+              <label class="opcao-item">
+                <input type="radio" name="p3" value="Rápido e Eficiente" required>
+                ⚡ Rápido e Eficiente (Quase nenhuma fila)
+              </label>
+              <label class="opcao-item">
+                <input type="radio" name="p3" value="Aceitável">
+                ⏱ Aceitável (Fila normal para eventos grandes)
+              </label>
+              <label class="opcao-item">
+                <input type="radio" name="p3" value="Muito Demorado">
+                🐢 Muito Demorado (Tempo de espera excessivo)
+              </label>
+            </div>
+          </div>
+        </div>
 
-<label>Rua / Endereço</label>
-<input type="text" name="rua" id="rua" required>
 
-<!-- PERGUNTAS -->
-<h2>📊 Pesquisa da Festa</h2>
+        <div class="divisor-sessao">
+          <h3>4. Por qual canal você mais acompanha as informações e novidades da FPSS?</h3>
+          <div class="form-group">
+            <div class="opcoes-voto">
+              <label class="opcao-item">
+                <input type="radio" name="p4" value="Redes Sociais" required>
+                📱 Redes Sociais (Instagram / Facebook)
+              </label>
+              <label class="opcao-item">
+                <input type="radio" name="p4" value="WhatsApp">
+                💬 Grupos e Mensagens no WhatsApp
+              </label>
+              <label class="opcao-item">
+                <input type="radio" name="p4" value="Carro de Som / Rádio">
+                📢 Anúncios de Rádio, Avisos ou Carro de Som
+              </label>
+              <label class="opcao-item">
+                <input type="radio" name="p4" value="Amigos e Familiares">
+                👥 Indicação de Amigos, Vizinhos ou Familiares
+              </label>
+            </div>
+          </div>
+        </div>
 
-<label>Você já participou da festa?</label>
-<select name="participou" required>
-  <option value="">Selecione</option>
-  <option>Sim, várias vezes</option>
-  <option>Sim, uma vez</option>
-  <option>Não</option>
-</select>
+        <button type="submit" class="btn red full" style="margin-top: 15px;">ENVIAR ENQUETE COMPLETA 🚀</button>
 
-<label>Já comprou cartela?</label>
-<select name="cartela" required>
-  <option value="">Selecione</option>
-  <option>Sim</option>
-  <option>Não</option>
-</select>
+        <div id="msgEnquete"></div>
+      </form>
 
-<label>Como foi sua experiência?</label>
-<textarea name="bom" placeholder="Comida, organização, ambiente..."></textarea>
+    </div>
+  </main>
 
-<label>O que devemos melhorar?</label>
-<textarea name="melhorar" placeholder="Sugestões..."></textarea>
+  <footer>
+    6ª Festa do Padroeiro São Sebastião • FPSS 2027
+  </footer>
 
-<button type="submit">
-🚀 ENVIAR E CONCORRER
-</button>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/config.js"></script>
+  
+  <script>
+    // Função de preenchimento inteligente de localização via API ViaCEP
+    async function buscarEnderecoPorCEP() {
+      const cep = document.getElementById("cep").value.replace(/\D/g, "");
+      if (cep.length !== 8) return;
+      try {
+        const resposta = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+        const dados = await resposta.json();
+        if (!dados.erro) {
+          document.getElementById("cidade").value = dados.localidade;
+          document.getElementById("bairro").value = dados.bairro;
+          document.getElementById("rua").value = dados.logradouro;
+        }
+      } catch (f) { 
+        console.log("Erro ao buscar CEP."); 
+      }
+    }
 
-<div id="msg"></div>
+    document.addEventListener("DOMContentLoaded", function() {
+      const form = document.getElementById("formEnquete");
+      const msg = document.getElementById("msgEnquete");
 
-</form>
+      // Inicializa o cliente do Supabase utilizando as chaves injetadas do config.js
+      const supabaseUrl = window.FPSS_CONFIG?.SUPABASE_URL || "https://gffmgqvidgswvwnhyife.supabase.co";
+      const supabaseKey = window.FPSS_CONFIG?.SUPABASE_ANON_KEY;
 
-</div>
+      if (!supabaseKey) {
+        console.error("Erro: SUPABASE_ANON_KEY não foi encontrada.");
+        return;
+      }
 
-</section>
+      const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-<script src="../js/enquete.js"></script>
+      form.addEventListener("submit", async function(e) {
+        e.preventDefault(); // Trava o recarregamento indesejado da tela
+        
+        msg.style.color = "#333";
+        msg.innerHTML = "⏳ Gravando suas informações direto no banco de dados...";
 
+        const dataIso = new Date().toISOString();
+
+        // Mapeia os dados colhendo os valores da árvore do DOM exatamente como a tabela espera
+        const payload = {
+          nome: document.getElementById("nome").value,
+          whatsapp: document.getElementById("whatsapp").value,
+          aniversario: document.getElementById("aniversario").value,
+          cep: document.getElementById("cep").value,
+          cidade: document.getElementById("cidade").value,
+          bairro: document.getElementById("bairro").value,
+          rua: document.getElementById("rua").value,
+          endereco_numero: document.getElementById("endereco_numero").value,
+          comprou_antes: document.getElementById("comprou_antes").value,
+          pergunta1: document.querySelector('input[name="p1"]:checked')?.value || "",
+          pergunta2: document.querySelector('input[name="p2"]:checked')?.value || "",
+          pergunta3: document.querySelector('input[name="p3"]:checked')?.value || "",
+          pergunta4: document.querySelector('input[name="p4"]:checked')?.value || "",
+          criado_em: dataIso,
+          created_at: dataIso
+        };
+
+        try {
+          // Insere os dados diretamente na tabela do Supabase, ignorando o Render
+          const { data, error } = await _supabase
+            .from("enquetes")
+            .insert([payload]);
+
+          if (error) {
+            msg.style.color = "red";
+            msg.innerHTML = "❌ O banco de dados recusou o salvamento: " + error.message;
+            // IMPORTANTE: Não limpa o formulário em caso de erro para não perderes o que digitaste!
+          } else {
+            msg.style.color = "green";
+            msg.innerHTML = "✅ Obrigado por participar. Logo será avisado sobre a data do Sorteio";
+            form.reset(); // SÓ limpa o formulário após a confirmação real de gravação!
+            // REDIRECIONAMENTO PARA A PÁGINA DE OBRIGADO
+            window.location.href = "./obrigado.html";
+          }
+        } catch (erro) {
+          console.error(erro);
+          msg.style.color = "red";
+          msg.innerHTML = "❌ Falha crítica de comunicação com o Supabase.";
+        }
+      });
+    });
+  </script>
 </body>
 </html>

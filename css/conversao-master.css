@@ -1,1063 +1,140 @@
-/* =========================================
-   FPSS CONVERSÃO MASTER 2027
-   VERSÃO LIMPA • ESTRUTURA PROFISSIONAL • HERO CORRIGIDO
-========================================= */
-
-/* RESET BASE */
-
-body{
-    background:#f7f1e8;
-    color:#222;
-    font-family:Arial, Helvetica, sans-serif;
-    overflow-x:hidden;
-}
-
-.wrap{
-    width:min(1600px,94%);
-    margin:auto;
-}
-
-/* =========================================
-   TOPBAR MASTER
-========================================= */
-/* ==========================================
-HEADER MASTER INTELIGENTE FPSS
-========================================== */
-
-.topbar-master{
-    position:sticky;
-    top:0;
-    z-index:9999;
-    background:linear-gradient(180deg,#8b0000,#b30000);
-    box-shadow:0 4px 14px rgba(0,0,0,.18);
-    padding:3px 8px;
-    transition:all .35s ease;
-}
-
-.header-main{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:8px;
-    flex-wrap:nowrap;
-    min-height:52px;
-}
-
-.menu-toggle{
-  display:none;
-  background:rgba(255,255,255,.08);
-  border:none;
-  color:#fff;
-  font-size:26px;
-  padding:6px 10px;
-  border-radius:10px;
-  cursor:pointer;
-}
-
-.brand-area{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  min-width:auto;
-  flex-shrink:0;
-}
-
-.brand-logo{
-    width:42px;
-    height:42px;
-    object-fit:contain;
-    flex-shrink:0;
-}
-
-.brand-text{
-  display:flex;
-  flex-direction:column;
-  line-height:1.05;
-}
-
-.brand-top{
-  color:#ffd54a;
-  font-size:11px;
-  font-weight:800;
-}
-
-.brand-text h1{
-    font-size:24px;
-    line-height:.9;
-    margin:0;
-}
-
-.brand-text p{
-    font-size:9px;
-    margin:0;
-    line-height:1.1;
-}
-
-.btn-header-buy{
-    padding:7px 14px;
-    font-size:13px;
-    border-radius:10px;
-    font-weight:900;
-}
-
-.menu-master{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:8px;
-}
-
-.menu-master a{
-  flex:1;
-  text-align:center;
-  background:rgba(255,255,255,.08);
-  color:#fff;
-  text-decoration:none;
-  padding:8px 10px;
-  border-radius:12px;
-  font-size:13px;
-  font-weight:700;
-}
-
-/* HEADER COMPACTO AO ROLAR */
-.topbar-master.compact{
-  padding:4px 8px;
-}
-
-.topbar-master.compact .brand-logo{
-  width:34px;
-  height:34px;
-}
-
-.topbar-master.compact .brand-text h1{
-  font-size:18px;
-}
-
-.topbar-master.compact .brand-text p{
-  font-size:9px;
-}
-
-.topbar-master.compact .brand-top{
-  font-size:9px;
-}
-
-.topbar-master.compact .menu-master{
-  display:none;
-}
-
-.topbar-master.compact .menu-toggle{
-  display:block;
-}
-
-/* MENU ABERTO */
-.topbar-master.menu-open .menu-master{
-  display:flex !important;
-  margin-top:8px;
-}
-
-/* MOBILE */
-@media(max-width:768px){
-
-  .topbar-master{
-    padding:4px 8px;
-  }
-
-  .brand-logo{
-    width:38px;
-    height:38px;
-  }
-
-  .brand-text h1{
-    font-size:20px;
-  }
-
-  .brand-text p{
-    font-size:9px;
-  }
-
-  .brand-top{
-    font-size:9px;
-  }
-
-  .btn-header-buy{
-    padding:8px 10px;
-    font-size:12px;
-  }
-
-  .menu-master{
-    gap:6px;
-    margin-top:6px;
-  }
-
-  .menu-master a{
-    padding:7px 6px;
-    font-size:11px;
-    border-radius:10px;
-  }
-
-  .topbar-master.compact .menu-toggle{
-    display:block;
-    order:-1;
-  }
-
-}
-
-.topbar-wrap{
-    width:min(1600px,94%);
-    margin:auto;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:30px;
-    flex-wrap:wrap;
-}
-
-.brand-fpss{
-    display:flex;
-    align-items:center;
-    gap:16px;
-    text-decoration:none;
-}
-
-.brand-logo{
-    width:52px;
-    height:52px;
-    border-radius:18px;
-    overflow:hidden;
-    background:linear-gradient(135deg,#fff7cc,#ffd700);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    box-shadow:0 8px 18px rgba(0,0,0,.22);
-    flex-shrink:0;
-}
-
-.brand-logo img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-.brand-text{
-    display:flex;
-    flex-direction:column;
-    line-height:1.1;
-}
-
-.brand-kicker{
-    color:#ffd700;
-    font-size:13px;
-    font-weight:900;
-    text-transform:uppercase;
-    letter-spacing:1px;
-}
-
-.brand-title{
-    color:#fff;
-    font-size:24px;
-    font-weight:900;
-}
-
-.brand-sub{
-    color:#ffe9b3;
-    font-size:11px;
-    font-weight:700;
-}
-
-.menu-master{
-    display:flex;
-    align-items:center;
-    justify-content:flex-end;
-    gap:8px;
-    flex-wrap:nowrap;
-    margin-top:0;
-    margin-left:auto;
-    width:auto;
-}
-
-.menu-master a{
-    text-decoration:none;
-    padding:6px 9px;
-    border-radius:10px;
-    font-size:12px;
-    font-weight:800;
-    white-space:nowrap;
-}
-
-.menu-link{
-    color:#fff;
-    background:rgba(255,255,255,.08);
-}
-
-.menu-link:hover{
-    background:rgba(255,255,255,.18);
-    transform:translateY(-2px);
-}
-
-.menu-destaque{
-    background:linear-gradient(135deg,#ffffff,#fff3cd);
-    color:#8b1111;
-    border:3px solid #ffd700;
-    box-shadow:0 8px 18px rgba(0,0,0,.18);
-}
-
-.menu-destaque:hover{
-    transform:translateY(-3px);
-}
-
-/* =========================================
-   BARRA URGÊNCIA
-========================================= */
-.barra-urgencia{
-    background:linear-gradient(90deg,#ff1f1f,#c40000);
-    color:#fff;
-    text-align:center;
-    font-size:12px;
-    font-weight:900;
-    padding:5px 8px;
-    letter-spacing:.3px;
-    line-height:1.2;
-}
-
-/* =========================================
-   HERO MASTER
-========================================= */
-.hero-vendas{
-    background:
-      radial-gradient(circle at top left, rgba(255,215,0,.14), transparent 38%),
-      radial-gradient(circle at top right, rgba(255,255,255,.08), transparent 28%),
-      linear-gradient(135deg,#8b1111,#c41515 55%,#d60000);
-    color:#fff;
-    padding:20px 0 16px;
-    min-height:auto;
-    display:flex;
-    align-items:center;
-}
-
-.hero-vendas .wrap{
-    width:min(1600px,94%);
-    margin:auto;
-    position:relative;
-    z-index:5;
-}
-
-.hero-vendas .hero-grid{
-    display:grid;
-    grid-template-columns:1.15fr .85fr;
-    gap:40px;
-    align-items:center;
-    max-width:1400px;
-    margin:0 auto;
-}
-
-.hero-vendas .hero-grid > div:first-child{
-    width:100%;
-    min-width:0;
-    padding-left:0;
-    max-width:760px;
-}
-
-.badge-topo{
-    display:inline-block;
-    background:#ffd700;
-    color:#8b1111;
-    padding:10px 18px;
-    border-radius:999px;
-    font-weight:900;
-    margin-bottom:22px;
-    font-size:16px;
-}
-.hero-vendas h1{
-    font-size:clamp(42px,3.8vw,68px);
-    line-height:.9;
-    font-weight:900;
-    color:#fff;
-    margin-bottom:14px;
-    text-shadow:0 10px 28px rgba(0,0,0,.34);
-    white-space:normal;
-    letter-spacing:-2.5px;
-    max-width:760px;
-}
-.destaque-santo{
-    display:block;
-    color:#ffd700;
-    font-size:.98em;
-    line-height:.88;
-    text-shadow:0 4px 12px rgba(0,0,0,.28);
-}
-
-.subhero{
-    color:#fff;
-    font-size:16px;
-    font-weight:800;
-    line-height:1.45;
-    margin-bottom:18px;
-    max-width:760px;
-}
-/* CTA */
-.cta-group{
-    display:flex;
-    flex-wrap:wrap;
-    gap:20px;
-    margin-top:26px;
-}
-
-.btn,
-a.btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    padding:14px 24px;
-    border-radius:14px;
-    text-decoration:none;
-    font-weight:900;
-    font-size:18px;
-    border:none;
-    cursor:pointer;
-    transition:.3s;
-    box-shadow:0 8px 18px rgba(0,0,0,.2);
-}
-
-.btn.red{
-    background:linear-gradient(135deg,#ffffff,#fff3cd);
-    color:#8b1111;
-    border:4px solid #ffcc00;
-    text-transform:uppercase;
-}
-
-.btn.green{
-    background:#1faa4a;
-    color:#fff;
-}
-
-.btn:hover{
-    transform:translateY(-3px);
-}
-
-/* MINI INFO */
-.mini-info{
-    display:flex;
-    flex-wrap:wrap;
-    gap:14px;
-    margin-top:26px;
-    color:#fff;
-    font-weight:700;
-}
-
-.mini-info span{
-    background:rgba(255,255,255,.08);
-    padding:10px 14px;
-    border-radius:10px;
-}
-
-/* =========================================
-   HERO SIDE
-========================================= */
-/* ==========================================
-CARDS PRÊMIOS / DATA
-========================================== */
-
-.price-card{
-  background:#fff;
-  border:3px solid #f1c40f;
-  border-radius:18px;
-  padding:10px 12px;
-  min-height:96px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  gap:4px;
-  box-shadow:0 6px 16px rgba(0,0,0,.12);
-}
-
-.price-card.destaque{
-  border:3px solid #ffd700;
-}
-
-.price-card h3{
-  font-size:18px;
-  margin:0;
-  color:#8b0000;
-  font-weight:900;
-  line-height:1;
-}
-
-.price-card .valor{
-  font-size:clamp(34px,4vw,52px);
-  font-weight:900;
-  color:#b30000;
-  line-height:.95;
-  text-align:center;
-  margin:2px 0;
-}
-
-.price-card .subtexto{
-  text-align:center;
-  font-size:13px;
-  font-weight:700;
-  color:#8b0000;
-}
-
-/* MOBILE */
-@media(max-width:768px){
-
-  .price-card{
-    min-height:72px !important;
-    padding:8px !important;
-    border-radius:14px !important;
-  }
-
-  .price-card h3{
-    font-size:14px !important;
-  }
-
-  .price-card .valor{
-    font-size:32px !important;
-  }
-
-  .price-card .subtexto{
-    font-size:11px !important;
-  }
-
-}
-
-/* =========================================
-   CARD BASE
-========================================= */
-
-.card{
-    background:#f8f1df;
-    border-radius:18px;
-    padding:14px 0;
-    margin:8px auto;
-    border:1px solid rgba(139,17,17,.08);
-}
-
-
-.section-title{
-    color:#8b1111;
-    font-size:clamp(30px,4vw,56px);
-    font-weight:900;
-    text-align:center;
-    margin-bottom:20px;
-}
-
-/* CONTADOR */
-.contador-grid{
-    display:flex;
-    justify-content:center;
-    gap:18px;
-    flex-wrap:wrap;
-}
-
-.tempo-box{
-    background:#8b1111;
-    color:#fff;
-    padding:14px;
-    min-width:74px;
-    border-radius:18px;
-    text-align:center;
-}
-
-.tempo-box span{
-    font-size:28px;
-    font-weight:900;
-}
-
-/* GRID PRODUTOS */
-.grid-2{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:24px;
-}
-
-/* VENDA BOX */
-.venda-box{
-    background:#fff;
-    border:2px solid #f2bcbc;
-    border-radius:22px;
-    padding:14px;
-    position:relative;
-    box-shadow:0 8px 18px rgba(0,0,0,.08);
-}
-
-.venda-box::before{
-    content:"🔥 OFERTA LIMITADA";
-    position:absolute;
-    top:12px;
-    right:12px;
-    background:linear-gradient(135deg,#ff2b2b,#d60000);
-    color:#fff;
-    padding:8px 14px;
-    border-radius:10px;
-    font-size:11px;
-    font-weight:900;
-}
-
-.price-box{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    width:100%;
-    min-height:52px;
-    padding:10px 14px;
-    background:linear-gradient(135deg,#16a34a,#1faa4a);
-    color:#fff;
-    font-size:32px;
-    font-weight:900;
-    margin:14px 0;
-    border-radius:14px;
-    line-height:1;
-}
-
-.venda-box a{
-    display:block;
-    width:100%;
-    background:#1faa4a;
-    color:#fff;
-    text-align:center;
-    padding:14px;
-    border-radius:14px;
-    text-decoration:none;
-    font-weight:900;
-    font-size:18px;
-}
-
-/* DOAÇÃO */
-.doacao-cta{
-    background:linear-gradient(135deg,#f7fff7,#ebffeb);
-    padding:26px 0;
-}
-
-.doacao-box-main{
-    background:#fff;
-    border:3px solid #1faa4a;
-    border-radius:24px;
-    padding:34px;
-    text-align:center;
-}
-
-
-
-.vip-box{
-    background:rgba(255,255,255,.12);
-    color:#fff;
-    border-radius:24px;
-    padding:20px;
-    max-width:760px;
-    margin:auto;
-}
-
-.vip-box input,
-.vip-box button{
-    width:100%;
-    padding:16px;
-    margin-bottom:14px;
-    border-radius:12px;
-    border:none;
-}
-
-
-/* FOOTER */
-footer{
-    background:#111;
-    color:#fff;
-    text-align:center;
-    padding:14px;
-}
-
-
-.admin-footer{
-    background:#000;
-    text-align:center;
-    padding:8px;
-}
-
-.admin-footer a{
-    color:#ffd700;
-    text-decoration:none;
-    font-weight:900;
-}
-
-/* =========================================
-   RESPONSIVO
-========================================= */
-@media(max-width:1200px){
-
-    .hero-vendas .hero-grid{
-        grid-template-columns:1fr;
-        gap:40px;
+/* =====================================================
+   FPSS 2027 • CONVERSAO-MASTER.CSS DEFINITIVO
+   Patch de Força Bruta para Abertura da Cortina
+===================================================== */
+
+/* 1. CONFIGURAÇÃO BASE DA BARRA (PC e Mobile) */
+.barra-urgencia {
+    position: relative !important;
+    z-index: 1000 !important;
+    background: #facc15 !important;
+    color: #111 !important;
+    text-align: center;
+    padding: 11px 14px;
+    font-weight: 800;
+    font-size: 14px;
+}
+
+.topbar-master {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 999999 !important;
+    background: linear-gradient(180deg, #8b0000, #b30000) !important;
+    box-shadow: 0 4px 14px rgba(0,0,0,.25) !important;
+    padding: 8px 16px !important;
+    width: 100%;
+}
+
+.header-main {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    min-height: 52px !important;
+}
+
+.brand-area {
+    display: flex !important;
+    align-items: center !important;
+}
+
+.brand-text h1 {
+    font-size: 20px !important;
+    font-weight: 900 !important;
+    color: #ffffff !important;
+    margin: 0 !important;
+}
+
+.brand-text p {
+    font-size: 11px !important;
+    color: #fca5a5 !important;
+    margin: 0 !important;
+}
+
+/* 2. COMPORTAMENTO PADRÃO NO COMPUTADOR (DESKTOP) */
+.menu-master {
+    display: flex !important;
+    align-items: center !important;
+    gap: 20px !important;
+}
+
+.menu-master a {
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    padding: 6px 10px !important;
+    transition: color 0.2s ease;
+}
+
+.menu-master a:hover {
+    color: #facc15 !important;
+}
+
+.btn-header-buy {
+    background: #1fae42 !important;
+    color: #ffffff !important;
+    padding: 10px 18px !important;
+    border-radius: 8px !important;
+    font-weight: 800 !important;
+    font-size: 13px !important;
+    text-decoration: none !important;
+}
+
+/* Oculta o botão hambúrguer no computador por padrão */
+.menu-toggle {
+    display: none !important;
+}
+
+/* =====================================================
+   3. REGRAS CRÍTICAS DE INTERCEÇÃO MOBILE (ATÉ 768PX)
+===================================================== */
+@media (max-width: 768px) {
+    
+    .menu-toggle {
+        display: block !important;
+        background: none !important;
+        border: none !important;
+        color: #ffffff !important;
+        font-size: 32px !important;
+        cursor: pointer !important;
+        padding: 5px !important;
     }
 
-.hero-vendas .hero-grid > div:first-child{
-    min-width:unset;
-    padding-left:0;
-}
-
-    .hero-vendas h1{
-        font-size:clamp(54px,12vw,88px);
-        line-height:1;
+    /* ESCONDE A CORTINA NO MOBILE POR PADRÃO */
+    .topbar-master .menu-master {
+        display: none !important; 
+        flex-direction: column !important;
+        width: 100% !important;
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        background: #7f1d1d !important;
+        padding: 15px 0 !important;
+        box-shadow: 0 12px 30px rgba(0,0,0,0.4) !important;
+        gap: 0 !important;
+        z-index: 999999 !important;
     }
 
-    .subhero{
-        font-size:24px;
+    /* O MARTELO: SE TIVER A CLASSE MENU-OPEN, ABRE SEM DESCULPAS */
+    .topbar-master.menu-open .menu-master {
+        display: flex !important;
     }
 
-    .hero-side{
-        width:100%;
+    /* Ajuste fino dos links dentro da cortina mobile */
+    .topbar-master .menu-master a {
+        color: #ffffff !important;
+        width: 100% !important;
+        padding: 16px 24px !important;
+        border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+        font-size: 16px !important;
+        text-align: left !important;
+        display: block !important;
+        box-sizing: border-box !important;
     }
 
-    .price-card{
-        max-width:100%;
+    .topbar-master .menu-master a:hover {
+        background: rgba(0, 0, 0, 0.2) !important;
     }
-
-}
-
-@media(max-width:900px){
-
-    .grid-2{
-        grid-template-columns:1fr;
-    }
-
-    .topbar-wrap{
-        flex-direction:column;
-        align-items:flex-start;
-    }
-
-    .menu-master{
-        width:100%;
-        justify-content:flex-start;
-    }
-
-    .btn,
-    a.btn{
-        width:100%;
-    }
-
-}
-
-@media(max-width:700px){
-
-    .brand-title{
-        font-size:22px;
-    }
-
-    .brand-sub{
-        font-size:12px;
-    }
-
-    .brand-logo{
-        width:58px;
-        height:58px;
-    }
-
-    .menu-master{
-        display:grid;
-        grid-template-columns:repeat(2,1fr);
-        width:100%;
-    }
-
-    .menu-master a{
-        text-align:center;
-        width:100%;
-    }
-
-    .hero-vendas h1{
-        font-size:clamp(42px,11vw,64px);
-        letter-spacing:-1px;
-    }
-
-    .subhero{
-        font-size:20px;
-    }
-
-}
-/* =========================================
-  /* =========================================
-   HERO DECORAÇÃO DESATIVADA TEMPORARIAMENTE
-========================================= */
-
-.hero-vendas{
-    position:relative;
-    overflow:hidden;
-}
-
-.hero-vendas .wrap{
-    position:relative;
-    z-index:5;
-}
-
-.hero-grid,
-.hero-side{
-    position:relative;
-    z-index:5;
-}
-
-/* Decoração pausada para foco em estrutura */
-.hero-igreja,
-.hero-barraca,
-.hero-baloes,
-.bandeira-esquerda,
-.bandeira-direita{
-    display:none !important;
-}
-
-/* ==========================================
-MENU MOBILE COMPACTO REAL
-========================================== */
-@media(max-width:768px){
-
-  /* TOPO */
-  .topbar-fpss{
-    padding:8px 10px !important;
-  }
-
-  .brand-fpss{
-    gap:8px !important;
-    padding:4px 0 !important;
-    margin-bottom:10px !important;
-  }
-
-  .brand-logo{
-    width:44px !important;
-    height:44px !important;
-    min-width:44px !important;
-  }
-
-  .brand-kicker{
-    font-size:10px !important;
-  }
-
-  .brand-title{
-    font-size:16px !important;
-    line-height:1 !important;
-  }
-
-  .brand-sub{
-    font-size:9px !important;
-    line-height:1.2 !important;
-  }
-
-  /* MENU */
-  .menu-master{
-    display:grid !important;
-    grid-template-columns:repeat(3,1fr) !important;
-    gap:6px !important;
-    padding:0 !important;
-    margin:8px 0 0 0 !important;
-    width:100% !important;
-  }
-
-  .menu-master a,
-  .menu-link,
-  .menu-destaque{
-    min-height:auto !important;
-    height:36px !important;
-    padding:6px 6px !important;
-    font-size:11px !important;
-    font-weight:700 !important;
-    border-radius:10px !important;
-    display:flex !important;
-    align-items:center !important;
-    justify-content:center !important;
-    text-align:center !important;
-    line-height:1 !important;
-    white-space:nowrap !important;
-  }
-
-  /* BOTÃO FINAL */
-  .menu-destaque{
-    grid-column:1 / -1 !important;
-    height:38px !important;
-    margin-top:4px !important;
-  }
-
-  /* BARRA OFICIAL */
-  .barra-oficial,
-  .topbar-aviso{
-    font-size:10px !important;
-    padding:6px 8px !important;
-  }
-
-}
-
-   
-/* ==========================================
-BOTÃO FLUTUANTE + MOBILE MASTER FINAL
-========================================== */
-
-@media(max-width:768px){
-
-  /* BOTÃO FLUTUANTE */
-  .btn-flutuante,
-  .comprar-flutuante,
-  .botao-flutuante,
-  .floating-buy{
-    transform:scale(.78) !important;
-    transform-origin:bottom right !important;
-    right:8px !important;
-    bottom:8px !important;
-    max-width:160px !important;
-    min-height:auto !important;
-    padding:10px 14px !important;
-    font-size:13px !important;
-    border-radius:999px !important;
-    z-index:40 !important;
-  }
-
-  /* HERO */
-  .hero-vendas{
-    padding:8px 0 6px !important;
-    min-height:auto !important;
-  }
-
-  .hero-vendas h1{
-    font-size:clamp(30px,7vw,42px) !important;
-    margin-bottom:8px !important;
-    line-height:.92 !important;
-    letter-spacing:-1px !important;
-  }
-
-  .badge-topo{
-    padding:6px 12px !important;
-    font-size:11px !important;
-    margin-bottom:10px !important;
-  }
-
-  .subhero{
-    font-size:13px !important;
-    margin-bottom:10px !important;
-    line-height:1.35 !important;
-  }
-
-  .cta-group{
-    gap:10px !important;
-    margin-top:12px !important;
-  }
-
-  .btn,
-  a.btn{
-    padding:10px 12px !important;
-    font-size:14px !important;
-    border-radius:10px !important;
-  }
-
-  .mini-info{
-    gap:8px !important;
-    margin-top:12px !important;
-  }
-
-  .mini-info span{
-    padding:6px 8px !important;
-    font-size:11px !important;
-  }
-
-  /* HERO SIDE */
-  .hero-side{
-    gap:10px !important;
-  }
-
-  .price-card{
-    min-height:72px !important;
-    padding:10px !important;
-    border-radius:16px !important;
-  }
-
-  .price-card h3{
-    font-size:18px !important;
-    margin-bottom:4px !important;
-  }
-
-  .price-card .valor{
-    font-size:26px !important;
-  }
-
-  /* CARDS */
-  .card{
-    padding:12px 0 !important;
-    margin:10px auto !important;
-  }
-
-  .section-title{
-    font-size:28px !important;
-    margin-bottom:12px !important;
-  }
-
-  /* CONTADOR */
-  .contador-grid{
-    gap:8px !important;
-  }
-
-  .tempo-box{
-    min-width:52px !important;
-    padding:8px !important;
-    border-radius:12px !important;
-  }
-
-  .tempo-box span{
-    font-size:18px !important;
-  }
-
-  /* PRODUTOS */
-  .venda-box{
-    padding:12px !important;
-  }
-
-  .venda-box img{
-    max-height:130px !important;
-    object-fit:cover !important;
-  }
-
-  .price-box{
-    min-height:36px !important;
-    font-size:24px !important;
-    margin:10px 0 !important;
-  }
-
-  .venda-box a{
-    padding:10px !important;
-    font-size:15px !important;
-  }
-
-  /* DOAÇÃO */
-  .doacao-cta{
-    padding:14px 0 !important;
-  }
-
-  .doacao-box-main{
-    padding:18px !important;
-  }
-
-  /* VIP */
-  .vip-box{
-    padding:14px !important;
-    border-radius:18px !important;
-  }
-
-  .vip-box h2{
-    font-size:28px !important;
-    line-height:1.1 !important;
-    margin-bottom:10px !important;
-  }
-
-  .vip-box input{
-    padding:10px !important;
-    font-size:13px !important;
-    margin-bottom:8px !important;
-  }
-
-  .vip-box button{
-    padding:12px !important;
-    font-size:16px !important;
-  }
-
-  /* FOOTER */
-  footer{
-    padding:10px !important;
-  }
-
-  .admin-footer{
-    padding:6px !important;
-  }
-
 }

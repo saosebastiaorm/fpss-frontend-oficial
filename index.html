@@ -9,366 +9,910 @@
 
   <meta name="description"
   content="24 de Janeiro de 2027. Produtos oficiais FPSS, churrasco, cartela e prêmios. Garanta já sua participação.">
-  <!-- CSS (ORDEM CORRETA) -->
+  
   <link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/layout.css">
-<link rel="stylesheet" href="css/components.css">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/produtos.css">
-<link rel="stylesheet" href="css/doacao.css">
-<link rel="stylesheet" href="css/enquete.css">
-<link rel="stylesheet" href="css/vip.css">
-<link rel="stylesheet" href="css/mobile.css">
-<link rel="stylesheet" href="css/conversao-master.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/produtos.css">
+  <link rel="stylesheet" href="css/doacao.css">
+  <link rel="stylesheet" href="css/enquete.css">
+  <link rel="stylesheet" href="css/vip.css">
+  <link rel="stylesheet" href="css/mobile.css">
+  <link rel="stylesheet" href="css/conversao-master.css">
+
+  <style>
+    /* FORÇANDO O RETORNO DA IDENTIDADE VISUAL CLARA E REGULANDO O ZOOM DA TELA */
+    body {
+      background-color: #f7f3eb !important;
+      color: #111111 !important;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    /* Limpeza total de fundos pesados e pretos antigos */
+    .main-container, .hero-master, .doacao-section {
+      background-color: transparent !important;
+    }
+
+    .left-content, .left-content p, .section-title, h2, h3, p {
+      color: #111111 !important;
+    }
+
+    .section-title, h2 {
+      color: #8b1111 !important;
+      font-weight: 800 !important;
+    }
+
+    /* ====================================================================
+       REDUÇÃO DE ALTURA E AJUSTE DA ÁREA VIP
+    ==================================================================== */
+    .vip-section {
+      background-color: transparent !important;
+      padding: 15px 0 !important; /* Altura reduzida para tirar o espaço gigante */
+      margin: 10px 0 !important;
+    }
+
+    .vip-box {
+      background: #ffffff !important;
+      border: 1px solid #e5e7eb !important;
+      border-radius: 18px !important;
+      padding: 25px !important; /* Reduzido o estofamento interno */
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04) !important;
+      text-align: center !important;
+      max-width: 700px;
+      margin: 0 auto !important;
+    }
+
+    .vip-box h2 {
+      color: #15803d !important; /* Verde WhatsApp nos textos do bloco */
+      font-size: 22px !important;
+      margin-bottom: 8px !important;
+    }
+
+    /* Centralização perfeita do botão VIP no PC e Celular */
+    .vip-box .btn.green {
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+      margin: 15px auto 0 auto !important;
+      float: none !important;
+      text-align: center !important;
+      width: auto !important;
+      min-width: 280px;
+      padding: 12px 28px !important;
+      border-radius: 10px !important;
+      font-weight: 800 !important;
+      box-shadow: 0 4px 12px rgba(21, 128, 61, 0.2) !important;
+    }
+
+    /* ====================================================================
+       BOTÃO DA ENQUETE TOTALMENTE DESTACADO E COM VIDA (ALTA CONVERSÃO)
+    ==================================================================== */
+    .enquete-callout {
+      background-color: #ffffff !important;
+      border-top: 1px solid #e5e7eb !important;
+      border-bottom: 1px solid #e5e7eb !important;
+      padding: 35px 0 !important;
+      margin: 20px 0 !important;
+    }
+
+    .btn-enquete-premium {
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #e11d48 0%, #9f1239 100%) !important; /* Vermelho vibrante e vivo */
+      color: #ffffff !important;
+      padding: 15px 40px !important;
+      font-size: 16px !important;
+      font-weight: 800 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.5px !important;
+      border-radius: 12px !important;
+      text-decoration: none !important;
+      box-shadow: 0 4px 15px rgba(225, 29, 72, 0.4) !important;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    }
+
+    .btn-enquete-premium:hover {
+      transform: translateY(-3px) scale(1.02) !important;
+      box-shadow: 0 8px 25px rgba(225, 29, 72, 0.55) !important;
+      background: linear-gradient(135deg, #f43f5e 0%, #be123c 100%) !important;
+    }
+
+    /* ====================================================================
+       PAINEL DO CONTADOR ULTRA-PREMIUM (SUPERIOR AO ANTIGO)
+    ==================================================================== */
+    .countdown-container {
+      background: rgba(255, 255, 255, 0.4) !important;
+      border: 1px solid rgba(139, 17, 17, 0.15) !important;
+      border-radius: 18px !important;
+      padding: 18px 24px !important;
+      margin: 18px 0 !important;
+      max-width: 680px !important;
+      box-shadow: 0 10px 30px rgba(139, 17, 17, 0.05) !important;
+      backdrop-filter: blur(8px);
+    }
+
+    .countdown-label {
+      color: #b38600 !important;
+      font-size: 12px !important;
+      font-weight: 800 !important;
+      letter-spacing: 1.5px !important;
+      text-transform: uppercase !important;
+      margin-bottom: 14px !important;
+      display: block;
+    }
+
+    .countdown-timer {
+      display: flex !important;
+      gap: 12px !important;
+      justify-content: flex-start !important;
+    }
+
+    .time-block {
+      background: #ffffff !important;
+      border-radius: 14px !important;
+      padding: 14px 10px !important;
+      width: 82px !important;
+      text-align: center !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06) !important;
+      border: 1px solid #e5e7eb !important;
+    }
+
+    .time-block span {
+      color: #8b1111 !important;
+      font-size: 38px !important;
+      font-weight: 900 !important;
+      display: block !important;
+      line-height: 1 !important;
+    }
+
+    .time-block p {
+      color: #6b7280 !important;
+      font-size: 10px !important;
+      font-weight: 700 !important;
+      text-transform: uppercase !important;
+      margin: 5px 0 0 0 !important;
+    }
+
+    /* ====================================================================
+       VITRINE DE LOTES HORIZONTAIS PREMIUM EM DUAS COLUNAS NO PC
+    ==================================================================== */
+    .venda-container {
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 20px !important;
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+
+    .venda-box {
+      display: flex !important;
+      flex-direction: row !important;
+      background: #ffffff !important;
+      border: 1px solid #e5e7eb !important;
+      border-radius: 18px !important;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04) !important;
+      overflow: hidden !important;
+      color: #111111 !important;
+      padding: 0 !important;
+      min-height: 160px;
+      width: 100%;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .venda-box:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(139, 17, 17, 0.08) !important;
+    }
+
+    .venda-box img {
+      width: 120px !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      border-right: 3px solid #ffd54f !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      flex-shrink: 0;
+    }
+
+    .venda-box-conteudo {
+      flex: 1;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .venda-box h3 {
+      color: #8b1111 !important;
+      margin: 0 0 6px 0 !important;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+
+    .venda-box .info-list {
+      margin: 0 0 10px 0 !important;
+      padding-left: 0 !important;
+      list-style: none !important;
+    }
+
+    .venda-box .info-list li {
+      color: #4b5563 !important;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .badge-lote {
+      display: inline-block;
+      background-color: #fff1f2 !important;
+      color: #e11d48 !important;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 11px !important;
+      font-weight: 700;
+      border: 1px solid #ffe4e6;
+      margin-top: 5px;
+    }
+
+    .venda-box-rodape {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: auto;
+    }
+
+    .venda-box .price-box {
+      color: #16a34a !important;
+      font-size: 21px !important;
+      font-weight: 900 !important;
+      margin: 0 !important;
+    }
+
+    .venda-box .btn.green.full {
+      width: auto !important;
+      min-width: 155px;
+      padding: 10px 16px !important;
+      margin: 0 !important;
+      font-size: 11px !important;
+      border-radius: 8px !important;
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+      box-shadow: 0 4px 12px rgba(22, 163, 74, 0.15) !important;
+      transition: all 0.2s ease;
+    }
+
+    /* ====================================================================
+       CONTROLE E REESTRUTURAÇÃO DO ATENDIMENTO E DO RODAPÉ (FIM DO PRETO GIGANTE)
+    ==================================================================== */
+    .btn-atendimento-fixo {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+      color: #ffffff !important;
+      padding: 14px 24px;
+      border-radius: 50px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(18, 140, 126, 0.25);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      transition: opacity 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn-atendimento-fixo:hover {
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    /* Esconde o atendimento dinamicamente se o menu open estiver ativo no mobile */
+    .topbar-master.menu-open ~ .btn-atendimento-fixo {
+      opacity: 0 !important;
+      pointer-events: none;
+    }
+
+    footer {
+      background-color: #ffffff !important; /* Substituído o fundo preto por branco limpo */
+      border-top: 1px solid #e5e7eb !important;
+      padding: 15px 0 !important; /* Altura da comissão reduzida e compacta */
+      margin-top: 20px !important;
+    }
+
+    .content-grid {
+      display: grid !important;
+      grid-template-columns: 1fr !important;
+      gap: 40px !important;
+    }
+
+    @media (max-width: 992px) {
+      .venda-container {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .topbar-master.menu-open .menu-master {
+        display: flex !important;
+        flex-direction: column;
+        background: #ffffff;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+        padding: 15px 0;
+        border-top: 1px solid #e5e7eb;
+      }
+      .topbar-master .menu-master a {
+        color: #111111 !important;
+        padding: 12px 20px;
+        width: 100%;
+      }
+/* =========================================
+   MOBILE HEADER + HERO REAL FPSS
+========================================= */
+.brand-text h1{
+    font-size:15px !important;
+    line-height:1 !important;
+    margin:0 !important;
+    letter-spacing:-0.3px !important;
+}
+
+.brand-text p{
+    font-size:10px !important;
+    line-height:1.05 !important;
+    margin-top:2px !important;
+}
+
+.brand-area{
+    max-width:92px !important;
+    gap:6px !important;
+}
+
+.brand-area img,
+.logo img{
+    width:38px !important;
+    height:38px !important;
+}
+
+
+.barra-urgencia{
+    padding:10px 12px !important;
+    font-size:14px !important;
+    line-height:1.35 !important;
+}
+
+.header-main{
+    padding:8px 10px !important;
+    min-height:auto !important;
+    align-items:center !important;
+}
+
+.brand-area{
+    max-width:120px !important;
+    margin:0 !important;
+}
+
+
+
+.brand-text p{
+    font-size:11px !important;
+    line-height:1.15 !important;
+    margin-top:4px !important;
+}
+
+.menu-toggle{
+    width:44px !important;
+    height:44px !important;
+    font-size:28px !important;
+    padding:0 !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+}
+
+.btn-header-buy{
+    padding:8px 10px !important;
+    font-size:11px !important;
+    line-height:1.05 !important;
+    border-radius:10px !important;
+    max-width:110px !important;
+    min-width:95px !important;
+    min-height:auto !important;
+}
+
+.hero-master{
+    padding-top:8px !important;
+}
+
+.hero-left{
+    max-width:900px !important;
+    width:100% !important;
+    margin-bottom:8px !important;
+}
+
+.hero-left h2{
+    font-size:clamp(42px,5vw,72px) !important;
+    line-height:1.05 !important;
+    margin-bottom:8px !important;
+    font-weight:900 !important;
+    color:#8b1111 !important;
+}
+
+.hero-left p{
+    font-size:20px !important;
+    line-height:1.45 !important;
+    max-width:920px !important;
+    margin-bottom:14px !important;
+}
+
+.countdown-container{
+    padding:16px 22px !important;
+    border-radius:20px !important;
+    margin:14px 0 !important;
+}
+
+.countdown-timer{
+    justify-content:center !important;
+    gap:8px !important;
+}
+
+.time-block span{
+    font-size:32px !important;
+}
+
+.time-block span{
+    font-size:x !important;
+}
+
+.hero-actions{
+    display:flex !important;
+    flex-wrap:wrap !important;
+    gap:12px !important;
+    margin-top:10px !important;
+    margin-bottom:8px !important;
+}
+
+.hero-actions .btn{
+    width:100% !important;
+    justify-content:center !important;
+        padding:14px 24px !important;
+    font-size:17px !important;
+    border-radius:12px !important;
+    font-weight:900 !important;
+}
+
+
+    }
+
+    @media (max-width: 600px) {
+      .countdown-container {
+        margin: 20px auto !important;
+      }
+      .countdown-timer {
+        justify-content: center !important;
+      }
+      .venda-box {
+        flex-direction: column !important;
+      }
+      .venda-box img {
+        width: 100% !important;
+        height: 130px !important;
+        border-right: none !important;
+        border-bottom: 3px solid #ffd54f !important;
+      }
+      .venda-box-rodape {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .venda-box .btn.green.full {
+        width: 100% !important;
+      }
+    }
+
+/* =========================================
+   PREMIAÇÃO PREMIUM
+========================================= */
+.premiacao-subtitulo{
+    font-size:14px;
+    margin-bottom:14px;
+    color:#4b5563 !important;
+}
+
+.premiacao-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    margin-bottom:18px;
+    align-items:stretch;
+}
+.premio-card{
+    background:linear-gradient(180deg,#ffffff 0%, #f8fafc 100%);
+    border:1px solid #dbe3ea;
+    border-radius:16px;
+    padding:8px 10px;
+    text-align:center;
+    box-shadow:0 4px 10px rgba(0,0,0,.04);
+    min-height:100px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    transition:all .25s ease;
+}
+
+.premio-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(139,17,17,.08);
+}
+
+.premio-card .medalha{
+    display:block;
+    font-size:34px;
+    margin-bottom:4px;
+    line-height:1;
+}
+
+.premio-card strong{
+    display:block;
+    font-size:14px;
+    color:#8b1111;
+    margin-bottom:6px;
+    font-weight:900;
+    letter-spacing:.2px;
+}
+
+.premio-card .valor{
+    font-size:16px;
+    font-weight:900;
+    line-height:1.05;
+    margin-bottom:4px;
+}
+
+.premio-card small{
+    display:block;
+    margin-top:2px;
+    color:#475569;
+    font-size:13px;
+    font-weight:600;
+    line-height:1.2;
+}
+
+
+
+.ouro .valor{color:#d4a017;}
+.prata .valor{color:#8c8c8c;}
+.bronze .valor{color:#b86b2b;}
+.vermelho .valor{color:#d60000;}
+
+.premiacao-total-box{
+    background:linear-gradient(135deg,#fff7cc 0%, #ffe082 50%, #ffd54f 100%);
+    border:2px solid #e0a800;
+    border-radius:16px;
+    padding:14px;
+    text-align:center;
+    font-size:clamp(22px,3vw,44px);
+    font-weight:700;
+    color:#7a1c00;
+    margin:22px 0 18px;
+    box-shadow:0 8px 18px rgba(224,168,0,.18);
+    text-transform:uppercase;
+    letter-spacing:.5px;
+}
+
+.premium-alerta{
+    background:#fff8e1;
+    border:1px solid #f4c542;
+    border-radius:14px;
+    padding:14px;
+}
+
+/*MOBILE RESPONSIVO*/
+
+@media(max-width:768px){
+    .premiacao-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .premio-card{
+        min-height:135px;
+        padding:10px;
+    }
+
+    .premiacao-total-box{
+        font-size:22px;
+        padding:16px;
+    }
+}
+
+.left-content{
+    max-width:1400px;
+}
+
+.premiacao-grid{
+    gap:18px;
+}
+
+@media(max-width:520px){
+    .premiacao-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .premio-card{
+        min-height:115px;
+    }
+}
+  </style>
 </head>
 
 <body>
 
-
-  <!-- BARRA -->
   <div class="barra-urgencia">
     🔥 EVENTO OFICIAL FPSS • CHURRASCOS E CARTELAS LIMITADOS • GARANTA JÁ
   </div>
 
-  <!-- HERO -->
-<header class="topbar-master" id="topbarMaster">
-
-  <div class="header-main">
-
-    <button class="menu-toggle" id="menuToggle">☰</button>
-
-    <div class="brand-area">
-      <img src="img/logo-fpss.png" alt="FPSS" class="brand-logo">
-      <div class="brand-text">
-        <span class="brand-top">EVENTO OFICIAL</span>
-        <h1>FPSS</h1>
-        <p>Festa do Padroeiro São Sebastião</p>
-      </div>
-    </div>
-
-    <a href="#comprar" class="btn-header-buy">🛒 Comprar</a>
-
-  </div>
-
-  <nav class="menu-master" id="menuMaster">
-    <a href="#inicio">🏠 Início</a>
-    <a href="#churrasco">🍖 Churrasco</a>
-    <a href="#cartela">🎟️ Cartelas</a>
-    <a href="#doacao">💚 Doação</a>
-    <a href="#cliente">📄 Central do Cliente</a>
-    <a href="#whatsapp">📲 WhatsApp</a>
-  </nav>
-
-</header>
-
-
-  <!-- CONTADOR -->
- <section class="card center">
+  <div class="topbar-master" id="topbarMaster">
     <div class="wrap">
+      <div class="header-main">
+        
+        <button class="menu-toggle" id="menuToggle">☰</button>
 
-      <h2 class="section-title">⏰ Faltam poucos dias</h2>
-
-      <div class="contador-grid">
-        <div class="tempo-box"><span id="dias">00</span><small>Dias</small></div>
-        <div class="tempo-box"><span id="horas">00</span><small>Horas</small></div>
-        <div class="tempo-box"><span id="minutos">00</span><small>Minutos</small></div>
-      </div>
-
-      <p class="mt-20">🔥 Garanta antecipado antes que acabe.</p>
-
-    </div>
-  </section>
-
-  <!-- COMPRA -->
-  
-<!-- PRODUTOS DINÂMICOS -->
-<section class="card" id="comprar">
-  <div class="wrap">
-
-    <h2 class="section-title">🔥 Garanta Agora Seu Pedido</h2>
-
-    <div class="grid-2" id="produtosContainer">
-      <p>Carregando produtos...</p>
-    </div>
-
-  </div>
-</section>
-
-
-  <!-- DOAÇÃO -->
-  <section class="doacao-cta">
-
-    <div class="wrap">
-
-      <div class="doacao-box-main">
-
-        <h2>🙏 Ajude a manter essa tradição viva</h2>
-
-        <p>
-          Sua contribuição ajuda na organização da festa, premiações e estrutura.
-        </p>
-
-        <div class="doacao-valores">
-          <span>💚 R$10</span>
-          <span>💚 R$20</span>
-          <span>💚 R$50</span>
+        <div class="brand-area">
+          <div class="brand-text">
+            <h1>6ª FPSS 2027</h1>
+            <p>Festa de São Sebastião</p>
+          </div>
         </div>
 
-        <a href="doacao/doacao.html" class="btn-doar">
-          💚 FAZER DOAÇÃO AGORA
-        </a>
+        <nav class="menu-master">
+          <a href="index.html">Início</a>
+          <a href="#comprar">Prêmios</a>
+          <a href="enquete/enquete.html">Enquete</a>
+          <a href="vip.html" class="btn green">💚 ENTRAR NO GRUPO DO WHATSAPP</a>
+          <a href="doacao/doacao.html">Doações</a>
+        </nav>
 
-        <small>🔒 Doação via PIX • Rápido e seguro</small>
+        <a href="#comprar" class="btn-header-buy">🛒 COMPRAR AGORA</a>
 
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-master">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-left">
+          <h2>Participe da 6ª Festa do Padroeiro São Sebastião</h2>
+          <p>Colabore com as obras da nossa comunidade paroquial e concorra a prêmios espetaculares no sorteio oficial.</p>
+          
+          <div class="countdown-container">
+            <span class="countdown-label">⏳ O EVENTO COMEÇA EM:</span>
+            <div id="countdown" class="countdown-timer">
+              <div class="time-block"><span id="dias">00</span><p>Dias</p></div>
+              <div class="time-block"><span id="horas">00</span><p>Horas</p></div>
+              <div class="time-block"><span id="minutos">00</span><p>Min</p></div>
+              <div class="time-block"><span id="segundos">00</span><p>Seg</p></div>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#comprar" class="btn red">🛒 ADQUIRIR MEU NÚMERO</a>
+            <a href="enquete/enquete.html" class="btn green">📋 RESPONDER ENQUETE</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-container wrap" id="comprar">
+    <div class="content-grid">
+      
+<div class="left-content">
+
+  <h2 class="section-title">🏆 PREMIAÇÃO OFICIAL FPSS 2027</h2>
+
+  <p class="premiacao-subtitulo">
+    Comprando sua cartela oficial, você ajuda a nossa comunidade, a paróquia e concorre a:
+  </p>
+
+  <div class="premiacao-grid">
+
+    <div class="premio-card ouro">
+      <span class="medalha">🥇</span>
+      <strong>1º PRÊMIO</strong>
+      <div class="valor">R$ 12.000,00</div>
+      <small>Doze mil reais</small>
+    </div>
+
+    <div class="premio-card prata">
+      <span class="medalha">🥈</span>
+      <strong>2º PRÊMIO</strong>
+      <div class="valor">R$ 7.000,00</div>
+      <small>Sete mil reais</small>
+    </div>
+
+    <div class="premio-card bronze">
+      <span class="medalha">🥉</span>
+      <strong>3º PRÊMIO</strong>
+      <div class="valor">R$ 4.000,00</div>
+      <small>Quatro mil reais</small>
+    </div>
+
+    <div class="premio-card vermelho">
+      <span class="medalha">🏅</span>
+      <strong>4º PRÊMIO</strong>
+      <div class="valor">R$ 2.000,00</div>
+      <small>Dois mil reais</small>
+    </div>
+
+  </div>
+
+  <div class="premiacao-total-box">
+    💰 MAIS DE <strong>R$ 25.000,00</strong> EM PRÊMIOS
+  </div>
+
+  <div class="alerta-escassez premium-alerta">
+    ⚠️ <strong>Atenção:</strong> Churrascos e cartelas são limitados. Garanta antecipado antes do encerramento oficial.
+  </div>
+
+</div>
+
+      <div class="right-content">
+        <h2 class="section-title">🔥 GARANTA AGORA SEU PEDIDO (Lotes Limitados)</h2>
+        <div class="venda-container" id="produtosContainer">
+          <div class="loading-box">⏳ Carregando lotes oficiais disponíveis...</div>
+        </div>
       </div>
 
     </div>
+  </div>
 
-  </section>
+  <div class="enquete-callout" id="enquete">
+    <div class="wrap" style="max-width: 800px; margin: 0 auto; text-align: center;">
+      
+      <a href="enquete/enquete.html" class="btn-enquete-premium">RESPONDER ENQUETE AGORA</a>
+    </div>
+  </div>
 
-  <!-- ENQUETE -->
-  <section class="card center" id="enquete">
+  <div class="vip-section" id="vip">
     <div class="wrap">
+      <div class="vip-box">
+        <h2>📢 Entre no Nosso Grupo VIP do WhatsApp</h2>
+        <p>Receba em primeira mão os avisos da paróquia, fotos dos preparativos da festa, atualizações dos sorteios e o resultado oficial dos ganhadores direto no seu celular.</p>
+        <a href="vip.html" class="btn green">💚 ENTRAR NO GRUPO DO WHATSAPP</a>
+      </div>
+    </div>
+  </div>
 
-      <h2 class="section-title">🔥 Enquete Oficial FPSS</h2>
+  <a href="https://wa.me/5500000000000" class="btn-atendimento-fixo" id="atendimentoFixo" target="_blank">
+    💬 Atendimento
+  </a>
 
-      <p class="mt-10">
-        Participe e concorra a uma <strong>camiseta Oficial da 6ª FPSS.</strong>
+  <footer id="mainFooter">
+    <div class="wrap" style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+      <p style="margin: 0; font-size: 14px; font-weight: 600;">6ª Festa do Padroeiro São Sebastião • FPSS 2027</p>
+      <p style="font-size: 11px; color: #9ca3af; margin: 0;">
+        Organização: Comissão Paroquial de Eventos • Todos os direitos reservados.
       </p>
-
-      <a href="/enquete/enquete.html" class="btn red full">
-        🚀 QUERO PARTICIPAR
+      <a href="admin/login.html" style="font-size: 11px; color: #8b1111; text-transform: uppercase; letter-spacing: 0.5px; font-weight: bold; margin-top: 4px; text-decoration: underline;">
+        🔐 Área Administrativa
       </a>
-
     </div>
-  </section>
-
-  <!-- VIP -->
-  <section class="vip-fpss">
-    <div class="vip-box">
-
-      <h2>🔥 ENTRE PARA O GRUPO VIP DA FPSS</h2>
-
-      <p>Receba novidades e ofertas antecipadas.</p>
-
-      <form id="formVIP">
-<div class="vip-form-group">
-  <label for="vip-nome">Nome Completo</label>
-  <input
-    type="text"
-    id="vip-nome"
-    name="nome"
-    placeholder="Digite seu nome completo"
-    required>
-</div>
-
-<div class="vip-form-group">
-  <label for="vip-whatsapp">WhatsApp</label>
-  <input
-    type="tel"
-    id="vip-whatsapp"
-    name="whatsapp"
-    placeholder="(69) 99999-9999"
-    required>
-</div>
-
-<div class="vip-form-group">
-  <label for="vip-cidade">Cidade</label>
-  <input
-    type="text"
-    id="vip-cidade"
-    name="cidade"
-    placeholder="Sua cidade"
-    required>
-</div>
-
-<div class="vip-form-group">
-  <label for="vip-bairro">Bairro</label>
-  <input
-    type="text"
-    id="vip-bairro"
-    name="bairro"
-    placeholder="Seu bairro"
-    required>
-</div>
-
-        <button type="submit">QUERO ENTRAR 🚀</button>
-      </form>
-
-      <div id="msgVIP"></div>
-
-    </div>
-  </section>
-
-  <!-- CONTATO -->
-  <section class="card center">
-    <div class="wrap">
-
-      <h2 class="section-title">📲 Atendimento</h2>
-
-      <a target="_blank"
-        href="https://wa.me/5569992014424"
-        class="btn green">
-        WhatsApp Oficial
-      </a>
-
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    6ª Festa do Padroeiro São Sebastião • FPSS 2027
   </footer>
 
-  <!-- ADMIN -->
-  <div class="admin-footer">
-    <a href="admin/login.html">🔐 Área Administrativa</a>
-  </div>
-
-  <!-- CONTADOR -->
   <script>
-    const dataEvento = new Date("2027-01-24 10:00:00").getTime();
+    async function carregarProdutosHome() {
+      try {
+        let baseUrl = "https://fpss-backend.onrender.com";
+        if (typeof FPSS_CONFIG !== 'undefined' && FPSS_CONFIG.BACKEND_URL) {
+          baseUrl = FPSS_CONFIG.BACKEND_URL;
+        }
 
-    function atualizarContador() {
-      const agora = new Date().getTime();
-      const distancia = dataEvento - agora;
+        const resposta = await fetch(`${baseUrl}/admin/produtos`);
+        const texto = await resposta.text();
+        let dados = JSON.parse(texto);
+        const container = document.getElementById("produtosContainer");
+        if (!container || !dados.sucesso || !dados.produtos.length) return;
 
-      if (distancia < 0) return;
+        container.innerHTML = "";
+        const ativos = dados.produtos.filter(p => p.ativo === true);
 
-      document.getElementById("dias").innerText =
-        Math.floor(distancia / (1000 * 60 * 60 * 24));
+        ativos.forEach(produto => {
+let link = "venda/compra-churrasco.html";
+let botao = "🛒 COMPRAR AGORA";
 
-      document.getElementById("horas").innerText =
-        Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-
-      document.getElementById("minutos").innerText =
-        Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
-    }
-
-    setInterval(atualizarContador, 1000);
-    atualizarContador();
-  </script>
-<script>
-async function carregarProdutosHome() {
-  try {
-    const res = await fetch("https://fpss-backend.onrender.com/produtos");
-    const data = await res.json();
-
-    const container = document.getElementById("produtosContainer");
-
-    if (!data.sucesso || !data.produtos || data.produtos.length === 0) {
-      container.innerHTML = "<p>Nenhum produto disponível no momento.</p>";
-      return;
-    }
-
-    container.innerHTML = "";
-    const churrasco = data.produtos.find(p => p.codigo === "CHU");
-    const cartela = data.produtos.find(p => p.codigo === "CAR");
-
-   
-    data.produtos.forEach(produto => {
-     let link = "https://wa.me/5569992014424?text=Olá,%20quero%20comprar%20" + encodeURIComponent(produto.nome);
-     let botao = "📲 Comprar Agora";
-
-      if (produto.codigo === "CHU") {
-        link = "./venda/compra-churrasco.html";
-        botao = "🍖 Comprar Churrasco";
-      } else if (produto.codigo === "CAR") {
-        link = "https://wa.me/5569992014424?text=Olá,%20quero%20comprar%20cartela%20FPSS";
-        botao = "🎟 Comprar Cartela";
-      } else if (produto.codigo === "DOE") {
-        link = "./doacao/doacao.html";
-        botao = "💚 Fazer Doação";
-      }
-
-
-const card = `
-  <div class="venda-box">
-
-    <img
-      src="${produto.imagem || 'https://via.placeholder.com/500x300?text=Produto+FPSS'}"
-      alt="${produto.nome}"
-      style="
-        width:100%;
-        height:230px;
-        object-fit:cover;
-        border-radius:14px;
-        margin-bottom:15px;
-        box-shadow:0 4px 12px rgba(0,0,0,0.12);
-      "
-    >
-
-    <h3>${produto.nome}</h3>
-
-    <ul class="info-list">
-      <li>✔ ${produto.descricao || "Produto oficial FPSS"}</li>
-      <li>✔ Estoque disponível: ${produto.estoque}</li>
-    </ul>
-
-    <div class="price-box">
-      R$ ${Number(produto.preco).toFixed(2).replace(".", ",")}
-    </div>
-
-    <a href="${link}" class="btn green full">
-      ${botao}
-    </a>
-
-  </div>
-`;
-
-
-
-
-
-      container.innerHTML += card;
-    });
-
-  } catch (erro) {
-    document.getElementById("produtosContainer").innerHTML =
-      "<p>Erro ao carregar produtos.</p>";
-
-    console.error("Erro produtos home:", erro);
-  }
+if (produto.tipo === "CAR") {
+  link = "venda/compra-cartela.html";
+  botao = "🛒 COMPRAR AGORA";
 }
 
-carregarProdutosHome();
-</script>
+          const imgUrl = produto.imagem || "css/img/placeholder.jpg";
+
+          container.innerHTML += `
+            <div class="venda-box">
+              <img src="${imgUrl}" alt="${produto.nome}">
+              <div class="venda-box-conteudo">
+                <div>
+                  <h3>${produto.nome}</h3>
+                  <ul class="info-list">
+                    <li>✔ ${produto.descricao || "Produto oficial FPSS"}</li>
+                    <li><span class="badge-lote">⏳ Lote Antecipado (Sujeito a alteração no dia)</span></li>
+                  </ul>
+                </div>
+                <div class="venda-box-rodape">
+                  <div class="price-box">R$ ${Number(produto.preco).toFixed(2).replace(".", ",")}</div>
+                  <a href="${link}" class="btn green full">${botao}</a>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+
+          } catch (erro) {
+        document.getElementById("produtosContainer").innerHTML = "<p>Erro ao carregar produtos.</p>";
+        console.error("Erro produtos home:", erro);
+      }
+    }
+
+    carregarProdutosHome();
+  </script>
+
+  <script src="js/config.js"></script>
   <script src="js/main.js"></script>
   <script src="js/countdown.js"></script>
   <script src="js/lightbox.js"></script>
   <script src="js/vip.js"></script>
   <script src="js/doacao.js"></script>
 
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const topbar = document.getElementById("topbarMaster");
+      const menuToggle = document.getElementById("menuToggle");
+      const btnAtendimento = document.getElementById("atendimentoFixo");
+      const footer = document.getElementById("mainFooter");
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
+      if (menuToggle && topbar) {
+        menuToggle.addEventListener("click", (e) => {
+          e.stopPropagation();
+          topbar.classList.toggle("menu-open");
+        });
 
-  const topbar = document.getElementById("topbarMaster");
-  const menuToggle = document.getElementById("menuToggle");
+        document.addEventListener("click", (e) => {
+          if (!topbar.contains(e.target)) {
+            topbar.classList.remove("menu-open");
+          }
+        });
+      }
 
-  if(!topbar) return;
+      /* OCULTA O BOTÃO FLUTUANTE QUANDO CHEGA NO FOOTER PARA NÃO SOBREPOR O ADMIN */
+      window.addEventListener("scroll", () => {
+        if (!topbar) return;
+        if (window.scrollY > 50) {
+          topbar.classList.add("scrolled");
+        } else {
+          topbar.classList.remove("scrolled");
+        }
 
-  /* SCROLL INTELIGENTE */
-  window.addEventListener("scroll", () => {
-
-    if(window.scrollY > 80){
-      topbar.classList.add("compact");
-    }else{
-      topbar.classList.remove("compact");
-      topbar.classList.remove("menu-open");
-    }
-
-  });
-
-  /* MENU HAMBÚRGUER */
-  if(menuToggle){
-    menuToggle.addEventListener("click", () => {
-      topbar.classList.toggle("menu-open");
+        if (btnAtendimento && footer) {
+          const footerPos = footer.getBoundingClientRect().top;
+          const screenHeight = window.innerHeight;
+          if (footerPos < screenHeight - 20) {
+            btnAtendimento.style.opacity = "0";
+            btnAtendimento.style.pointerEvents = "none";
+          } else {
+            btnAtendimento.style.opacity = "1";
+            btnAtendimento.style.pointerEvents = "auto";
+          }
+        }
+      });
     });
-  }
-
-});
-</script>
+  </script>
 
 </body>
 </html>

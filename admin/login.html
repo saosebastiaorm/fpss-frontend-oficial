@@ -4,50 +4,156 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Administrativo FPSS</title>
-
-    <link rel="stylesheet" href="/css/login.css">
-
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f7f3eb;
+            color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .login-box {
+            background: #ffffff;
+            padding: 45px 35px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(27, 67, 50, 0.06);
+            border: 1px solid rgba(27, 67, 50, 0.08);
+            text-align: center;
+        }
+
+        .logo-area {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1b4332; /* Verde oficial */
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+
+        p {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 35px;
+        }
+
+        form {
+            text-align: left;
+        }
+
+        .input-group {
+            margin-bottom: 22px;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #40916c;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 15px;
+            background-color: #faf9f6;
+            border: 1px solid #e1ded7;
+            border-radius: 10px;
+            transition: all 0.25s ease;
+            outline: none;
+            color: #1a1a1a;
+        }
+
+        input:focus {
+            border-color: #1b4332;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 4px rgba(27, 67, 50, 0.1);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #ffffff;
+            background-color: #1b4332;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+            box-shadow: 0 4px 12px rgba(27, 67, 50, 0.15);
+        }
+
+        button:hover {
+            background-color: #143225;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(27, 67, 50, 0.2);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        #mensagemErro {
+            margin-top: 25px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #d32f2f;
+            min-height: 20px;
+        }
+    </style>
 </head>
 <body>
 
 <div class="login-container">
-
     <div class="login-box">
-
-        <h1>🔐 FPSS Admin</h1>
-
-        <p>Acesso restrito ao painel administrativo</p>
+        <div class="logo-area">🏰</div>
+        <h1>FPSS ADMIN</h1>
+        <p>Painel de Controle Oficial</p>
 
         <form id="loginForm">
+            <div class="input-group">
+                <label for="email">E-mail de Acesso</label>
+                <input type="email" id="email" required placeholder="exemplo@fpss.com">
+            </div>
 
-            <label>Email:</label>
-            <input
-                type="email"
-                id="email"
-                required
-            >
+            <div class="input-group">
+                <label for="senha">Senha Segura</label>
+                <input type="password" id="senha" required placeholder="••••••••">
+            </div>
 
-            <label>Senha:</label>
-            <input
-                type="password"
-                id="senha"
-                required
-            >
-
-            <button type="submit" id="btnLogin">
-                ENTRAR
-            </button>
-
+            <button type="submit" id="btnLogin">Entrar no Painel</button>
         </form>
 
         <div id="mensagemErro"></div>
-
     </div>
-
 </div>
 
 <script src="/js/login.js"></script>
-
 </body>
 </html>

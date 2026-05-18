@@ -4,22 +4,290 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel Administrativo FPSS</title>
-
-    <link rel="stylesheet" href="/css/admin.css">
-
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f7f3eb;
+            color: #2d312e;
+            padding: 40px 24px;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        /* Topo do Painel */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+            background: #ffffff;
+            padding: 24px 32px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.015);
+            border: 1px solid rgba(27, 67, 50, 0.05);
+        }
+
+        header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1b4332;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        header p {
+            font-size: 13px;
+            color: #666666;
+            margin-top: 2px;
+        }
+
+        .logout-area {
+            font-size: 14px;
+            color: #666;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: #fdfcfb;
+            border: 1px solid #e1ded7;
+            transition: all 0.2s;
+        }
+        .logout-area:hover {
+            background: #ffebee;
+            color: #c62828;
+            border-color: #ffcdd2;
+        }
+
+        /* Bloco de Indicadores */
+        .resumo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin-bottom: 35px;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.015);
+            border: 1px solid rgba(27, 67, 50, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: #40916c;
+        }
+
+        .card.card-action::before {
+            background: #2d6a4f;
+        }
+
+        .card h3 {
+            font-size: 12px;
+            font-weight: 600;
+            color: #666666;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 12px;
+        }
+
+        .card span {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1b4332;
+        }
+
+        .card .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            color: #ffffff;
+            background-color: #1b4332;
+            padding: 12px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(27, 67, 50, 0.1);
+            margin-top: 5px;
+        }
+
+        .card .btn:hover {
+            background-color: #143225;
+            transform: translateY(-1px);
+        }
+
+        /* Seção de Filtros e Busca */
+        .filtros {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 25px;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 14px;
+            border: 1px solid rgba(27, 67, 50, 0.05);
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.01);
+        }
+
+        .filtros input, .filtros select {
+            padding: 12px 16px;
+            font-size: 14px;
+            border: 1px solid #e1ded7;
+            border-radius: 10px;
+            outline: none;
+            background-color: #faf9f6;
+            color: #2d312e;
+            transition: all 0.2s;
+        }
+
+        .filtros input {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .filtros input:focus, .filtros select:focus {
+            border-color: #1b4332;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(27, 67, 50, 0.05);
+        }
+
+        .filtros button {
+            padding: 12px 24px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #ffffff;
+            background-color: #2d6a4f;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: background-color 0.2s;
+        }
+
+        .filtros button:hover {
+            background-color: #1b4332;
+        }
+
+        /* Tabela Box Master */
+        .tabela-box {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(27, 67, 50, 0.05);
+            overflow: hidden;
+        }
+
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #1b4332;
+            color: #ffffff;
+            font-weight: 600;
+            padding: 18px 20px;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.8px;
+        }
+
+        td {
+            padding: 18px 20px;
+            border-bottom: 1px solid #f4f2ed;
+            color: #333333;
+            vertical-align: middle;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background-color: #faf9f5;
+        }
+
+        /* Status Badges Formatados */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+        .status-approved { background-color: #d8f3dc; color: #1b4332; }
+        .status-pending { background-color: #fde2e4; color: #ff4d6d; }
+        .status-cancelled { background-color: #e5e5e5; color: #666666; }
+
+        /* Botões de Ação Dinâmicos */
+        .btn-acao {
+            padding: 8px 14px;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid #e1ded7;
+            background: #ffffff;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #2d6a4f;
+            transition: all 0.2s;
+        }
+        .btn-acao:hover {
+            background: #1b4332;
+            color: #ffffff;
+            border-color: #1b4332;
+            box-shadow: 0 3px 8px rgba(27, 67, 50, 0.1);
+        }
+    </style>
 </head>
 <body>
 
 <div class="container">
-
     <header>
-        <h1>📊 Painel Administrativo FPSS</h1>
-        <p>Controle oficial de pedidos</p>
+        <div>
+            <h1>📊 Painel Admin • FPSS</h1>
+            <p>Monitoramento e gestão em tempo real de vendas e pedidos</p>
+        </div>
+        <a href="#" class="logout-area" id="btnLogout">Sair do Painel</a>
     </header>
 
     <section class="resumo">
-
         <div class="card">
             <h3>Total Arrecadado</h3>
             <span id="totalArrecadado">R$ 0,00</span>
@@ -35,65 +303,48 @@
             <span id="totalPedidos">0</span>
         </div>
 
-        <div class="card">
-            <h3>🍖 Retirada</h3>
-            <span>
-                <a href="/admin/retirada.html" class="btn">
-                    Abrir Retirada
-                </a>
-            </span>
+        <div class="card card-action">
+            <h3>Operações de Entrega</h3>
+            <a href="/admin/retirada.html" class="btn">Abrir Retirada 🍖</a>
         </div>
-
     </section>
 
     <section class="filtros">
-
-        <input
-            type="text"
-            id="busca"
-            placeholder="Buscar nome, CPF ou telefone..."
-        >
+        <input type="text" id="busca" placeholder="Filtrar por nome, CPF ou número de telefone...">
 
         <select id="filtroStatus">
-            <option value="">Todos Status</option>
-            <option value="PENDING">PENDENTE</option>
-            <option value="APPROVED">APROVADO</option>
-            <option value="CANCELLED">CANCELADO</option>
+            <option value="">Todos os Status</option>
+            <option value="PENDING">🔴 PENDENTE</option>
+            <option value="APPROVED">🟢 APROVADO</option>
+            <option value="CANCELLED">⚪ CANCELADO</option>
         </select>
 
-        <button id="btnAtualizar">
-            ATUALIZAR
-        </button>
-
+        <button id="btnAtualizar">Atualizar Dados</button>
     </section>
 
     <section class="tabela-box">
-
-        <table>
-
-            <thead>
-                <tr>
-                    <th>Pedido</th>
-                    <th>Nome</th>
-                    <th>CPF</th>
-                    <th>Telefone</th>
-                    <th>Qtd</th>
-                    <th>Total</th>
-                    <th>Retirada</th>
-                    <th>Status</th>
-                    <th>Ação</th>
-                </tr>
-            </thead>
-
-            <tbody id="tabelaPedidos"></tbody>
-
-        </table>
-
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nº Pedido</th>
+                        <th>Nome Completo</th>
+                        <th>CPF</th>
+                        <th>Telefone</th>
+                        <th>Qtd</th>
+                        <th>Total Pago</th>
+                        <th>Retirado</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaPedidos">
+                    </tbody>
+            </table>
+        </div>
     </section>
-
 </div>
 
 <script src="/js/admin.js"></script>
-
 </body>
 </html>

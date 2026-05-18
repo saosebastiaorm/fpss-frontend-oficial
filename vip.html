@@ -1,89 +1,294 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grupo VIP • 6ª FPSS 2027</title>
 
-<title>Grupo VIP FPSS</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/vip.css">
+  <link rel="stylesheet" href="css/mobile.css">
+  <link rel="stylesheet" href="css/conversao-master.css">
 
-<link rel="stylesheet" href="css/vip.css">
+  <style>
+    body {
+      background-color: #f7f3eb !important;
+      color: #111111 !important;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
+    }
 
+    .vip-main-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .vip-card-box {
+      background: #ffffff !important;
+      border: 1px solid #e5e7eb !important;
+      border-radius: 20px !important;
+      padding: 35px 30px !important;
+      max-width: 500px !important;
+      width: 100% !important;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+      text-align: center;
+    }
+
+    .vip-card-box h2 {
+      color: #15803d !important; 
+      font-size: 24px !important;
+      font-weight: 800 !important;
+      margin-bottom: 8px !important;
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+    }
+
+    .vip-card-box p {
+      color: #4b5563 !important;
+      font-size: 14px !important;
+      line-height: 1.5 !important;
+      margin-bottom: 25px !important;
+    }
+
+    .vip-form-group {
+      text-align: left !important;
+      margin-bottom: 16px !important;
+    }
+
+    .vip-form-group label {
+      display: block !important;
+      font-weight: 700 !important;
+      font-size: 12px !important;
+      color: #374151 !important;
+      margin-bottom: 5px !important;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .vip-form-group input {
+      width: 100% !important;
+      padding: 11px 14px !important;
+      font-size: 14px !important;
+      border: 1px solid #d1d5db !important;
+      border-radius: 8px !important;
+      background: #f9fafb !important;
+      outline: none !important;
+      transition: all 0.2s ease;
+      color: #333333 !important;
+    }
+
+    .vip-form-group input:focus {
+      border-color: #15803d !important;
+      box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.1) !important;
+      background: #ffffff !important;
+    }
+
+    .btn-vip-submit {
+      width: 100% !important;
+      background: linear-gradient(135deg, #25d366 0%, #15803d 100%) !important;
+      color: #ffffff !important;
+      padding: 14px !important;
+      font-size: 15px !important;
+      font-weight: 800 !important;
+      text-transform: uppercase !important;
+      border: none !important;
+      border-radius: 10px !important;
+      cursor: pointer !important;
+      box-shadow: 0 4px 15px rgba(21, 128, 61, 0.3) !important;
+      transition: all 0.2s ease !important;
+      margin-top: 10px !important;
+    }
+
+    .btn-vip-submit:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 6px 20px rgba(21, 128, 61, 0.45) !important;
+    }
+
+    #mensagemRetorno {
+      margin-top: 15px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    footer {
+      background-color: #ffffff !important;
+      border-top: 1px solid #e5e7eb !important;
+      padding: 15px 0 !important;
+      text-align: center;
+      margin-top: auto !important;
+    }
+  </style>
+  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-
 <body>
 
-<section class="vip-fpss">
-
-  <div class="vip-box">
-
-    <h2>🔥 GRUPO VIP FPSS</h2>
-
-    <p>Receba novidades da festa em primeira mão</p>
-
-    <form id="formVIP">
-
-      <!-- ORIGEM -->
-      <input type="hidden" name="origem" value="VIP">
-
-      <!-- NOME -->
-      <div class="vip-form-group">
-        <label for="vip-nome">Nome Completo</label>
-        <input
-          type="text"
-          id="vip-nome"
-          name="nome"
-          placeholder="Digite seu nome completo"
-          required>
-      </div>
-
-      <!-- WHATSAPP -->
-      <div class="vip-form-group">
-        <label for="vip-whatsapp">WhatsApp</label>
-        <input
-          type="tel"
-          id="vip-whatsapp"
-          name="whatsapp"
-          placeholder="(69) 99999-9999"
-          required>
-      </div>
-
-      <!-- CIDADE -->
-      <div class="vip-form-group">
-        <label for="vip-cidade">Cidade</label>
-        <input
-          type="text"
-          id="vip-cidade"
-          name="cidade"
-          placeholder="Sua cidade"
-          required>
-      </div>
-
-      <!-- BAIRRO -->
-      <div class="vip-form-group">
-        <label for="vip-bairro">Bairro</label>
-        <input
-          type="text"
-          id="vip-bairro"
-          name="bairro"
-          placeholder="Seu bairro"
-          required>
-      </div>
-
-      <!-- BOTÃO -->
-      <button type="submit">
-        ENTRAR NO VIP 🚀
-      </button>
-
-    </form>
-
-    <!-- MENSAGEM -->
-    <div id="msgVIP"></div>
-
+  <div class="barra-urgencia">
+    🔥 EVENTO OFICIAL FPSS • CHURRASCOS E CARTELAS LIMITADOS • GARANTA JÁ
   </div>
 
-</section>
+  <div class="topbar-master" id="topbarMaster">
+    <div class="wrap">
+      <div class="header-main">
+        <button class="menu-toggle" id="menuToggle">☰</button>
+        <div class="brand-area">
+          <div class="brand-text">
+            <h1>6ª FPSS 2027</h1>
+            <p>Festa de São Sebastião</p>
+          </div>
+        </div>
+        <nav class="menu-master">
+          <a href="index.html">Início</a>
+          <a href="index.html#comprar">Prêmios</a>
+          <a href="enquete/enquete.html">Enquete</a>
+          <a href="vip.html" class="active">Grupo VIP</a>
+          <a href="doacao/doacao.html">Doações</a>
+        </nav>
+        <a href="index.html#comprar" class="btn-header-buy">🛒 COMPRAR AGORA</a>
+      </div>
+    </div>
+  </div>
 
-<script src="js/vip.js"></script>
+  <main class="vip-main-container">
+    <div class="vip-card-box">
+      <h2>🔥 Grupo VIP FPSS</h2>
+      <p>Preencha os seus dados abaixo de forma correta para liberar o acesso exclusivo ao nosso grupo oficial do WhatsApp.</p>
 
+      <form id="formVIP">
+        <input type="hidden" name="origem" value="VIP">
+
+        <div class="vip-form-group">
+          <label for="vip-nome">Nome Completo</label>
+          <input type="text" id="vip-nome" name="nome" placeholder="Digite seu nome completo" required>
+        </div>
+
+        <div class="vip-form-group">
+          <label for="vip-whatsapp">WhatsApp</label>
+          <input type="tel" id="vip-whatsapp" name="whatsapp" placeholder="(69) 99999-9999" required>
+        </div>
+
+        <div class="vip-form-group">
+          <label for="vip-cidade">Cidade</label>
+          <input type="text" id="vip-cidade" name="cidade" placeholder="Sua cidade" required>
+        </div>
+
+        <div class="vip-form-group">
+          <label for="vip-bairro">Bairro</label>
+          <input type="text" id="vip-bairro" name="bairro" placeholder="Seu bairro" required>
+        </div>
+
+        <button type="submit" class="btn-vip-submit" id="btnEnviarVIP">Quero Entrar no Grupo VIP 🚀</button>
+        <div id="mensagemRetorno"></div>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p style="margin: 0; font-size: 13px; font-weight: 600; color: #4b5563;">6ª Festa do Padroeiro São Sebastião • FPSS 2027</p>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("formVIP");
+  const msg = document.getElementById("mensagemRetorno");
+  const btnSubmit = document.getElementById("btnEnviarVIP");
+
+  // Menu Responsivo
+  const topbar = document.getElementById("topbarMaster");
+  const menuToggle = document.getElementById("menuToggle");
+
+  if (menuToggle && topbar) {
+    menuToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      topbar.classList.toggle("menu-open");
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!topbar.contains(e.target)) {
+        topbar.classList.remove("menu-open");
+      }
+    });
+  }
+
+  // ENVIO VIP
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    btnSubmit.disabled = true;
+    btnSubmit.innerText = "Salvando dados e liberando acesso... ⏳";
+    msg.innerHTML = "";
+
+    const payload = {
+      origem: "VIP",
+      nome: document.getElementById("vip-nome").value.trim(),
+      whatsapp: document.getElementById("vip-whatsapp").value.trim(),
+      cidade: document.getElementById("vip-cidade").value.trim(),
+      bairro: document.getElementById("vip-bairro").value.trim()
+    };
+
+    try {
+      const API_URL =
+        window.location.hostname === "localhost" ||
+        window.location.hostname === "127.0.0.1"
+          ? "http://localhost:3000/api/vip"
+          : "https://fpss-backend.onrender.com/api/vip";
+
+      const resposta = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!resposta.ok) {
+        throw new Error(`Erro HTTP ${resposta.status}`);
+      }
+
+      const resultado = await resposta.json();
+
+      if (!resultado.sucesso) {
+        msg.style.color = "red";
+        msg.innerHTML = "❌ Erro: " + (resultado.erro || "Falha ao registrar.");
+        btnSubmit.disabled = false;
+        btnSubmit.innerText = "Quero Entrar no Grupo VIP 🚀";
+        return;
+      }
+
+      msg.style.color = "green";
+      msg.innerHTML = "✅ Sucesso! Redirecionando para o WhatsApp oficial...";
+
+      form.reset();
+
+      setTimeout(() => {
+        window.location.href = "https://chat.whatsapp.com/Kl8v9bsyr2fAcDbjs1xYyk";
+      }, 1000);
+
+    } catch (erro) {
+      console.error("Erro na requisição:", erro);
+
+      msg.style.color = "red";
+      msg.innerHTML = "❌ Erro de conexão com o servidor. Tente novamente.";
+
+      btnSubmit.disabled = false;
+      btnSubmit.innerText = "Quero Entrar no Grupo VIP 🚀";
+    }
+  });
+});
+</script>
+  </script>
 </body>
 </html>
