@@ -23,11 +23,24 @@
 
   <style>
     /* FORÇANDO O RETORNO DA IDENTIDADE VISUAL CLARA E REGULANDO O ZOOM DA TELA */
-    body {
-      background-color: #f7f3eb !important;
-      color: #111111 !important;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
+body{
+    font-family:'Poppins',sans-serif !important;
+
+    background:
+    linear-gradient(
+    180deg,
+    #f8f5ef 0%,
+    #f3efe6 100%
+    ) !important;
+
+    color:#2b2b2b !important;
+
+    margin:0 !important;
+
+    padding:0 !important;
+
+    overflow-x:hidden !important;
+}
 
     /* Limpeza total de fundos pesados e pretos antigos */
     .main-container, .hero-master, .doacao-section {
@@ -149,15 +162,7 @@
       justify-content: flex-start !important;
     }
 
-    .time-block {
-      background: #ffffff !important;
-      border-radius: 14px !important;
-      padding: 14px 10px !important;
-      width: 82px !important;
-      text-align: center !important;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06) !important;
-      border: 1px solid #e5e7eb !important;
-    }
+
 
     .time-block span {
       color: #8b1111 !important;
@@ -167,13 +172,6 @@
       line-height: 1 !important;
     }
 
-    .time-block p {
-      color: #6b7280 !important;
-      font-size: 10px !important;
-      font-weight: 700 !important;
-      text-transform: uppercase !important;
-      margin: 5px 0 0 0 !important;
-    }
 
     /* ====================================================================
        VITRINE DE LOTES HORIZONTAIS PREMIUM EM DUAS COLUNAS NO PC
@@ -340,6 +338,84 @@
       }
     }
 
+    /* ==================================================
+   HERO DESKTOP PREMIUM
+================================================== */
+
+.hero-master{
+    width:100% !important;
+
+    padding:34px 20px 18px !important;
+
+    display:flex !important;
+
+    justify-content:center !important;
+}
+
+.hero-grid{
+    width:100% !important;
+
+    max-width:1100px !important;
+
+    display:flex !important;
+
+    flex-direction:column !important;
+
+    align-items:center !important;
+
+    gap:28px !important;
+}
+
+.hero-left{
+    width:100% !important;
+
+    max-width:920px !important;
+
+    display:flex !important;
+
+    flex-direction:column !important;
+
+    align-items:center !important;
+
+    justify-content:center !important;
+
+    text-align:center !important;
+
+    margin:0 auto !important;
+
+    padding:0 !important;
+}
+
+.hero-left h2{
+    font-size:clamp(34px,5vw,58px) !important;
+
+    line-height:1.02 !important;
+
+    font-weight:900 !important;
+
+    color:#7a0000 !important;
+
+    margin-bottom:18px !important;
+
+    letter-spacing:-1.8px !important;
+
+    max-width:900px !important;
+}
+
+.hero-left p{
+    font-size:18px !important;
+
+    line-height:1.75 !important;
+
+    color:#4b5563 !important;
+
+    margin-bottom:28px !important;
+
+    max-width:760px !important;
+
+    text-align:center !important;
+}
+
     @media (max-width: 768px) {
    
 /* =========================================
@@ -414,36 +490,53 @@
 }
 
 .btn-header-buy{
-    padding:8px 10px !important;
-
-    font-size:10px !important;
-
-    border-radius:8px !important;
-
-    min-height:42px !important;
-
     display:flex !important;
 
     align-items:center !important;
 
     justify-content:center !important;
+
+    padding:8px 10px !important;
+
+    font-size:10px !important;
+
+    line-height:1.05 !important;
+
+    border-radius:10px !important;
+
+    max-width:102px !important;
+
+    min-width:92px !important;
+
+    min-height:40px !important;
+
+    font-weight:800 !important;
+
+    box-shadow:
+    0 5px 14px rgba(22,163,74,.18) !important;
 }
 
 /* =========================================
    HERO MOBILE
 ========================================= */
+/* ==================================================
+   HERO PREMIUM FPSS
+================================================== */
 
 .hero-master{
     width:100% !important;
 
-    padding:10px 16px 10px !important;
+    padding:34px 20px 18px !important;
 
     display:flex !important;
 
     justify-content:center !important;
 }
+
 .hero-grid{
     width:100% !important;
+
+    max-width:1100px !important;
 
     display:flex !important;
 
@@ -451,13 +544,21 @@
 
     align-items:center !important;
 
-    gap:18px !important;
+    gap:28px !important;
 }
 
 .hero-left{
     width:100% !important;
 
-    max-width:100% !important;
+    max-width:920px !important;
+
+    display:flex !important;
+
+    flex-direction:column !important;
+
+    align-items:center !important;
+
+    justify-content:center !important;
 
     text-align:center !important;
 
@@ -467,26 +568,35 @@
 }
 
 .hero-left h2{
-    font-size:clamp(20px,7vw,32px) !important;
+    font-size:clamp(34px,5vw,58px) !important;
 
-    line-height:1.05 !important;
+    line-height:1.02 !important;
 
     font-weight:900 !important;
 
     color:#7a0000 !important;
 
-    margin-bottom:10px !important;
+    margin-bottom:18px !important;
+
+    letter-spacing:-1.8px !important;
+
+    max-width:900px !important;
 }
 
 .hero-left p{
-    font-size:14px !important;
+    font-size:18px !important;
 
-    line-height:1.45 !important;
+    line-height:1.75 !important;
 
-    color:#333 !important;
+    color:#4b5563 !important;
 
-    margin-bottom:14px !important;
+    margin-bottom:28px !important;
+
+    max-width:760px !important;
+
+    text-align:center !important;
 }
+
 /* =========================================
    CONTADOR MOBILE
 ========================================= */
@@ -505,25 +615,42 @@
 
     margin-top:14px !important;
 }
-
 .time-block{
-    background:#fff !important;
+    background:#ffffff !important;
 
-    border-radius:14px !important;
+    border-radius:16px !important;
 
-    padding:14px 8px !important;
+    padding:16px 10px !important;
 
-    box-shadow:0 4px 10px rgba(0,0,0,.06) !important;
+    min-width:78px !important;
+
+    text-align:center !important;
+
+    box-shadow:
+        0 6px 16px rgba(0,0,0,.07) !important;
 
     border:1px solid #ececec !important;
+
+    transition:all .2s ease !important;
 }
 
 .time-block span{
     font-size:28px !important;
 }
-
 .time-block p{
-    font-size:13px !important;
+    margin-top:8px !important;
+
+    font-size:12px !important;
+
+    font-weight:700 !important;
+
+    color:#6b7280 !important;
+
+    text-transform:uppercase !important;
+
+    letter-spacing:.5px !important;
+
+    line-height:1 !important;
 }
 
 /* =========================================
@@ -631,15 +758,31 @@
     align-items:center !important;
     justify-content:center !important;
 }
-
 .btn-header-buy{
-    padding:8px 10px !important;
+    display:flex !important;
+
+    align-items:center !important;
+
+    justify-content:center !important;
+
+    padding:10px 14px !important;
+
     font-size:11px !important;
-    line-height:1.05 !important;
-    border-radius:10px !important;
-    max-width:110px !important;
-    min-width:95px !important;
-    min-height:auto !important;
+
+    line-height:1.1 !important;
+
+    border-radius:12px !important;
+
+    max-width:125px !important;
+
+    min-width:110px !important;
+
+    min-height:44px !important;
+
+    font-weight:800 !important;
+
+    box-shadow:
+    0 6px 18px rgba(22,163,74,.22) !important;
 }
 
 .hero-master{
@@ -648,38 +791,59 @@
 
 .hero-left{
     width:100% !important;
+
+    display:flex !important;
+
+    flex-direction:column !important;
+
+    align-items:center !important;
+
+    justify-content:center !important;
+
+    text-align:center !important;
+
     max-width:100% !important;
 
     padding:0 14px !important;
 
     margin:0 auto 10px auto !important;
-
-    text-align:center !important;
 }
+
 .hero-left h2{
-    font-size:clamp(18px,7vw,30px) !important;
+    color:#8b1111 !important;
 
-    line-height:1.12 !important;
+    font-size:clamp(24px,7vw,38px) !important;
 
-    margin-bottom:12px !important;
+    line-height:1.05 !important;
 
     font-weight:900 !important;
 
-    color:#8b1111 !important;
+    letter-spacing:-1.5px !important;
+
+    margin-bottom:16px !important;
 
     text-align:center !important;
 }
-
 .hero-left p{
-    font-size:16px !important;
+    font-size:17px !important;
 
-    line-height:1.5 !important;
+    line-height:1.6 !important;
 
-    margin-bottom:14px !important;
+    margin-bottom:22px !important;
 
     text-align:center !important;
 
-    max-width:100% !important;
+    max-width:95% !important;
+
+    margin-left:auto !important;
+
+    margin-right:auto !important;
+
+    color:#444444 !important;
+
+    font-weight:500 !important;
+
+    letter-spacing:-0.2px !important;
 }
 
 .countdown-container{
@@ -694,7 +858,13 @@
 }
 
 .time-block span{
-    font-size:32px !important;
+    font-size:38px !important;
+
+    font-weight:900 !important;
+
+    line-height:1 !important;
+
+    color:#8b1111 !important;
 }
 
 .hero-actions{
@@ -969,7 +1139,179 @@
     }
 
 }
+
+.header-ctas{
+    display:flex !important;
+
+    align-items:center !important;
+
+    gap:14px !important;
+}
+
+.btn-header-whatsapp{
+    display:flex !important;
+
+    align-items:center !important;
+
+    justify-content:center !important;
+
+    background:
+    linear-gradient(
+    135deg,
+    #25d366 0%,
+    #128c7e 100%
+    ) !important;
+
+    color:#ffffff !important;
+
+    padding:14px 22px !important;
+
+    border-radius:14px !important;
+
+    font-size:14px !important;
+
+    font-weight:800 !important;
+
+    text-decoration:none !important;
+
+    box-shadow:
+    0 8px 20px rgba(37,211,102,.22) !important;
+
+    transition:all .25s ease !important;
+}
+
+@media (max-width:768px){
+
+  /* ========================================
+   HEADER MOBILE PREMIUM
+======================================== */
+
+.topbar-master{
+    padding:0 !important;
+}
+
+.topbar-master .container-master{
+    padding:0 !important;
+}
+
+.topbar-master .menu-master{
+    width:100% !important;
+
+    display:flex !important;
+
+    flex-wrap:wrap !important;
+
+    align-items:center !important;
+
+    justify-content:space-between !important;
+
+    gap:10px !important;
+
+    padding:14px 14px 12px !important;
+}
+
+/* LOGO */
+
+.topbar-master .logo-master{
+    flex:1 !important;
+
+    min-width:120px !important;
+}
+
+.topbar-master .logo-master h1{
+    font-size:18px !important;
+
+    line-height:1 !important;
+
+    margin-bottom:4px !important;
+}
+
+.topbar-master .logo-master p{
+    font-size:10px !important;
+
+    opacity:.9 !important;
+}
+
+/* ESCONDE MENU NORMAL */
+
+.topbar-master .menu-master nav{
+    display:none !important;
+}
+
+/* BOTÃO COMPRAR */
+
+.btn-header-buy{
+    order:2 !important;
+
+    padding:10px 14px !important;
+
+    font-size:11px !important;
+
+    border-radius:12px !important;
+
+    min-width:120px !important;
+
+    justify-content:center !important;
+
+    font-weight:800 !important;
+
+    box-shadow:
+    0 6px 18px rgba(0,0,0,.18) !important;
+}
+
+/* WHATSAPP ABAIXO */
+
+.btn-header-whatsapp{
+    order:3 !important;
+
+    width:100% !important;
+
+    margin-top:4px !important;
+
+    justify-content:center !important;
+
+    padding:12px 16px !important;
+
+    font-size:13px !important;
+
+    border-radius:14px !important;
+
+    font-weight:800 !important;
+}
+    .btn-header-whatsapp{
+        padding:8px 10px !important;
+
+        font-size:10px !important;
+
+        border-radius:10px !important;
+
+        max-width:110px !important;
+
+        min-width:100px !important;
+
+        min-height:40px !important;
+
+        line-height:1.1 !important;
+
+        text-align:center !important;
+
+        box-shadow:
+        0 5px 14px rgba(37,211,102,.18) !important;
+    }
+
+}
+
+.btn-header-whatsapp:hover{
+    transform:translateY(-2px) !important;
+}
   </style>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
@@ -991,15 +1333,24 @@
           </div>
         </div>
 
-        <nav class="menu-master">
-          <a href="index.html">Início</a>
-          <a href="#comprar">Prêmios</a>
-          <a href="enquete/enquete.html">Enquete</a>
-          <a href="vip.html" class="btn green">💚 ENTRAR NO GRUPO DO WHATSAPP</a>
-          <a href="doacao/doacao.html">Doações</a>
-        </nav>
+<nav class="menu-master">
+  <a href="index.html">Início</a>
+  <a href="#comprar">Prêmios</a>
+  <a href="enquete/enquete.html">Enquete</a>
+  <a href="doacao/doacao.html">Doações</a>
+</nav>
 
-        <a href="#comprar" class="btn-header-buy">🛒 COMPRAR AGORA</a>
+<div class="header-ctas">
+
+  <a href="vip.html" class="btn-header-whatsapp">
+    💚 Grupo WhatsApp
+  </a>
+
+  <a href="#comprar" class="btn-header-buy">
+    🛒 Comprar Agora
+  </a>
+
+</div>
 
       </div>
     </div>
