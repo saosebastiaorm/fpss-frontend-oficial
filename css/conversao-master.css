@@ -91,50 +91,209 @@
    3. REGRAS CRÍTICAS DE INTERCEÇÃO MOBILE (ATÉ 768PX)
 ===================================================== */
 @media (max-width: 768px) {
-    
-    .menu-toggle {
-        display: block !important;
-        background: none !important;
-        border: none !important;
-        color: #ffffff !important;
-        font-size: 32px !important;
-        cursor: pointer !important;
-        padding: 5px !important;
-    }
 
-    /* ESCONDE A CORTINA NO MOBILE POR PADRÃO */
-    .topbar-master .menu-master {
-        display: none !important; 
-        flex-direction: column !important;
-        width: 100% !important;
-        position: absolute !important;
-        top: 100% !important;
-        left: 0 !important;
-        background: #7f1d1d !important;
-        padding: 15px 0 !important;
-        box-shadow: 0 12px 30px rgba(0,0,0,0.4) !important;
-        gap: 0 !important;
-        z-index: 999999 !important;
-    }
+/* ===== BASE ===== */
+body{
+    overflow-x:hidden;
+}
 
-    /* O MARTELO: SE TIVER A CLASSE MENU-OPEN, ABRE SEM DESCULPAS */
-    .topbar-master.menu-open .menu-master {
-        display: flex !important;
-    }
+.wrap{
+    width:94%;
+    max-width:94%;
+    margin:auto;
+}
 
-    /* Ajuste fino dos links dentro da cortina mobile */
-    .topbar-master .menu-master a {
-        color: #ffffff !important;
-        width: 100% !important;
-        padding: 16px 24px !important;
-        border-bottom: 1px solid rgba(255,255,255,0.08) !important;
-        font-size: 16px !important;
-        text-align: left !important;
-        display: block !important;
-        box-sizing: border-box !important;
-    }
+/* ===== HERO BAR TOPO ===== */
+.hero-bar{
+    font-size:11px !important;
+    line-height:1.4;
+    padding:8px 10px !important;
+    text-align:center;
+}
 
-    .topbar-master .menu-master a:hover {
-        background: rgba(0, 0, 0, 0.2) !important;
-    }
+/* ===== HEADER ===== */
+.header-master{
+    padding:10px 0 !important;
+}
+
+.header-master .wrap{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    gap:10px;
+}
+
+/* ===== LOGO ===== */
+.brand{
+    display:flex !important;
+    align-items:center !important;
+    gap:8px !important;
+    max-width:58%;
+}
+
+.brand h1{
+    font-size:13px !important;
+    line-height:1.1 !important;
+    margin:0 !important;
+}
+
+.brand p{
+    font-size:9px !important;
+    margin:0 !important;
+}
+
+/* ===== BOTÃO COMPRAR ===== */
+.btn-header-buy{
+    font-size:12px !important;
+    padding:10px 14px !important;
+    border-radius:10px !important;
+    white-space:normal !important;
+    text-align:center;
+    line-height:1.2;
+}
+
+/* ===== HERO ===== */
+.hero-master{
+    padding:18px 0 10px !important;
+}
+
+.hero-left h2{
+    font-size:22px !important;
+    line-height:1.15 !important;
+    text-align:center !important;
+    margin-bottom:10px !important;
+}
+
+.hero-left p{
+    font-size:15px !important;
+    line-height:1.5 !important;
+    text-align:center !important;
+    margin-bottom:14px !important;
+    padding:0 8px;
+}
+
+/* ===== CONTADOR ===== */
+.countdown-container{
+    padding:14px 10px !important;
+    border-radius:18px !important;
+}
+
+.countdown-label{
+    font-size:12px !important;
+    text-align:center;
+    display:block;
+    margin-bottom:10px !important;
+}
+
+.countdown-timer{
+    display:grid !important;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px !important;
+}
+
+.time-block{
+    padding:10px 4px !important;
+    border-radius:12px !important;
+}
+
+.time-block span{
+    font-size:18px !important;
+}
+
+.time-block p{
+    font-size:11px !important;
+}
+
+/* ===== BOTÕES HERO ===== */
+.hero-actions{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:10px !important;
+    margin-top:14px !important;
+}
+
+.hero-actions .btn{
+    width:100% !important;
+    justify-content:center !important;
+    font-size:16px !important;
+    padding:14px !important;
+}
+
+/* ===== PREMIAÇÃO ===== */
+.premios-grid{
+    grid-template-columns:repeat(2,1fr) !important;
+    gap:10px !important;
+}
+
+.premio-card{
+    padding:14px 8px !important;
+    min-height:auto !important;
+}
+
+.premio-card .valor{
+    font-size:20px !important;
+}
+
+/* ===== TOTAL PREMIAÇÃO ===== */
+.premiacao-total{
+    font-size:18px !important;
+    padding:14px 10px !important;
+    text-align:center !important;
+    line-height:1.3;
+}
+
+/* ===== PRODUTOS ===== */
+.produtos-grid{
+    grid-template-columns:1fr !important;
+    gap:14px !important;
+}
+
+/* ===== WHATSAPP FLUTUANTE ===== */
+.whatsapp-float,
+.atendimento-float{
+    transform:scale(0.82);
+    right:6px !important;
+    bottom:8px !important;
+}
+
+/* ===== MENU MOBILE CORRETO ===== */
+.nav{
+    display:none !important;
+}
+
+.btn-green{
+    display:none !important;
+}
+
+.menu-toggle{
+    display:flex !important;
+    align-items:center;
+    justify-content:center;
+    font-size:28px !important;
+    width:42px;
+    height:42px;
+    border-radius:10px;
+    background:#b30000;
+    color:#fff;
+}
+
+/* ===== HEADER ORGANIZADO ===== */
+.header-master .wrap{
+    display:grid !important;
+    grid-template-columns:42px 1fr auto !important;
+    align-items:center !important;
+    gap:10px !important;
+}
+
+.brand{
+    max-width:100% !important;
+    justify-content:flex-start !important;
+}
+
+.btn-header-buy{
+    min-width:92px;
+    padding:10px 8px !important;
+    font-size:11px !important;
+}
+
 }
