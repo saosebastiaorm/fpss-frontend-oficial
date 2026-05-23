@@ -1,214 +1,395 @@
-*{
-  box-sizing:border-box;
-  font-family:Arial,sans-serif;
+/* ==================================================
+   PRODUTOS CINEMATOGRÁFICOS FPSS
+================================================== */
+
+.produtos-premium-section{
+    padding:80px 20px 120px;
+
+    background:
+    linear-gradient(
+    180deg,
+    #f7f2e8 0%,
+    #efe3cf 100%
+    );
 }
 
-body{
-  margin:0;
-  background:#f4f4f4;
-  padding:20px;
+/* ==================================================
+   TOPO
+================================================== */
+
+.produtos-cinema-topo{
+    text-align:center;
+
+    margin-bottom:60px;
 }
 
-.container{
-  max-width:1400px;
-  margin:auto;
+.section-mini-title{
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:12px 26px;
+
+    border-radius:999px;
+
+    background:#ffcc00;
+
+    color:#5c0000;
+
+    font-size:14px;
+
+    font-weight:900;
+
+    letter-spacing:1px;
+
+    margin-bottom:24px;
+
+    box-shadow:
+    0 10px 25px rgba(255,204,0,.35);
 }
 
-h1{
-  color:#8b1111;
-  margin:0;
+.produtos-cinema-topo h2{
+    font-size:72px;
+
+    line-height:.95;
+
+    color:#7a0000;
+
+    font-weight:900;
+
+    text-transform:uppercase;
+
+    margin-bottom:25px;
+
+    text-shadow:
+    0 10px 30px rgba(0,0,0,.08);
 }
 
-.topo{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:15px;
-  margin-bottom:20px;
+
+.produtos-cinema-topo p{
+    max-width:900px;
+
+    margin:auto;
+
+    color:#5b5b5b;
+
+    font-size:20px;
+
+    line-height:1.7;
 }
 
-.menu-admin{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  justify-content:center;
-  margin-bottom:25px;
+/* ==================================================
+   GRID
+================================================== */
+
+.venda-container{
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
+    gap:35px;
+
+    width:100%;
 }
 
-.menu-admin a{
-  background:#8b1111;
-  color:#fff;
-  text-decoration:none;
-  padding:12px 18px;
-  border-radius:10px;
-  font-weight:bold;
+/* ==================================================
+   CARD
+================================================== */
+
+.venda-box{
+    position:relative;
+
+    overflow:hidden;
+
+    display:flex;
+
+    align-items:stretch;
+
+    min-height:280px;
+
+    border-radius:28px;
+
+    background:
+    linear-gradient(
+    135deg,
+    rgba(255,255,255,.96),
+    rgba(255,255,255,.90)
+    );
+
+    box-shadow:
+    0 18px 45px rgba(0,0,0,.10);
+
+    transition:
+    transform .35s ease,
+    box-shadow .35s ease;
 }
 
-.menu-admin a.ativo{
-  background:#228b22;
+/* BARRA DOURADA */
+
+.venda-box::before{
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:10px;
+    height:100%;
+
+    background:
+    linear-gradient(
+    180deg,
+    #ffcc00,
+    #ff7b00
+    );
 }
 
-.card{
-  background:#fff;
-  padding:20px;
-  border-radius:14px;
-  box-shadow:0 4px 15px rgba(0,0,0,0.08);
-  margin-bottom:25px;
+/* HOVER */
+
+.venda-box:hover{
+    transform:
+    translateY(-10px);
+
+    box-shadow:
+    0 28px 70px rgba(0,0,0,.18);
 }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(5, minmax(180px,1fr));
-  gap:15px;
+/* ==================================================
+   IMAGEM
+================================================== */
+
+.venda-box img{
+    width:250px;
+
+    min-width:250px;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
 }
 
-label{
-  font-weight:bold;
-  display:block;
-  margin-bottom:6px;
+/* ==================================================
+   CONTEÚDO
+================================================== */
+
+.venda-box-conteudo{
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    padding:30px;
 }
 
-input,
-textarea,
-select{
-  width:100%;
-  padding:10px;
-  border:1px solid #ccc;
-  border-radius:8px;
+/* ==================================================
+   TÍTULO
+================================================== */
+
+.venda-box h3{
+    color:#7a0000;
+
+    font-size:42px;
+
+    line-height:1;
+
+    font-weight:900;
+
+    margin-bottom:18px;
 }
 
-textarea{
-  resize:vertical;
-  min-height:90px;
+/* ==================================================
+   INFO
+================================================== */
+
+.info-list{
+    list-style:none;
+
+    padding:0;
+
+    margin:0;
 }
 
-button{
-  background:#228b22;
-  color:white;
-  border:none;
-  padding:14px 22px;
-  border-radius:10px;
-  cursor:pointer;
-  font-weight:bold;
-  font-size:16px;
+.info-list li{
+    color:#3f3f46;
+
+    font-size:17px;
+
+    line-height:1.6;
+
+    margin-bottom:12px;
 }
 
-button:hover{
-  opacity:0.92;
+/* ==================================================
+   BADGE
+================================================== */
+
+.badge-lote{
+    display:inline-flex;
+
+    align-items:center;
+
+    width:max-content;
+
+    margin-top:10px;
+
+    padding:10px 16px;
+
+    border-radius:999px;
+
+    background:#fff1f2;
+
+    border:1px solid #fecdd3;
+
+    color:#e11d48;
+
+    font-size:13px;
+
+    font-weight:800;
 }
 
-.btn-novo{
-  background:#8b1111;
+/* ==================================================
+   RODAPÉ
+================================================== */
+
+.venda-box-rodape{
+    display:flex;
+
+    align-items:end;
+
+    justify-content:space-between;
+
+    gap:25px;
+
+    margin-top:28px;
 }
 
-.btn-editar{
-  background:#007bff;
-  padding:8px 12px;
-  font-size:13px;
+/* ==================================================
+   PREÇO
+================================================== */
+
+.price-box{
+    color:#00a63e;
+
+    font-size:56px;
+
+    line-height:1;
+
+    font-weight:900;
 }
 
-.upload-horizontal{
-  display:grid;
-  grid-template-columns:2fr auto 1.3fr auto;
-  gap:10px;
-  align-items:center;
-  background:#fafafa;
-  border:1px dashed #ccc;
-  padding:12px;
-  border-radius:12px;
+/* ==================================================
+   BOTÃO
+================================================== */
+
+.venda-box .btn.green.full{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    min-width:230px;
+
+    padding:20px 28px;
+
+    border-radius:18px;
+
+    background:
+    linear-gradient(
+    135deg,
+    #16a34a,
+    #22c55e
+    );
+
+    color:#ffffff !important;
+
+    text-decoration:none;
+
+    font-size:16px;
+
+    font-weight:900;
+
+    letter-spacing:.5px;
+
+    text-transform:uppercase;
+
+    box-shadow:
+    0 15px 30px rgba(34,197,94,.30);
+
+    transition:.3s;
 }
 
-.file-label{
-  background:#8b1111;
-  color:#fff;
-  padding:10px 16px;
-  border-radius:8px;
-  cursor:pointer;
-  font-weight:bold;
-  text-align:center;
-  white-space:nowrap;
+.venda-box .btn.green.full:hover{
+    transform:
+    scale(1.04);
+
+    box-shadow:
+    0 20px 45px rgba(34,197,94,.40);
 }
 
-.file-label input{
-  display:none;
-}
+/* ==================================================
+   RESPONSIVO
+================================================== */
 
-.btn-upload{
-  background:#228b22;
-  white-space:nowrap;
-}
+@media(max-width:1200px){
 
-#statusUploadImagem{
-  display:block;
-  margin-top:8px;
-  font-weight:bold;
-  color:#228b22;
-}
+    .venda-container{
+        grid-template-columns:1fr;
+    }
 
-table{
-  width:100%;
-  border-collapse:collapse;
-  background:#fff;
-  border-radius:12px;
-  overflow:hidden;
-}
-
-th, td{
-  padding:12px;
-  border-bottom:1px solid #ddd;
-  text-align:left;
-  font-size:14px;
-}
-
-th{
-  background:#8b1111;
-  color:#fff;
-}
-
-tr:hover{
-  background:#fafafa;
-}
-
-.status{
-  padding:6px 10px;
-  border-radius:8px;
-  font-weight:bold;
-  font-size:12px;
-}
-
-.ativo{
-  background:#d4edda;
-  color:#155724;
-}
-
-.inativo{
-  background:#f8d7da;
-  color:#721c24;
-}
-
-@media(max-width:1100px){
-  .grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .upload-horizontal{
-    grid-template-columns:1fr;
-  }
 }
 
 @media(max-width:768px){
-  .grid{
-    grid-template-columns:1fr;
-  }
 
-  table{
-    display:block;
-    overflow-x:auto;
-  }
+    .produtos-cinema-topo h2{
+        font-size:42px;
+    }
 
-  .topo{
-    flex-direction:column;
-    align-items:flex-start;
-  }
+    .produtos-cinema-topo p{
+        font-size:16px;
+    }
+
+    .venda-box{
+        flex-direction:column;
+
+        min-height:auto;
+    }
+
+    .venda-box img{
+        width:100%;
+
+        min-width:100%;
+
+        height:240px;
+    }
+
+    .venda-box h3{
+        font-size:32px;
+    }
+
+    .price-box{
+        font-size:42px;
+    }
+
+    .venda-box-rodape{
+        flex-direction:column;
+
+        align-items:flex-start;
+    }
+
+    .venda-box .btn.green.full{
+        width:100%;
+
+        min-width:100%;
+    }
+
 }

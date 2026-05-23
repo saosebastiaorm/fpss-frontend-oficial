@@ -9,1310 +9,51 @@
 
   <meta name="description"
   content="24 de Janeiro de 2027. Produtos oficiais FPSS, churrasco, cartela e prêmios. Garanta já sua participação.">
-  
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/produtos.css">
-  <link rel="stylesheet" href="css/doacao.css">
-  <link rel="stylesheet" href="css/enquete.css">
-  <link rel="stylesheet" href="css/vip.css">
-  <link rel="stylesheet" href="css/mobile.css">
-  <link rel="stylesheet" href="css/conversao-master.css">
+  <meta name="theme-color" content="#220000">
 
-  <style>
-    /* FORÇANDO O RETORNO DA IDENTIDADE VISUAL CLARA E REGULANDO O ZOOM DA TELA */
-body{
-    font-family:'Poppins',sans-serif !important;
+<meta
+name="description"
+content="Site oficial da 6ª Festa do Padroeiro São Sebastião 2027. Premiações, atrações, churrasco, cartelas e programação oficial.">
 
-    background:
-    linear-gradient(
-    180deg,
-    #f8f5ef 0%,
-    #f3efe6 100%
-    ) !important;
+<meta
+property="og:title"
+content="6ª Festa do Padroeiro São Sebastião 2027">
 
-    color:#2b2b2b !important;
+<meta
+property="og:description"
+content="Participe da grande festa oficial FPSS 2027.">
 
-    margin:0 !important;
+<meta
+property="og:image"
+content="assets/imagens/og-image.jpg">
 
-    padding:0 !important;
 
-    overflow-x:hidden !important;
-}
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/hero.css">
+<link rel="stylesheet" href="css/premios.css">
+<link rel="stylesheet" href="css/produtos.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/enquete.css">
+<link rel="stylesheet" href="css/vip.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/mobile.css">
 
-    /* Limpeza total de fundos pesados e pretos antigos */
-    .main-container, .hero-master, .doacao-section {
-      background-color: transparent !important;
-    }
+<link rel="stylesheet" href="css/conversao-master.css">
 
-    .left-content, .left-content p, .section-title, h2, h3, p {
-      color: #111111 !important;
-    }
 
-    .section-title, h2 {
-      color: #8b1111 !important;
-      font-weight: 800 !important;
-    }
-
-    /* ====================================================================
-       REDUÇÃO DE ALTURA E AJUSTE DA ÁREA VIP
-    ==================================================================== */
-    .vip-section {
-      background-color: transparent !important;
-      padding: 15px 0 !important; /* Altura reduzida para tirar o espaço gigante */
-      margin: 10px 0 !important;
-    }
-
-    .vip-box {
-      background: #ffffff !important;
-      border: 1px solid #e5e7eb !important;
-      border-radius: 18px !important;
-      padding: 25px !important; /* Reduzido o estofamento interno */
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04) !important;
-      text-align: center !important;
-      max-width: 700px;
-      margin: 0 auto !important;
-    }
-
-    .vip-box h2 {
-      color: #15803d !important; /* Verde WhatsApp nos textos do bloco */
-      font-size: 22px !important;
-      margin-bottom: 8px !important;
-    }
-
-    /* Centralização perfeita do botão VIP no PC e Celular */
-    .vip-box .btn.green {
-      display: inline-flex !important;
-      align-items: center;
-      justify-content: center;
-      margin: 15px auto 0 auto !important;
-      float: none !important;
-      text-align: center !important;
-      width: auto !important;
-      min-width: 280px;
-      padding: 12px 28px !important;
-      border-radius: 10px !important;
-      font-weight: 800 !important;
-      box-shadow: 0 4px 12px rgba(21, 128, 61, 0.2) !important;
-    }
-
-    /* ====================================================================
-       BOTÃO DA ENQUETE TOTALMENTE DESTACADO E COM VIDA (ALTA CONVERSÃO)
-    ==================================================================== */
-    .enquete-callout {
-      background-color: #ffffff !important;
-      border-top: 1px solid #e5e7eb !important;
-      border-bottom: 1px solid #e5e7eb !important;
-      padding: 35px 0 !important;
-      margin: 20px 0 !important;
-    }
-
-    .btn-enquete-premium {
-      display: inline-flex !important;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #e11d48 0%, #9f1239 100%) !important; /* Vermelho vibrante e vivo */
-      color: #ffffff !important;
-      padding: 15px 40px !important;
-      font-size: 16px !important;
-      font-weight: 800 !important;
-      text-transform: uppercase !important;
-      letter-spacing: 0.5px !important;
-      border-radius: 12px !important;
-      text-decoration: none !important;
-      box-shadow: 0 4px 15px rgba(225, 29, 72, 0.4) !important;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-    }
-
-    .btn-enquete-premium:hover {
-      transform: translateY(-3px) scale(1.02) !important;
-      box-shadow: 0 8px 25px rgba(225, 29, 72, 0.55) !important;
-      background: linear-gradient(135deg, #f43f5e 0%, #be123c 100%) !important;
-    }
-
-    /* ====================================================================
-       PAINEL DO CONTADOR ULTRA-PREMIUM (SUPERIOR AO ANTIGO)
-    ==================================================================== */
-    .countdown-container {
-      background: rgba(255, 255, 255, 0.4) !important;
-      border: 1px solid rgba(139, 17, 17, 0.15) !important;
-      border-radius: 18px !important;
-      padding: 18px 24px !important;
-      margin: 18px 0 !important;
-      max-width: 680px !important;
-      box-shadow: 0 10px 30px rgba(139, 17, 17, 0.05) !important;
-      backdrop-filter: blur(8px);
-    }
-
-    .countdown-label {
-      color: #b38600 !important;
-      font-size: 12px !important;
-      font-weight: 800 !important;
-      letter-spacing: 1.5px !important;
-      text-transform: uppercase !important;
-      margin-bottom: 14px !important;
-      display: block;
-    }
-
-    .countdown-timer {
-      display: flex !important;
-      gap: 12px !important;
-      justify-content: flex-start !important;
-    }
-
-
-
-    .time-block span {
-      color: #8b1111 !important;
-      font-size: 38px !important;
-      font-weight: 900 !important;
-      display: block !important;
-      line-height: 1 !important;
-    }
-
-
-    /* ====================================================================
-       VITRINE DE LOTES HORIZONTAIS PREMIUM EM DUAS COLUNAS NO PC
-    ==================================================================== */
-    .venda-container {
-      display: grid !important;
-      grid-template-columns: repeat(2, 1fr) !important;
-      gap: 20px !important;
-      width: 100% !important;
-      max-width: 100% !important;
-    }
-
-    .venda-box {
-      display: flex !important;
-      flex-direction: row !important;
-      background: #ffffff !important;
-      border: 1px solid #e5e7eb !important;
-      border-radius: 18px !important;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04) !important;
-      overflow: hidden !important;
-      color: #111111 !important;
-      padding: 0 !important;
-      min-height: 125px;
-      width: 100%;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .venda-box:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 32px rgba(139, 17, 17, 0.08) !important;
-    }
-
-    .venda-box img {
-      width: 120px !important;
-      height: 100% !important;
-      object-fit: cover !important;
-      border-right: 3px solid #ffd54f !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      flex-shrink: 0;
-    }
-
-    .venda-box-conteudo {
-      flex: 1;
-      padding:8px 10px !important;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .venda-box h3 {
-      color: #8b1111 !important;
-      margin: 0 0 6px 0 !important;
-      font-size: 18px;
-      font-weight: 800;
-      letter-spacing: -0.3px;
-    }
-
-    .venda-box .info-list {
-      margin: 0 0 10px 0 !important;
-      padding-left: 0 !important;
-      list-style: none !important;
-    }
-
-.venda-box .info-list li {
-    color:#4b5563 !important;
-
-    font-size:11px !important;
-
-    line-height:1.2 !important;
-
-    margin-bottom:2px !important;
-}
-
-    .badge-lote {
-      display: inline-block;
-      background-color: #fff1f2 !important;
-      color: #e11d48 !important;
-      padding: 4px 8px;
-      border-radius: 6px;
-      font-size: 11px !important;
-      font-weight: 700;
-      border: 1px solid #ffe4e6;
-      margin-top: 5px;
-    }
-
-    .venda-box-rodape {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-top: auto;
-    }
-
-    .venda-box .price-box {
-      color: #16a34a !important;
-      font-size: 21px !important;
-      font-weight: 900 !important;
-      margin: 0 !important;
-    }
-
-    .venda-box .btn.green.full {
-      width: auto !important;
-      min-width: 155px;
-      padding: 10px 16px !important;
-      margin: 0 !important;
-      font-size: 11px !important;
-      border-radius: 8px !important;
-      text-transform: uppercase;
-      font-weight: 800;
-      letter-spacing: 0.3px;
-      box-shadow: 0 4px 12px rgba(22, 163, 74, 0.15) !important;
-      transition: all 0.2s ease;
-    }
-
-    /* ====================================================================
-       CONTROLE E REESTRUTURAÇÃO DO ATENDIMENTO E DO RODAPÉ (FIM DO PRETO GIGANTE)
-    ==================================================================== */
-    .btn-atendimento-fixo {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
-      color: #ffffff !important;
-      padding: 14px 24px;
-      border-radius: 50px;
-      font-weight: 700;
-      text-decoration: none;
-      box-shadow: 0 8px 24px rgba(18, 140, 126, 0.25);
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 15px;
-      transition: opacity 0.3s ease, transform 0.2s ease;
-    }
-
-    .btn-atendimento-fixo:hover {
-      transform: translateY(-2px) scale(1.02);
-    }
-
-    /* Esconde o atendimento dinamicamente se o menu open estiver ativo no mobile */
-    .topbar-master.menu-open ~ .btn-atendimento-fixo {
-      opacity: 0 !important;
-      pointer-events: none;
-    }
-
-    footer {
-      background-color: #ffffff !important; /* Substituído o fundo preto por branco limpo */
-      border-top: 1px solid #e5e7eb !important;
-      padding: 15px 0 !important; /* Altura da comissão reduzida e compacta */
-      margin-top: 20px !important;
-    }
-
-    .content-grid {
-      display: grid !important;
-      grid-template-columns: 1fr !important;
-      gap: 40px !important;
-    }
-
-    @media (max-width: 992px) {
-      .venda-container {
-        grid-template-columns: 1fr !important;
-      }
-    }
-
-    /* ==================================================
-   HERO DESKTOP PREMIUM
-================================================== */
-
-.hero-master{
-    width:100% !important;
-
-    padding:34px 20px 18px !important;
-
-    display:flex !important;
-
-    justify-content:center !important;
-}
-
-.hero-grid{
-    width:100% !important;
-
-    max-width:1100px !important;
-
-    display:flex !important;
-
-    flex-direction:column !important;
-
-    align-items:center !important;
-
-    gap:28px !important;
-}
-
-.hero-left{
-    width:100% !important;
-
-    max-width:920px !important;
-
-    display:flex !important;
-
-    flex-direction:column !important;
-
-    align-items:center !important;
-
-    justify-content:center !important;
-
-    text-align:center !important;
-
-    margin:0 auto !important;
-
-    padding:0 !important;
-}
-
-.hero-left h2{
-    font-size:clamp(34px,5vw,58px) !important;
-
-    line-height:1.02 !important;
-
-    font-weight:900 !important;
-
-    color:#7a0000 !important;
-
-    margin-bottom:18px !important;
-
-    letter-spacing:-1.8px !important;
-
-    max-width:900px !important;
-}
-
-.hero-left p{
-    font-size:18px !important;
-
-    line-height:1.75 !important;
-
-    color:#4b5563 !important;
-
-    margin-bottom:28px !important;
-
-    max-width:760px !important;
-
-    text-align:center !important;
-}
-
-    @media (max-width: 768px) {
-   
-/* =========================================
-   MOBILE HEADER + HERO REAL FPSS
-========================================= */
-
-.topbar-master{
-    padding:6px 10px !important;
-
-    min-height:62px !important;
-
-    display:flex !important;
-
-    align-items:center !important;
-
-    justify-content:space-between !important;
-}
-.brand-area{
-    max-width:92px !important;
-
-    min-width:92px !important;
-
-    display:flex !important;
-
-    align-items:center !important;
-}
-.menu-master{
-    display:none !important;
-}
-
-.topbar-master.menu-open .menu-master{
-    display:flex !important;
-    flex-direction:column !important;
-
-    position:absolute !important;
-
-    top:100% !important;
-    left:0 !important;
-
-    width:100% !important;
-
-    background:#8b1111 !important;
-
-    padding:12px !important;
-
-    gap:10px !important;
-
-    z-index:9999 !important;
-
-    box-shadow:0 10px 20px rgba(0,0,0,.15) !important;
-}
-
-.topbar-master.menu-open .menu-master a{
-    width:100% !important;
-
-    display:flex !important;
-    align-items:center !important;
-    justify-content:center !important;
-
-    padding:14px 16px !important;
-
-    background:rgba(255,255,255,.08) !important;
-
-    border-radius:12px !important;
-
-    color:#ffffff !important;
-
-    font-size:15px !important;
-    font-weight:700 !important;
-
-    text-decoration:none !important;
-}
-
-.btn-header-buy{
-    display:flex !important;
-
-    align-items:center !important;
-
-    justify-content:center !important;
-
-    padding:8px 10px !important;
-
-    font-size:10px !important;
-
-    line-height:1.05 !important;
-
-    border-radius:10px !important;
-
-    max-width:102px !important;
-
-    min-width:92px !important;
-
-    min-height:40px !important;
-
-    font-weight:800 !important;
-
-    box-shadow:
-    0 5px 14px rgba(22,163,74,.18) !important;
-}
-
-/* =========================================
-   HERO MOBILE
-========================================= */
-/* ==================================================
-   HERO PREMIUM FPSS
-================================================== */
-
-.hero-master{
-    width:100% !important;
-
-    padding:34px 20px 18px !important;
-
-    display:flex !important;
-
-    justify-content:center !important;
-}
-
-.hero-grid{
-    width:100% !important;
-
-    max-width:1100px !important;
-
-    display:flex !important;
-
-    flex-direction:column !important;
-
-    align-items:center !important;
-
-    gap:28px !important;
-}
-
-.hero-left{
-    width:100% !important;
-
-    max-width:920px !important;
-
-    display:flex !important;
-
-    flex-direction:column !important;
-
-    align-items:center !important;
-
-    justify-content:center !important;
-
-    text-align:center !important;
-
-    margin:0 auto !important;
-
-    padding:0 !important;
-}
-
-.hero-left h2{
-    font-size:clamp(34px,5vw,58px) !important;
-
-    line-height:1.02 !important;
-
-    font-weight:900 !important;
-
-    color:#7a0000 !important;
-
-    margin-bottom:18px !important;
-
-    letter-spacing:-1.8px !important;
-
-    max-width:900px !important;
-}
-
-.hero-left p{
-    font-size:18px !important;
-
-    line-height:1.75 !important;
-
-    color:#4b5563 !important;
-
-    margin-bottom:28px !important;
-
-    max-width:760px !important;
-
-    text-align:center !important;
-}
-
-/* =========================================
-   CONTADOR MOBILE
-========================================= */
-
-.countdown-container{
-    width:100% !important;
-    padding:14px !important;
-}
-
-.countdown-timer{
-    display:grid !important;
-
-    grid-template-columns:repeat(4,1fr) !important;
-
-    gap:10px !important;
-
-    margin-top:14px !important;
-}
-.time-block{
-    background:#ffffff !important;
-
-    border-radius:16px !important;
-
-    padding:16px 10px !important;
-
-    min-width:78px !important;
-
-    text-align:center !important;
-
-    box-shadow:
-        0 6px 16px rgba(0,0,0,.07) !important;
-
-    border:1px solid #ececec !important;
-
-    transition:all .2s ease !important;
-}
-
-.time-block span{
-    font-size:28px !important;
-}
-.time-block p{
-    margin-top:8px !important;
-
-    font-size:12px !important;
-
-    font-weight:700 !important;
-
-    color:#6b7280 !important;
-
-    text-transform:uppercase !important;
-
-    letter-spacing:.5px !important;
-
-    line-height:1 !important;
-}
-
-/* =========================================
-   BOTÕES MOBILE
-========================================= */
-
-.hero-actions{
-    display:flex !important;
-
-    flex-direction:column !important;
-
-    gap:12px !important;
-
-    width:100% !important;
-
-    margin-top:18px !important;
-}
-
-.hero-actions .btn{
-    width:100% !important;
-
-    justify-content:center !important;
-
-    min-height:48px !important;
-
-    border-radius:12px !important;
-
-    font-size:14px !important;
-
-    font-weight:800 !important;
-}
-
-.topbar-master .menu-master a{
-    display:flex !important;
-    align-items:center !important;
-    justify-content:center !important;
-
-    padding:12px 14px !important;
-
-    background:rgba(255,255,255,.08) !important;
-
-    border-radius:12px !important;
-
-    color:#ffffff !important;
-
-    font-size:15px !important;
-    font-weight:700 !important;
-
-    text-decoration:none !important;
-}
-/* =========================================
-   MOBILE HEADER + HERO REAL FPSS
-========================================= */
-.brand-text h1{
-    font-size:15px !important;
-    line-height:1 !important;
-    margin:0 !important;
-    letter-spacing:-0.3px !important;
-}
-
-.brand-text p{
-    font-size:10px !important;
-    line-height:1.05 !important;
-    margin-top:2px !important;
-}
-
-.brand-area img,
-.logo img{
-    width:38px !important;
-    height:38px !important;
-}
-
-
-.barra-urgencia{
-    padding:10px 12px !important;
-    font-size:14px !important;
-    line-height:1.35 !important;
-}
-
-.header-main{
-    padding:8px 10px !important;
-    min-height:auto !important;
-    align-items:center !important;
-}
-
-.brand-area{
-    max-width:150px !important;
-    min-width:150px !important;
-}
-
-
-
-.brand-text p{
-    font-size:11px !important;
-    line-height:1.15 !important;
-    margin-top:4px !important;
-}
-
-.menu-toggle{
-    width:44px !important;
-    height:44px !important;
-    font-size:28px !important;
-    padding:0 !important;
-    display:flex !important;
-    align-items:center !important;
-    justify-content:center !important;
-}
-.btn-header-buy{
-    display:flex !important;
-
-    align-items:center !important;
-
-    justify-content:center !important;
-
-    padding:10px 14px !important;
-
-    font-size:11px !important;
-
-    line-height:1.1 !important;
-
-    border-radius:12px !important;
-
-    max-width:125px !important;
-
-    min-width:110px !important;
-
-    min-height:44px !important;
-
-    font-weight:800 !important;
-
-    box-shadow:
-    0 6px 18px rgba(22,163,74,.22) !important;
-}
-
-.hero-master{
-    padding-top:8px !important;
-}
-
-.hero-left{
-    width:100% !important;
-
-    display:flex !important;
-
-    flex-direction:column !important;
-
-    align-items:center !important;
-
-    justify-content:center !important;
-
-    text-align:center !important;
-
-    max-width:100% !important;
-
-    padding:0 14px !important;
-
-    margin:0 auto 10px auto !important;
-}
-
-.hero-left h2{
-    color:#8b1111 !important;
-
-    font-size:clamp(24px,7vw,38px) !important;
-
-    line-height:1.05 !important;
-
-    font-weight:900 !important;
-
-    letter-spacing:-1.5px !important;
-
-    margin-bottom:16px !important;
-
-    text-align:center !important;
-}
-.hero-left p{
-    font-size:17px !important;
-
-    line-height:1.6 !important;
-
-    margin-bottom:22px !important;
-
-    text-align:center !important;
-
-    max-width:95% !important;
-
-    margin-left:auto !important;
-
-    margin-right:auto !important;
-
-    color:#444444 !important;
-
-    font-weight:500 !important;
-
-    letter-spacing:-0.2px !important;
-}
-
-.countdown-container{
-    padding:16px 22px !important;
-    border-radius:20px !important;
-    margin:14px 0 !important;
-}
-
-.countdown-timer{
-    justify-content:center !important;
-    gap:8px !important;
-}
-
-.time-block span{
-    font-size:38px !important;
-
-    font-weight:900 !important;
-
-    line-height:1 !important;
-
-    color:#8b1111 !important;
-}
-
-.hero-actions{
-    display:flex !important;
-    flex-wrap:wrap !important;
-    gap:12px !important;
-    margin-top:10px !important;
-    margin-bottom:8px !important;
-}
-
-.hero-actions .btn{
-    width:100% !important;
-
-    justify-content:center !important;
-
-    padding:13px 18px !important;
-
-    font-size:15px !important;
-
-    border-radius:12px !important;
-
-    font-weight:800 !important;
-
-    min-height:52px !important;
-}
-
-    }
-
-@media (max-width: 600px) {
-
-    .countdown-container{
-        margin:20px auto !important;
-    }
-
-    .countdown-timer{
-        justify-content:center !important;
-    }
-
-    /* =========================================
-       PRODUTOS MOBILE HORIZONTAL
-    ========================================= */
-
-    .venda-box{
-        display:flex !important;
-
-        flex-direction:row !important;
-
-        align-items:stretch !important;
-
-        min-height:125px !important;
-
-        overflow:hidden !important;
-    }
-
-    .venda-box img{
-        width:95px !important;
-
-        min-width:95px !important;
-
-        height:auto !important;
-
-        object-fit:cover !important;
-
-        border-right:3px solid #ffd54f !important;
-
-        border-bottom:none !important;
-    }
-
-    .venda-box-conteudo{
-        flex:1 !important;
-
-        padding:8px !important;
-
-        display:flex !important;
-
-        flex-direction:column !important;
-
-        justify-content:space-between !important;
-    }
-
-    .venda-box h3{
-        font-size:15px !important;
-        line-height:1.1 !important;
-        margin-bottom:6px !important;
-    }
-
-    .venda-box .info-list li{
-        font-size:12px !important;
-
-        line-height:1.4 !important;
-    }
-
-    .venda-box-rodape{
-        display:flex !important;
-
-        align-items:center !important;
-
-        justify-content:space-between !important;
-
-        flex-direction:row !important;
-
-        gap:10px !important;
-
-        margin-top:6px !important;
-    }
-
-    .venda-box .price-box{
-        font-size:15px !important;
-        line-height:1 !important;
-    }
-
-    .venda-box .btn.green.full{
-        width:auto !important;
-
-        min-width:92px !important;
-
-        padding:8px 10px !important;
-
-        font-size:9px !important;
-
-        border-radius:10px !important;
-
-        white-space:nowrap !important;
-    }
-}
-
-/* =========================================
-   PREMIAÇÃO PREMIUM
-========================================= */
-.premiacao-subtitulo{
-    font-size:14px;
-    margin-bottom:14px;
-    color:#4b5563 !important;
-}
-
-.premiacao-grid{
-    display:grid !important;
-
-    grid-template-columns:repeat(4,1fr) !important;
-
-    gap:18px !important;
-
-    align-items:stretch !important;
-
-    width:100% !important;
-}
-.premio-card{
-    background:linear-gradient(180deg,#ffffff 0%, #f8fafc 100%);
-    border:1px solid #dbe3ea;
-    border-radius:14px;
-    padding:8px;
-    text-align:center;
-    box-shadow:0 4px 10px rgba(0,0,0,.04);
-
-    min-height:92px;
-
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-
-    transition:all .25s ease;
-}
-
-.premio-card:hover{
-    transform:translateY(-3px);
-    box-shadow:0 8px 20px rgba(139,17,17,.08);
-}
-
-.premio-card .medalha{
-    display:block;
-    font-size:26px;
-    margin-bottom:4px;
-    line-height:1;
-}
-
-.premio-card strong{
-    display:block;
-    font-size:14px;
-    color:#8b1111;
-    margin-bottom:6px;
-    font-weight:900;
-    letter-spacing:.2px;
-}
-
-.premio-card .valor{
-    font-size:14px;
-    font-weight:900;
-    line-height:1.05;
-    margin-bottom:4px;
-}
-
-.premio-card small{
-    display:block;
-    margin-top:2px;
-    color:#475569;
-    font-size:13px;
-    font-weight:600;
-    line-height:1.2;
-}
-
-
-
-.ouro .valor{color:#d4a017;}
-.prata .valor{color:#8c8c8c;}
-.bronze .valor{color:#b86b2b;}
-.vermelho .valor{color:#d60000;}
-
-.premiacao-total-box{
-    background:linear-gradient(135deg,#fff7cc 0%, #ffe082 50%, #ffd54f 100%);
-    border:2px solid #e0a800;
-    border-radius:16px;
-    padding:14px;
-    text-align:center;
-    font-size:clamp(22px,3vw,44px);
-    font-weight:700;
-    color:#7a1c00;
-    margin:22px 0 18px;
-    box-shadow:0 8px 18px rgba(224,168,0,.18);
-    text-transform:uppercase;
-    letter-spacing:.5px;
-}
-
-.premium-alerta{
-    background:#fff8e1;
-    border:1px solid #f4c542;
-    border-radius:14px;
-    padding:14px;
-}
-
-/*MOBILE RESPONSIVO*/
-
-@media(max-width:768px){
-  .premiacao-grid{
-    grid-template-columns:repeat(2,1fr) !important;
-
-    gap:14px !important;
-}
-
-    .premio-card{
-        min-height:135px;
-        padding:10px;
-    }
-
-    .premiacao-total-box{
-        font-size:22px;
-        padding:16px;
-    }
-}
-
-.left-content{
-    max-width:1400px;
-}
-
-.premiacao-grid{
-    gap:18px;
-}
-
-@media(max-width:520px){
-
-    .premiacao-grid{
-        grid-template-columns:repeat(2,1fr) !important;
-        gap:10px;
-    }
-
-    .premio-card{
-        min-height:105px;
-        padding:10px 8px;
-    }
-
-    .premio-card .valor{
-        font-size:15px;
-    }
-
-}
-
-.header-ctas{
-    display:flex !important;
-
-    align-items:center !important;
-
-    gap:14px !important;
-}
-
-.btn-header-whatsapp{
-    display:flex !important;
-
-    align-items:center !important;
-
-    justify-content:center !important;
-
-    background:
-    linear-gradient(
-    135deg,
-    #25d366 0%,
-    #128c7e 100%
-    ) !important;
-
-    color:#ffffff !important;
-
-    padding:14px 22px !important;
-
-    border-radius:14px !important;
-
-    font-size:14px !important;
-
-    font-weight:800 !important;
-
-    text-decoration:none !important;
-
-    box-shadow:
-    0 8px 20px rgba(37,211,102,.22) !important;
-
-    transition:all .25s ease !important;
-}
-
-@media (max-width:768px){
-
-  /* ========================================
-   HEADER MOBILE PREMIUM
-======================================== */
-
-.topbar-master{
-    padding:0 !important;
-}
-
-.topbar-master .container-master{
-    padding:0 !important;
-}
-
-.topbar-master .menu-master{
-    width:100% !important;
-
-    display:flex !important;
-
-    flex-wrap:wrap !important;
-
-    align-items:center !important;
-
-    justify-content:space-between !important;
-
-    gap:10px !important;
-
-    padding:14px 14px 12px !important;
-}
-
-/* LOGO */
-
-.topbar-master .logo-master{
-    flex:1 !important;
-
-    min-width:120px !important;
-}
-
-.topbar-master .logo-master h1{
-    font-size:18px !important;
-
-    line-height:1 !important;
-
-    margin-bottom:4px !important;
-}
-
-.topbar-master .logo-master p{
-    font-size:10px !important;
-
-    opacity:.9 !important;
-}
-
-/* ESCONDE MENU NORMAL */
-
-.topbar-master .menu-master nav{
-    display:none !important;
-}
-
-/* BOTÃO COMPRAR */
-
-.btn-header-buy{
-    order:2 !important;
-
-    padding:10px 14px !important;
-
-    font-size:11px !important;
-
-    border-radius:12px !important;
-
-    min-width:120px !important;
-
-    justify-content:center !important;
-
-    font-weight:800 !important;
-
-    box-shadow:
-    0 6px 18px rgba(0,0,0,.18) !important;
-}
-
-/* WHATSAPP ABAIXO */
-
-.btn-header-whatsapp{
-    order:3 !important;
-
-    width:100% !important;
-
-    margin-top:4px !important;
-
-    justify-content:center !important;
-
-    padding:12px 16px !important;
-
-    font-size:13px !important;
-
-    border-radius:14px !important;
-
-    font-weight:800 !important;
-}
-    .btn-header-whatsapp{
-        padding:8px 10px !important;
-
-        font-size:10px !important;
-
-        border-radius:10px !important;
-
-        max-width:110px !important;
-
-        min-width:100px !important;
-
-        min-height:40px !important;
-
-        line-height:1.1 !important;
-
-        text-align:center !important;
-
-        box-shadow:
-        0 5px 14px rgba(37,211,102,.18) !important;
-    }
-
-}
-
-.btn-header-whatsapp:hover{
-    transform:translateY(-2px) !important;
-}
-  </style>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/imagens/hero.webp">
+<link rel="icon" href="favicon.png">
 
 </head>
+
+
 
 <body>
 
@@ -1329,7 +70,7 @@ body{
         <div class="brand-area">
           <div class="brand-text">
             <h1>6ª FPSS 2027</h1>
-            <p>Festa de São Sebastião</p>
+            <p>Festa do Padroeiro São Sebastião</p>
           </div>
         </div>
 
@@ -1356,101 +97,801 @@ body{
     </div>
   </div>
 
-  <div class="hero-master">
-    <div class="wrap">
-      <div class="hero-grid">
-        <div class="hero-left">
-          <h2>Participe da 6ª Festa do Padroeiro São Sebastião</h2>
-          <p>Colabore com as obras da nossa comunidade paroquial e concorra a prêmios espetaculares no sorteio oficial.</p>
-          
-          <div class="countdown-container">
-            <span class="countdown-label">⏳ O EVENTO COMEÇA EM:</span>
-            <div id="countdown" class="countdown-timer">
-              <div class="time-block"><span id="dias">00</span><p>Dias</p></div>
-              <div class="time-block"><span id="horas">00</span><p>Horas</p></div>
-              <div class="time-block"><span id="minutos">00</span><p>Min</p></div>
-              <div class="time-block"><span id="segundos">00</span><p>Seg</p></div>
-            </div>
-          </div>
+ <div class="hero-master glow-premium">
 
-          <div class="hero-actions">
-            <a href="#comprar" class="btn red">🛒 ADQUIRIR MINHA CARTELA</a>
-            <a href="enquete/enquete.html" class="btn green">📋 CONCORRER A UMA CAMISETA</a>
-          </div>
+  <!-- VIDEO FUNDO -->
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="assets/videos/hero/hero.mp4" type="video/mp4">
+  </video>
+
+  <!-- OVERLAY -->
+  <div class="hero-overlay"></div>
+
+  <div class="wrap">
+
+    <div class="hero-grid-novo">
+
+      <!-- ESQUERDA -->
+      <div class="hero-left">
+
+        <div class="hero-badge">
+          🔥 EVENTO OFICIAL • 6ª FPSS 2027
         </div>
+
+        <h2>
+          A MAIOR FESTA
+          <span>DA COMUNIDADE SÃO SEBASTIÃO</span>
+        </h2>
+
+        <p class="hero-description">
+          Música ao vivo, churrasco tradicional, milhares em prêmios,
+          ambiente familiar e uma experiência inesquecível para toda região.
+        </p>
+
+        <div class="hero-mini-infos">
+
+          <div class="mini-info-card">
+            🎸 SHOW AO VIVO
+          </div>
+
+          <div class="mini-info-card">
+            🥩 CHURRASCO NO FOGO
+          </div>
+
+          <div class="mini-info-card">
+            🎁 +25 MIL EM PRÊMIOS
+          </div>
+
+        </div>
+
+        <div class="hero-buttons">
+
+          <a href="#comprar" class="btn-cartela">
+            🛒 GARANTIR MINHA CARTELA
+          </a>
+
+          <a href="enquete/enquete.html" class="btn-camiseta">
+            🎉 CONCORRER À CAMISETA
+          </a>
+
+        </div>
+
       </div>
+
+      <!-- DIREITA -->
+      <div class="hero-right">
+
+        <div class="countdown-container">
+
+          <span class="countdown-label">
+            ⏳ O EVENTO COMEÇA EM:
+          </span>
+
+          <div id="countdown" class="countdown-timer">
+
+            <div class="time-block">
+              <span id="dias">00</span>
+              <p>Dias</p>
+            </div>
+
+            <div class="time-block">
+              <span id="horas">00</span>
+              <p>Horas</p>
+            </div>
+
+            <div class="time-block">
+              <span id="minutos">00</span>
+              <p>Min</p>
+            </div>
+
+            <div class="time-block">
+              <span id="segundos">00</span>
+              <p>Seg</p>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ARTISTAS -->
+        <div class="show-card">
+
+          <div class="show-top">
+            🎤 ATRAÇÃO CONFIRMADA
+          </div>
+
+          <img
+            src="assets/imagens/home/cuyabano.png"
+            loading="lazy"
+            alt="Cuyabano e Douradense"
+            class="show-dupla"
+          >
+
+          <h3>Cuyabano & Douradense</h3>
+
+          <p>
+            Moda de viola • Sertanejo raiz • Animação garantida
+          </p>
+
+        </div>
+
+      </div>
+
     </div>
-  </div>
 
-  <div class="main-container wrap" id="comprar">
-    <div class="content-grid">
-      
-<div class="left-content">
-
-  <h2 class="section-title">🏆 PREMIAÇÃO OFICIAL FPSS 2027</h2>
-
-  <p class="premiacao-subtitulo">
-    Comprando sua cartela oficial, você ajuda a nossa comunidade, a paróquia e concorre a:
-  </p>
-
-  <div class="premiacao-grid">
-
-    <div class="premio-card ouro">
-      <span class="medalha">🥇</span>
-      <strong>1º PRÊMIO</strong>
-      <div class="valor">R$ 12.000,00</div>
-      <small>Doze mil reais</small>
-    </div>
-
-    <div class="premio-card prata">
-      <span class="medalha">🥈</span>
-      <strong>2º PRÊMIO</strong>
-      <div class="valor">R$ 7.000,00</div>
-      <small>Sete mil reais</small>
-    </div>
-
-    <div class="premio-card bronze">
-      <span class="medalha">🥉</span>
-      <strong>3º PRÊMIO</strong>
-      <div class="valor">R$ 4.000,00</div>
-      <small>Quatro mil reais</small>
-    </div>
-
-    <div class="premio-card vermelho">
-      <span class="medalha">🏅</span>
-      <strong>4º PRÊMIO</strong>
-      <div class="valor">R$ 2.000,00</div>
-      <small>Dois mil reais</small>
-    </div>
-
-  </div>
-
-  <div class="premiacao-total-box">
-    💰 MAIS DE <strong>R$ 25.000,00</strong> EM PRÊMIOS
-  </div>
-
-  <div class="alerta-escassez premium-alerta">
-    ⚠️ <strong>Atenção:</strong> Churrascos e cartelas são limitados. Garanta antecipado antes do encerramento oficial.
   </div>
 
 </div>
 
-      <div class="right-content">
-        <h2 class="section-title">🔥 GARANTA AGORA SEU PEDIDO (Lotes Limitados)</h2>
-        <div class="venda-container" id="produtosContainer">
-          <div class="loading-box">⏳ Carregando lotes oficiais disponíveis...</div>
+<div class="main-container">
+  
+<section class="premiacao-cinema reveal glow-premium">
+
+  <div class="wrap">
+
+    <div class="titulo-premiacao">
+
+      <span>🏆 PREMIAÇÃO OFICIAL 6ª FPSS 2027</span>
+
+      <h2>
+        MAIS DE R$ 25 MIL EM PRÊMIOS
+      </h2>
+
+      <p>
+        Uma premiação grandiosa para transformar sua participação
+        em emoção até o último sorteio.
+      </p>
+
+    </div>
+
+    <div class="premiacao-cards">
+
+      <!-- 1 -->
+      <div class="premio-cinema ouro hover-3d float">
+
+        <div class="topo-premio">
+          <span class="badge-premio">🥇 1º PRÊMIO</span>
+        </div>
+
+        <div class="valor-premio">
+          R$ 12 MIL
+        </div>
+
+        <div class="descricao-premio">
+          Grande prêmio principal da festa.
+        </div>
+
+        <div class="efeito-brilho"></div>
+
+      </div>
+
+      <!-- 2 -->
+      <div class="premio-cinema prata">
+
+        <div class="topo-premio">
+          <span class="badge-premio">🥈 2º PRÊMIO</span>
+        </div>
+
+        <div class="valor-premio">
+          R$ 7 MIL
+        </div>
+
+        <div class="descricao-premio">
+          Sorteio especial oficial.
+        </div>
+
+        <div class="efeito-brilho"></div>
+
+      </div>
+
+      <!-- 3 -->
+      <div class="premio-cinema bronze">
+
+        <div class="topo-premio">
+          <span class="badge-premio">🥉 3º PRÊMIO</span>
+        </div>
+
+        <div class="valor-premio">
+          R$ 4 MIL
+        </div>
+
+        <div class="descricao-premio">
+          Premiação durante o evento.
+        </div>
+
+        <div class="efeito-brilho"></div>
+
+      </div>
+
+      <!-- 4 -->
+      <div class="premio-cinema vermelho">
+
+        <div class="topo-premio">
+          <span class="badge-premio">🏅 4º PRÊMIO</span>
+        </div>
+
+        <div class="valor-premio">
+          R$ 2 MIL
+        </div>
+
+        <div class="descricao-premio">
+          Sorteio presencial especial.
+        </div>
+
+        <div class="efeito-brilho"></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section> 
+
+<section class="produtos-cinema-topo">
+
+  <div class="wrap">
+
+    <div class="section-header-center">
+
+      <span class="section-mini-title">
+        🎟 INGRESSOS • CARTELAS • CHURRASCOS
+      </span>
+
+      <h2>
+        GARANTA SUA PARTICIPAÇÃO
+      </h2>
+
+      <p>
+        Produtos oficiais da 6ª Festa do Padroeiro São Sebastião.
+        Quantidades limitadas por lote.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="produtos-premium-section reveal" id="comprar">
+
+  <div class="wrap">
+
+    <div class="section-header-center">
+
+      <span class="section-mini-title">
+        🛒 PRODUTOS OFICIAIS FPSS
+      </span>
+
+      <h2>
+        ESCOLHA SEU PEDIDO
+      </h2>
+
+      <p>
+        Garanta antecipadamente sua cartela,
+        churrasco e participação oficial na festa.
+      </p>
+
+    </div>
+
+    <div
+      class="venda-container premium-grid"
+      id="produtosContainer"
+    >
+
+      <div class="loading-box">
+        ⏳ Carregando produtos oficiais...
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="programacao-premium reveal">
+  
+<section class="atracoes-section">
+  <div class="wrap">
+
+    <div class="section-header-center">
+
+      <span class="section-mini-title">
+        🎉 EVENTO OFICIAL 6ª FPSS 2027
+      </span>
+
+      <h2>
+        PROGRAMAÇÃO OFICIAL
+      </h2>
+
+      <p>
+        Um dia completo de fé, tradição,
+        churrasco, música e grandes prêmios.
+      </p>
+
+    </div>
+
+    <div class="programacao-grid">
+
+      <!-- ESQUERDA -->
+      <div class="programacao-left">
+
+        <img
+          src="assets/imagens/eventos/cartaz-bingo.png"
+          loading="lazy"
+          alt="Cartaz Oficial"
+          class="cartaz-oficial"
+        >
+
+      </div>
+
+      <!-- DIREITA -->
+      <div class="programacao-right">
+
+        <div class="timeline-box">
+
+          <div class="timeline-item">
+            <span class="hora">10H</span>
+            <div>
+              <h3>Santa Missa</h3>
+              <p>Momento de fé e celebração da comunidade.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item destaque">
+            <span class="hora">11H</span>
+            <div>
+              <h3>Almoço + Show Ao Vivo</h3>
+              <p>
+                Churrasco tradicional e animação com
+                Cuyabano & Douradense.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <span class="hora">15H</span>
+            <div>
+              <h3>Sorteio do 4º prêmio</h3>
+              <p>Premiação especial durante o almoço.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <span class="hora">17H</span>
+            <div>
+              <h3>Grande Show de Prêmios</h3>
+              <p>Mais de R$ 25 mil em premiações.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="atracoes-section reveal">
+
+  <div class="wrap">
+
+    <div class="section-header-center light">
+
+      <span class="section-mini-title">
+        🎤 SHOWS & ANIMAÇÃO
+      </span>
+
+      <h2>
+        ATRAÇÕES CONFIRMADAS
+      </h2>
+
+      <p>
+        Música ao vivo, moda de viola,
+        locução profissional e animação garantida.
+      </p>
+
+    </div>
+
+    <div class="atracoes-grid">
+
+      <!-- DUPLA -->
+      <div class="show-premium-card">
+
+        <div class="show-image-area">
+
+          <img
+            src="assets/imagens/home/cuyabano.png"
+            loading="lazy"
+            alt="Cuyabano e Douradense"
+            class="show-main-image"
+          >
+
+        </div>
+
+        <div class="show-content">
+
+          <span class="show-badge">
+            🎸 SHOW PRINCIPAL
+          </span>
+
+          <h3>
+            Cuyabano & Douradense
+          </h3>
+
+          <p>
+            O melhor da música sertaneja raiz,
+            moda de viola e clássicos que marcaram gerações.
+          </p>
+
+          <div class="show-tags">
+            <span>🎶 Sertanejo</span>
+            <span>🎤 Ao Vivo</span>
+            <span>🔥 Animação</span>
+          </div>
+
+          <a
+            href="https://youtu.be/yXt1UXpl-cQ?si=aY8HjcB2BZ92Fkru"
+            target="_blank"
+            class="btn-show-video"
+          >
+            ▶ ASSISTIR APRESENTAÇÃO
+          </a>
+
+        </div>
+
+      </div>
+
+      <!-- LOCUTOR -->
+      <div class="show-premium-card">
+
+        <div class="show-image-area">
+
+          <img
+            src="assets/imagens/home/carlos-cesar.png"
+            loading="lazy"
+            alt="Carlos Cesar"
+            class="show-main-image"
+          >
+
+        </div>
+
+        <div class="show-content">
+
+          <span class="show-badge red">
+            🎙 LOCUTOR OFICIAL
+          </span>
+
+          <h3>
+            Carlos Cesar
+          </h3>
+
+          <p>
+            Narração oficial do bingo, leilões e muita 
+            interação com o público e animação durante todo evento.
+          </p>
+
+          <div class="show-tags">
+            <span>🎙 Locução</span>
+            <span>🔥 Interação</span>
+            <span>🎉 Evento Ao Vivo</span>
+          </div>
+
+
+
+
+  <a
+  href="https://www.instagram.com/reel/DL6HiWvsVIk/"
+  target="_blank"
+  class="btn-show-video red"
+>
+  ▶ VER LOCUTOR
+</a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="galeria-cinema">
+
+  <div class="wrap">
+
+    <div class="section-header-center">
+
+      <span class="section-mini-title">
+        📸 MOMENTOS INESQUECÍVEIS
+      </span>
+
+      <h2>
+        A FESTA QUE MOVIMENTA A REGIÃO
+      </h2>
+
+      <p>
+        Milhares de pessoas reunidas em um dos eventos
+        mais tradicionais da comunidade.
+      </p>
+
+    </div>
+
+    <!-- NÚMEROS -->
+    <div class="estatisticas-evento">
+
+      <div class="stat-card">
+        <h3>+5 MIL</h3>
+        <p>Pessoas ao longo das edições</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>R$ 25 MIL</h3>
+        <p>Em premiações oficiais</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>100%</h3>
+        <p>Renda revertida para comunidade</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>TRADIÇÃO</h3>
+        <p>Fé, música e confraternização</p>
+      </div>
+
+    </div>
+
+    <!-- GALERIA -->
+    <div class="galeria-grid-premium">
+
+      <div class="foto-premium hover-3d grande">
+        <img src="assets/imagens/galeria/drone-1.jpg">
+        loading="lazy"
+        <div class="overlay-foto">
+          <h3>Vista Aérea do Evento</h3>
+          <p>Estrutura completa da festa.</p>
+        </div>
+      </div>
+
+      <div class="foto-premium hover-3d">
+        <img src="assets/imagens/galeria/publico-1.jpg">
+        loading="lazy"
+        <div class="overlay-foto">
+          <h3>Almoço Lotado</h3>
+        </div>
+      </div>
+
+      <div class="foto-premium hover-3d">
+        <img src="assets/imagens/galeria/publico-2.jpg">
+        loading="lazy"
+        <div class="overlay-foto">
+          <h3>Comunidade Reunida</h3>
+        </div>
+      </div>
+
+      <div class="foto-premium">
+        <img src="assets/imagens/galeria/churrasco.jpg">
+        loading="lazy"
+        <div class="overlay-foto">
+          <h3>Churrasco Tradicional</h3>
+        </div>
+      </div>
+
+      <div class="foto-premium hover-3d
+        <img src="assets/imagens/galeria/igreja.jpg">
+        loading="lazy"
+        <div class="overlay-foto">
+          <h3>Comunidade São Sebastião</h3>
         </div>
       </div>
 
     </div>
+
   </div>
 
-  <div class="enquete-callout" id="enquete">
-    <div class="wrap" style="max-width: 800px; margin: 0 auto; text-align: center;">
-      
-      <a href="enquete/enquete.html" class="btn-enquete-premium">RESPONDER ENQUETE AGORA</a>
+</section>
+
+<section class="localizacao-premium reveal">
+
+  <div class="wrap">
+
+    <div class="section-header-center light">
+
+      <span class="section-mini-title">
+        📍 LOCALIZAÇÃO OFICIAL
+      </span>
+
+      <h2>
+        ONDE ACONTECE A FESTA
+      </h2>
+
+      <p>
+        Venha viver esse grande evento da comunidade
+        São Sebastião em Rolim de Moura.
+      </p>
+
     </div>
+
+    <div class="localizacao-grid">
+
+      <!-- MAPA -->
+      <div class="mapa-box">
+
+<iframe
+  src="https://www.google.com/maps?q=-11.759236,-61.742004&z=16&output=embed"
+  allowfullscreen=""
+  loading="lazy">
+</iframe>
+
+      </div>
+
+      <!-- INFO -->
+      <div class="info-localizacao">
+
+        <div class="local-card">
+          <span>📍</span>
+          <div>
+            <h3>Comunidade São Sebastião</h3>
+            <p>Linha 188 Sul km 4 lado sul • Rolim de Moura - RO</p>
+          </div>
+        </div>
+
+        <div class="local-card">
+          <span>📅</span>
+          <div>
+            <h3>Data do Evento</h3>
+            <p>24 de Janeiro de 2027</p>
+          </div>
+        </div>
+
+        <div class="local-card">
+          <span>⏰</span>
+          <div>
+            <h3>Horário</h3>
+            <p>Início às 10h da manhã</p>
+          </div>
+        </div>
+
+        <div class="local-card">
+          <span>🚗</span>
+          <div>
+            <h3>Estacionamento</h3>
+            <p>Área ampla para veículos</p>
+          </div>
+        </div>
+
+        <a
+          href="https://maps.google.com/?q=Linha+188+Sul+Rolim+de+Moura"
+          target="_blank"
+          class="btn-localizacao"
+        >
+          📍 ABRIR NO GOOGLE MAPS
+        </a>
+
+      </div>
+
+    </div>
+
   </div>
+
+</section>
+
+ <section class="parceiros-premium reveal">
+
+  <div class="wrap">
+
+    <div class="section-header-center">
+
+      <span class="section-mini-title">
+        🤝 PARCEIROS OFICIAIS
+      </span>
+
+      <h2>
+        EMPRESAS QUE APOIAM A 6ª FPSS 2027
+      </h2>
+
+      <p>
+        Grandes parceiros que acreditam na tradição,
+        fé e fortalecimento da nossa comunidade.
+      </p>
+
+    </div>
+
+    <!-- GRID -->
+    <div class="parceiros-grid" id="parceirosGrid"></div>
+
+  </div>
+
+</section>
+
+<script>
+
+const parceiros = [
+
+"parceiro1.png",
+"parceiro2.png",
+"parceiro3.png",
+"parceiro4.png",
+"parceiro5.png",
+"parceiro6.png",
+"parceiro7.png",
+"parceiro8.png",
+"parceiro9.png",
+"parceiro10.png",
+"parceiro11.png",
+"parceiro12.png",
+"parceiro13.png",
+"parceiro14.png",
+"parceiro15.png",
+"parceiro16.png",
+"parceiro17.png",
+"parceiro18.png"
+];
+
+const parceirosGrid =
+document.getElementById("parceirosGrid");
+
+parceiros.forEach((logo,index)=>{
+
+let classe = "";
+
+if(index === 0 || index === 8){
+classe = "ouro";
+}
+
+if(index === 3 || index === 11){
+classe = "rubi";
+}
+
+if(index === 5){
+classe = "prata";
+}
+
+parceirosGrid.innerHTML += `
+
+<div class="parceiro-card hover-3d ${classe}">
+    <img
+    src="assets/imagens/parceiros/${logo}"
+    loading="lazy"
+    alt="Parceiro FPSS">
+</div>
+
+`;
+
+});
+
+</script>
+
+<div class="enquete-callout" id="enquete">
+
+  <div class="wrap">
+
+    <div class="cta-enquete-wrap">
+
+      <a href="enquete/enquete.html"
+      class="btn-enquete-premium">
+
+      🎉 RESPONDA A NOSSA ENQUETE E CONCORRA
+      À CAMISETA OFICIAL DA FESTA
+
+      </a>
+
+      <p class="enquete-subtexto">
+      Sorteio exclusivo para os participantes da enquete.
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+  
 
   <div class="vip-section" id="vip">
     <div class="wrap">
@@ -1462,13 +903,13 @@ body{
     </div>
   </div>
 
-  <a href="https://wa.me/5500000000000" class="btn-atendimento-fixo" id="atendimentoFixo" target="_blank">
+  <a href="https://wa.me/556992014424" class="btn-atendimento-fixo" id="atendimentoFixo" target="_blank">
     💬 Atendimento
   </a>
 
   <footer id="mainFooter">
     <div class="wrap" style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
-      <p style="margin: 0; font-size: 14px; font-weight: 600;">6ª Festa do Padroeiro São Sebastião • FPSS 2027</p>
+      <p style="margin: 0; font-size: 14px; font-weight: 600;">6ª Festa do Padroeiro São Sebastião • 6ª FPSS 2027</p>
       <p style="font-size: 11px; color: #9ca3af; margin: 0;">
         Organização: Comissão Paroquial de Eventos • Todos os direitos reservados.
       </p>
@@ -1507,8 +948,9 @@ if (produto.tipo === "CAR") {
           const imgUrl = produto.imagem || "css/img/placeholder.jpg";
 
           container.innerHTML += `
-            <div class="venda-box">
+            <div class="venda-box hover-3d">
               <img src="${imgUrl}" alt="${produto.nome}">
+              loading="lazy"
               <div class="venda-box-conteudo">
                 <div>
                   <h3>${produto.nome}</h3>
@@ -1585,6 +1027,185 @@ if (produto.tipo === "CAR") {
       });
     });
   </script>
+<script>
 
+/* ========================================
+   REVEAL AO ROLAR
+======================================== */
+
+const reveals =
+document.querySelectorAll(".reveal");
+
+const revealOnScroll = () => {
+
+    const trigger =
+    window.innerHeight * 0.88;
+
+    reveals.forEach((element)=>{
+
+        const top =
+        element.getBoundingClientRect().top;
+
+        if(top < trigger){
+
+            element.classList.add("active");
+
+        }
+
+    });
+
+};
+
+window.addEventListener(
+"scroll",
+revealOnScroll
+);
+
+revealOnScroll();
+
+</script>
+<script>
+
+/* ========================================
+   PARALLAX PREMIUM
+======================================== */
+
+window.addEventListener("scroll",()=>{
+
+const scroll =
+window.pageYOffset;
+
+document.querySelectorAll(
+".parallax"
+).forEach((element)=>{
+
+element.style.transform =
+`translateY(${scroll * 0.08}px)`;
+
+});
+
+});
+
+</script>
+<!-- ========================================
+     LIGHTBOX PREMIUM
+======================================== -->
+
+<div class="lightbox-premium" id="lightboxPremium">
+
+    <span class="lightbox-close" id="lightboxClose">
+        ✕
+    </span>
+
+    <img
+    src=""
+    loading="lazy"
+    alt=""
+    id="lightboxImage">
+
+</div>
+
+<script>
+
+/* ========================================
+   LIGHTBOX PREMIUM
+======================================== */
+
+const fotos =
+document.querySelectorAll(
+".foto-premium img"
+);
+
+const lightbox =
+document.getElementById(
+"lightboxPremium"
+);
+
+const lightboxImage =
+document.getElementById(
+"lightboxImage"
+);
+
+const closeLightbox =
+document.getElementById(
+"lightboxClose"
+);
+
+/* ABRIR */
+
+fotos.forEach((foto)=>{
+
+    foto.addEventListener(
+    "click",
+    ()=>{
+
+        lightbox.classList.add(
+        "active"
+        );
+
+        lightboxImage.src =
+        foto.src;
+
+    });
+
+});
+
+/* FECHAR */
+
+closeLightbox.addEventListener(
+"click",
+()=>{
+
+    lightbox.classList.remove(
+    "active"
+    );
+
+});
+
+/* FECHAR FORA */
+
+lightbox.addEventListener(
+"click",
+(e)=>{
+
+    if(e.target === lightbox){
+
+        lightbox.classList.remove(
+        "active"
+        );
+
+    }
+
+});
+
+</script>
+<script>
+
+/* ========================================
+   SCROLL PROGRESS
+======================================== */
+
+const scrollProgress =
+document.getElementById(
+"scrollProgress"
+);
+
+window.addEventListener(
+"scroll",
+()=>{
+
+const totalHeight =
+document.body.scrollHeight -
+window.innerHeight;
+
+const progress =
+(window.pageYOffset / totalHeight) * 100;
+
+scrollProgress.style.width =
+progress + "%";
+
+});
+
+</script>
 </body>
 </html>

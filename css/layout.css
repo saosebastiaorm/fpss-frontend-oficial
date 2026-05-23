@@ -1,5 +1,9 @@
+/* ==================================================
+   LAYOUT GLOBAL
+================================================== */
+
 .section{
-  padding:60px 20px;
+  padding:40px 20px;
 }
 
 .section-center{
@@ -18,4 +22,493 @@
 .section-red{
   background:linear-gradient(135deg,#8b1111,#c61f1f);
   color:#fff;
+}
+
+/* ==================================================
+   CONTAINER PADRÃO
+================================================== */
+
+.wrap{
+  width:100%;
+  max-width:1480px;
+  margin:0 auto;
+  padding:0 28px;
+}
+/* ==================================================
+   ESPAÇAMENTO GLOBAL ENTRE BLOCOS
+================================================== */
+
+.hero-master{
+  padding:35px 0 20px;
+}
+
+.main-container{
+  padding-top:10px;
+}
+
+.content-grid{
+  display:flex;
+  flex-direction:column;
+  gap:26px;
+}
+
+/* ==================================================
+   PREMIAÇÃO
+================================================== */
+
+.premios-section{
+  margin-top:10px;
+}
+
+/* ==================================================
+   PRODUTOS
+================================================== */
+
+#comprar{
+  margin-top:8px;
+}
+
+/* ==================================================
+   ENQUETE
+================================================== */
+
+.enquete-callout{
+  margin-top:14px;
+  margin-bottom:18px;
+}
+
+/* ==================================================
+   VIP
+================================================== */
+
+.vip-section{
+  padding-top:10px;
+}
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width:768px){
+
+.section{
+  padding:26px 14px;
+}
+
+.hero-master{
+  padding:22px 0 14px;
+}
+
+.content-grid{
+  gap:18px;
+}
+
+.enquete-callout{
+  margin-top:10px;
+  margin-bottom:12px;
+}
+
+}
+
+/* ========================================
+   PROGRAMAÇÃO PREMIUM
+======================================== */
+
+.programacao-premium {
+  padding: 90px 0;
+  background:
+    linear-gradient(to bottom,
+    #fff8ef,
+    #fff3df);
+}
+
+.section-header-center {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-mini-title {
+  display: inline-block;
+  background: #8b1111;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.section-header-center h2 {
+  font-size: 52px;
+  color: #7a0916;
+  margin-bottom: 15px;
+  font-weight: 900;
+}
+
+.section-header-center p {
+  font-size: 18px;
+  color: #555;
+}
+
+.programacao-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 45px;
+  align-items: center;
+}
+
+.cartaz-oficial {
+  width: 100%;
+  border-radius: 28px;
+  box-shadow:
+    0 25px 70px rgba(0,0,0,0.18);
+}
+
+.timeline-box {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 20px;
+  background: white;
+  padding: 24px;
+  border-radius: 24px;
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.08);
+  transition: .3s;
+}
+
+.timeline-item:hover {
+  transform: translateY(-5px);
+}
+
+.timeline-item.destaque {
+  background:
+    linear-gradient(135deg,
+    #8b1111,
+    #b91c1c);
+  color: white;
+}
+
+.hora {
+  min-width: 75px;
+  height: 75px;
+  border-radius: 20px;
+  background: #facc15;
+  color: #7a0916;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.timeline-item h3 {
+  margin-bottom: 8px;
+  font-size: 22px;
+}
+
+.timeline-item p {
+  line-height: 1.6;
+  opacity: .92;
+}
+
+/* ========================================
+   ATRAÇÕES PREMIUM
+======================================== */
+
+.atracoes-section {
+  padding: 110px 0;
+  background:
+    linear-gradient(
+      to bottom,
+      #140404,
+      #220606
+    );
+  position: relative;
+  overflow: hidden;
+}
+
+.section-header-center.light h2,
+.section-header-center.light p {
+  color: white;
+}
+
+.atracoes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.show-premium-card {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,0.06),
+      rgba(255,255,255,0.02)
+    );
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  border-radius: 35px;
+
+  overflow: hidden;
+
+  backdrop-filter: blur(12px);
+
+  box-shadow:
+    0 25px 60px rgba(0,0,0,0.35);
+
+  transition: .4s;
+}
+
+.show-premium-card:hover {
+  transform:
+    translateY(-12px)
+    scale(1.01);
+}
+
+.show-image-area {
+  height: 420px;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255,196,0,0.18),
+      transparent 70%
+    );
+  overflow: hidden;
+}
+
+.show-main-image {
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.show-content {
+  padding: 35px;
+}
+
+.show-badge {
+  display: inline-block;
+  padding: 10px 18px;
+  background: #16a34a;
+  color: white;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.show-badge.red {
+  background: #b91c1c;
+}
+
+.show-content h3 {
+  color: white;
+  font-size: 36px;
+  margin-bottom: 18px;
+  font-weight: 900;
+}
+
+.show-content p {
+  color: rgba(255,255,255,0.75);
+  line-height: 1.8;
+  margin-bottom: 25px;
+  font-size: 16px;
+}
+
+.show-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.show-tags span {
+  background: rgba(255,255,255,0.08);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+}
+
+.btn-show-video {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 28px;
+  border-radius: 16px;
+  background: #16a34a;
+  color: white;
+  text-decoration: none;
+  font-weight: 800;
+  transition: .3s;
+}
+
+.btn-show-video:hover {
+  transform: scale(1.05);
+}
+
+.btn-show-video.red {
+  background: #dc2626;
+}
+
+/* ========================================
+   GALERIA CINEMATOGRÁFICA
+======================================== */
+
+.galeria-cinema {
+  padding: 120px 0;
+  background:
+    linear-gradient(
+      to bottom,
+      #fff8ef,
+      #ffffff
+    );
+}
+
+.estatisticas-evento {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 25px;
+  margin:
+    60px 0 70px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 24px;
+  padding: 35px 25px;
+  text-align: center;
+  box-shadow:
+    0 15px 40px rgba(0,0,0,0.08);
+}
+
+.stat-card h3 {
+  font-size: 38px;
+  color: #8b1111;
+  margin-bottom: 12px;
+  font-weight: 900;
+}
+
+.stat-card p {
+  color: #666;
+  line-height: 1.5;
+}
+
+.galeria-grid-premium{
+
+    display: grid;
+
+    grid-template-columns:
+    repeat(4, 1fr);
+
+    grid-auto-rows: 260px;
+
+    gap: 22px;
+
+    margin-top: 60px;
+}
+
+.foto-premium{
+
+    position:relative;
+    overflow:hidden;
+    border-radius:24px;
+    height:180px;
+    background:#000;
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.18);
+    transition:.4s;
+    height: 100%;
+}
+
+
+.foto-premium.grande{
+
+    grid-column: span 2;
+    grid-row: span 2;
+    min-height: 100%;
+}
+
+.foto-premium img{
+
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.6s;
+}
+
+.foto-premium:hover img {
+  transform: scale(1.08);
+}
+
+.overlay-foto{
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:flex-end;
+
+    padding:24px;
+
+    background:
+    linear-gradient(
+    to top,
+    rgba(0,0,0,.85),
+    rgba(0,0,0,.25),
+    transparent);
+
+    color:#fff;
+}
+
+.overlay-foto h3 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+
+.overlay-foto p {
+  opacity: .9;
+  line-height: 1.6;
+}
+
+.foto-premium.vertical{
+
+    grid-column: span 3;
+
+    grid-row: span 2;
+
+    height: 380px;
+}
+.foto-premium.media{
+
+    grid-column: span 4;
+}
+
+.foto-premium:hover{
+
+    transform:
+    translateY(-6px)
+    scale(1.02);
+
+    box-shadow:
+    0 25px 50px rgba(0,0,0,.35);
+}
+
+.foto-premium:hover img{
+
+    transform:scale(1.08);
 }

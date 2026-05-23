@@ -1,5 +1,5 @@
 /* =====================================================
-   FPSS 2027 • STYLE.CSS REVISADO
+   6ª FPSS 2027 • STYLE.CSS REVISADO
    Design Original com Proporções Otimizadas (Estilo Mercado Livre)
 ===================================================== */
 
@@ -24,11 +24,12 @@ body {
 }
 
 /* CONTAINER PADRÃO DO SITE */
-.wrap {
-  width: 100%;
-  max-width: 1140px; /* Reduzido de 1200px para compactar o layout horizontalmente */
-  margin: auto;
-  padding: 15px; /* Margens internas menores para aproveitar melhor a tela */
+.wrap{
+    width:100%;
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 16px;
+    box-sizing:border-box;
 }
 
 a {

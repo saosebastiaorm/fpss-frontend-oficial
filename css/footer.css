@@ -1,0 +1,40 @@
+
+
+    /* ====================================================================
+       CONTROLE E REESTRUTURAÇÃO DO ATENDIMENTO E DO RODAPÉ (FIM DO PRETO GIGANTE)
+    ==================================================================== */
+    .btn-atendimento-fixo {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+      color: #ffffff !important;
+      padding: 14px 24px;
+      border-radius: 50px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(18, 140, 126, 0.25);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      transition: opacity 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn-atendimento-fixo:hover {
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    /* Esconde o atendimento dinamicamente se o menu open estiver ativo no mobile */
+    .topbar-master.menu-open ~ .btn-atendimento-fixo {
+      opacity: 0 !important;
+      pointer-events: none;
+    }
+
+    footer {
+      background-color: #ffffff !important; /* Substituído o fundo preto por branco limpo */
+      border-top: 1px solid #e5e7eb !important;
+      padding: 15px 0 !important; /* Altura da comissão reduzida e compacta */
+      margin-top: 20px !important;
+    }

@@ -1,5 +1,5 @@
 /* =====================================================
-   FPSS 2027 • DOACAO.JS TRADICIONAL BLINDADO
+   6ª FPSS 2027 • DOACAO.JS TRADICIONAL BLINDADO
    Sem Imports • Compatibilidade Total com o Navegador
 ===================================================== */
 

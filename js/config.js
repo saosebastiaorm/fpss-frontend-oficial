@@ -1,5 +1,5 @@
 /* =====================================================
-   FPSS 2027 • CONFIG.JS OFICIAL DE PRODUÇÃO BLINDADO
+   6ª FPSS 2027 • CONFIG.JS OFICIAL DE PRODUÇÃO BLINDADO
    Suporte a ES6 Modules, Supabase, Render e Anti-Duplicação
 ===================================================== */
 
