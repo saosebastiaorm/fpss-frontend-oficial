@@ -1,142 +1,171 @@
 /* ========================================
-   MOBILE PREMIUM GLOBAL
+   MOBILE PREMIUM FPSS 2027 FINAL
 ======================================== */
 
-@media(max-width:768px){
+@media screen and (max-width: 980px){
+
+/* ========================================
+   RESET GLOBAL MOBILE
+======================================== */
+
+html,
+body{
+
+    width:100% !important;
+
+    overflow-x:hidden !important;
+}
+
+body{
+    position:relative;
+}
 
 /* ========================================
    WRAP
 ======================================== */
 
 .wrap{
-    width:92%;
+
+    width:100% !important;
+
+    max-width:100% !important;
+
+    padding-left:18px;
+    padding-right:18px;
 }
 
 /* ========================================
-   HEADER COMPACTO
+   SECTIONS
+======================================== */
+
+section{
+
+    width:100% !important;
+
+    overflow:hidden;
+
+    padding:70px 0 !important;
+}
+
+/* ========================================
+   HEADER
 ======================================== */
 
 .topbar-master{
 
-    padding:12px 0 !important;
-
-    backdrop-filter:blur(14px);
+    padding:10px 0 !important;
 }
 
 .header-main{
 
-    min-height:auto !important;
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
 
     gap:12px;
 }
 
-/* LOGO */
-
 .brand-text h1{
 
-    font-size:24px !important;
+    font-size:20px !important;
 
     line-height:1;
 }
 
 .brand-text p{
 
-    font-size:12px !important;
+    font-size:10px !important;
 }
 
 /* MENU */
 
-.menu-toggle{
+.menu-master{
 
-    width:48px;
-    height:48px;
-
-    font-size:22px;
+    display:none !important;
 }
 
-/* CTAS */
+/* BOTÕES HEADER */
 
 .header-ctas{
 
-    width:100%;
-
     display:flex;
 
-    flex-direction:column;
-
-    gap:10px;
+    gap:8px;
 }
 
-.btn-header-buy,
-.btn-header-whatsapp{
+.btn-header-whatsapp,
+.btn-header-buy{
 
-    width:100%;
+    min-height:40px;
 
-    justify-content:center;
+    padding:0 14px !important;
 
-    min-height:50px;
-}
+    font-size:11px !important;
 
-/* ========================================
-   TÍTULOS
-======================================== */
-
-.section-title,
-.titulo-premiacao h2,
-.hero-left h2,
-.section-header-center h2{
-
-    font-size:34px !important;
-
-    line-height:1.1;
-
-    text-align:center;
-}
-
-.section-header-center p,
-.hero-left p{
-
-    font-size:15px !important;
-
-    line-height:1.7;
-
-    text-align:center;
+    border-radius:12px;
 }
 
 /* ========================================
-   HERO PREMIUM MOBILE
+   HERO
 ======================================== */
-
-.hero-video{
-    display:none !important;
-}
 
 .hero-master{
 
     min-height:auto !important;
 
     padding:
-    140px 0 90px !important;
+    120px 0 70px !important;
+
+    overflow:hidden;
+}
+
+/* VIDEO */
+
+.hero-video{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    z-index:-2;
+}
+
+/* OVERLAY */
+
+.hero-overlay{
+
+    position:absolute;
+
+    inset:0;
 
     background:
     linear-gradient(
-    rgba(0,0,0,.65),
+    rgba(0,0,0,.72),
     rgba(0,0,0,.78)
-    ),
+    );
 
-    url("../assets/imagens/hero/mobile-hero.jpg");
-
-    background-size:cover;
-
-    background-position:center;
-
-    background-repeat:no-repeat;
+    z-index:-1;
 }
 
-.hero-grid{
+/* GRID */
+
+.hero-grid-novo{
+
+    display:grid;
 
     grid-template-columns:1fr !important;
+
+    gap:28px;
 }
+
+/* LEFT */
 
 .hero-left{
 
@@ -147,27 +176,51 @@
     text-align:center;
 }
 
-/* HERO TEXTO */
-
 .hero-left h2{
 
-    font-size:38px !important;
+    font-size:52px !important;
 
-    line-height:1.05;
+    line-height:.95;
 
     margin-bottom:20px;
 }
 
-.hero-left p{
+.hero-left h2 span{
+    display:block;
+}
 
-    font-size:16px !important;
+.hero-description{
+
+    font-size:15px !important;
 
     line-height:1.7;
 
-    margin-bottom:30px;
+    max-width:100%;
 }
 
-/* BOTÕES HERO */
+/* MINI INFOS */
+
+.hero-mini-infos{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:10px;
+
+    margin-top:24px;
+}
+
+.mini-info-card{
+
+    font-size:12px;
+
+    padding:10px 14px;
+}
+
+/* BOTÕES */
 
 .hero-buttons{
 
@@ -177,43 +230,90 @@
 
     gap:14px;
 
-    margin-top:30px;
-
-    width:100%;
+    margin-top:28px;
 }
 
-.hero-buttons a{
+.hero-buttons .btn{
 
     width:100%;
 }
 
 /* ========================================
-   CONTADOR
+   COUNTDOWN
 ======================================== */
 
 .countdown-container{
 
-    margin-top:25px;
+    width:100%;
+
+    padding:20px;
 }
 
 .countdown-timer{
 
-    justify-content:center;
+    display:grid;
 
-    flex-wrap:wrap;
+    grid-template-columns:
+    repeat(4,1fr);
 
-    gap:12px;
+    gap:10px;
 }
 
 .time-block{
 
-    width:74px;
-    height:74px;
+    width:100%;
+
+    height:82px;
 }
 
 .time-block span{
 
-    font-size:24px;
+    font-size:28px;
+}
+
+/* ========================================
+   SHOW CARD
+======================================== */
+
+.show-card{
+
+    width:100%;
+
+    padding:24px;
+}
+
+.show-card img{
+
+    width:100%;
+
+    max-width:240px;
+
+    margin:auto;
+
+    display:block;
+}
+
+/* ========================================
+   TITULOS
+======================================== */
+
+.section-header-center h2,
+.titulo-premiacao h2{
+
+    font-size:36px !important;
+
+    line-height:1.05;
+
+    text-align:center;
+}
+
+.section-header-center p{
+
+    font-size:15px !important;
+
+    line-height:1.7;
+
+    text-align:center;
 }
 
 /* ========================================
@@ -222,6 +322,8 @@
 
 .premiacao-cards{
 
+    display:grid;
+
     grid-template-columns:1fr !important;
 
     gap:22px;
@@ -229,75 +331,112 @@
 
 .premio-cinema{
 
-    min-height:auto !important;
+    min-height:260px !important;
+
+    padding:28px;
+}
+
+.premio-cinema h3{
+
+    font-size:52px !important;
 }
 
 /* ========================================
    PRODUTOS
 ======================================== */
 
-.venda-container{
+.premium-grid{
+
+    display:grid;
 
     grid-template-columns:1fr !important;
 
-    gap:18px;
+    gap:22px;
 }
 
 .venda-box{
 
+    display:flex;
+
     flex-direction:column;
 
-    min-height:auto !important;
+    overflow:hidden;
 }
 
 .venda-box img{
 
     width:100% !important;
 
-    min-width:100% !important;
+    height:230px !important;
 
-    height:240px !important;
-
-    object-fit:contain !important;
-
-    background:#fff;
-
-    padding:10px;
+    object-fit:cover !important;
 
     border-radius:24px 24px 0 0 !important;
 }
 
+.venda-box-conteudo{
+
+    width:100%;
+}
+
 .venda-box h3{
 
-    font-size:32px !important;
+    font-size:34px !important;
 }
 
 .price-box{
 
-    font-size:42px !important;
+    font-size:44px !important;
 }
 
 .venda-box-rodape{
 
+    display:flex;
+
     flex-direction:column;
 
-    align-items:flex-start;
+    gap:14px;
 }
 
-.venda-box .btn.green.full{
+.venda-box .btn{
 
     width:100%;
-
-    min-width:100%;
 }
 
 /* ========================================
-   PROGRAMAÇÃO
+   ATRAÇÕES
 ======================================== */
 
-.programacao-grid{
+.atracoes-grid{
+
+    display:grid;
 
     grid-template-columns:1fr !important;
+
+    gap:22px;
+}
+
+.artista-card{
+
+    padding:22px !important;
+}
+
+.artista-card img{
+
+    width:100%;
+
+    max-width:240px;
+
+    margin:auto;
+
+    display:block;
+}
+
+.artista-card h3{
+
+    font-size:28px !important;
+
+    text-align:center;
 }
 
 /* ========================================
@@ -306,20 +445,50 @@
 
 .galeria-grid-premium{
 
+    display:grid;
+
     grid-template-columns:1fr !important;
 
-    grid-auto-rows:auto !important;
+    gap:14px;
 }
 
 .foto-premium,
 .foto-premium.grande,
 .foto-premium.vertical{
 
+    height:240px !important;
+
     grid-column:auto !important;
 
     grid-row:auto !important;
+}
 
-    height:260px !important;
+/* ========================================
+   STATS
+======================================== */
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:16px;
+}
+
+.stat-card{
+
+    min-height:160px;
+
+    padding:20px;
+}
+
+.stat-card h3{
+
+    font-size:22px !important;
+
+    line-height:1.2;
 }
 
 /* ========================================
@@ -328,10 +497,26 @@
 
 .localizacao-grid{
 
+    display:grid;
+
     grid-template-columns:1fr !important;
+
+    gap:22px;
 }
 
-.mapa-box{
+.local-info-card{
+
+    padding:22px;
+}
+
+.local-info-card h3{
+
+    font-size:18px !important;
+}
+
+.mapa-box iframe{
+
+    width:100% !important;
 
     min-height:320px !important;
 }
@@ -342,6 +527,8 @@
 
 .parceiros-grid{
 
+    display:grid;
+
     grid-template-columns:
     repeat(2,1fr) !important;
 
@@ -350,16 +537,41 @@
 
 .parceiro-card{
 
-    height:120px !important;
+    height:100px !important;
+
+    padding:8px !important;
+}
+
+.parceiro-card img{
+
+    width:100% !important;
+
+    height:100% !important;
+
+    object-fit:contain !important;
 }
 
 /* ========================================
-   ENQUETE + VIP
+   ENQUETE
 ======================================== */
 
-.enquete-vip-grid{
+.cta-enquete-wrap{
 
-    grid-template-columns:1fr !important;
+    padding:24px;
+}
+
+/* ========================================
+   VIP
+======================================== */
+
+.vip-box{
+
+    padding:26px;
+}
+
+.vip-box h2{
+
+    font-size:22px !important;
 }
 
 /* ========================================
@@ -368,51 +580,48 @@
 
 .footer-grid{
 
+    display:grid;
+
     grid-template-columns:1fr !important;
+
+    gap:20px;
 
     text-align:center;
 }
 
 /* ========================================
-   BOTÕES
+   BOTÃO FLUTUANTE
 ======================================== */
 
-.btn,
-.btn-header-buy,
-.btn-header-whatsapp,
-.btn-localizacao{
+.btn-atendimento-fixo{
 
-    min-height:56px;
+    right:14px;
 
-    font-size:14px !important;
-}
+    bottom:14px;
 
-/* ========================================
-   ESPAÇAMENTOS
-======================================== */
-
-section{
-
-    padding:
-    80px 0 !important;
+    transform:scale(.9);
 }
 
 }
 
 /* ========================================
-   CELULARES PEQUENOS
+   MICRO CELULARES
 ======================================== */
 
-@media(max-width:480px){
+@media screen and (max-width:480px){
 
-.hero-left h2,
-.section-title,
+.hero-left h2{
+
+    font-size:40px !important;
+}
+
+.section-header-center h2,
 .titulo-premiacao h2{
 
-    font-size:28px !important;
+    font-size:30px !important;
 }
 
-.hero-left p,
+.hero-description,
 .section-header-center p{
 
     font-size:14px !important;
@@ -420,24 +629,27 @@ section{
 
 .time-block{
 
-    width:65px;
-    height:65px;
+    height:72px;
 }
 
 .time-block span{
 
-    font-size:20px;
+    font-size:22px;
 }
 
-.parceiros-grid{
+.venda-box img{
 
-    grid-template-columns:
-    repeat(2,1fr) !important;
+    height:200px !important;
+}
+
+.price-box{
+
+    font-size:38px !important;
 }
 
 .parceiro-card{
 
-    height:105px !important;
+    height:88px !important;
 }
 
 }
