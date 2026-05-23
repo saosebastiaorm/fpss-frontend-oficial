@@ -7,10 +7,6 @@
 
   <title>6ª Festa do Padroeiro São Sebastião 2027</title>
 
-  <meta name="description"
-  content="24 de Janeiro de 2027. Produtos oficiais FPSS, churrasco, cartela e prêmios. Garanta já sua participação.">
-  <meta name="theme-color" content="#220000">
-
 <meta
 name="description"
 content="Site oficial da 6ª Festa do Padroeiro São Sebastião 2027. Premiações, atrações, churrasco, cartelas e programação oficial.">
@@ -56,7 +52,7 @@ content="assets/imagens/og-image.jpg">
 
 
 <body>
-
+  <div class="scroll-progress" id="scrollProgress"></div>
   <div class="barra-urgencia">
     🔥 EVENTO OFICIAL FPSS • CHURRASCOS E CARTELAS LIMITADOS • GARANTA JÁ
   </div>
@@ -651,8 +647,12 @@ content="assets/imagens/og-image.jpg">
     <div class="galeria-grid-premium">
 
       <div class="foto-premium hover-3d grande">
-        <img src="assets/imagens/galeria/drone-1.jpg">
-        loading="lazy"
+<img
+  src="assets/imagens/galeria/drone-1.jpg"
+  alt="Vista aérea da Festa do Padroeiro São Sebastião"
+  loading="lazy"
+>
+        
         <div class="overlay-foto">
           <h3>Vista Aérea do Evento</h3>
           <p>Estrutura completa da festa.</p>
@@ -660,32 +660,38 @@ content="assets/imagens/og-image.jpg">
       </div>
 
       <div class="foto-premium hover-3d">
-        <img src="assets/imagens/galeria/publico-1.jpg">
-        loading="lazy"
-        <div class="overlay-foto">
+<img
+  src="assets/imagens/galeria/publico-1.jpg"
+  alt="Almoço lotado da festa"
+  loading="lazy"
+>
+       <div class="overlay-foto">
           <h3>Almoço Lotado</h3>
         </div>
       </div>
 
       <div class="foto-premium hover-3d">
-        <img src="assets/imagens/galeria/publico-2.jpg">
+        <img src="assets/imagens/galeria/publico-2.jpg"
         loading="lazy"
+        >
         <div class="overlay-foto">
           <h3>Comunidade Reunida</h3>
         </div>
       </div>
 
       <div class="foto-premium">
-        <img src="assets/imagens/galeria/churrasco.jpg">
+        <img src="assets/imagens/galeria/churrasco.jpg"
         loading="lazy"
+        >
         <div class="overlay-foto">
           <h3>Churrasco Tradicional</h3>
         </div>
       </div>
 
-      <div class="foto-premium hover-3d
-        <img src="assets/imagens/galeria/igreja.jpg">
+      <div class="foto-premium hover-3d">
+        <img src="assets/imagens/galeria/igreja.jpg"
         loading="lazy"
+        >
         <div class="overlay-foto">
           <h3>Comunidade São Sebastião</h3>
         </div>
@@ -949,8 +955,11 @@ if (produto.tipo === "CAR") {
 
           container.innerHTML += `
             <div class="venda-box hover-3d">
-              <img src="${imgUrl}" alt="${produto.nome}">
-              loading="lazy"
+<img
+  src="${imgUrl}"
+  alt="${produto.nome}"
+  loading="lazy"
+>
               <div class="venda-box-conteudo">
                 <div>
                   <h3>${produto.nome}</h3>

@@ -694,3 +694,30 @@
     background:
     rgba(255,255,255,.2);
 }
+
+/* ========================================
+   SCROLL PROGRESS
+======================================== */
+
+.scroll-progress{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:0%;
+
+    height:4px;
+
+    background:
+    linear-gradient(
+    90deg,
+    #ffcc00,
+    #ff7b00);
+
+    z-index:999999;
+
+    box-shadow:
+    0 0 15px rgba(255,174,0,.6);
+}
