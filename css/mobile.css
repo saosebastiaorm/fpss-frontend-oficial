@@ -4,13 +4,82 @@
 
 @media(max-width:768px){
 
-/* WRAP */
+/* ========================================
+   WRAP
+======================================== */
 
 .wrap{
     width:92%;
 }
 
-/* TÍTULOS */
+/* ========================================
+   HEADER COMPACTO
+======================================== */
+
+.topbar-master{
+
+    padding:12px 0 !important;
+
+    backdrop-filter:blur(14px);
+}
+
+.header-main{
+
+    min-height:auto !important;
+
+    gap:12px;
+}
+
+/* LOGO */
+
+.brand-text h1{
+
+    font-size:24px !important;
+
+    line-height:1;
+}
+
+.brand-text p{
+
+    font-size:12px !important;
+}
+
+/* MENU */
+
+.menu-toggle{
+
+    width:48px;
+    height:48px;
+
+    font-size:22px;
+}
+
+/* CTAS */
+
+.header-ctas{
+
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+}
+
+.btn-header-buy,
+.btn-header-whatsapp{
+
+    width:100%;
+
+    justify-content:center;
+
+    min-height:50px;
+}
+
+/* ========================================
+   TÍTULOS
+======================================== */
 
 .section-title,
 .titulo-premiacao h2,
@@ -34,12 +103,34 @@
     text-align:center;
 }
 
-/* HERO */
+/* ========================================
+   HERO PREMIUM MOBILE
+======================================== */
+
+.hero-video{
+    display:none !important;
+}
 
 .hero-master{
 
+    min-height:auto !important;
+
     padding:
-    120px 0 90px !important;
+    140px 0 90px !important;
+
+    background:
+    linear-gradient(
+    rgba(0,0,0,.65),
+    rgba(0,0,0,.78)
+    ),
+
+    url("../assets/imagens/hero/mobile-hero.jpg");
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-repeat:no-repeat;
 }
 
 .hero-grid{
@@ -49,18 +140,46 @@
 
 .hero-left{
 
+    width:100%;
+
+    max-width:100%;
+
     text-align:center;
+}
+
+/* HERO TEXTO */
+
+.hero-left h2{
+
+    font-size:38px !important;
+
+    line-height:1.05;
+
+    margin-bottom:20px;
+}
+
+.hero-left p{
+
+    font-size:16px !important;
+
+    line-height:1.7;
+
+    margin-bottom:30px;
 }
 
 /* BOTÕES HERO */
 
 .hero-buttons{
 
+    display:flex;
+
     flex-direction:column;
 
     gap:14px;
 
     margin-top:30px;
+
+    width:100%;
 }
 
 .hero-buttons a{
@@ -68,7 +187,14 @@
     width:100%;
 }
 
-/* CONTADOR */
+/* ========================================
+   CONTADOR
+======================================== */
+
+.countdown-container{
+
+    margin-top:25px;
+}
 
 .countdown-timer{
 
@@ -90,7 +216,9 @@
     font-size:24px;
 }
 
-/* PREMIAÇÃO */
+/* ========================================
+   PREMIAÇÃO
+======================================== */
 
 .premiacao-cards{
 
@@ -104,7 +232,9 @@
     min-height:auto !important;
 }
 
-/* PRODUTOS */
+/* ========================================
+   PRODUTOS
+======================================== */
 
 .venda-container{
 
@@ -115,24 +245,64 @@
 
 .venda-box{
 
+    flex-direction:column;
+
     min-height:auto !important;
 }
 
 .venda-box img{
 
-    width:100px !important;
+    width:100% !important;
 
-    min-width:100px !important;
+    min-width:100% !important;
+
+    height:240px !important;
+
+    object-fit:contain !important;
+
+    background:#fff;
+
+    padding:10px;
+
+    border-radius:24px 24px 0 0 !important;
 }
 
-/* PROGRAMAÇÃO */
+.venda-box h3{
+
+    font-size:32px !important;
+}
+
+.price-box{
+
+    font-size:42px !important;
+}
+
+.venda-box-rodape{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+}
+
+.venda-box .btn.green.full{
+
+    width:100%;
+
+    min-width:100%;
+}
+
+/* ========================================
+   PROGRAMAÇÃO
+======================================== */
 
 .programacao-grid{
 
     grid-template-columns:1fr !important;
 }
 
-/* GALERIA */
+/* ========================================
+   GALERIA
+======================================== */
 
 .galeria-grid-premium{
 
@@ -152,7 +322,9 @@
     height:260px !important;
 }
 
-/* LOCALIZAÇÃO */
+/* ========================================
+   LOCALIZAÇÃO
+======================================== */
 
 .localizacao-grid{
 
@@ -164,7 +336,9 @@
     min-height:320px !important;
 }
 
-/* PARCEIROS */
+/* ========================================
+   PARCEIROS
+======================================== */
 
 .parceiros-grid{
 
@@ -179,14 +353,18 @@
     height:120px !important;
 }
 
-/* ENQUETE + VIP */
+/* ========================================
+   ENQUETE + VIP
+======================================== */
 
 .enquete-vip-grid{
 
     grid-template-columns:1fr !important;
 }
 
-/* FOOTER */
+/* ========================================
+   FOOTER
+======================================== */
 
 .footer-grid{
 
@@ -195,7 +373,9 @@
     text-align:center;
 }
 
-/* BOTÕES */
+/* ========================================
+   BOTÕES
+======================================== */
 
 .btn,
 .btn-header-buy,
@@ -207,7 +387,9 @@
     font-size:14px !important;
 }
 
-/* ESPAÇAMENTOS */
+/* ========================================
+   ESPAÇAMENTOS
+======================================== */
 
 section{
 
@@ -247,20 +429,15 @@ section{
     font-size:20px;
 }
 
-.venda-box{
-
-    flex-direction:column;
-}
-
-.venda-box img{
-
-    width:100% !important;
-
-    height:180px !important;
-}
-
 .parceiros-grid{
-    grid-template-columns:repeat(2,1fr) !important;
+
+    grid-template-columns:
+    repeat(2,1fr) !important;
+}
+
+.parceiro-card{
+
+    height:105px !important;
 }
 
 }
