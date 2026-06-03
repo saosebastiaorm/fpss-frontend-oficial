@@ -1,4 +1,4 @@
-const API_BASE = "https://fpss-backend.onrender.com";
+const API_BASE = "https://api.festasaosebastiao.com.br";
 
 let pedidoAtual = null;
 
