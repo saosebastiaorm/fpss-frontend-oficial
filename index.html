@@ -945,13 +945,10 @@ parceirosGrid.innerHTML += `
         const ativos = dados.produtos.filter(p => p.ativo === true);
 
         ativos.forEach(produto => {
-let link = "venda/compra-churrasco.html";
+let link = `venda/compra-churrasco.html?produto=${produto.codigo}`;
 let botao = "🛒 COMPRAR AGORA";
 
-if (produto.tipo === "CAR") {
-  link = "venda/compra-cartela.html";
-  botao = "🛒 COMPRAR AGORA";
-}
+
 
           const imgUrl = produto.imagem || "css/img/placeholder.jpg";
 

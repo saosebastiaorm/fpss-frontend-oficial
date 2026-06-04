@@ -1,33 +1,76 @@
-let PRECO_UNITARIO = 0;
+const PARAMS = new URLSearchParams(window.location.search);
 
+const CODIGO_PRODUTO =
+    PARAMS.get("produto") || "CHU";
+
+console.log("PRODUTO SELECIONADO:", CODIGO_PRODUTO);
+
+let PRECO_UNITARIO = 0;
+let PRODUTO_ATUAL = null;
 /* =====================================================
    CARREGAR PREÇO DINÂMICO
 ===================================================== */
-async function carregarPreco() {
+async function carregarProduto() {
+
     try {
 
-        const resposta = await fetch("https://api.festasaosebastiao.com.br/config/preco/churrasco");
+        const resposta = await fetch(
+            `https://api.festasaosebastiao.com.br/produto/${CODIGO_PRODUTO}`
+        );
 
         const resultado = await resposta.json();
 
-        if (resultado.sucesso) {
+        if (!resultado.sucesso) {
 
-            PRECO_UNITARIO = Number(resultado.valor);
+            alert("Produto não encontrado.");
 
-            calcularTotal();
-
-        } else {
-
-            console.error("Preço não encontrado.");
-
-            document.getElementById("valorTotal").innerText = "Erro";
+            return;
         }
 
-    } catch (error) {
+        PRODUTO_ATUAL = resultado.produto;
 
-        console.error("Erro ao carregar preço:", error);
+        PRECO_UNITARIO = Number(
+            PRODUTO_ATUAL.preco || 0
+        );
 
-        document.getElementById("valorTotal").innerText = "Erro";
+        document.getElementById(
+            "tituloProduto"
+        ).innerText = PRODUTO_ATUAL.nome;
+
+        document.getElementById(
+            "descricaoProduto"
+        ).innerText = PRODUTO_ATUAL.descricao || "";
+
+        document.getElementById(
+            "textoPreco"
+        ).innerText =
+            `Valor unitário: R$ ${PRECO_UNITARIO
+                .toFixed(2)
+                .replace(".", ",")}`;
+
+        const imagem =
+            document.getElementById(
+                "imagemProduto"
+            );
+
+        if (PRODUTO_ATUAL.imagem) {
+
+            imagem.src =
+                PRODUTO_ATUAL.imagem;
+
+            imagem.style.display =
+                "block";
+        }
+
+        calcularTotal();
+
+    } catch (erro) {
+
+        console.error(erro);
+
+        alert(
+            "Erro ao carregar produto."
+        );
     }
 }
 
@@ -222,4 +265,4 @@ document.getElementById("btnSubmit").addEventListener("click", async function(){
 /* =====================================================
    START
 ===================================================== */
-carregarPreco();
+carregarProduto();
