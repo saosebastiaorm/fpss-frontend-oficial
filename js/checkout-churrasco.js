@@ -187,15 +187,21 @@ document.getElementById("btnSubmit").addEventListener("click", async function(){
         return;
     }
 
-    const dadosPedido = {
-        nome,
-        sobrenome,
-        cpf: limparNumero(cpf),
-        telefone: limparNumero(telefone),
-        email,
-        quantidade,
-        horario_retirada
-    };
+const dadosPedido = {
+    nome,
+    sobrenome,
+
+    cpf: limparNumero(cpf),
+    telefone: limparNumero(telefone),
+
+    email,
+
+    quantidade,
+
+    horario_retirada,
+
+    produto_codigo: CODIGO_PRODUTO
+};
 
     try{
 
