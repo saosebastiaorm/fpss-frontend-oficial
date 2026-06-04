@@ -324,7 +324,7 @@ async function verificarPagamento() {
     try {
 
         const res = await fetch(
-            `https://fpss-backend.onrender.com/verificar-pagamento/${pixData.payment_id}`
+            `https://api.festasaosebastiao.com.br/verificar-pagamento/${pixData.payment_id}`
         );
 
         const dados = await res.json();

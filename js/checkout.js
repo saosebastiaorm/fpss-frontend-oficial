@@ -26,7 +26,7 @@ document.getElementById("formCheckout").onsubmit = async function (e) {
 
     try {
 
-        const res = await fetch("https://fpss-backend.onrender.com/criar-pix", {
+        const res = await fetch("https://api.festasaosebastiao.com.br/criar-pix", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

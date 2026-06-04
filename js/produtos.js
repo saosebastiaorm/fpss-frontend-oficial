@@ -1,4 +1,4 @@
-const API = "https://fpss-backend.onrender.com";
+const API = "https://api.festasaosebastiao.com.br";
 
 async function carregarProdutos(){
   try{

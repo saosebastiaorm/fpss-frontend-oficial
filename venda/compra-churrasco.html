@@ -309,8 +309,8 @@
                     <span id="valorTotal">R$ 1,00</span>
                 </div>
 
-                <small style="color:#666;">
-                    Valor unitário fixado: R$ 1,00
+                <small style="color:#666;" id="textoPreco">
+                    Valor unitário: R$ 60,00
                 </small>
 
             </div>
@@ -326,7 +326,7 @@
     <script src="../js/checkout-churrasco.js"></script>
 
     <script>
-        const PRECO_UNITARIO = 1;
+        let PRECO_UNITARIO = 60;
 
         function calcularTotal() {
             const qtd = Number(document.getElementById("qtd").value) || 1;

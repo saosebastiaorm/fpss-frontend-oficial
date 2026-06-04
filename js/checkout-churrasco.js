@@ -6,7 +6,7 @@ let PRECO_UNITARIO = 0;
 async function carregarPreco() {
     try {
 
-        const resposta = await fetch("https://fpss-backend.onrender.com/config/preco/churrasco");
+        const resposta = await fetch("https://api.festasaosebastiao.com.br/config/preco/churrasco");
 
         const resultado = await resposta.json();
 
@@ -156,7 +156,7 @@ document.getElementById("btnSubmit").addEventListener("click", async function(){
 
     try{
 
-        const resposta = await fetch("https://fpss-backend.onrender.com/criar-pix", {
+        const resposta = await fetch("https://api.festasaosebastiao.com.br/criar-pix", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

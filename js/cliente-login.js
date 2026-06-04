@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
 
-      const resposta = await fetch("https://fpss-backend.onrender.com/cliente-login", {
+      const resposta = await fetch("https://api.festasaosebastiao.com.br/cliente-login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
