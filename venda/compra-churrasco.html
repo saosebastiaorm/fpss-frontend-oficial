@@ -325,58 +325,7 @@
 
     <script src="../js/checkout-churrasco.js"></script>
 
-    <script>
-        let PRECO_UNITARIO = 60;
-
-        function calcularTotal() {
-            const qtd = Number(document.getElementById("qtd").value) || 1;
-            const total = qtd * PRECO_UNITARIO;
-
-            document.getElementById("valorTotal").innerText =
-                `R$ ${total.toFixed(2).replace(".", ",")}`;
-        }
-
-        calcularTotal();
-
-        function mascaraCPF(i) {
-            let v = i.value.replace(/\D/g, "");
-
-            if (v.length > 11) v = v.slice(0,11);
-
-            v = v.replace(/(\d{3})(\d)/, "$1.$2");
-            v = v.replace(/(\d{3})(\d)/, "$1.$2");
-            v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
-
-            i.value = v;
-        }
-
-        function mascaraTelefone(i) {
-            let v = i.value.replace(/\D/g, "");
-
-            if (v.length > 11) v = v.slice(0,11);
-
-            if (v.length > 10) {
-                v = v.replace(
-                    /^(\d{2})(\d{5})(\d{4}).*/,
-                    "($1) $2-$3"
-                );
-            } else if (v.length > 6) {
-                v = v.replace(
-                    /^(\d{2})(\d{4})(\d{0,4}).*/,
-                    "($1) $2-$3"
-                );
-            } else if (v.length > 2) {
-                v = v.replace(
-                    /^(\d{2})(\d+)/,
-                    "($1) $2"
-                );
-            } else {
-                v = v.replace(/^(\d*)/, "($1");
-            }
-
-            i.value = v;
-        }
-    </script>
+     
 
 </body>
 </html>
