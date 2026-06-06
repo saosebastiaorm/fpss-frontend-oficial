@@ -79,7 +79,39 @@
 .menu-master a:hover{
     color:#facc15;
 }
+.menu-master a[href="cliente/login.html"]{
 
+    color:#ffd54f;
+
+    font-weight:800;
+
+    position:relative;
+
+}
+
+.menu-master a[href="cliente/login.html"]:hover{
+
+    color:#ffffff;
+
+}
+
+.menu-master a[href="cliente/login.html"]::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    bottom:-4px;
+
+    width:100%;
+    height:2px;
+
+    background:#ffd54f;
+
+    border-radius:20px;
+
+}
 .menu-toggle{
     display:none;
 }

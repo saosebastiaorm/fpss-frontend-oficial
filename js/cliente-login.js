@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
 
-      const resposta = await fetch("https://api.festasaosebastiao.com.br/cliente-login", {
+      const resposta = await fetch("http://localhost:3001/cliente-login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
