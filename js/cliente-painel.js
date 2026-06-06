@@ -74,7 +74,8 @@ function gerarCardPedido(pedido) {
   } else if (statusPagamento === "pendente") {
     classeStatus = "pedido-pendente";
   }
-
+console.log("PRODUTO:", pedido.nome_produto);
+console.log("IMAGEM:", pedido.imagem_produto);
   return `
   <div class="pedido-card ${classeStatus}">
 
