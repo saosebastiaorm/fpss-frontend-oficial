@@ -18,16 +18,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
 
-      const resposta = await fetch("http://localhost:3001/cliente-login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          cpf: cpf,
-          telefone: whatsapp
-        })
-      });
+const API_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:3001"
+    : "https://api.festasaosebastiao.com.br";
+
+const resposta = await fetch(
+  `${API_URL}/cliente-login`,
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      cpf: cpf,
+      telefone: whatsapp
+    })
+  }
+);
 
       const resultado = await resposta.json();
 
