@@ -76,6 +76,8 @@ function gerarCardPedido(pedido) {
   }
 console.log("PRODUTO:", pedido.nome_produto);
 console.log("IMAGEM:", pedido.imagem_produto);
+console.log("PEDIDO COMPLETO:", pedido);
+
   return `
   
   <div class="pedido-card ${classeStatus}">
