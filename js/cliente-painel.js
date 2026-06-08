@@ -89,6 +89,16 @@ console.log("PRODUTO_TIPO:", pedido.produto_tipo);
 console.log("PEDIDO COMPLETO:", pedido);
 
 console.log(
+  "BOTAO PIX:",
+  pedido.codigo_pedido,
+  {
+    payment_id: pedido.payment_id,
+    pix: pedido.pix_copia_cola,
+    qr: pedido.qr_code
+  }
+);
+
+console.log(
   "PIX:",
   pedido.codigo_pedido,
   pedido.pix_copia_cola
@@ -247,9 +257,9 @@ onclick="abrirQRRetirada(
     `
     : ""
 }
+
 ${
-  statusPagamento === "pendente" &&
-  pedido.pix_copia_cola
+  statusPagamento === "pendente"
     ? `
       <button
         class="btn-pagar-agora"
@@ -642,6 +652,8 @@ ${conteudo}
 };
 
 window.abrirPixPagamento = function(
+
+
   codigoPedido,
   valor,
   pixCopiaCola,
@@ -654,6 +666,9 @@ window.abrirPixPagamento = function(
   dataPedido,
   horario
 ) {
+
+  console.log("PIX RECEBIDO:", pixCopiaCola);
+  console.log("QR RECEBIDO:", qrCode);
 
   const modalExistente =
     document.getElementById("modalPixPagamento");
