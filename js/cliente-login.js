@@ -46,7 +46,7 @@ const resposta = await fetch(
           JSON.stringify(resultado.cliente)
         );
 
-        window.location.href = "/cliente/painel.html";
+       window.location.href = "painel.html";
 
       } else {
 

@@ -2,13 +2,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const dados = localStorage.getItem("clienteFPSS");
 
-  if (!dados) {
-    alert("Faça login primeiro.");
-    window.location.href = "/cliente/login.html";
-    return;
-  }
+ if (!dados) {
+  alert("Faça login primeiro.");
+  window.location.href = "login.html";
+  return;
+}
 
-  const cliente = JSON.parse(dados);
+const cliente = JSON.parse(dados);
+
+console.log("CLIENTE COMPLETO:", cliente);
+console.log("PEDIDOS:", cliente.pedidos);
 
   const nome = document.getElementById("clienteNome");
   const cpf = document.getElementById("clienteCPF");
@@ -62,6 +65,12 @@ function gerarCardPedido(pedido) {
   const statusPagamento =
     (pedido.status_pagamento || "").toLowerCase();
 
+  console.log(
+    "STATUS PAGAMENTO:",
+    pedido.codigo_pedido,
+    pedido.status_pagamento
+  );
+
   const statusRetirada =
     (pedido.status_retirada || "").toLowerCase();
 
@@ -74,11 +83,61 @@ function gerarCardPedido(pedido) {
   } else if (statusPagamento === "pendente") {
     classeStatus = "pedido-pendente";
   }
-console.log("PRODUTO:", pedido.nome);
-console.log("IMAGEM:", pedido.imagem);
+console.log("NOME_PRODUTO:", pedido.nome_produto);
+console.log("IMAGEM_PRODUTO:", pedido.imagem_produto);
+console.log("PRODUTO_TIPO:", pedido.produto_tipo);
 console.log("PEDIDO COMPLETO:", pedido);
 
-  return `
+console.log(
+  "PIX:",
+  pedido.codigo_pedido,
+  pedido.pix_copia_cola
+);
+
+console.log(
+  "QR:",
+  pedido.codigo_pedido,
+  pedido.qr_code
+);
+
+console.log(
+  "PAYMENT:",
+  pedido.codigo_pedido,
+  pedido.payment_id
+);
+
+console.log(
+  "PIX:",
+  pedido.codigo_pedido,
+  pedido.pix_copia_cola
+);
+
+console.log(
+  "QR:",
+  pedido.codigo_pedido,
+  pedido.qr_code
+);
+
+console.log(
+  "PAYMENT:",
+  pedido.codigo_pedido,
+  pedido.payment_id
+);
+console.log(
+  "QR_RETIRADA:",
+  pedido.codigo_pedido,
+  pedido.qr_code_retirada
+);
+
+console.log(
+  "STATUS TRADUZIDO:",
+  traduzirStatus(pedido.status_pagamento)
+);
+
+return `
+
+
+
   
   <div class="pedido-card ${classeStatus}">
 
@@ -119,19 +178,52 @@ console.log("PEDIDO COMPLETO:", pedido);
         </p>
 
         <p>
-          <strong>Data:</strong>
-          ${new Date(pedido.created_at)
-            .toLocaleString("pt-BR")}
-        </p>
+  <strong>Retirada:</strong>
+  ${
+    statusRetirada === "retirado"
+      ? "🎉 Retirado"
+      : "📍 Não retirado"
+  }
+</p>
 
-        <p>
-          <strong>Retirada:</strong>
-          ${
-            statusRetirada === "retirado"
-              ? "🎉 Retirado"
-              : "📍 Não retirado"
-          }
-        </p>
+<div class="historico-pedido">
+
+  <div class="historico-titulo">
+    📅 Histórico do Pedido
+  </div>
+
+  <div class="historico-item">
+    <strong>🛒 Pedido:</strong>
+    ${
+      pedido.created_at
+        ? new Date(pedido.created_at).toLocaleString("pt-BR")
+        : "-"
+    }
+  </div>
+
+  <div class="historico-item">
+    <strong>💳 Pagamento:</strong>
+    ${
+      pedido.data_pagamento
+        ? new Date(pedido.data_pagamento).toLocaleString("pt-BR")
+        : "Aguardando pagamento"
+    }
+  </div>
+
+  <div class="historico-item">
+    <strong>🎟 Retirada:</strong>
+    ${
+      pedido.data_retirada
+        ? new Date(pedido.data_retirada).toLocaleString("pt-BR")
+        : "Não retirado"
+    }
+  </div>
+
+</div>
+
+
+
+
           ${
   statusPagamento === "pago" &&
   statusRetirada !== "retirado"
@@ -155,6 +247,33 @@ onclick="abrirQRRetirada(
     `
     : ""
 }
+${
+  statusPagamento === "pendente" &&
+  pedido.pix_copia_cola
+    ? `
+      <button
+        class="btn-pagar-agora"
+       onclick="abrirPixPagamento(
+  '${pedido.codigo_pedido}',
+  '${pedido.valor_total}',
+  '${pedido.pix_copia_cola}',
+  '${pedido.qr_code}',
+  '${pedido.nome_produto}',
+  '${pedido.imagem_produto}',
+  '${pedido.quantidade || 1}',
+  '${pedido.nome} ${pedido.sobrenome}',
+  '${pedido.telefone}',
+  '${pedido.created_at}',
+  '${pedido.horario_retirada}'
+)"
+      >
+        💳 Pagar Agora
+      </button>
+    `
+    : ""
+}
+
+
       </div>
 
     </div>
@@ -245,10 +364,10 @@ listaContainer.innerHTML =
   const logout = document.getElementById("logoutCliente");
 
   if (logout) {
-    logout.addEventListener("click", () => {
-      localStorage.removeItem("clienteFPSS");
-      window.location.href = "/cliente/login.html";
-    });
+logout.addEventListener("click", () => {
+  localStorage.removeItem("clienteFPSS");
+  window.location.href = "login.html";
+});
   }
 
 });
@@ -520,4 +639,161 @@ ${conteudo}
   };
 
 }
+};
+
+window.abrirPixPagamento = function(
+  codigoPedido,
+  valor,
+  pixCopiaCola,
+  qrCode,
+  produto,
+  imagem,
+  quantidade,
+  nome,
+  telefone,
+  dataPedido,
+  horario
+) {
+
+  const modalExistente =
+    document.getElementById("modalPixPagamento");
+
+  if (modalExistente) {
+    modalExistente.remove();
+  }
+
+  const modal = document.createElement("div");
+
+  modal.id = "modalPixPagamento";
+  modal.className = "modal-overlay";
+
+  modal.innerHTML = `
+    <div class="modal-pix-conteudo">
+      <button
+        class="fechar-modal"
+        onclick="document.getElementById('modalPixPagamento').remove()"
+      >
+        ✖
+      </button>
+
+      <h2>💳 Pagamento PIX</h2>
+
+      <div class="pix-produto-box">
+
+  <img
+    src="${imagem}"
+    class="pix-produto-imagem"
+  >
+
+  <h3>${produto}</h3>
+
+</div>
+
+<div class="pix-info-grid">
+
+  <div class="pix-info-item">
+    <strong>📄 Pedido</strong>
+    <span>${codigoPedido}</span>
+  </div>
+
+  <div class="pix-info-item">
+    <strong>📦 Quantidade</strong>
+    <span>${quantidade}</span>
+  </div>
+
+  <div class="pix-info-item">
+    <strong>👤 Comprador</strong>
+    <span>${nome}</span>
+  </div>
+
+  <div class="pix-info-item">
+    <strong>📲 WhatsApp</strong>
+    <span>${telefone}</span>
+  </div>
+
+  <div class="pix-info-item">
+    <strong>📅 Pedido</strong>
+    <span>
+      ${
+        dataPedido
+          ? new Date(dataPedido)
+              .toLocaleString("pt-BR")
+          : "-"
+      }
+    </span>
+  </div>
+
+  <div class="pix-info-item">
+    <strong>🕒 Retirada</strong>
+    <span>${horario}</span>
+  </div>
+
+  <div class="pix-info-item destaque">
+    <strong>💰 Valor</strong>
+    <span>
+      R$ ${Number(valor)
+        .toFixed(2)
+        .replace(".", ",")}
+    </span>
+  </div>
+
+</div>
+
+      <p>
+        <strong>Pedido:</strong>
+        ${codigoPedido}
+      </p>
+
+      <p>
+        <strong>Valor:</strong>
+        R$ ${Number(valor)
+          .toFixed(2)
+          .replace(".", ",")}
+      </p>
+
+<img
+  src="data:image/png;base64,${qrCode}"
+  style="
+    max-width:180px;
+    display:block;
+    margin:10px auto;
+  "
+>
+
+<textarea
+  rows="2"
+  id="pixCopiaCola"
+  readonly
+  style="
+    width:100%;
+    height:50px;
+    margin-top:10px;
+  "
+>
+      >${pixCopiaCola}</textarea>
+
+      <button
+        onclick="copiarPix()"
+        class="btn-pagar-agora"
+      >
+        📋 Copiar PIX (Copiar e Colar)
+      </button>
+
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+};
+
+window.copiarPix = function() {
+
+  const campo =
+    document.getElementById("pixCopiaCola");
+
+  campo.select();
+
+  document.execCommand("copy");
+
+  alert("PIX copiado!");
 };
