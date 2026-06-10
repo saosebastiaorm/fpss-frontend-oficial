@@ -227,35 +227,40 @@ const dadosPedido = {
         /* ======================================
            SALVA DADOS PARA FINALIZAR-COMPRA
         ====================================== */
-            localStorage.setItem("pixData", JSON.stringify({
+localStorage.setItem("pixData", JSON.stringify({
 
-                payment_id: resultado.payment_id,
-                codigo_pedido: resultado.codigo_pedido,
-                produto_tipo: resultado.produto_tipo,
+    txid: resultado.txid,
 
-                total: resultado.total,
+    codigo_pedido: resultado.codigo_pedido,
 
-                nome: `${nome} ${sobrenome}`.trim(),
-                telefone: telefone,
-                cpf: cpf,
+    produto_tipo: resultado.produto_tipo,
 
-                quantidade: quantidade,
-                horario_retirada: horario_retirada,
+    total: resultado.total,
 
-                data_compra: new Date().toLocaleString("pt-BR"),
+    nome: `${nome} ${sobrenome}`.trim(),
 
-                qr_code: resultado.qr_code,
-                qr_code_base64: resultado.qr_code_base64,
+    telefone: telefone,
 
-                qr_code_retirada: resultado.qr_code_retirada,
-                token_retirada: resultado.token_retirada
+    cpf: cpf,
 
-            }));
+    quantidade: quantidade,
+
+    horario_retirada: horario_retirada,
+
+    data_compra: new Date().toLocaleString("pt-BR"),
+
+    // Código PIX Copia e Cola
+    pix_copia_cola: resultado.pix_copia_cola,
+
+    // Para o Sicredi usamos o mesmo texto para gerar o QR
+    qr_code: resultado.qr_code
+
+}));
 
         /* ======================================
            REDIRECIONA PARA COMPROVANTE NOVO
         ====================================== */
-        window.location.href = "/venda/finalizar-compra.html";
+        window.location.href = "finalizar-compra.html";
 
     }catch(error){
 

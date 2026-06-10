@@ -219,7 +219,7 @@ window.gerarPix = async function(){
       qr_code_base64: data.qr_code_base64
     }));
 
-    window.location.href = "/venda/finalizar-compra.html";
+    window.location.href = "./finalizar-compra.html";
 
   }catch(e){
 

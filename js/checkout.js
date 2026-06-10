@@ -39,21 +39,28 @@ document.getElementById("formCheckout").onsubmit = async function (e) {
         console.log("PIX:", resultado);
 
         if (res.ok && resultado.sucesso) {
+            console.log("RESULTADO DO BACKEND:");
+            console.log(resultado);
 
             localStorage.setItem("pixData", JSON.stringify({
-                payment_id: resultado.payment_id,
+
+                txid: resultado.txid,
+
                 codigo_pedido: resultado.codigo_pedido,
+
                 produto_tipo: resultado.produto_tipo,
 
                 total: resultado.total,
 
                 cpf: dados.cpf,
 
-                qr_code: resultado.qr_code,
-                qr_code_base64: resultado.qr_code_base64
+                pix_copia_cola: resultado.pix_copia_cola,
+
+                qr_code: resultado.qr_code
+
             }));
 
-            window.location.href = "/venda/finalizar-compra.html";
+            window.location.href = "./finalizar-compra.html";
 
         } else {
 
