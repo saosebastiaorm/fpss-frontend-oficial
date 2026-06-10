@@ -253,7 +253,7 @@ localStorage.setItem("pixData", JSON.stringify({
     pix_copia_cola: resultado.pix_copia_cola,
 
     // Para o Sicredi usamos o mesmo texto para gerar o QR
-    qr_code: resultado.qr_code
+    qr_code: resultado.pix_copia_cola
 
 }));
 

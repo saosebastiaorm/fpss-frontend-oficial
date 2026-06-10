@@ -56,7 +56,7 @@ document.getElementById("formCheckout").onsubmit = async function (e) {
 
                 pix_copia_cola: resultado.pix_copia_cola,
 
-                qr_code: resultado.qr_code
+                qr_code: resultado.pix_copia_cola
 
             }));
 
