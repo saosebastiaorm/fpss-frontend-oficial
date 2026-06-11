@@ -35,6 +35,15 @@ document.getElementById("formCheckout").onsubmit = async function (e) {
         });
 
         const resultado = await res.json();
+        console.log("==================================");
+        console.log("RESULTADO COMPLETO:");
+        console.log(resultado);
+        console.log("PIX COPIA E COLA:", resultado.qr_code);
+        console.log("PIX COPIA E COLA 2:", resultado.pix_copia_cola);
+        console.log("BASE64:", resultado.qr_code_base64);
+        console.log("==================================");
+        console.log("===== RETORNO DO BACKEND =====");
+        console.log(resultado);
 
         console.log("PIX:", resultado);
 
@@ -42,23 +51,35 @@ document.getElementById("formCheckout").onsubmit = async function (e) {
             console.log("RESULTADO DO BACKEND:");
             console.log(resultado);
 
-            localStorage.setItem("pixData", JSON.stringify({
+localStorage.setItem("pixData", JSON.stringify({
 
-                txid: resultado.txid,
+    txid: resultado.txid,
 
-                codigo_pedido: resultado.codigo_pedido,
+    codigo_pedido: resultado.codigo_pedido,
 
-                produto_tipo: resultado.produto_tipo,
+    produto_tipo: resultado.produto_tipo,
 
-                total: resultado.total,
+    total: resultado.total,
 
-                cpf: dados.cpf,
+    nome: `${dados.nome} ${dados.sobrenome || ""}`.trim(),
 
-                pix_copia_cola: resultado.pix_copia_cola,
+    telefone: dados.telefone,
 
-                qr_code: resultado.pix_copia_cola
+    cpf: dados.cpf,
 
-            }));
+    quantidade: dados.quantidade,
+
+    horario_retirada: dados.horario_retirada,
+
+    data_compra: new Date().toLocaleString("pt-BR"),
+
+    // PIX Copia e Cola
+    pix_copia_cola: resultado.qr_code || "",
+
+    // Imagem do QR Code (Base64)
+    qr_code: resultado.qr_code_base64 || ""
+
+}));
 
             window.location.href = "./finalizar-compra.html";
 

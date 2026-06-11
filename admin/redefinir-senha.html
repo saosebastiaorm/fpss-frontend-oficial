@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Redefinir Senha - FPSS</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+
+        body{
+
+            font-family:Arial,Helvetica,sans-serif;
+
+            background:#f7f3eb;
+
+            display:flex;
+
+            justify-content:center;
+
+            align-items:center;
+
+            height:100vh;
+
+        }
+
+        .box{
+
+            background:white;
+
+            padding:40px;
+
+            width:420px;
+
+            border-radius:15px;
+
+            box-shadow:0 5px 20px rgba(0,0,0,.08);
+
+        }
+
+        h2{
+
+            text-align:center;
+
+            color:#1b4332;
+
+            margin-bottom:25px;
+
+        }
+
+        input{
+
+            width:100%;
+
+            padding:14px;
+
+            margin-top:12px;
+
+            border-radius:8px;
+
+            border:1px solid #ccc;
+
+            box-sizing:border-box;
+
+        }
+
+        button{
+
+            width:100%;
+
+            margin-top:20px;
+
+            padding:14px;
+
+            background:#1b4332;
+
+            color:white;
+
+            border:none;
+
+            border-radius:8px;
+
+            cursor:pointer;
+
+            font-size:16px;
+
+        }
+
+        #msg{
+
+            margin-top:20px;
+
+            text-align:center;
+
+            font-weight:bold;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+    <h2>Nova Senha</h2>
+
+    <input
+        type="password"
+        id="senha"
+        placeholder="Digite a nova senha"
+    >
+
+    <input
+        type="password"
+        id="confirmar"
+        placeholder="Confirme a nova senha"
+    >
+
+    <button id="btnSalvar">
+
+        ALTERAR SENHA
+
+    </button>
+
+    <div id="msg"></div>
+
+</div>
+
+<script src="/js/redefinir-senha.js"></script>
+
+</body>
+
+</html>

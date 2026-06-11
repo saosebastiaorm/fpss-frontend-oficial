@@ -224,7 +224,13 @@ const dadosPedido = {
             return;
         }
 
-        /* ======================================
+
+        console.log("RETORNO COMPLETO DO BACKEND:", resultado);
+console.log("PIX COPIA E COLA:", resultado.pix_copia_cola);
+console.log("PIX CAMEL:", resultado.pixCopiaECola);
+console.log("QR_CODE:", resultado.qr_code);
+console.log("PAYLOAD:", resultado.payload);
+         /* ======================================
            SALVA DADOS PARA FINALIZAR-COMPRA
         ====================================== */
 localStorage.setItem(
@@ -252,8 +258,12 @@ localStorage.setItem(
     data_compra: new Date().toLocaleString("pt-BR"),
 
     // PIX Copia e Cola
-    pix_copia_cola:
-      resultado.pix_copia_cola,
+pix_copia_cola:
+  resultado.pix_copia_cola ||
+  resultado.pixCopiaECola ||
+  resultado.qr_code ||
+  resultado.payload ||
+  "",
 
     // Imagem Base64 do QR Code
     qr_code:

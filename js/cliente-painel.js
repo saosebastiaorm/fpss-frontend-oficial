@@ -92,7 +92,7 @@ console.log(
   "BOTAO PIX:",
   pedido.codigo_pedido,
   {
-    payment_id: pedido.payment_id,
+    payment_id: pedido.txid,
     pix: pedido.pix_copia_cola,
     qr: pedido.qr_code
   }

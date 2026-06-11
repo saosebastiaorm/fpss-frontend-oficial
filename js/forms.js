@@ -210,13 +210,12 @@ window.gerarPix = async function(){
     }
 
     localStorage.setItem("pixData", JSON.stringify({
-      payment_id: data.payment_id,
       codigo_pedido: data.codigo_pedido,
       produto_tipo: data.produto_tipo,
       total: data.total,
       cpf: cpf,
-      qr_code: data.qr_code,
-      qr_code_base64: data.qr_code_base64
+      pix_copia_cola: data.qr_code,
+      qr_code: data.qr_code_base64 || data.pix_copia_cola
     }));
 
     window.location.href = "./finalizar-compra.html";

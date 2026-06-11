@@ -304,7 +304,16 @@ const codigoPix =
 
 document.getElementById("pixCode").value = codigoPix;
 
-gerarQr(codigoPix);
+if (pixData.qr_code) {
+
+    document.getElementById("qrcode").innerHTML =
+        `<img src="data:image/png;base64,${pixData.qr_code}" style="width:220px;">`;
+
+} else {
+
+    gerarQr(codigoPix);
+
+}
 
 function copiarPix() {
     const campo = document.getElementById("pixCode");
