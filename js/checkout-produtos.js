@@ -1,9 +1,19 @@
 const PARAMS = new URLSearchParams(window.location.search);
 
-const CODIGO_PRODUTO =
-    PARAMS.get("produto") || "CHU";
+const produtoCodigo =
+    PARAMS.get("produto") || "";
 
-console.log("PRODUTO SELECIONADO:", CODIGO_PRODUTO);
+console.log("PRODUTO SELECIONADO:", produtoCodigo);
+
+if (!produtoCodigo) {
+
+    alert("Produto não informado.");
+
+    window.location.href = "/";
+
+    throw new Error("Produto não informado.");
+
+}
 
 let PRECO_UNITARIO = 0;
 let PRODUTO_ATUAL = null;
@@ -15,7 +25,7 @@ async function carregarProduto() {
     try {
 
         const resposta = await fetch(
-            `https://api.festasaosebastiao.com.br/produto/${CODIGO_PRODUTO}`
+            `https://api.festasaosebastiao.com.br/produto/${produtoCodigo}`
         );
 
         const resultado = await resposta.json();
@@ -200,7 +210,7 @@ const dadosPedido = {
 
     horario_retirada,
 
-    produto_codigo: CODIGO_PRODUTO
+    produto_codigo: produtoCodigo
 };
 
     try{
@@ -214,7 +224,10 @@ const dadosPedido = {
         });
 
         const resultado = await resposta.json();
+        
 
+
+console.log(resultado);
         console.log("RESPOSTA BACKEND:", resultado);
 
         if(!resposta.ok || !resultado.sucesso){
@@ -243,6 +256,21 @@ localStorage.setItem(
 
     produto_tipo: resultado.produto_tipo,
 
+    produto_codigo:
+      resultado.produto_codigo || "",
+
+    produto_nome:
+      resultado.produto_nome || "",
+
+    produto_imagem:
+      resultado.produto_imagem || "",
+
+      produto_descricao:
+    resultado.produto_descricao || "",
+
+    produto_preco_unitario:
+    PRECO_UNITARIO,
+
     total: resultado.total,
 
     nome: `${nome} ${sobrenome}`.trim(),
@@ -255,17 +283,18 @@ localStorage.setItem(
 
     horario_retirada,
 
-    data_compra: new Date().toLocaleString("pt-BR"),
+    data_compra:
+      new Date().toLocaleString("pt-BR"),
 
     // PIX Copia e Cola
-pix_copia_cola:
-  resultado.pix_copia_cola ||
-  resultado.pixCopiaECola ||
-  resultado.qr_code ||
-  resultado.payload ||
-  "",
+    pix_copia_cola:
+      resultado.pix_copia_cola ||
+      resultado.pixCopiaECola ||
+      resultado.qr_code ||
+      resultado.payload ||
+      "",
 
-    // Imagem Base64 do QR Code
+    // QR Code Base64
     qr_code:
       resultado.qr_code_base64 || null
 
@@ -276,8 +305,12 @@ pix_copia_cola:
            REDIRECIONA PARA COMPROVANTE NOVO
         ====================================== */
         console.log("RESULTADO DO BACKEND:", resultado);
+console.log("======================================");
+console.log("RESULTADO DO BACKEND:");
+console.log(resultado);
+console.log("======================================");
 
- window.location.href = "finalizar-compra.html";
+ window.location.href = "pagamento.html";
 
     }catch(error){
 

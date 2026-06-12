@@ -59,6 +59,12 @@ localStorage.setItem("pixData", JSON.stringify({
 
     produto_tipo: resultado.produto_tipo,
 
+    produto_codigo: resultado.produto_codigo,
+
+    produto_nome: resultado.produto_nome,
+
+    produto_imagem: resultado.produto_imagem,
+
     total: resultado.total,
 
     nome: `${dados.nome} ${dados.sobrenome || ""}`.trim(),
@@ -74,14 +80,20 @@ localStorage.setItem("pixData", JSON.stringify({
     data_compra: new Date().toLocaleString("pt-BR"),
 
     // PIX Copia e Cola
-    pix_copia_cola: resultado.qr_code || "",
+    pix_copia_cola:
+        resultado.pix_copia_cola ||
+        resultado.pixCopiaECola ||
+        resultado.qr_code ||
+        resultado.payload ||
+        "",
 
-    // Imagem do QR Code (Base64)
-    qr_code: resultado.qr_code_base64 || ""
+    // Imagem Base64 do QR Code
+    qr_code:
+        resultado.qr_code_base64 || null
 
 }));
 
-            window.location.href = "./finalizar-compra.html";
+            window.location.href = "./pagamento.html";
 
         } else {
 

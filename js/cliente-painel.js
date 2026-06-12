@@ -22,34 +22,7 @@ console.log("PEDIDOS:", cliente.pedidos);
   if (cpf) cpf.textContent = cliente.cpf || "-";
   if (whatsapp) whatsapp.textContent = cliente.telefone || cliente.whatsapp || "-";
 
-function traduzirProduto(tipo) {
 
-  switch ((tipo || "").toUpperCase()) {
-
-    case "CHU":
-      return "🍖 Churrasco";
-
-    case "CAR":
-      return "🎟️ Cartela";
-
-    case "POR":
-      return "🚪 Portaria";
-
-    case "BEB":
-      return "🥤 Bebida";
-
-    case "VIP":
-      return "⭐ Área VIP";
-
-    case "DOA":
-      return "🙏 Doação";
-
-    default:
-      return "📦 Pedido";
-
-  }
-
-}
 
   function traduzirStatus(status) {
     switch ((status || "").toLowerCase()) {
@@ -161,9 +134,9 @@ return `
 
       <div class="pedido-info">
 
-        <h3>
-          ${pedido.nome_produto || traduzirProduto(pedido.produto_tipo)}
-        </h3>
+<h3>
+  ${pedido.nome_produto || "📦 Produto"}
+</h3>
 
         <p>
           <strong>Status:</strong>
@@ -444,7 +417,21 @@ window.abrirQRRetirada = function(
 
   <div class="qr-lado-direito">
 
-    <div id="qrcodeCliente"></div>
+    <div
+    id="qrcode"
+    style="
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        margin:20px auto;
+        padding:15px;
+        background:#ffffff;
+        border:1px solid #e5e5e5;
+        border-radius:12px;
+        width:fit-content;
+        box-shadow:0 2px 8px rgba(0,0,0,.08);
+    "
+></div>
 
     <button
       id="baixarQRBtn"
@@ -505,7 +492,6 @@ window.abrirQRRetirada = function(
 
       </div>
 
-
     `;
 
     document.body.appendChild(modal);
@@ -520,10 +506,15 @@ window.abrirQRRetirada = function(
 console.log("QR GERADO:", qrCode);
 console.log(qrContainer);
 
+qrContainer.style.display = "flex";
+qrContainer.style.justifyContent = "center";
+qrContainer.style.alignItems = "center";
+qrContainer.style.margin = "20px 0";
+
 new QRCode(qrContainer, {
-  text: qrCode,
-  width: 180,
-  height: 180
+    text: qrCode,
+    width: 240,
+    height: 240
 });
 setTimeout(() => {
 
@@ -743,47 +734,118 @@ window.abrirPixPagamento = function(
     <span>${horario}</span>
   </div>
 
-  <div class="pix-info-item destaque">
-    <strong>💰 Valor</strong>
-    <span>
-      R$ ${Number(valor)
-        .toFixed(2)
-        .replace(".", ",")}
-    </span>
-  </div>
+<div
+  class="pix-info-item destaque"
+  style="
+    grid-column:1 / -1;
+    background:#eefcf2;
+    border:2px solid #2dbb55;
+  "
+>
+  <strong
+    style="
+      font-size:16px;
+      color:#157a35;
+    "
+  >
+    💰 Valor Total
+  </strong>
+
+  <span
+    style="
+      font-size:24px;
+      font-weight:700;
+      color:#157a35;
+    "
+  >
+    R$ ${Number(valor)
+      .toFixed(2)
+      .replace(".", ",")}
+  </span>
+</div>
 
 </div>
 
-      <p>
-        <strong>Pedido:</strong>
-        ${codigoPedido}
-      </p>
 
-      <p>
-        <strong>Valor:</strong>
-        R$ ${Number(valor)
-          .toFixed(2)
-          .replace(".", ",")}
-      </p>
 
-<img
-  src="data:image/png;base64,${qrCode}"
-  style="
-    max-width:180px;
-    display:block;
-    margin:10px auto;
-  "
->
-
-<textarea
-  rows="2"
-  id="pixCopiaCola"
-  readonly
+<div
   style="
     width:100%;
-    height:50px;
-    margin-top:10px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:25px 0;
   "
+>
+  <div
+    id="qrcodePixPagamento"
+    style="
+      padding:15px;
+      background:#ffffff;
+      border:1px solid #e5e5e5;
+      border-radius:12px;
+      box-shadow:0 2px 8px rgba(0,0,0,.08);
+    "
+  ></div>
+
+
+  
+</div>
+
+
+<div
+  style="
+    width:100%;
+    display:flex;
+    justify-content:center;
+    margin:25px 0;
+  "
+>
+  <div
+    id="qrcodePixPagamento"
+    style="
+      padding:15px;
+      background:#ffffff;
+      border:1px solid #e5e5e5;
+      border-radius:12px;
+      box-shadow:0 2px 8px rgba(0,0,0,.08);
+    "
+  ></div>
+<div
+  style="
+    text-align:center;
+    color:#666;
+    font-size:15px;
+    margin-top:-8px;
+    margin-bottom:18px;
+    line-height:1.6;
+  "
+>
+    📱 Escaneie o QR Code utilizando o aplicativo do seu banco.
+    <br>
+    ⏳ A confirmação do pagamento pode levar alguns segundos.
+</div>
+
+
+</div>
+<textarea
+    id="pixCopiaCola"
+    readonly
+    style="
+        width:100%;
+        min-height:80px;
+        margin-top:10px;
+        padding:10px;
+        font-size:13px;
+        font-family:monospace;
+        border:1px solid #d5d5d5;
+        border-radius:8px;
+        resize:none;
+        box-sizing:border-box;
+        word-break:break-all;
+        overflow-wrap:anywhere;
+        background:#fafafa;
+    "
 >
       >${pixCopiaCola}</textarea>
 
@@ -791,13 +853,43 @@ window.abrirPixPagamento = function(
         onclick="copiarPix()"
         class="btn-pagar-agora"
       >
-        📋 Copiar PIX (Copiar e Colar)
+        📋 COPIAR CÓDIGO PIX
       </button>
 
     </div>
   `;
 
   document.body.appendChild(modal);
+
+/* ==========================================
+   GERA O QR CODE DO PIX
+========================================== */
+
+const qrContainer =
+    document.getElementById("qrcodePixPagamento");
+
+if (qrContainer) {
+
+    qrContainer.innerHTML = "";
+qrContainer.style.display = "flex";
+qrContainer.style.justifyContent = "center";
+qrContainer.style.alignItems = "center";
+qrContainer.style.margin = "25px auto";
+
+qrContainer.style.padding = "18px";
+qrContainer.style.background = "#ffffff";
+qrContainer.style.border = "2px solid #eeeeee";
+qrContainer.style.borderRadius = "14px";
+qrContainer.style.boxShadow = "0 4px 12px rgba(0,0,0,.10)";
+qrContainer.style.width = "fit-content";
+
+    new QRCode(qrContainer, {
+        text: pixCopiaCola || "",
+        width: 240,
+        height: 240
+    });
+
+}
 
 };
 

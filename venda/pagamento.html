@@ -131,6 +131,67 @@
             border:1px solid #f4d35e;
         }
 
+        .produto-card{
+
+    display:flex;
+    gap:18px;
+
+    align-items:center;
+
+    background:#fafafa;
+
+    border:1px solid #e5e5e5;
+
+    border-radius:12px;
+
+    padding:15px;
+
+    margin-bottom:18px;
+
+}
+
+.produto-imagem{
+
+    width:120px;
+
+    height:120px;
+
+    border-radius:10px;
+
+    object-fit:cover;
+
+    background:#f2f2f2;
+
+    border:1px solid #ddd;
+
+}
+
+.produto-info{
+
+    flex:1;
+
+}
+
+.produto-info h3{
+
+    margin:0 0 8px 0;
+
+    color:#8b1111;
+
+    font-size:22px;
+
+}
+
+.produto-info p{
+
+    margin:4px 0;
+
+    font-size:15px;
+
+    color:#444;
+
+}
+
 @media(max-width:768px){
 
     body{
@@ -226,12 +287,73 @@
     <p class="sub" id="subtituloStatus">
         Escaneie o QR Code ou copie o código PIX
     </p>
+<div class="produto-card">
 
-    <div class="codigo-box">
-        <div>Seu Pedido:</div>
-        <div class="codigo" id="codigoPedido">Carregando...</div>
-        <div id="valorPedido" style="margin-top:8px;font-weight:bold;"></div>
+    <img
+        id="produtoImagem"
+        class="produto-imagem"
+        src="/assets/images/sem-imagem.png"
+        alt="Produto"
+    >
+
+    <div class="produto-info">
+
+        <h3 id="produtoNome">
+            Carregando...
+        </h3>
+
+        <p>
+            <strong>Código:</strong>
+            <span id="produtoCodigo">
+                --
+            </span>
+        </p>
+
+        <p>
+            <strong>Quantidade:</strong>
+            <span id="produtoQuantidade">
+                --
+            </span>
+        </p>
+
+        <p>
+            <strong>Valor:</strong>
+            <span id="produtoValor">
+                --
+            </span>
+        </p>
+
     </div>
+
+</div>
+
+<div
+    class="codigo-box"
+    id="codigoResumo"
+    style="
+        background:#eef8ee;
+        border:1px solid #b9ddb9;
+        color:#1d5f1d;
+    "
+>
+
+    <div style="font-size:16px;font-weight:bold;">
+        📋 Pedido Gerado com Sucesso
+    </div>
+
+    <div
+        id="codigoPedido"
+        class="codigo"
+        style="
+            color:#1d5f1d;
+            margin-top:6px;
+            font-size:28px;
+        "
+    >
+        Carregando...
+    </div>
+
+</div>
 
     <div class="qrcode-area">
         <div id="qrcode"></div>
@@ -268,17 +390,48 @@ const pixData = JSON.parse(localStorage.getItem("pixData"));
 
 if (!pixData) {
     alert("❌ Nenhum pagamento encontrado.");
-    window.location.href = "compra-churrasco.html";
+    window.location.href = "compra-produtos.html";
 }
 
 document.getElementById("codigoPedido").innerText =
     pixData.codigo_pedido || "N/D";
+const valorPedido = document.getElementById("valorPedido");
 
-document.getElementById("valorPedido").innerText =
-    `Valor: R$ ${Number(pixData.total || 0).toFixed(2).replace(".", ",")}`;
+if (valorPedido) {
+    valorPedido.innerText =
+        `Valor: R$ ${Number(pixData.total || 0)
+            .toFixed(2)
+            .replace(".", ",")}`;
+}
 
 document.getElementById("pixCode").value =
     pixData.pix_copia_cola || pixData.qr_code || "";
+
+function preencherDadosPagamento() {
+
+    document.getElementById("produtoImagem").src =
+        pixData.produto_imagem && pixData.produto_imagem !== ""
+            ? pixData.produto_imagem
+            : "/assets/images/sem-imagem.png";
+
+    document.getElementById("produtoNome").innerText =
+        pixData.produto_nome && pixData.produto_nome !== ""
+            ? pixData.produto_nome
+            : "Produto";
+
+    document.getElementById("produtoCodigo").innerText =
+        pixData.codigo_pedido || "--";
+
+    document.getElementById("produtoQuantidade").innerText =
+        pixData.quantidade || 1;
+
+    document.getElementById("produtoValor").innerText =
+        `R$ ${Number(
+            pixData.total || 0
+        ).toFixed(2).replace(".", ",")}`;
+}
+
+preencherDadosPagamento();
 
 function gerarQr(texto) {
     document.getElementById("qrcode").innerHTML = "";
@@ -333,7 +486,7 @@ function gerarComprovante() {
         return;
     }
 
-    window.open("/venda/comprovante.html", "_blank");
+    window.open("comprovante.html", "_blank");
 }
 
 
@@ -352,14 +505,28 @@ async function verificarPagamento() {
 
         if (!dados.sucesso) return;
 
-        pixData.status_pagamento = dados.status_interno || "";
-        pixData.status_retirada = dados.status_retirada || "";
+pixData.status_pagamento =
+    dados.status_interno || "";
 
-        pixData.qr_code_retirada =
-            dados.qr_code_retirada || null;
+pixData.status_retirada =
+    dados.status_retirada || "";
 
-        pixData.token_retirada =
-            dados.token_retirada || null;
+pixData.data_compra =
+    dados.created_at ||
+    pixData.data_compra ||
+    null;
+
+pixData.data_pagamento =
+    dados.data_pagamento ||
+    dados.updated_at ||
+    pixData.data_pagamento ||
+    null;
+
+pixData.qr_code_retirada =
+    dados.qr_code_retirada || null;
+
+pixData.token_retirada =
+    dados.token_retirada || null;
 
 
         localStorage.setItem(
@@ -389,9 +556,25 @@ async function verificarPagamento() {
             document.getElementById("pixCode").style.display =
                 "none";
 
-            gerarQr(
-            dados.qr_code_retirada || pixData.codigo_pedido
-            );
+if (dados.qr_code_retirada) {
+
+    gerarQr(dados.qr_code_retirada);
+
+} else {
+
+    document.getElementById("qrcode").innerHTML = `
+        <div style="
+            padding:20px;
+            text-align:center;
+            color:#d97706;
+            font-weight:bold;
+        ">
+            ⚠️ Pagamento aprovado.<br>
+            Aguarde alguns segundos enquanto o QR Code de retirada é preparado.
+        </div>
+    `;
+
+}
 
             document.getElementById("subtituloStatus").innerHTML =
                 "📦 Apresente este QR Code ou CPF para retirada";
@@ -454,8 +637,11 @@ async function verificarPagamento() {
             document.getElementById("statusPagamento").style.color =
                 "#d62828";
 
-            document.getElementById("btnWhatsapp").style.display =
-                "none";
+const btnWhatsapp = document.getElementById("btnWhatsapp");
+
+if (btnWhatsapp) {
+    btnWhatsapp.style.display = "none";
+}
 
             document.getElementById("btnComprovante").style.display =
                 "none";
