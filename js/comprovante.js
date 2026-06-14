@@ -123,13 +123,6 @@ if (!elemento) {
 
     }
 
-    const file = new File(
-        [blob],
-        "comprovante-fpss.png",
-        { type: "image/png" }
-    );
-
-
             const file = new File(
                 [blob],
                 "comprovante-fpss.png",

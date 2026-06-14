@@ -1,3 +1,4 @@
+alert("checkout-produto.js carregou");
 const PARAMS = new URLSearchParams(window.location.search);
 
 const produtoCodigo =
@@ -22,13 +23,22 @@ let PRODUTO_ATUAL = null;
 ===================================================== */
 async function carregarProduto() {
 
+    console.log("INICIO carregarProduto");
+
     try {
 
-        const resposta = await fetch(
-            `https://api.festasaosebastiao.com.br/produto/${produtoCodigo}`
-        );
+        const url =
+            `https://api.festasaosebastiao.com.br/produto/${produtoCodigo}`;
+
+        console.log("URL:", url);
+
+        const resposta = await fetch(url);
+
+        console.log("STATUS:", resposta.status);
 
         const resultado = await resposta.json();
+
+        console.log("RESULTADO:", resultado);
 
         if (!resultado.sucesso) {
 
@@ -39,49 +49,41 @@ async function carregarProduto() {
 
         PRODUTO_ATUAL = resultado.produto;
 
-        PRECO_UNITARIO = Number(
-            PRODUTO_ATUAL.preco || 0
-        );
+        PRECO_UNITARIO = Number(PRODUTO_ATUAL.preco || 0);
 
-        document.getElementById(
-            "tituloProduto"
-        ).innerText = PRODUTO_ATUAL.nome;
+        console.log("PRODUTO:", PRODUTO_ATUAL);
 
-        document.getElementById(
-            "descricaoProduto"
-        ).innerText = PRODUTO_ATUAL.descricao || "";
+        document.getElementById("tituloProduto").innerText =
+            PRODUTO_ATUAL.nome;
 
-        document.getElementById(
-            "textoPreco"
-        ).innerText =
+        document.getElementById("descricaoProduto").innerText =
+            PRODUTO_ATUAL.descricao || "";
+
+        document.getElementById("textoPreco").innerText =
             `Valor unitário: R$ ${PRECO_UNITARIO
                 .toFixed(2)
                 .replace(".", ",")}`;
 
         const imagem =
-            document.getElementById(
-                "imagemProduto"
-            );
+            document.getElementById("imagemProduto");
 
-        if (PRODUTO_ATUAL.imagem) {
+        if (imagem && PRODUTO_ATUAL.imagem) {
 
-            imagem.src =
-                PRODUTO_ATUAL.imagem;
+            imagem.src = PRODUTO_ATUAL.imagem;
 
-            imagem.style.display =
-                "block";
+            imagem.style.display = "block";
         }
 
         calcularTotal();
 
+        console.log("FIM carregarProduto");
+
     } catch (erro) {
 
-        console.error(erro);
+        console.error("ERRO carregarProduto:", erro);
 
-        alert(
-            "Erro ao carregar produto."
-        );
     }
+
 }
 
 /* =====================================================
