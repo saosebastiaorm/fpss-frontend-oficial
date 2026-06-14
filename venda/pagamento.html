@@ -20,11 +20,12 @@
         }
 
         .pix-container{
-            max-width:650px;
-            margin:30px auto;
+            max-width:500px;
+              width: 100%;
+            margin:14px auto;
             background:#fff;
-            border-radius:16px;
-            padding:30px;
+            border-radius:14px;
+            padding:18px;
             box-shadow:0 10px 30px rgba(0,0,0,0.12);
             border-top:6px solid #228b22;
         }
@@ -62,12 +63,12 @@
             margin:25px 0;
         }
 
-        #qrcode{
-            padding:15px;
-            background:#fff;
-            border:1px solid #ddd;
-            border-radius:12px;
-            min-height:220px;
+#qrcode{
+    padding:6px;
+    background:#fff;
+    border:1px solid #ddd;
+    border-radius:10px;
+    min-height:136px;
             display:flex;
             align-items:center;
             justify-content:center;
@@ -131,10 +132,10 @@
             border:1px solid #f4d35e;
         }
 
-        .produto-card{
+.produto-card{
 
     display:flex;
-    gap:18px;
+    gap:12px;
 
     align-items:center;
 
@@ -142,21 +143,21 @@
 
     border:1px solid #e5e5e5;
 
-    border-radius:12px;
+    border-radius:10px;
 
-    padding:15px;
+    padding:10px;
 
-    margin-bottom:18px;
+    margin-bottom:12px;
 
 }
 
 .produto-imagem{
 
-    width:120px;
+    width:64px;
 
-    height:120px;
+    height:64px;
 
-    border-radius:10px;
+    border-radius:8px;
 
     object-fit:cover;
 
@@ -174,11 +175,11 @@
 
 .produto-info h3{
 
-    margin:0 0 8px 0;
+    margin:0 0 6px 0;
 
     color:#8b1111;
 
-    font-size:22px;
+    font-size:14px;
 
 }
 
@@ -255,8 +256,8 @@
     }
 
     .btn{
-        padding:12px;
-        font-size:15px;
+        padding:10px;
+        font-size:12px;
         margin-top:10px;
         border-radius:8px;
     }
@@ -446,8 +447,8 @@ new QRCode(
     document.getElementById("qrcode"),
     {
         text: texto,
-        width: 220,
-        height: 220
+        width: 170,
+        height: 170
     }
 );
 }
@@ -460,7 +461,7 @@ document.getElementById("pixCode").value = codigoPix;
 if (pixData.qr_code) {
 
     document.getElementById("qrcode").innerHTML =
-        `<img src="data:image/png;base64,${pixData.qr_code}" style="width:220px;">`;
+        `<img src="data:image/png;base64,${pixData.qr_code}" style="width:136px;">`;
 
 } else {
 
