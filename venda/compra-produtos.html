@@ -13,9 +13,9 @@
 
     <style>
         .checkout-box{
-            max-width:500px;
-            margin:30px auto;
-            padding:25px;
+            max-width:480px;
+            margin:20px auto;
+            padding:18px;
             background:#fff;
             border-radius:12px;
             box-shadow:0 10px 30px rgba(0,0,0,0.15);
@@ -25,11 +25,11 @@
         .urgencia-venda{
             background:#fff3f3;
             color:#d62828;
-            padding:10px;
+            padding:8px;
             border-radius:8px;
             text-align:center;
             font-weight:bold;
-            margin-bottom:20px;
+            margin-bottom:12px;
             border:1px dashed #d62828;
         }
 
@@ -40,7 +40,7 @@
         }
 
         .campo{
-            margin-bottom:15px;
+            margin-bottom:8px;
         }
 
         .campo label{
@@ -53,19 +53,19 @@
         .campo input,
         .campo select{
             width:100%;
-            padding:12px;
+            padding:9px 12px;
             border:1px solid #ccc;
             border-radius:6px;
             font-size:1rem;
             box-sizing:border-box;
         }
 
-        .resumo-venda{
-            background:#f8f9fa;
-            padding:15px;
-            border-radius:8px;
-            margin:20px 0;
-        }
+.resumo-venda{
+    background:#f8f9fa;
+    padding:8px;
+    border-radius:8px;
+    margin:8px 0;
+}
 
         .total-destaque{
             font-size:1.4rem;
@@ -88,12 +88,12 @@
 
         .btn-finalizar{
             width:100%;
-            padding:18px;
+            padding:12px;
             background:#228b22;
             color:#fff;
             border:none;
             border-radius:8px;
-            font-size:1.2rem;
+            font-size:1.05rem;
             font-weight:bold;
             cursor:pointer;
             transition:0.3s;
@@ -183,7 +183,7 @@
     .btn-finalizar{
         width:100%;
         padding:16px;
-        font-size:18px;
+        font-size:14px;
         margin-top:14px;
     }
 
@@ -199,39 +199,56 @@
             ⚡ RESTAM POUCAS UNIDADES! GARANTA O SEU AGORA.
         </div>
 
-        <div style="text-align:center;margin-bottom:20px;">
+  <div
+    style="
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:18px;
+        margin-bottom:14px;
+    "
+>
 
     <img
         id="imagemProduto"
         src=""
         alt="Produto"
         style="
-            width:180px;
-            max-width:100%;
+            width:110px;
+            max-width:110px;
             border-radius:12px;
-            margin-bottom:15px;
             display:none;
+            flex-shrink:0;
         "
     >
 
-    <h2
-        id="tituloProduto"
-        style="margin-bottom:8px;"
-    >
-        Carregando...
-    </h2>
+    <div style="text-align:left;">
 
-    <p
-        id="descricaoProduto"
-        style="
-            color:#666;
-            margin-bottom:10px;
-        "
-    >
-        Carregando produto...
-    </p>
+        <h2
+            id="tituloProduto"
+            style="
+                margin:0 0 6px 0;
+                font-size:28px;
+            "
+        >
+            Carregando...
+        </h2>
 
-</div>
+        <p
+            id="descricaoProduto"
+            style="
+                color:#666;
+                margin:0;
+                font-size:15px;
+                line-height:1.4;
+            "
+        >
+            Carregando produto...
+        </p>
+
+    </div>
+
+</div> 
 
    <form id="formCheckout">
 
