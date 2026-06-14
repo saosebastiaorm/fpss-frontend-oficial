@@ -34,6 +34,16 @@ h1{
     word-break:break-word;
 }
 
+.linha strong{
+    color:#222;
+    font-weight:700;
+}
+
+.linha span{
+    color:#0056b3;
+    font-weight:600;
+}
+
 .qr{
     text-align:center;
     margin-top:30px;
