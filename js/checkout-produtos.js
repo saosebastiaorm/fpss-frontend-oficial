@@ -1,4 +1,3 @@
-alert("checkout-produto.js carregou");
 const PARAMS = new URLSearchParams(window.location.search);
 
 const produtoCodigo =
