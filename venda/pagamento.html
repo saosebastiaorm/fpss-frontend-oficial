@@ -20,13 +20,13 @@
         }
 
         .pix-container{
-            max-width:500px;
+            max-width:520px;
               width: 100%;
-            margin:14px auto;
+            margin:10px auto;
             background:#fff;
-            border-radius:14px;
+            border-radius:10px;
             padding:18px;
-            box-shadow:0 10px 30px rgba(0,0,0,0.12);
+            box-shadow:0 10px 20px rgba(0,0,0,0.12);
             border-top:6px solid #228b22;
         }
 
@@ -39,17 +39,17 @@
         .sub{
             text-align:center;
             color:#666;
-            margin-bottom:25px;
+            margin-bottom:10px;
         }
 
-        .codigo-box{
-            background:#f8f9fa;
-            padding:15px;
-            border-radius:10px;
-            text-align:center;
-            margin-bottom:20px;
-            border:1px solid #ddd;
-        }
+  .codigo-box{
+    background:#f8f9fa;
+    padding:5px 12px;     /* antes: 15px */
+    border-radius:8px;
+    text-align:center;
+    margin-bottom:10px;   /* antes: 20px */
+    border:1px solid #ddd;
+}
 
         .codigo{
             font-size:22px;
@@ -68,8 +68,7 @@
     background:#fff;
     border:1px solid #ddd;
     border-radius:10px;
-    min-height:136px;
-            display:flex;
+                display:flex;
             align-items:center;
             justify-content:center;
         }
@@ -78,25 +77,25 @@
             margin-top:20px;
         }
 
-        .pix-copia textarea{
-            width:100%;
-            height:120px;
-            padding:12px;
-            border-radius:10px;
-            border:1px solid #ccc;
-            resize:none;
-            font-size:14px;
-        }
+.pix-copia textarea{
+    width:100%;
+    height:65px;
+    padding:8px 12px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    resize:none;
+    font-size:13px;
+}
 
         .btn{
             width:100%;
-            padding:16px;
+            padding:12px;
             border:none;
             border-radius:10px;
-            font-size:18px;
+            font-size:15px;
             font-weight:bold;
             cursor:pointer;
-            margin-top:15px;
+            margin-top:12px;
         }
 
         .btn-copiar{
@@ -115,9 +114,9 @@
         }
 
         .status{
-            margin-top:25px;
+            margin-top:15px;
             text-align:center;
-            font-size:18px;
+            font-size:14px;
             font-weight:bold;
             color:#d62828;
         }
@@ -204,7 +203,7 @@
         width:100%;
         max-width:100%;
         margin:8px auto;
-        padding:12px;
+        padding:10px;
         border-radius:10px;
         box-sizing:border-box;
     }
@@ -215,9 +214,9 @@
     }
 
     .sub{
-        font-size:13px;
-        margin-bottom:14px;
-        line-height:1.4;
+        font-size:11px;
+        margin-bottom:11px;
+        line-height:1.1;
     }
 
     .codigo-box{
@@ -245,8 +244,8 @@
 
     #qrcode img,
     #qrcode canvas{
-        width:150px !important;
-        height:150px !important;
+        width:100px !important;
+        height:100px !important;
     }
 
     .pix-copia textarea{
@@ -257,15 +256,15 @@
 
     .btn{
         padding:10px;
-        font-size:12px;
-        margin-top:10px;
+        font-size:11px;
+        margin-top:8px;
         border-radius:8px;
     }
 
     .status{
-        margin-top:16px;
-        font-size:16px;
-        line-height:1.4;
+        margin-top:13px;
+        font-size:12px;
+        line-height:1.1;
     }
 
     .info{
@@ -338,19 +337,19 @@
     "
 >
 
-    <div style="font-size:16px;font-weight:bold;">
-        📋 Pedido Gerado com Sucesso
-    </div>
+<div style="font-size:13px;font-weight:bold;">
+    📋 Pedido Gerado com Sucesso
+</div>
 
-    <div
-        id="codigoPedido"
-        class="codigo"
-        style="
-            color:#1d5f1d;
-            margin-top:6px;
-            font-size:28px;
-        "
-    >
+<div
+    id="codigoPedido"
+    class="codigo"
+    style="
+        color:#1d5f1d;
+        margin-top:1px;
+        font-size:21px;
+    "
+>
         Carregando...
     </div>
 
@@ -405,8 +404,7 @@ if (valorPedido) {
             .replace(".", ",")}`;
 }
 
-document.getElementById("pixCode").value =
-    pixData.pix_copia_cola || pixData.qr_code || "";
+
 
 function preencherDadosPagamento() {
 
@@ -447,8 +445,8 @@ new QRCode(
     document.getElementById("qrcode"),
     {
         text: texto,
-        width: 170,
-        height: 170
+        width: 150,
+        height: 150
     }
 );
 }
@@ -461,7 +459,7 @@ document.getElementById("pixCode").value = codigoPix;
 if (pixData.qr_code) {
 
     document.getElementById("qrcode").innerHTML =
-        `<img src="data:image/png;base64,${pixData.qr_code}" style="width:136px;">`;
+        `<img src="data:image/png;base64,${pixData.qr_code}" style="width:116px;">`;
 
 } else {
 
@@ -565,7 +563,7 @@ if (dados.qr_code_retirada) {
 
     document.getElementById("qrcode").innerHTML = `
         <div style="
-            padding:20px;
+            padding:18px;
             text-align:center;
             color:#d97706;
             font-weight:bold;
