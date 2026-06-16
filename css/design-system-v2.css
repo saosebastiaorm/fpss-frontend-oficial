@@ -1,0 +1,87 @@
+/* ==========================================================
+   FPSS 2027 - DESIGN SYSTEM V2
+   Base oficial do projeto
+========================================================== */
+
+:root{
+
+    /* CORES */
+
+    --color-primary:#8B1111;
+    --color-primary-dark:#650909;
+
+    --color-secondary:#FFD54A;
+
+    --color-success:#22C55E;
+
+    --color-white:#FFFFFF;
+
+    --color-text:#EAEAEA;
+
+    --color-text-soft:rgba(255,255,255,.82);
+
+    --color-border:rgba(255,255,255,.12);
+
+    --glass-bg:rgba(255,255,255,.08);
+
+    --glass-bg-hover:rgba(255,255,255,.14);
+
+    /* BORDAS */
+
+    --radius-xs:8px;
+    --radius-sm:12px;
+    --radius-md:16px;
+    --radius-lg:20px;
+    --radius-xl:28px;
+    --radius-pill:999px;
+
+    /* SOMBRAS */
+
+    --shadow-soft:
+    0 12px 30px rgba(0,0,0,.18);
+
+    --shadow-medium:
+    0 18px 45px rgba(0,0,0,.24);
+
+    --shadow-strong:
+    0 28px 70px rgba(0,0,0,.35);
+
+    /* FONTES */
+
+    --font-h1:44px;
+
+    --font-h2:28px;
+
+    --font-h3:22px;
+
+    --font-text:15px;
+
+    --font-small:13px;
+
+    --font-mini:11px;
+
+    /* ESPAÇAMENTOS */
+
+    --space-4:4px;
+
+    --space-8:8px;
+
+    --space-12:12px;
+
+    --space-16:16px;
+
+    --space-20:20px;
+
+    --space-24:24px;
+
+    --space-32:32px;
+
+    --space-40:40px;
+
+    --space-48:48px;
+
+    /* TRANSIÇÃO */
+
+    --transition:.25s ease;
+
+}

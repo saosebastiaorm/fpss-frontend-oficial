@@ -1,176 +1,394 @@
-/* ========================================
-   PREMIAÇÃO CINEMATOGRÁFICA
-======================================== */
+/* =====================================================
+   PREMIAÇÃO FPSS 2027 — FUNDO BRANCO + FONTE G1
+   Fonte: Merriweather (títulos) + Roboto (corpo)
+   Estilo jornalístico, limpo, profissional
+===================================================== */
 
-.premiacao-cinema{
-    position: relative;
-    padding: 120px 20px;
-    background:
-    radial-gradient(circle at top, rgba(255,174,0,0.15), transparent 40%),
-    linear-gradient(to bottom, #120000, #220000);
-    overflow: hidden;
+/* Import das fontes — adicionar no <head> do HTML também */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Roboto:wght@400;500;600;700;800&display=swap');
+
+/* =====================================================
+   SEÇÃO
+===================================================== */
+
+.premiacao-cinema {
+  position: relative;
+  padding: 48px 20px 52px;
+  background: #ffffff;
+  border-top: 4px solid #cc0000;
+  border-bottom: 1px solid #e8e8e8;
+  overflow: hidden;
+  font-family: 'Roboto', Arial, sans-serif;
 }
 
-/* TÍTULO */
+/* =====================================================
+   CABEÇALHO
+===================================================== */
 
-.titulo-premiacao{
-    text-align: center;
-    margin-bottom: 70px;
+.titulo-premiacao {
+  text-align: center;
+  margin-bottom: 16px;
 }
 
-.titulo-premiacao span{
-    display: inline-block;
-    background: #ffcc00;
-    color: #000;
-    padding: 10px 22px;
-    border-radius: 40px;
-    font-weight: 800;
-    margin-bottom: 20px;
-    letter-spacing: 1px;
+.titulo-premiacao span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: #cc0000;
+  color: #ffffff;
+  padding: 5px 16px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  font-family: 'Roboto', sans-serif;
 }
 
-.titulo-premiacao h2{
-    font-size: 4rem;
-    color: #fff;
-    margin-bottom: 20px;
-    line-height: 1.1;
-    text-transform: uppercase;
-    text-shadow:
-    0 0 10px rgba(255,255,255,.2),
-    0 0 25px rgba(255,174,0,.25);
+.titulo-premiacao h2 {
+  font-family: 'Merriweather', Georgia, serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #111111;
+  line-height: 1.15;
+  text-transform: none;
+  margin-bottom: 0;
+  letter-spacing: -0.5px;
 }
 
-.titulo-premiacao p{
-    max-width: 750px;
-    margin: auto;
-    color: rgba(255,255,255,.7);
-    font-size: 1.1rem;
-    line-height: 1.7;
+.titulo-premiacao p {
+  display: none;
 }
 
-/* GRID */
+/* =====================================================
+   BARRA INFO — UMA LINHA
+===================================================== */
 
-.premiacao-cards{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
+.premio-total-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  background: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 8px 20px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  white-space: nowrap;
 }
 
-/* CARD */
-
-.premio-cinema{
-    position: relative;
-    border-radius: 30px;
-    padding: 40px 25px;
-    overflow: hidden;
-    transition: .4s;
-    border: 1px solid rgba(255,255,255,.08);
-    backdrop-filter: blur(10px);
-    min-height: 320px;
+.premio-total-bar .linha,
+.premio-total-bar .linha.inv {
+  display: none;
 }
 
-.premio-cinema:hover{
-    transform: translateY(-12px) scale(1.03);
+.premio-total-valor {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: #666666;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
 }
 
-/* CORES */
-
-.ouro{
-    background:
-    linear-gradient(180deg,
-    rgba(255,196,0,.25),
-    rgba(70,40,0,.95));
+.premio-total-valor strong {
+  color: #cc0000;
+  font-weight: 800;
+  font-size: 0.76rem;
 }
 
-.prata{
-    background:
-    linear-gradient(180deg,
-    rgba(255,255,255,.2),
-    rgba(40,40,40,.95));
+.premio-total-valor .sep {
+  color: #cccccc;
 }
 
-.bronze{
-    background:
-    linear-gradient(180deg,
-    rgba(255,120,0,.25),
-    rgba(60,20,0,.95));
+/* =====================================================
+   GRID — 4 CARDS NA MESMA LINHA
+===================================================== */
+
+.premiacao-cards {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr;
+  gap: 14px;
+  align-items: stretch;
 }
 
-.vermelho{
-    background:
-    linear-gradient(180deg,
-    rgba(255,0,0,.25),
-    rgba(70,0,0,.95));
+.premio-4-row {
+  display: contents;
 }
 
-/* TOPO */
+/* =====================================================
+   CARD BASE
+===================================================== */
 
-.topo-premio{
-    margin-bottom: 40px;
+.premio-cinema {
+  position: relative;
+  border-radius: 8px;
+  padding: 22px 18px;
+  overflow: hidden;
+  transition: transform .25s ease, box-shadow .25s ease;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e8e8e8;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 
-.badge-premio{
-    background: rgba(255,255,255,.15);
-    color: #fff;
-    padding: 10px 18px;
-    border-radius: 30px;
-    font-weight: 700;
-    font-size: .9rem;
+.premio-cinema:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.11);
 }
 
-/* VALOR */
+/* =====================================================
+   CORES DOS CARDS — FUNDO BRANCO
+===================================================== */
 
-.valor-premio{
-    font-size: 3rem;
-    font-weight: 900;
-    color: #fff;
-    margin-bottom: 20px;
-    line-height: 1;
+.ouro {
+  border-top: 4px solid #d4a000;
+  background: #fffdf5;
 }
 
-/* DESCRIÇÃO */
-
-.descricao-premio{
-    color: rgba(255,255,255,.75);
-    line-height: 1.7;
-    font-size: 1rem;
+.prata {
+  border-top: 4px solid #cc0000;
+  background: #fff8f8;
 }
 
-/* BRILHO */
-
-.efeito-brilho{
-    position: absolute;
-    width: 250px;
-    height: 250px;
-    background: rgba(255,255,255,.15);
-    border-radius: 50%;
-    top: -100px;
-    right: -100px;
-    filter: blur(40px);
+.bronze {
+  border-top: 4px solid #c0392b;
+  background: #fff6f6;
 }
 
-/* RESPONSIVO */
-
-@media(max-width:1100px){
-
-    .premiacao-cards{
-        grid-template-columns: repeat(2,1fr);
-    }
-
+.card-presencial {
+  border-top: 4px solid #e67e00;
+  background: #fffaf5;
+  flex-direction: column;
+  padding: 22px 18px;
+  border-radius: 8px;
+  border: 1px solid #e8e8e8;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 
-@media(max-width:700px){
+.card-presencial:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.11);
+}
 
-    .titulo-premiacao h2{
-        font-size: 2.4rem;
-    }
+/* =====================================================
+   BADGE
+===================================================== */
 
-    .premiacao-cards{
-        grid-template-columns: 1fr;
-    }
+.topo-premio {
+  margin-bottom: 12px;
+}
 
-    .valor-premio{
-        font-size: 2.5rem;
-    }
+.badge-premio {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
+}
 
+.ouro .badge-premio {
+  background: #fef3cd;
+  color: #8a6000;
+  border: 1px solid #e6c96a;
+}
+
+.prata .badge-premio {
+  background: #fde8e8;
+  color: #aa0000;
+  border: 1px solid #f5b8b8;
+}
+
+.bronze .badge-premio {
+  background: #fdeaea;
+  color: #9b2020;
+  border: 1px solid #f0b0b0;
+}
+
+.card-presencial .badge-premio {
+  background: #fff0e0;
+  color: #b85c00;
+  border: 1px solid #f5c880;
+}
+
+/* =====================================================
+   VALOR PRINCIPAL
+===================================================== */
+
+.valor-premio {
+  font-family: 'Merriweather', Georgia, serif;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.ouro .valor-premio {
+  font-size: 2rem;
+  color: #b8860b;
+}
+
+.prata .valor-premio,
+.bronze .valor-premio {
+  font-size: 1.6rem;
+  color: #111111;
+}
+
+.card-presencial .valor-premio {
+  font-size: 1.6rem;
+  color: #c05000;
+}
+
+/* =====================================================
+   BREAKDOWN
+===================================================== */
+
+.breakdown-premio {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-top: 10px;
+  border-top: 1px solid #eeeeee;
+  margin-top: auto;
+}
+
+.breakdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.breakdown-label {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.63rem;
+  color: #999999;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.breakdown-value {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.ouro .breakdown-value   { color: #a07010; }
+.prata .breakdown-value  { color: #cc0000; }
+.bronze .breakdown-value { color: #b02020; }
+.card-presencial .breakdown-value { color: #c05000; }
+
+.breakdown-dot {
+  flex: 1;
+  border-bottom: 1px dashed #e0e0e0;
+}
+
+/* sem descrição */
+.descricao-premio { display: none; }
+.divisor-card     { display: none; }
+
+/* sem pseudo-elemento */
+.ouro::after { display: none; }
+
+/* =====================================================
+   INFO PRESENCIAL
+===================================================== */
+
+.presencial-esquerda { display: contents; }
+
+.presencial-info {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #eeeeee;
+}
+
+.presencial-info .titulo-presencial {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #c05000;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 3px;
+}
+
+.presencial-info .detalhe-presencial {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.63rem;
+  color: #888888;
+  line-height: 1.5;
+}
+
+/* =====================================================
+   BRILHO — desativado no tema claro
+===================================================== */
+
+.efeito-brilho { display: none; }
+
+/* =====================================================
+   RODAPÉ
+===================================================== */
+
+.premiacao-rodape {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 22px;
+  flex-wrap: wrap;
+}
+
+.premiacao-rodape .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 13px;
+  border-radius: 4px;
+  background: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  color: #555555;
+  font-size: 0.70rem;
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+}
+
+.premiacao-rodape .chip span {
+  color: #cc0000;
+  font-weight: 700;
+}
+
+/* =====================================================
+   RESPONSIVO
+===================================================== */
+
+@media (max-width: 900px) {
+  .premiacao-cards {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .premio-cinema.ouro { grid-column: span 2; }
+  .card-presencial    { grid-column: span 2; }
+}
+
+@media (max-width: 560px) {
+  .premiacao-cinema { padding: 36px 12px 40px; }
+  .titulo-premiacao h2 { font-size: 1.5rem; }
+  .premiacao-cards { grid-template-columns: 1fr; gap: 8px; }
+  .premio-cinema.ouro { grid-column: span 1; }
+  .card-presencial    { grid-column: span 1; }
+  .premio-total-bar   { white-space: normal; padding: 8px 14px; }
+  .premio-total-valor { flex-wrap: wrap; justify-content: center; gap: 5px; }
 }

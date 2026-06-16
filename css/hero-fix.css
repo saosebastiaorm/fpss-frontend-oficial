@@ -1,0 +1,169 @@
+/* =====================================================
+   HERO FIX — Restaura hero para estado correto do ZIP
+   Deve ser carregado DEPOIS de todos os outros CSS
+===================================================== */
+
+/* Força fundo creme no hero */
+.hero-v4 {
+  background: linear-gradient(135deg, #fdf6ee 0%, #fdf0e0 60%, #fce8d0 100%) !important;
+  border-bottom: 3px solid #cc0000 !important;
+  min-height: unset !important;
+}
+
+/* Remove qualquer overlay/background herdado */
+.hero-v4__background,
+.hero-v4__overlay { display: none !important; }
+
+/* Grid: 2 colunas */
+.hero-v4__grid {
+  display: grid !important;
+  grid-template-columns: 1fr 420px !important;
+  align-items: center !important;
+  gap: 40px !important;
+}
+
+/* Coluna esquerda */
+.hero-v4__left {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  animation: heroFadeUp .6s ease forwards !important;
+}
+
+/* Badge */
+.hero-v4__badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 5px 14px !important;
+  margin-bottom: 14px !important;
+  border-radius: 4px !important;
+  background: #cc0000 !important;
+  color: #ffffff !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1.2px !important;
+  border: none !important;
+  backdrop-filter: none !important;
+}
+
+/* Título */
+.hero-v4__title {
+  margin: 0 !important;
+  font-family: 'Merriweather', Georgia, serif !important;
+  font-size: clamp(26px, 3vw, 46px) !important;
+  font-weight: 900 !important;
+  line-height: 1.0 !important;
+  letter-spacing: -1px !important;
+  text-transform: uppercase !important;
+  color: #1a0000 !important;
+  text-shadow: none !important;
+}
+
+.hero-v4__title span {
+  display: block !important;
+  color: #cc0000 !important;
+}
+
+/* Subtítulo */
+.hero-v4__subtitle {
+  margin-top: 12px !important;
+  color: #555555 !important;
+  font-size: 14px !important;
+  line-height: 1.65 !important;
+  font-weight: 400 !important;
+  font-family: 'Roboto', Arial, sans-serif !important;
+}
+
+/* Chips */
+.hero-v4__chip {
+  background: #ffffff !important;
+  border: 1px solid #e0d0c0 !important;
+  color: #333333 !important;
+}
+
+/* Botões */
+.hero-v4__button--primary {
+  background: linear-gradient(135deg, #cc0000, #990000) !important;
+  color: #ffffff !important;
+}
+
+.hero-v4__button--whatsapp {
+  background: linear-gradient(135deg, #25d366, #128c4a) !important;
+  color: #ffffff !important;
+}
+
+.hero-v4__button--secondary {
+  background: #ffffff !important;
+  border: 1.5px solid #cc0000 !important;
+  color: #cc0000 !important;
+}
+
+/* Card artista */
+.hero-v4__artist-card {
+  background: #ffffff !important;
+  border: 1px solid #e8ddd0 !important;
+  border-left: 4px solid #cc0000 !important;
+  border-radius: 10px !important;
+  padding: 14px 16px !important;
+  box-shadow: 0 3px 14px rgba(0,0,0,0.07) !important;
+  animation: heroFadeUp .7s ease forwards !important;
+}
+
+.hero-v4__artist-badge {
+  background: #fff5f5 !important;
+  border: 1px solid #ffcccc !important;
+  color: #cc0000 !important;
+  border-radius: 4px !important;
+}
+
+.hero-v4__artist-name { color: #1a0000 !important; font-family: 'Merriweather', Georgia, serif !important; }
+.hero-v4__artist-description { color: #777 !important; }
+.hero-v4__countdown-title { color: #cc0000 !important; }
+
+.hero-v4__count-item {
+  background: #fff8f5 !important;
+  border: 1px solid #f0e0d0 !important;
+  border-radius: 7px !important;
+}
+
+.hero-v4__count-number { color: #cc0000 !important; font-family: 'Merriweather', Georgia, serif !important; }
+.hero-v4__count-label { color: #999 !important; }
+
+.hero-v4__date-alert {
+  background: #fff5f5 !important;
+  border: 1px solid #ffcccc !important;
+  color: #cc0000 !important;
+}
+
+.hero-v4__card-cta {
+  background: linear-gradient(135deg, #cc0000, #990000) !important;
+  color: #ffffff !important;
+}
+
+.hero-v4__divider { background: #f0e0d0 !important; }
+
+/* Coluna direita */
+.hero-v4__right {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .hero-v4__grid { grid-template-columns: 1fr !important; }
+  .hero-v4__left { align-items: center !important; text-align: center !important; }
+  .hero-v4__title { text-align: center !important; }
+  .hero-v4__subtitle { text-align: center !important; }
+  .hero-v4__chips { justify-content: center !important; }
+  .hero-v4__actions { justify-content: center !important; }
+  .hero-v4__right { max-width: 440px !important; margin: 0 auto !important; width: 100% !important; }
+}
+
+@media (max-width: 640px) {
+  .hero-v4__title { font-size: 24px !important; }
+  .hero-v4__actions { flex-wrap: wrap !important; gap: 8px !important; }
+  .hero-v4__button { flex: 1 1 calc(50% - 4px) !important; font-size: 11px !important; }
+  .hero-v4__button--secondary { flex: 1 1 100% !important; }
+}

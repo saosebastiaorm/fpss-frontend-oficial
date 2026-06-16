@@ -4,11 +4,13 @@
 ========================================= */
 
 .header-ctas{
+
     display:flex;
 
     align-items:center;
 
-    gap:14px;
+    gap:8px;
+
 }
 /* =========================================
    BOTÃO WHATSAPP
@@ -32,11 +34,11 @@
 
     color:#ffffff;
 
-    padding:14px 24px;
+    padding:7px 24px;
 
-    border-radius:16px;
+    border-radius:var(--header-button-radius);
 
-    font-size:14px;
+    font-size:var(--header-button-font);
 
     font-weight:800;
 
@@ -85,11 +87,11 @@
 
     color:#5a1a00 !important;
 
-    padding:14px 26px;
+    padding:7px 24px;
 
-    border-radius:16px;
+    border-radius:var(--header-button-radius);
 
-    font-size:14px;
+    font-size:var(--header-button-font);
 
     font-weight:900;
 
@@ -162,9 +164,13 @@ pulseButton 2.5s infinite;
 }
 
 .logo-menu-img{
-    width:54px;
-    height:54px;
+
+    width:var(--logo-size);
+
+    height:var(--logo-size);
+
     object-fit:contain;
+
 }
 
 /* =========================================
@@ -195,7 +201,7 @@ pulseButton 2.5s infinite;
 
     gap:10px !important;
 
-    padding:10px 12px !important;
+    padding:6px 12px !important;
 }
 
 /* LOGO */
@@ -318,7 +324,9 @@ pulseButton 2.5s infinite;
 ========================================= */
 
 body{
-    padding-top:88px;
+
+    padding-top:var(--header-height);
+
 }
 
 /* MOBILE */
@@ -349,3 +357,13 @@ body{
     }
 }
 
+
+/* ---- LOGO: tamanho fixo no header ---- */
+.brand-area .logo-menu-img {
+  width: 42px !important;
+  height: 42px !important;
+  max-width: 42px !important;
+  max-height: 42px !important;
+  object-fit: contain !important;
+  flex-shrink: 0 !important;
+}

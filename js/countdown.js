@@ -1,77 +1,48 @@
 /* =====================================================
-   FPSS MASTER
-   ARQUIVO: /js/countdown.js
-   CONTADOR OFICIAL
+   FPSS 2027 — CONTADOR OFICIAL
+   Atualiza: #mini-dias, #mini-horas, #mini-minutos, #mini-segundos
+             (hero card) — sem depender de #countdown
 ===================================================== */
 
-(function(){
+(function () {
 
-const alvo = new Date("2027-01-24T10:00:00").getTime();
+  const ALVO = new Date("2027-01-24T10:00:00").getTime();
 
-const elDias = document.getElementById("dias");
-const elHoras = document.getElementById("horas");
-const elMin = document.getElementById("minutos");
-const elSeg = document.getElementById("segundos");
-const box = document.getElementById("countdown");
+  /* IDs do hero card */
+  const elDias   = document.getElementById("mini-dias");
+  const elHoras  = document.getElementById("mini-horas");
+  const elMin    = document.getElementById("mini-minutos");
+  const elSeg    = document.getElementById("mini-segundos");
 
-if(!box) return;
+  /* Se não achar nenhum elemento, aborta */
+  if (!elDias && !elHoras && !elMin && !elSeg) return;
 
-/* =========================
-   FORMATAÇÃO
-========================= */
-function dois(n){
-return String(n).padStart(2,"0");
-}
+  function dois(n) { return String(n).padStart(2, "0"); }
 
-/* =========================
-   ATUALIZAR
-========================= */
-function atualizar(){
+  function atualizar() {
+    const diff = ALVO - Date.now();
 
-const agora = new Date().getTime();
-const diff = alvo - agora;
+    if (diff <= 0) {
+      [elDias, elHoras, elMin, elSeg].forEach(el => {
+        if (el) el.textContent = "00";
+      });
+      if (elDias) elDias.textContent = "🎉";
+      clearInterval(timer);
+      return;
+    }
 
-if(diff <= 0){
+    const dias     = Math.floor(diff / 864e5);
+    const horas    = Math.floor((diff % 864e5) / 36e5);
+    const minutos  = Math.floor((diff % 36e5) / 6e4);
+    const segundos = Math.floor((diff % 6e4) / 1e3);
 
-box.innerHTML = `
-<div class="time-box" style="min-width:260px">
-<div class="time-number">🎉</div>
-<div class="time-label">HOJE É O EVENTO</div>
-</div>
-`;
+    if (elDias)  elDias.textContent  = dias;
+    if (elHoras) elHoras.textContent = dois(horas);
+    if (elMin)   elMin.textContent   = dois(minutos);
+    if (elSeg)   elSeg.textContent   = dois(segundos);
+  }
 
-clearInterval(timer);
-return;
-}
-
-const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-
-const horas = Math.floor(
-(diff % (1000 * 60 * 60 * 24)) /
-(1000 * 60 * 60)
-);
-
-const minutos = Math.floor(
-(diff % (1000 * 60 * 60)) /
-(1000 * 60)
-);
-
-const segundos = Math.floor(
-(diff % (1000 * 60)) / 1000
-);
-
-if(elDias) elDias.textContent = dias;
-if(elHoras) elHoras.textContent = dois(horas);
-if(elMin) elMin.textContent = dois(minutos);
-if(elSeg) elSeg.textContent = dois(segundos);
-
-}
-
-/* =========================
-   INICIAR
-========================= */
-atualizar();
-
-const timer = setInterval(atualizar,1000);
+  atualizar();
+  const timer = setInterval(atualizar, 1000);
 
 })();

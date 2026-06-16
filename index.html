@@ -23,11 +23,19 @@ content="Participe da grande festa oficial FPSS 2027.">
 property="og:image"
 content="assets/imagens/og-image.jpg">
 
-
+<!-- font-global.css deve ser o PRIMEIRO css carregado, antes de todos os outros -->
+<link rel="stylesheet" href="css/font-global.css">
+<link rel="stylesheet" href="design-system.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/layout.css">
-<link rel="stylesheet" href="css/header.css">
+
+<link rel="stylesheet" href="css/header.css"> 
+
+<link rel="stylesheet" href="css/design-system-v2.css"> 
+
 <link rel="stylesheet" href="css/hero.css">
+<link rel="stylesheet" href="css/hero-v4.css">
+
 <link rel="stylesheet" href="css/premios.css">
 <link rel="stylesheet" href="css/produtos.css">
 <link rel="stylesheet" href="css/components.css">
@@ -35,15 +43,13 @@ content="assets/imagens/og-image.jpg">
 <link rel="stylesheet" href="css/vip.css">
 <link rel="stylesheet" href="css/footer.css">
 <link rel="stylesheet" href="css/mobile.css">
-
 <link rel="stylesheet" href="css/conversao-master.css">
-
+<link rel="stylesheet" href="css/hero-fix.css">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Roboto:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/imagens/hero.webp">
 <link rel="icon" href="favicon.png">
 <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
@@ -58,20 +64,38 @@ content="assets/imagens/og-image.jpg">
     🔥 EVENTO OFICIAL FPSS • CHURRASCOS E CARTELAS LIMITADOS • GARANTA JÁ
   </div>
 
-  <div class="topbar-master" id="topbarMaster">
+ <div class="topbar-master" id="topbarMaster">
+
     <div class="wrap">
- <div class="header-main">
+
+        <!-- PRIMEIRA LINHA -->
+  <div class="header-main">
 
     <button class="menu-toggle" id="menuToggle">
         ☰
     </button>
 
     <div class="brand-area">
+        <img
+          src="assets/imagens/logo/fpss/fpss-logo.png"
+          alt="Logo 6ª FPSS"
+          class="logo-menu-img"
+        >
         <div class="brand-text">
             <h1>6ª FPSS 2027</h1>
             <p>Festa do Padroeiro São Sebastião</p>
         </div>
     </div>
+
+    <nav class="menu-master">
+
+        <a href="index.html">Início</a>
+        <a href="#comprar">Prêmios</a>
+        <a href="cliente/login.html">👤 Meus Pedidos</a>
+        <a href="enquete/enquete.html">Enquete</a>
+        <a href="doacao/doacao.html">Doações</a>
+
+    </nav>
 
     <div class="header-ctas">
 
@@ -87,729 +111,570 @@ content="assets/imagens/og-image.jpg">
 
 </div>
 
-<!-- MENU FICA FORA DO HEADER -->
-
-<nav class="menu-master">
-
-    <a href="index.html">Início</a>
-
-    <a href="#comprar">Prêmios</a>
-
-    <a href="cliente/login.html">
-        👤 Meus Pedidos
-    </a>
-
-    <a href="enquete/enquete.html">
-        Enquete
-    </a>
-
-    <a href="doacao/doacao.html">
-        Doações
-    </a>
-
-</nav>
     </div>
-  </div>
-
- <div class="hero-master glow-premium">
-
-  <!-- VIDEO FUNDO -->
-  <video class="hero-video" autoplay muted loop playsinline>
-    <source src="assets/videos/hero/hero.mp4" type="video/mp4">
-  </video>
-
-  <!-- OVERLAY -->
-  <div class="hero-overlay"></div>
-
-  <div class="wrap">
-
-    <div class="hero-grid-novo">
-
-      <!-- ESQUERDA -->
-      <div class="hero-left">
-
-        <div class="hero-badge">
-          🔥 EVENTO OFICIAL • 6ª FPSS 2027
-        </div>
-
-        <h2>
-          A MAIOR FESTA
-          <span>DA COMUNIDADE SÃO SEBASTIÃO</span>
-        </h2>
-
-<p class="hero-description">
-🎵 Música ao vivo<br>
-🍖 Churrasco tradicional no fogo<br>
-🎁 Mais de R$ 25 mil em prêmios<br>
-👨‍👩‍👧‍👦 Ambiente familiar<br>
-✨ Uma experiência inesquecível para toda região
-</p>
-
-        <div class="hero-mini-infos">
-
-          <div class="mini-info-card">
-            🎸 SHOW AO VIVO
-          </div>
-
-          <div class="mini-info-card">
-            🥩 CHURRASCO NO FOGO
-          </div>
-
-          <div class="mini-info-card">
-            🎁 +25 MIL EM PRÊMIOS
-          </div>
-
-        </div>
-
-        <div class="hero-buttons">
-
-          <a href="#comprar" class="btn-cartela">
-            🛒 GARANTIR MINHA CARTELA
-          </a>
-
-          <a href="enquete/enquete.html" class="btn-camiseta">
-            🎉 CONCORRER À CAMISETA
-          </a>
-
-        </div>
-
-      </div>
-
-      <!-- DIREITA -->
-      <div class="hero-right">
-
-        <div class="countdown-container">
-
-          <span class="countdown-label">
-            ⏳ O EVENTO COMEÇA EM:
-          </span>
-
-          <div id="countdown" class="countdown-timer">
-
-            <div class="time-block">
-              <span id="dias">00</span>
-              <p>Dias</p>
-            </div>
-
-            <div class="time-block">
-              <span id="horas">00</span>
-              <p>Horas</p>
-            </div>
-
-            <div class="time-block">
-              <span id="minutos">00</span>
-              <p>Min</p>
-            </div>
-
-            <div class="time-block">
-              <span id="segundos">00</span>
-              <p>Seg</p>
-            </div>
-
-          </div>
-
-        </div>
-
-        <!-- ARTISTAS -->
-        <div class="show-card">
-
-          <div class="show-top">
-            🎤 ATRAÇÃO CONFIRMADA
-          </div>
-
-          <img
-            src="assets/imagens/home/cuyabano.png"
-            loading="lazy"
-            alt="Cuyabano e Douradense"
-            class="show-dupla"
-          >
-
-          <h3>Cuyabano & Douradense</h3>
-
-          <p>
-            Moda de viola • Sertanejo raiz • Animação garantida
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
 
 </div>
+
+<!-- ================================================
+   CARROSSEL — SCROLL CONTÍNUO INFINITO
+================================================ -->
+<section class="fpss-carrossel">
+  <div class="fpss-carrossel__runner">
+
+    <div class="fpss-carrossel__slide">
+      <div class="fpss-carrossel__img-wrap">
+        <img src="assets/imagens/galeria/churrasco.jpg" alt="Churrasco" loading="lazy"
+             onerror="this.parentElement.style.background='linear-gradient(135deg,#8b0000,#cc0000)';this.style.display='none'">
+      </div>
+      <div class="fpss-carrossel__body">
+        <div class="fpss-carrossel__texto">
+          <div class="fpss-carrossel__tag" style="background:#cc0000">🍖 ANTECIPADO</div>
+          <strong>Churrasco no fogo</strong>
+          <span>Garanta o seu com desconto antes do evento!</span>
+        </div>
+        <a href="#comprar" class="fpss-carrossel__btn">COMPRAR AGORA →</a>
+      </div>
+    </div>
+
+    <div class="fpss-carrossel__slide">
+      <div class="fpss-carrossel__img-wrap">
+        <img src="assets/imagens/eventos/vi-fpss/cartela-bingo.png" alt="Cartela" loading="lazy"
+             onerror="this.parentElement.style.background='linear-gradient(135deg,#7a5000,#b8860b)';this.style.display='none'">
+      </div>
+      <div class="fpss-carrossel__body">
+        <div class="fpss-carrossel__texto">
+          <div class="fpss-carrossel__tag" style="background:#b8860b">🎟️ R$ 20,00</div>
+          <strong>13 chances de ganhar</strong>
+          <span>R$ 25 mil em dinheiro sorteados na hora!</span>
+        </div>
+        <a href="#comprar" class="fpss-carrossel__btn">GARANTIR CARTELA →</a>
+      </div>
+    </div>
+
+    <div class="fpss-carrossel__slide">
+      <div class="fpss-carrossel__img-wrap fpss-carrossel__img-wrap--green">
+        <img src="assets/icons/whatsapp.png" alt="WhatsApp" loading="lazy"
+             style="width:60%;height:60%;object-fit:contain;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)"
+             onerror="this.style.display='none'">
+      </div>
+      <div class="fpss-carrossel__body">
+        <div class="fpss-carrossel__texto">
+          <div class="fpss-carrossel__tag" style="background:#16a34a">💬 OFICIAL</div>
+          <strong>Entre no Grupo WhatsApp</strong>
+          <span>Novidades, sorteios e informações em primeira mão!</span>
+        </div>
+        <a href="https://chat.whatsapp.com/SEU_LINK_AQUI" target="_blank"
+           class="fpss-carrossel__btn fpss-carrossel__btn--green">ENTRAR NO GRUPO →</a>
+      </div>
+    </div>
+
+    <div class="fpss-carrossel__slide">
+      <div class="fpss-carrossel__img-wrap fpss-carrossel__img-wrap--dark">
+        <span class="fpss-carrossel__big-icon">📅</span>
+      </div>
+      <div class="fpss-carrossel__body">
+        <div class="fpss-carrossel__texto">
+          <div class="fpss-carrossel__tag" style="background:#444">📅 24 JAN 2027</div>
+          <strong>Programação do dia</strong>
+          <span>10h Missa • 11h Almoço & Show • 15h Sorteio • 17h Show de Prêmios</span>
+        </div>
+        <a href="#comprar" class="fpss-carrossel__btn">PARTICIPAR →</a>
+      </div>
+    </div>
+
+    <!-- Duplicata para loop infinito -->
+    <div class="fpss-carrossel__slide">
+      <div class="fpss-carrossel__img-wrap">
+        <img src="assets/imagens/galeria/churrasco.jpg" alt="Churrasco" loading="lazy"
+             onerror="this.parentElement.style.background='linear-gradient(135deg,#8b0000,#cc0000)';this.style.display='none'">
+      </div>
+      <div class="fpss-carrossel__body">
+        <div class="fpss-carrossel__texto">
+          <div class="fpss-carrossel__tag" style="background:#cc0000">🍖 ANTECIPADO</div>
+          <strong>Churrasco no fogo</strong>
+          <span>Garanta o seu com desconto antes do evento!</span>
+        </div>
+        <a href="#comprar" class="fpss-carrossel__btn">COMPRAR AGORA →</a>
+      </div>
+    </div>
+
+    <div class="fpss-carrossel__slide">
+      <div class="fpss-carrossel__img-wrap">
+        <img src="assets/imagens/eventos/vi-fpss/cartela-bingo.png" alt="Cartela" loading="lazy"
+             onerror="this.parentElement.style.background='linear-gradient(135deg,#7a5000,#b8860b)';this.style.display='none'">
+      </div>
+      <div class="fpss-carrossel__body">
+        <div class="fpss-carrossel__texto">
+          <div class="fpss-carrossel__tag" style="background:#b8860b">🎟️ R$ 20,00</div>
+          <strong>13 chances de ganhar</strong>
+          <span>R$ 25 mil em dinheiro sorteados na hora!</span>
+        </div>
+        <a href="#comprar" class="fpss-carrossel__btn">GARANTIR CARTELA →</a>
+      </div>
+    </div>
+
+    <div class="fpss-carrossel__slide">
+      <div class="fpss-carrossel__img-wrap fpss-carrossel__img-wrap--green">
+        <img src="assets/icons/whatsapp.png" alt="WhatsApp" loading="lazy"
+             style="width:60%;height:60%;object-fit:contain;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)"
+             onerror="this.style.display='none'">
+      </div>
+      <div class="fpss-carrossel__body">
+        <div class="fpss-carrossel__texto">
+          <div class="fpss-carrossel__tag" style="background:#16a34a">💬 OFICIAL</div>
+          <strong>Entre no Grupo WhatsApp</strong>
+          <span>Novidades, sorteios e informações em primeira mão!</span>
+        </div>
+        <a href="https://chat.whatsapp.com/SEU_LINK_AQUI" target="_blank"
+           class="fpss-carrossel__btn fpss-carrossel__btn--green">ENTRAR NO GRUPO →</a>
+      </div>
+    </div>
+
+    <div class="fpss-carrossel__slide">
+      <div class="fpss-carrossel__img-wrap fpss-carrossel__img-wrap--dark">
+        <span class="fpss-carrossel__big-icon">📅</span>
+      </div>
+      <div class="fpss-carrossel__body">
+        <div class="fpss-carrossel__texto">
+          <div class="fpss-carrossel__tag" style="background:#444">📅 24 JAN 2027</div>
+          <strong>Programação do dia</strong>
+          <span>10h Missa • 11h Almoço & Show • 15h Sorteio • 17h Show de Prêmios</span>
+        </div>
+        <a href="#comprar" class="fpss-carrossel__btn">PARTICIPAR →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.fpss-carrossel { position:relative; overflow:hidden; background:#1a0000; }
+
+.fpss-carrossel__runner {
+  display: flex;
+  width: max-content;
+  animation: scrollInfinito 28s linear infinite;
+}
+.fpss-carrossel__runner:hover { animation-play-state: paused; }
+
+@keyframes scrollInfinito {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.fpss-carrossel__slide {
+  width: 50vw;
+  display: flex;
+  align-items: center;
+  background: #1a0000;
+  height: 96px;
+  border-right: 1px solid rgba(255,255,255,.06);
+  flex-shrink: 0;
+}
+
+.fpss-carrossel__img-wrap {
+  width: 140px; min-width: 140px; height: 96px;
+  overflow: hidden; flex-shrink: 0; position: relative;
+}
+.fpss-carrossel__img-wrap img { width:100%; height:100%; object-fit:cover; display:block; filter:brightness(.85); }
+.fpss-carrossel__img-wrap--green { background:linear-gradient(135deg,#0a5c2a,#16a34a); }
+.fpss-carrossel__img-wrap--dark  { background:linear-gradient(135deg,#1a0a00,#3d1a00); }
+
+.fpss-carrossel__big-icon {
+  position:absolute; top:50%; left:50%;
+  transform:translate(-50%,-50%); font-size:2.2rem; line-height:1;
+}
+
+.fpss-carrossel__body {
+  flex:1; display:flex; align-items:center;
+  justify-content:flex-start; gap:18px;
+  padding:0 20px; flex-wrap:nowrap; min-width:0;
+}
+
+.fpss-carrossel__texto {
+  display:flex; flex-direction:column; gap:3px; min-width:0;
+}
+
+.fpss-carrossel__tag {
+  display:inline-flex; align-items:center; padding:3px 9px;
+  border-radius:4px; color:#fff; font-size:0.56rem; font-weight:900;
+  letter-spacing:1px; text-transform:uppercase; white-space:nowrap;
+  width:fit-content; font-family:'Roboto',sans-serif;
+}
+
+.fpss-carrossel__body strong {
+  color:#fff; font-size:0.88rem; font-weight:900;
+  white-space:nowrap; font-family:'Merriweather',Georgia,serif;
+}
+
+.fpss-carrossel__body span {
+  color:rgba(255,255,255,.65); font-size:0.68rem;
+  line-height:1.3; font-family:'Roboto',sans-serif; white-space:nowrap;
+}
+
+.fpss-carrossel__btn {
+  display:inline-flex; align-items:center; padding:7px 14px;
+  border-radius:6px; background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.22); color:#fff;
+  font-size:0.62rem; font-weight:900; text-decoration:none;
+  text-transform:uppercase; letter-spacing:.4px; white-space:nowrap;
+  transition:background .2s; flex-shrink:0; font-family:'Roboto',sans-serif;
+}
+.fpss-carrossel__btn:hover { background:rgba(255,255,255,.24); }
+.fpss-carrossel__btn--green { background:rgba(22,163,74,.55); border-color:rgba(22,163,74,.75); }
+.fpss-carrossel__dots { display:none; }
+
+@media (max-width:768px) {
+  .fpss-carrossel__slide    { width:90vw; height:80px; }
+  .fpss-carrossel__img-wrap { width:80px; min-width:80px; height:80px; }
+  .fpss-carrossel__body span { display:none; }
+  .fpss-carrossel__body strong { font-size:0.78rem; }
+  .fpss-carrossel__btn { font-size:0.58rem; padding:6px 10px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .fpss-carrossel__runner { animation:none; }
+}
+</style>
+
+
+
 
 <div class="main-container">
   
 <section class="premiacao-cinema reveal glow-premium">
-
   <div class="wrap">
 
     <div class="titulo-premiacao">
+      <span>🏆 PREMIAÇÃO OFICIAL • 6ª FPSS 2027</span>
+      <h2>R$ 25.000 EM DINHEIRO</h2>
+    </div>
 
-      <span>🏆 PREMIAÇÃO OFICIAL 6ª FPSS 2027</span>
-
-      <h2>
-        MAIS DE R$ 25 MIL EM PRÊMIOS
-      </h2>
-
-      <p>
-        Uma premiação grandiosa para transformar sua participação
-        em emoção até o último sorteio.
-      </p>
-
+    <div class="premio-total-bar">
+      <div class="premio-total-valor">
+        🎟️ Cartela <strong>R$ 20,00</strong>
+        <span class="sep">•</span>
+        🖥️ Sorteio computadorizado
+        <span class="sep">•</span>
+        ⏰ Show de Prêmios <strong>17h • 24 Jan 2027</strong>
+        <span class="sep">•</span>
+        💵 Tudo em dinheiro
+        <span class="sep">•</span>
+        🎯 <strong>13 chances</strong> de ganhar
+      </div>
     </div>
 
     <div class="premiacao-cards">
 
-      <!-- 1 -->
+      <!-- 1º PRÊMIO -->
       <div class="premio-cinema ouro hover-3d float">
-
         <div class="topo-premio">
           <span class="badge-premio">🥇 1º PRÊMIO</span>
         </div>
-
-        <div class="valor-premio">
-          R$ 12 MIL
+        <div class="valor-premio">R$ 12.000</div>
+        <div class="breakdown-premio">
+          <div class="breakdown-item">
+            <span class="breakdown-label">🖥️ Cartela cheia</span>
+            <span class="breakdown-dot"></span>
+            <span class="breakdown-value">R$ 10.000</span>
+          </div>
+          <div class="breakdown-item">
+            <span class="breakdown-label">👥 Quina presencial</span>
+            <span class="breakdown-dot"></span>
+            <span class="breakdown-value">R$ 2.000</span>
+          </div>
         </div>
-
-        <div class="descricao-premio">
-          Grande prêmio principal da festa.
-        </div>
-
         <div class="efeito-brilho"></div>
-
       </div>
 
-      <!-- 2 -->
+      <!-- 2º PRÊMIO -->
       <div class="premio-cinema prata">
-
         <div class="topo-premio">
           <span class="badge-premio">🥈 2º PRÊMIO</span>
         </div>
-
-        <div class="valor-premio">
-          R$ 7 MIL
+        <div class="valor-premio">R$ 7.000</div>
+        <div class="breakdown-premio">
+          <div class="breakdown-item">
+            <span class="breakdown-label">🖥️ Cartela cheia</span>
+            <span class="breakdown-dot"></span>
+            <span class="breakdown-value">R$ 5.000</span>
+          </div>
+          <div class="breakdown-item">
+            <span class="breakdown-label">👥 Quina presencial</span>
+            <span class="breakdown-dot"></span>
+            <span class="breakdown-value">R$ 2.000</span>
+          </div>
         </div>
-
-        <div class="descricao-premio">
-          Sorteio especial oficial.
-        </div>
-
         <div class="efeito-brilho"></div>
-
       </div>
 
-      <!-- 3 -->
+      <!-- 3º PRÊMIO -->
       <div class="premio-cinema bronze">
-
         <div class="topo-premio">
           <span class="badge-premio">🥉 3º PRÊMIO</span>
         </div>
-
-        <div class="valor-premio">
-          R$ 4 MIL
+        <div class="valor-premio">R$ 4.000</div>
+        <div class="breakdown-premio">
+          <div class="breakdown-item">
+            <span class="breakdown-label">🖥️ Cartela cheia</span>
+            <span class="breakdown-dot"></span>
+            <span class="breakdown-value">R$ 3.000</span>
+          </div>
+          <div class="breakdown-item">
+            <span class="breakdown-label">👥 Quina presencial</span>
+            <span class="breakdown-dot"></span>
+            <span class="breakdown-value">R$ 1.000</span>
+          </div>
         </div>
-
-        <div class="descricao-premio">
-          Premiação durante o evento.
-        </div>
-
         <div class="efeito-brilho"></div>
-
       </div>
 
-      <!-- 4 -->
-      <div class="premio-cinema vermelho">
-
-        <div class="topo-premio">
-          <span class="badge-premio">🏅 4º PRÊMIO</span>
+      <!-- 4º PRÊMIO — NA MESMA LINHA -->
+      <div class="premio-4-row">
+        <div class="premio-cinema card-presencial">
+          <div class="topo-premio">
+            <span class="badge-premio">🏅 4º PRÊMIO</span>
+          </div>
+          <div class="valor-premio">R$ 2.000</div>
+          <div class="presencial-info">
+            <div class="titulo-presencial">⏰ Presencial • 15h</div>
+            <div class="detalhe-presencial">Preencha o cupom no verso e deposite na urna.</div>
+          </div>
+          <div class="efeito-brilho"></div>
         </div>
-
-        <div class="valor-premio">
-          R$ 2 MIL
-        </div>
-
-        <div class="descricao-premio">
-          Sorteio presencial especial.
-        </div>
-
-        <div class="efeito-brilho"></div>
-
       </div>
 
     </div>
 
+    <div class="premiacao-rodape">
+      <div class="chip">📅 Entrega dos prêmios &nbsp;<span>31 Jan 2027 às 16h</span></div>
+      <div class="chip">📍 Linha 188, km 04 &nbsp;<span>Rolim de Moura/RO</span></div>
+      <div class="chip">☎️ Informações &nbsp;<span>69 99398-2037</span></div>
+    </div>
+
   </div>
+</section>
 
-</section> 
 
+<!-- ================================================
+   SEÇÃO TOPO PRODUTOS
+================================================ -->
 <section class="produtos-cinema-topo">
-
   <div class="wrap">
 
     <div class="section-header-center">
+      <span class="section-mini-title">🛒 PRODUTOS OFICIAIS FPSS 2027</span>
+      <h2>Garanta sua vaga na festa</h2>
+      <p>Quantidades limitadas por lote. Quanto antes você garante, menor o preço.</p>
+    </div>
 
-      <span class="section-mini-title">
-        🎟 INGRESSOS • CARTELAS • CHURRASCOS
-      </span>
-
-      <h2>
-        GARANTA SUA PARTICIPAÇÃO
-      </h2>
-
-      <p>
-        Produtos oficiais da 6ª Festa do Padroeiro São Sebastião.
-        Quantidades limitadas por lote.
-      </p>
-
+    <!-- BARRA DE URGÊNCIA -->
+    <div class="produtos-urgencia-bar">
+      <div class="urgencia-item">
+        <span class="dot"></span>
+        Vendas abertas agora
+      </div>
+      <div class="urgencia-item">
+        <span class="dot"></span>
+        Lotes antecipados com desconto
+      </div>
+      <div class="urgencia-item">
+        <span class="dot"></span>
+        Aceitamos PIX e Cartão
+      </div>
+      <div class="urgencia-item">
+        <span class="dot"></span>
+        Cartela: 13 chances de ganhar R$ 25 mil
+      </div>
     </div>
 
   </div>
-
 </section>
 
 <section class="produtos-premium-section reveal" id="comprar">
-
   <div class="wrap">
-
-    <div class="section-header-center">
-
-      <span class="section-mini-title">
-        🛒 PRODUTOS OFICIAIS FPSS
-      </span>
-
-      <h2>
-        ESCOLHA SEU PEDIDO
-      </h2>
-
-      <p>
-        Garanta antecipadamente sua cartela,
-        churrasco e participação oficial na festa.
-      </p>
-
+    <div class="venda-container premium-grid" id="produtosContainer">
+      <div class="loading-box">⏳ Carregando produtos oficiais...</div>
     </div>
-
-    <div
-      class="venda-container premium-grid"
-      id="produtosContainer"
-    >
-
-      <div class="loading-box">
-        ⏳ Carregando produtos oficiais...
-      </div>
-
-    </div>
-
   </div>
-
 </section>
 
-<section class="programacao-premium reveal">
-  
-<section class="atracoes-section">
+<section class="dual-section-wrap">
   <div class="wrap">
+    <div class="dual-section-grid">
 
-    <div class="section-header-center">
+      <!-- ============ COLUNA 1: PROGRAMAÇÃO ============ -->
+      <div class="dual-col">
+        <div class="dual-col__header">
+          <span class="section-mini-title">🎉 EVENTO OFICIAL 6ª FPSS 2027</span>
+          <h2 class="dual-col__title">Programação Oficial</h2>
+        </div>
 
-      <span class="section-mini-title">
-        🎉 EVENTO OFICIAL 6ª FPSS 2027
-      </span>
-
-      <h2>
-        PROGRAMAÇÃO OFICIAL
-      </h2>
-
-      <p>
-        Um dia completo de fé, tradição,
-        churrasco, música e grandes prêmios.
-      </p>
-
-    </div>
-
-    <div class="programacao-grid">
-
-      <!-- ESQUERDA -->
-      <div class="programacao-left">
-
-        <img
-          src="assets/imagens/eventos/cartaz-bingo.png"
-          loading="lazy"
-          alt="Cartaz Oficial"
-          class="cartaz-oficial"
-        >
-
+        <div class="dual-programacao">
+          <div class="mini-cartaz-wrap">
+            <img src="assets/imagens/eventos/cartaz-bingo.png" alt="Cartaz Oficial" class="mini-cartaz">
+          </div>
+          <div class="timeline-box">
+            <div class="timeline-item">
+              <span class="hora">10H</span>
+              <div><h3>Santa Missa</h3><p>Momento de fé e celebração da comunidade.</p></div>
+            </div>
+            <div class="timeline-item destaque">
+              <span class="hora">11H</span>
+              <div><h3>Almoço + Show Ao Vivo</h3><p>Churrasco e animação com Cuyabano &amp; Douradense.</p></div>
+            </div>
+            <div class="timeline-item">
+              <span class="hora">15H</span>
+              <div><h3>Sorteio do 4º Prêmio</h3><p>Premiação especial durante o almoço.</p></div>
+            </div>
+            <div class="timeline-item">
+              <span class="hora">17H</span>
+              <div><h3>Grande Show de Prêmios</h3><p>Mais de R$ 25 mil em premiações.</p></div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- DIREITA -->
-      <div class="programacao-right">
+      <!-- ============ COLUNA 2: ATRAÇÕES ============ -->
+      <div class="dual-col">
+        <div class="dual-col__header">
+          <span class="section-mini-title">🎤 SHOWS &amp; ANIMAÇÃO</span>
+          <h2 class="dual-col__title">Atrações Confirmadas</h2>
+        </div>
 
-        <div class="timeline-box">
+        <div class="atracoes-grid">
 
-          <div class="timeline-item">
-            <span class="hora">10H</span>
-            <div>
-              <h3>Santa Missa</h3>
-              <p>Momento de fé e celebração da comunidade.</p>
+          <div class="show-premium-card">
+            <div class="show-image-area">
+              <img src="assets/imagens/home/cuyabano.png" loading="lazy" alt="Cuyabano e Douradense" class="show-main-image">
+            </div>
+            <div class="show-content">
+              <span class="show-badge">🎸 SHOW PRINCIPAL</span>
+              <h3>Cuyabano &amp; Douradense</h3>
+              <p>Sertanejo raiz, moda de viola e clássicos inesquecíveis.</p>
+              <div class="show-tags">
+                <span>🎶 Sertanejo</span><span>🎤 Ao Vivo</span><span>🔥 Animação</span>
+              </div>
+              <a href="https://youtu.be/yXt1UXpl-cQ?si=aY8HjcB2BZ92Fkru" target="_blank" class="btn-show-video">▶ ASSISTIR</a>
             </div>
           </div>
 
-          <div class="timeline-item destaque">
-            <span class="hora">11H</span>
-            <div>
-              <h3>Almoço + Show Ao Vivo</h3>
-              <p>
-                Churrasco tradicional e animação com
-                Cuyabano & Douradense.
-              </p>
+          <div class="show-premium-card">
+            <div class="show-image-area">
+              <img src="assets/imagens/home/carlos-cesar.png" loading="lazy" alt="Carlos Cesar" class="show-main-image">
             </div>
-          </div>
-
-          <div class="timeline-item">
-            <span class="hora">15H</span>
-            <div>
-              <h3>Sorteio do 4º prêmio</h3>
-              <p>Premiação especial durante o almoço.</p>
-            </div>
-          </div>
-
-          <div class="timeline-item">
-            <span class="hora">17H</span>
-            <div>
-              <h3>Grande Show de Prêmios</h3>
-              <p>Mais de R$ 25 mil em premiações.</p>
+            <div class="show-content">
+              <span class="show-badge red">🎙 LOCUTOR OFICIAL</span>
+              <h3>Carlos Cesar</h3>
+              <p>Narração oficial, leilões e interação com o público.</p>
+              <div class="show-tags">
+                <span>🎙 Locução</span><span>🔥 Interação</span>
+              </div>
+              <a href="https://www.instagram.com/reel/DL6HiWvsVIk/" target="_blank" class="btn-show-video red">▶ VER LOCUTOR</a>
             </div>
           </div>
 
         </div>
-
       </div>
 
     </div>
-
   </div>
-
 </section>
 
-<section class="atracoes-section reveal">
-
-  <div class="wrap">
-
-    <div class="section-header-center light">
-
-      <span class="section-mini-title">
-        🎤 SHOWS & ANIMAÇÃO
-      </span>
-
-      <h2>
-        ATRAÇÕES CONFIRMADAS
-      </h2>
-
-      <p>
-        Música ao vivo, moda de viola,
-        locução profissional e animação garantida.
-      </p>
-
-    </div>
-
-    <div class="atracoes-grid">
-
-      <!-- DUPLA -->
-      <div class="show-premium-card">
-
-        <div class="show-image-area">
-
-          <img
-            src="assets/imagens/home/cuyabano.png"
-            loading="lazy"
-            alt="Cuyabano e Douradense"
-            class="show-main-image"
-          >
-
-        </div>
-
-        <div class="show-content">
-
-          <span class="show-badge">
-            🎸 SHOW PRINCIPAL
-          </span>
-
-          <h3>
-            Cuyabano & Douradense
-          </h3>
-
-          <p>
-            O melhor da música sertaneja raiz,
-            moda de viola e clássicos que marcaram gerações.
-          </p>
-
-          <div class="show-tags">
-            <span>🎶 Sertanejo</span>
-            <span>🎤 Ao Vivo</span>
-            <span>🔥 Animação</span>
-          </div>
-
-          <a
-            href="https://youtu.be/yXt1UXpl-cQ?si=aY8HjcB2BZ92Fkru"
-            target="_blank"
-            class="btn-show-video"
-          >
-            ▶ ASSISTIR APRESENTAÇÃO
-          </a>
-
-        </div>
-
-      </div>
-
-      <!-- LOCUTOR -->
-      <div class="show-premium-card">
-
-        <div class="show-image-area">
-
-          <img
-            src="assets/imagens/home/carlos-cesar.png"
-            loading="lazy"
-            alt="Carlos Cesar"
-            class="show-main-image"
-          >
-
-        </div>
-
-        <div class="show-content">
-
-          <span class="show-badge red">
-            🎙 LOCUTOR OFICIAL
-          </span>
-
-          <h3>
-            Carlos Cesar
-          </h3>
-
-          <p>
-            Narração oficial do bingo, leilões e muita 
-            interação com o público e animação durante todo evento.
-          </p>
-
-          <div class="show-tags">
-            <span>🎙 Locução</span>
-            <span>🔥 Interação</span>
-            <span>🎉 Evento Ao Vivo</span>
-          </div>
-
-
-
-
-  <a
-  href="https://www.instagram.com/reel/DL6HiWvsVIk/"
-  target="_blank"
-  class="btn-show-video red"
->
-  ▶ VER LOCUTOR
-</a>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
+<!-- ============ GALERIA ============ -->
 <section class="galeria-cinema">
-
   <div class="wrap">
 
     <div class="section-header-center">
-
-      <span class="section-mini-title">
-        📸 MOMENTOS INESQUECÍVEIS
-      </span>
-
-      <h2>
-        A FESTA QUE MOVIMENTA A REGIÃO
-      </h2>
-
-      <p>
-        Milhares de pessoas reunidas em um dos eventos
-        mais tradicionais da comunidade.
-      </p>
-
+      <span class="section-mini-title">📸 MOMENTOS INESQUECÍVEIS</span>
+      <h2>A Festa que Movimenta a Região</h2>
+      <p>Milhares de pessoas reunidas em um dos eventos mais tradicionais da comunidade.</p>
     </div>
 
-    <!-- NÚMEROS -->
     <div class="estatisticas-evento">
-
-      <div class="stat-card">
-        <h3>+5 MIL</h3>
-        <p>Pessoas ao longo das edições</p>
-      </div>
-
-      <div class="stat-card">
-        <h3>R$ 25 MIL</h3>
-        <p>Em premiações oficiais</p>
-      </div>
-
-      <div class="stat-card">
-        <h3>100%</h3>
-        <p>Renda revertida para comunidade</p>
-      </div>
-
-      <div class="stat-card">
-        <h3>TRADIÇÃO</h3>
-        <p>Fé, música e confraternização</p>
-      </div>
-
+      <div class="stat-card"><h3>+5 MIL</h3><p>Pessoas ao longo das edições</p></div>
+      <div class="stat-card"><h3>R$ 25 MIL</h3><p>Em premiações oficiais</p></div>
+      <div class="stat-card"><h3>100%</h3><p>Renda revertida para comunidade</p></div>
+      <div class="stat-card"><h3>TRADIÇÃO</h3><p>Fé, música e confraternização</p></div>
     </div>
 
-    <!-- GALERIA -->
+    <!-- GALERIA: 5 fotos em linha única -->
     <div class="galeria-grid-premium">
-
-      <div class="foto-premium hover-3d grande">
-<img
-  src="assets/imagens/galeria/drone-1.jpg"
-  alt="Vista aérea da Festa do Padroeiro São Sebastião"
-  loading="lazy"
->
-        
-        <div class="overlay-foto">
-          <h3>Vista Aérea do Evento</h3>
-          <p>Estrutura completa da festa.</p>
-        </div>
-      </div>
-
       <div class="foto-premium hover-3d">
-<img
-  src="assets/imagens/galeria/publico-1.jpg"
-  alt="Almoço lotado da festa"
-  loading="lazy"
->
-       <div class="overlay-foto">
-          <h3>Almoço Lotado</h3>
-        </div>
+        <img src="assets/imagens/galeria/drone-1.jpg" alt="Vista aérea" loading="lazy">
+        <div class="overlay-foto"><h3>Vista Aérea</h3></div>
       </div>
-
       <div class="foto-premium hover-3d">
-          <img
-            src="assets/imagens/galeria/publico-2.jpg"
-            alt="Comunidade reunida na festa"
-            loading="lazy"
-          >
-        <div class="overlay-foto">
-          <h3>Comunidade Reunida</h3>
-        </div>
+        <img src="assets/imagens/galeria/publico-1.jpg" alt="Almoço Lotado" loading="lazy">
+        <div class="overlay-foto"><h3>Almoço Lotado</h3></div>
       </div>
-
-      <div class="foto-premium">
-        <img src="assets/imagens/galeria/churrasco.jpg"
-        loading="lazy"
-        >
-        <div class="overlay-foto">
-          <h3>Churrasco Tradicional</h3>
-        </div>
-      </div>
-
       <div class="foto-premium hover-3d">
-        <img src="assets/imagens/galeria/igreja.jpg"
-        loading="lazy"
-        >
-        <div class="overlay-foto">
-          <h3>Comunidade São Sebastião</h3>
-        </div>
+        <img src="assets/imagens/galeria/publico-2.jpg" alt="Comunidade Reunida" loading="lazy">
+        <div class="overlay-foto"><h3>Comunidade Reunida</h3></div>
       </div>
-
+      <div class="foto-premium hover-3d">
+        <img src="assets/imagens/galeria/churrasco.jpg" alt="Churrasco Tradicional" loading="lazy">
+        <div class="overlay-foto"><h3>Churrasco Tradicional</h3></div>
+      </div>
+      <div class="foto-premium hover-3d">
+        <img src="assets/imagens/galeria/igreja.jpg" alt="Comunidade São Sebastião" loading="lazy">
+        <div class="overlay-foto"><h3>Comunidade São Sebastião</h3></div>
+      </div>
     </div>
 
   </div>
-
 </section>
 
+<!-- ============ LOCALIZAÇÃO ============ -->
 <section class="localizacao-premium reveal">
-
   <div class="wrap">
 
-    <div class="section-header-center light">
-
-      <span class="section-mini-title">
-        📍 LOCALIZAÇÃO OFICIAL
-      </span>
-
-      <h2>
-        ONDE ACONTECE A FESTA
-      </h2>
-
-      <p>
-        Venha viver esse grande evento da comunidade
-        São Sebastião em Rolim de Moura.
-      </p>
-
+    <div class="section-header-center">
+      <span class="section-mini-title">📍 LOCALIZAÇÃO OFICIAL</span>
+      <h2>Onde Acontece o Evento?</h2>
     </div>
 
-    <div class="localizacao-grid">
+    <div class="local-grid-3col">
 
       <!-- MAPA -->
-      <div class="mapa-box">
-
-<iframe
-  src="https://www.google.com/maps?q=-11.759236,-61.742004&z=16&output=embed"
-  allowfullscreen=""
-  loading="lazy">
-</iframe>
-
+      <div class="local-mapa-col">
+        <div class="mapa-box">
+          <iframe src="https://www.google.com/maps?q=-11.759236,-61.742004&z=16&output=embed" allowfullscreen="" loading="lazy"></iframe>
+        </div>
       </div>
 
       <!-- INFO -->
-      <div class="info-localizacao">
+      <div class="local-info-col">
+        <div class="local-card"><span>📍</span><div><h3>Local</h3><p>Linha 188 Sul km 4 • Rolim de Moura - RO</p></div></div>
+        <div class="local-card"><span>📅</span><div><h3>Data</h3><p>24 de Janeiro de 2027</p></div></div>
+        <div class="local-card"><span>⏰</span><div><h3>Horário</h3><p>Início às 10h da manhã</p></div></div>
+        <div class="local-card"><span>🚗</span><div><h3>Estacionamento</h3><p>Área ampla para veículos</p></div></div>
+        <a href="https://maps.google.com/?q=Linha+188+Sul+Rolim+de+Moura" target="_blank" class="btn-localizacao">📍 ABRIR NO GOOGLE MAPS</a>
+      </div>
 
-        <div class="local-card">
-          <span>📍</span>
-          <div>
-            <h3>Comunidade São Sebastião</h3>
-            <p>Linha 188 Sul km 4 lado sul • Rolim de Moura - RO</p>
-          </div>
+      <!-- EXTRA: COMO CHEGAR -->
+      <div class="local-extra-col">
+        <div class="local-extra-card">
+          <div class="local-extra-card__icon">🚌</div>
+          <h3>Como Chegar</h3>
+          <p>Saindo de Rolim de Moura, pegue a Linha 188 Sul por aproximadamente 4 km. O evento é no lado sul da linha.</p>
         </div>
-
-        <div class="local-card">
-          <span>📅</span>
-          <div>
-            <h3>Data do Evento</h3>
-            <p>24 de Janeiro de 2027</p>
-          </div>
+        <div class="local-extra-card">
+          <div class="local-extra-card__icon">📞</div>
+          <h3>Informações</h3>
+          <p>Dúvidas? Fale conosco pelo WhatsApp:</p>
+          <a href="https://wa.me/556999398-2037" target="_blank" class="local-extra-card__btn">💬 (69) 99398-2037</a>
         </div>
-
-        <div class="local-card">
-          <span>⏰</span>
-          <div>
-            <h3>Horário</h3>
-            <p>Início às 10h da manhã</p>
-          </div>
+        <div class="local-extra-card">
+          <div class="local-extra-card__icon">💳</div>
+          <h3>Pagamentos</h3>
+          <p>Aceitamos PIX, cartão de crédito e débito no local do evento.</p>
         </div>
-
-        <div class="local-card">
-          <span>🚗</span>
-          <div>
-            <h3>Estacionamento</h3>
-            <p>Área ampla para veículos</p>
-          </div>
-        </div>
-
-        <a
-          href="https://maps.google.com/?q=Linha+188+Sul+Rolim+de+Moura"
-          target="_blank"
-          class="btn-localizacao"
-        >
-          📍 ABRIR NO GOOGLE MAPS
-        </a>
-
       </div>
 
     </div>
-
   </div>
-
 </section>
+
 
  <section class="parceiros-premium reveal">
 
@@ -897,40 +762,32 @@ parceirosGrid.innerHTML += `
 
 </script>
 
-<div class="enquete-callout" id="enquete">
 
-  <div class="wrap">
+<div class="wrap">
+  <div class="enquete-vip-wrap">
 
-    <div class="cta-enquete-wrap">
-
-      <a href="enquete/enquete.html"
-      class="btn-enquete-premium">
-
-      🎉 RESPONDA A NOSSA ENQUETE E CONCORRA
-      À CAMISETA OFICIAL DA FESTA
-
-      </a>
-
-      <p class="enquete-subtexto">
-      Sorteio exclusivo para os participantes da enquete.
-      </p>
-
+    <!-- ENQUETE -->
+    <div>
+      <div class="cta-enquete-wrap">
+        <a href="enquete/enquete.html" class="btn-enquete-premium">
+          🎉 RESPONDA A NOSSA ENQUETE E CONCORRA À CAMISETA OFICIAL DA FESTA
+        </a>
+        <p class="enquete-subtexto">Sorteio exclusivo para os participantes da enquete.</p>
+      </div>
     </div>
 
-  </div>
-
-</div>
-  
-
-  <div class="vip-section" id="vip">
-    <div class="wrap">
+    <!-- WHATSAPP VIP -->
+    <div>
       <div class="vip-box">
         <h2>📢 Entre no Nosso Grupo VIP do WhatsApp</h2>
-        <p>Receba em primeira mão os avisos da paróquia, fotos dos preparativos da festa, atualizações dos sorteios e o resultado oficial dos ganhadores direto no seu celular.</p>
+        <p>Receba em primeira mão avisos, fotos dos preparativos, sorteios e o resultado oficial dos ganhadores direto no seu celular.</p>
         <a href="vip.html" class="btn green">💚 ENTRAR NO GRUPO DO WHATSAPP</a>
       </div>
     </div>
+
   </div>
+</div>
+
 
   <a href="https://wa.me/556992014424" class="btn-atendimento-fixo" id="atendimentoFixo" target="_blank">
     💬 Atendimento
@@ -966,39 +823,33 @@ parceirosGrid.innerHTML += `
         const ativos = dados.produtos.filter(p => p.ativo === true);
 
         ativos.forEach(produto => {
-let link = `venda/compra-produtos.html?produto=${produto.codigo}`;
-let botao = "🛒 COMPRAR AGORA";
-
-
-
+          let link = `venda/compra-produtos.html?produto=${produto.codigo}`;
           const imgUrl = produto.imagem || "css/img/placeholder.jpg";
+          const preco = Number(produto.preco).toFixed(2).replace(".", ",");
+          const descricao = produto.descricao || "Produto oficial FPSS 2027";
 
           container.innerHTML += `
             <div class="venda-box hover-3d">
-<img
-  src="${imgUrl}"
-  alt="${produto.nome}"
-  loading="lazy"
->
+              <img src="${imgUrl}" alt="${produto.nome}" loading="lazy">
               <div class="venda-box-conteudo">
                 <div>
                   <h3>${produto.nome}</h3>
                   <ul class="info-list">
-                    <li>✔ ${produto.descricao || "Produto oficial FPSS"}</li>
-                    <li><span class="badge-lote">⏳ Lote Antecipado (Sujeito a alteração no dia)</span></li>
+                    <li>✔ ${descricao}</li>
                   </ul>
                 </div>
                 <div class="venda-box-rodape">
-                  <div class="price-box">R$ ${Number(produto.preco).toFixed(2).replace(".", ",")}</div>
-                  <a href="${link}" class="btn green full">${botao}</a>
+                  <div class="price-box">R$ ${preco}</div>
+                  <a href="${link}" class="btn green full">🛒 COMPRAR AGORA</a>
                 </div>
               </div>
             </div>
           `;
         });
 
-          } catch (erro) {
-        document.getElementById("produtosContainer").innerHTML = "<p>Erro ao carregar produtos.</p>";
+      } catch (erro) {
+        const container = document.getElementById("produtosContainer");
+        if (container) container.innerHTML = "<p style='color:#999;padding:20px;text-align:center'>Não foi possível carregar os produtos. Tente novamente.</p>";
         console.error("Erro produtos home:", erro);
       }
     }

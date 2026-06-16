@@ -38,3 +38,60 @@
       padding: 15px 0 !important; /* Altura da comissão reduzida e compacta */
       margin-top: 20px !important;
     }
+
+/* =====================================================
+   FOOTER REDESENHADO — FPSS 2027
+===================================================== */
+
+footer#mainFooter {
+  background: linear-gradient(135deg, #8b0000, #6b0000) !important;
+  border-top: none !important;
+  padding: 28px 0 !important;
+  margin-top: 0 !important;
+}
+
+footer#mainFooter .wrap {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+footer#mainFooter p:first-child {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  font-family: 'Merriweather', Georgia, serif !important;
+  margin: 0 !important;
+  text-align: center !important;
+}
+
+footer#mainFooter p:nth-child(2) {
+  font-size: 12px !important;
+  color: rgba(255,255,255,0.65) !important;
+  margin: 0 !important;
+  text-align: center !important;
+}
+
+footer#mainFooter a[href="admin/login.html"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  margin-top: 6px !important;
+  padding: 7px 18px !important;
+  border-radius: 6px !important;
+  background: rgba(255,255,255,0.10) !important;
+  border: 1px solid rgba(255,255,255,0.20) !important;
+  color: rgba(255,255,255,0.75) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  text-decoration: none !important;
+  transition: background .2s !important;
+}
+
+footer#mainFooter a[href="admin/login.html"]:hover {
+  background: rgba(255,255,255,0.20) !important;
+  color: #ffffff !important;
+}

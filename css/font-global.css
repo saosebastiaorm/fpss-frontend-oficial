@@ -1,0 +1,55 @@
+/* =====================================================
+   FONTE GLOBAL — ESTILO G1 (Merriweather + Roboto)
+   Adicionar no <head> ANTES dos outros CSS
+   E remover o import do Poppins do <head>
+===================================================== */
+
+/* Import das fontes */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Roboto:wght@400;500;600;700;800;900&display=swap');
+
+/* Corpo — Roboto */
+body,
+p, li, span, a, label, input,
+textarea, select, button,
+.info-list li,
+.badge-lote,
+.descricao-premio,
+.breakdown-label,
+.breakdown-value,
+.chip,
+.section-mini-title,
+.menu-master a,
+.brand-text p {
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+/* Títulos — Merriweather */
+h1, h2, h3,
+.hero-v4__title,
+.hero-v4__artist-name,
+.titulo-premiacao h2,
+.produtos-cinema-topo h2,
+.section-header-center h2,
+.venda-box h3,
+.valor-premio,
+.price-box,
+.hero-v4__card-cta {
+  font-family: 'Merriweather', Georgia, serif;
+}
+
+/* Exceções — elementos que ficam melhor sem serif */
+.badge-premio,
+.hero-v4__badge,
+.hero-v4__artist-badge,
+.hero-v4__countdown-title,
+.hero-v4__count-number,
+.hero-v4__count-label,
+.btn-header-buy,
+.btn-header-whatsapp,
+.barra-urgencia,
+.hero-v4__button,
+.fpss-carrossel__btn,
+.premiacao-rodape .chip,
+.urgencia-item {
+  font-family: 'Roboto', Arial, sans-serif;
+}

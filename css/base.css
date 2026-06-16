@@ -6,10 +6,17 @@
 }
 
 body{
-  font-family:Arial, sans-serif;
-  background:#f5f5f5;
-  color:#333;
-  line-height:1.5;
+
+    font-family: var(--font-family);
+
+    font-size: var(--font-size-base);
+
+    color: var(--color-text);
+
+    background: var(--color-background);
+
+    line-height: 1.6;
+
 }
 
 img{
@@ -24,10 +31,17 @@ a{
 
 /* CONTAINER GLOBAL */
 .container{
-  width:100%;
-  max-width:1100px;
-  margin:0 auto;
-  padding:0 20px;
+
+    width:100%;
+
+    max-width:var(--container-max-width);
+
+    margin:0 auto;
+
+    padding-left:var(--container-padding);
+
+    padding-right:var(--container-padding);
+
 }
 
 html{
