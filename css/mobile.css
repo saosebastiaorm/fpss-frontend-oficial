@@ -1,654 +1,524 @@
-/* ========================================
-   MOBILE PREMIUM FPSS 2027 FINAL
-======================================== */
+/* ============================================================
+   MOBILE FPSS 2027 — RESPONSIVIDADE NÍVEL G1
+   Trabalha apenas em telas ≤ 768px.
+   Desktop permanece intacto.
+============================================================ */
 
-@media screen and (max-width: 980px){
+@media screen and (max-width: 980px) {
 
-/* ========================================
-   RESET GLOBAL MOBILE
-======================================== */
-
-html,
-body{
-
-    width:100% !important;
-
-    overflow-x:hidden !important;
+/* ============================================
+   RESET GLOBAL
+============================================ */
+html, body {
+  width: 100% !important;
+  overflow-x: hidden !important;
 }
 
-body{
-    position:relative;
+.wrap {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
 }
 
-/* ========================================
-   WRAP
-======================================== */
-
-.wrap{
-
-    width:100% !important;
-
-    max-width:100% !important;
-
-    padding-left:18px;
-    padding-right:18px;
+/* ============================================
+   BARRA DE URGÊNCIA (topo amarelo)
+============================================ */
+.barra-urgencia,
+.urgencia-master {
+  font-size: 10px !important;
+  padding: 7px 10px !important;
+  text-align: center !important;
+  line-height: 1.4 !important;
 }
 
-/* ========================================
-   SECTIONS
-======================================== */
-
-section{
-
-    width:100% !important;
-
-    overflow:hidden;
-
-    padding:70px 0 !important;
-}
-
-/* ========================================
+/* ============================================
    HEADER
-======================================== */
-.topbar-master{
-
-    position:relative !important;
-
-    padding:10px 0 !important;
-
-    overflow:visible !important;
+============================================ */
+.topbar-master {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  padding: 0 !important;
 }
 
-.header-main{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:12px;
+.header-main {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 8px !important;
+  padding: 8px 14px !important;
+  min-height: 56px !important;
+  flex-wrap: nowrap !important;
+  position: relative !important;
 }
 
-.brand-text h1{
-
-    font-size:20px !important;
-
-    line-height:1;
+/* botão hambúrguer visível */
+.menu-toggle {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  order: 1;
+  font-size: 24px !important;
+  background: transparent !important;
+  border: none !important;
+  color: #fff !important;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
-.brand-text p{
-
-    font-size:10px !important;
+.brand-area {
+  order: 2;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  flex: 1 !important;
+  min-width: 0 !important;
 }
 
-/* MENU */
-
-
-/* BOTÕES HEADER */
-
-.header-ctas{
-
-    display:flex;
-
-    gap:8px;
+.logo-menu-img {
+  width: 36px !important;
+  height: 36px !important;
+  flex-shrink: 0 !important;
 }
 
-.btn-header-whatsapp,
-.btn-header-buy{
+.brand-text { min-width: 0 !important; }
 
-    min-height:40px;
-
-    padding:0 14px !important;
-
-    font-size:11px !important;
-
-    border-radius:12px;
+.brand-text h1 {
+  font-size: 15px !important;
+  line-height: 1.1 !important;
+  white-space: nowrap !important;
+  margin: 0 !important;
 }
 
-/* ========================================
-   HERO
-======================================== */
-
-.hero-master{
-
-    min-height:auto !important;
-
-    padding:
-    120px 0 70px !important;
-
-    overflow:hidden;
+.brand-text p {
+  font-size: 9px !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  margin: 0 !important;
 }
 
-/* VIDEO */
-
-.hero-video{
-
-    position:absolute;
-
-    inset:0;
-
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-
-    z-index:-2;
+/* menu de navegação vira dropdown compacto abaixo do header */
+.menu-master {
+  display: none !important;
+  position: absolute !important;
+  top: 100% !important;
+  right: 8px !important;
+  left: auto !important;
+  width: 230px !important;
+  max-width: 80vw !important;
+  height: auto !important;
+  max-height: calc(100vh - 80px) !important;
+  background: linear-gradient(160deg, #8b0000, #6a0000) !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  padding: 10px !important;
+  gap: 2px !important;
+  z-index: 2000 !important;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.40) !important;
+  border-radius: 0 0 12px 12px !important;
+  border: 1px solid rgba(255,255,255,0.10) !important;
+  overflow-y: auto !important;
+  transform: none !important;
+  transition: opacity .2s ease !important;
+  opacity: 0;
 }
 
-/* OVERLAY */
+.menu-master::before { display: none !important; }
 
-.hero-overlay{
-
-    position:absolute;
-
-    inset:0;
-
-    background:
-    linear-gradient(
-    rgba(0,0,0,.72),
-    rgba(0,0,0,.78)
-    );
-
-    z-index:-1;
+.menu-master.aberto {
+  display: flex !important;
+  opacity: 1;
+  animation: menuFadeDown .22s ease !important;
 }
 
-/* GRID */
-
-.hero-grid-novo{
-
-    display:grid;
-
-    grid-template-columns:1fr !important;
-
-    gap:28px;
+@keyframes menuFadeDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* LEFT */
+/* botão X de fechar — não precisa no dropdown */
+.menu-fechar { display: none !important; }
 
-.hero-left{
-
-    width:100%;
-
-    max-width:100%;
-
-    text-align:center;
+.menu-master a {
+  width: 100% !important;
+  padding: 12px 14px !important;
+  font-size: 14px !important;
+  color: #fff !important;
+  border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+  text-align: left !important;
+  border-radius: 6px !important;
+  transition: background .2s !important;
 }
 
-.hero-left h2{
+.menu-master a:last-child { border-bottom: none !important; }
 
-    font-size:52px !important;
-
-    line-height:.95;
-
-    margin-bottom:20px;
+.menu-master a:active,
+.menu-master a:hover {
+  background: rgba(255,255,255,0.12) !important;
 }
 
-.hero-left h2 span{
-    display:block;
+/* CTAs do header escondidos no mobile (já estão no menu/hero) */
+.header-ctas {
+  order: 3;
+  display: flex !important;
+  gap: 6px !important;
+  flex-shrink: 0 !important;
 }
 
-.hero-description{
-
-    font-size:15px !important;
-
-    line-height:1.7;
-
-    max-width:100%;
+.btn-header-whatsapp {
+  display: none !important;
 }
 
-/* MINI INFOS */
-
-.hero-mini-infos{
-
-    display:flex;
-
-    flex-wrap:wrap;
-
-    justify-content:center;
-
-    gap:10px;
-
-    margin-top:24px;
+.btn-header-buy {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 8px 12px !important;
+  font-size: 11px !important;
+  white-space: nowrap !important;
+  border-radius: 6px !important;
 }
 
-.mini-info-card{
+/* overlay escuro quando menu aberto */
+.menu-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1999;
+}
+.menu-overlay.ativo { display: block; }
 
-    font-size:12px;
-
-    padding:10px 14px;
+/* ============================================
+   CARROSSEL — 1 slide por vez
+============================================ */
+.fpss-carrossel__slide {
+  width: 100vw !important;
+  height: 88px !important;
 }
 
-/* BOTÕES */
-
-.hero-buttons{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:14px;
-
-    margin-top:28px;
+.fpss-carrossel__img-wrap {
+  width: 88px !important;
+  min-width: 88px !important;
+  height: 88px !important;
 }
 
-.hero-buttons .btn{
-
-    width:100%;
+.fpss-carrossel__body {
+  padding: 0 14px !important;
+  gap: 12px !important;
 }
 
-/* ========================================
-   COUNTDOWN
-======================================== */
+.fpss-carrossel__body strong { font-size: 0.82rem !important; }
+.fpss-carrossel__body span   { display: none !important; }
+.fpss-carrossel__tag         { font-size: 0.54rem !important; padding: 3px 7px !important; }
+.fpss-carrossel__btn         { font-size: 0.58rem !important; padding: 7px 11px !important; }
 
-.countdown-container{
+/* acelera um pouco no mobile */
+.fpss-carrossel__runner { animation-duration: 20s !important; }
 
-    width:100%;
-
-    padding:20px;
+/* ============================================
+   HERO V4 — empilhado
+============================================ */
+.hero-v4 {
+  padding: 24px 0 28px !important;
 }
 
-.countdown-timer{
+.hero-v4__container { padding: 0 16px !important; }
 
-    display:grid;
-
-    grid-template-columns:
-    repeat(4,1fr);
-
-    gap:10px;
+.hero-v4__grid {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 22px !important;
 }
 
-.time-block{
-
-    width:100%;
-
-    height:82px;
+.hero-v4__left {
+  align-items: flex-start !important;
+  text-align: left !important;
+  order: 1;
 }
 
-.time-block span{
-
-    font-size:28px;
+.hero-v4__badge {
+  font-size: 9px !important;
+  padding: 4px 11px !important;
+  margin-bottom: 12px !important;
 }
 
-/* ========================================
-   SHOW CARD
-======================================== */
-
-.show-card{
-
-    width:100%;
-
-    padding:24px;
+.hero-v4__title {
+  font-size: 1.9rem !important;
+  line-height: 1.08 !important;
+  text-align: left !important;
 }
 
-.show-card img{
-
-    width:100%;
-
-    max-width:240px;
-
-    margin:auto;
-
-    display:block;
+.hero-v4__subtitle {
+  font-size: 0.9rem !important;
+  text-align: left !important;
+  margin: 10px 0 0 !important;
 }
 
-/* ========================================
-   TITULOS
-======================================== */
-
-.section-header-center h2,
-.titulo-premiacao h2{
-
-    font-size:36px !important;
-
-    line-height:1.05;
-
-    text-align:center;
+.hero-v4__chips {
+  justify-content: flex-start !important;
+  gap: 6px !important;
+  margin-top: 14px !important;
 }
 
-.section-header-center p{
-
-    font-size:15px !important;
-
-    line-height:1.7;
-
-    text-align:center;
+.hero-v4__chip {
+  font-size: 0.72rem !important;
+  padding: 5px 10px !important;
 }
 
-/* ========================================
-   PREMIAÇÃO
-======================================== */
-
-.premiacao-cards{
-
-    display:grid;
-
-    grid-template-columns:1fr !important;
-
-    gap:22px;
+/* botões do hero: 2 por linha, largos */
+.hero-v4__actions {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 8px !important;
+  width: 100% !important;
+  margin-top: 18px !important;
+  justify-content: stretch !important;
 }
 
-.premio-cinema{
-
-    min-height:260px !important;
-
-    padding:28px;
+.hero-v4__button {
+  width: 100% !important;
+  justify-content: center !important;
+  font-size: 0.74rem !important;
+  padding: 12px 8px !important;
+  text-align: center !important;
 }
 
-.premio-cinema h3{
-
-    font-size:52px !important;
+/* card direito ocupa largura total */
+.hero-v4__right {
+  order: 2;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
 }
 
-/* ========================================
-   PRODUTOS
-======================================== */
-
-.premium-grid{
-
-    display:grid;
-
-    grid-template-columns:1fr !important;
-
-    gap:22px;
+.hero-v4__artist-card {
+  width: 100% !important;
+  padding: 16px !important;
 }
 
-.venda-box{
-
-    display:flex;
-
-    flex-direction:column;
-
-    overflow:hidden;
+.hero-v4__artist-image img {
+  width: 56px !important;
+  height: 56px !important;
 }
 
-.venda-box img{
+.hero-v4__artist-name { font-size: 1rem !important; }
 
-    width:100% !important;
-
-    height:230px !important;
-
-    object-fit:cover !important;
-
-    border-radius:24px 24px 0 0 !important;
+.hero-v4__countdown {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 6px !important;
 }
 
-.venda-box-conteudo{
+.hero-v4__count-number { font-size: 1.3rem !important; }
+.hero-v4__count-label  { font-size: 0.6rem !important; }
 
-    width:100%;
+.hero-v4__date-alert {
+  font-size: 0.68rem !important;
+  line-height: 1.4 !important;
+  text-align: center !important;
 }
 
-.venda-box h3{
-
-    font-size:34px !important;
+.hero-v4__card-cta {
+  font-size: 0.82rem !important;
+  padding: 12px !important;
 }
 
-.price-box{
+/* ============================================
+   PREMIAÇÃO — cards empilhados
+============================================ */
+.premiacao-cinema { padding: 36px 0 40px !important; }
 
-    font-size:44px !important;
+.titulo-premiacao h2 { font-size: 1.6rem !important; }
+
+.premio-total-bar {
+  white-space: normal !important;
+  padding: 10px 14px !important;
+  width: 100% !important;
 }
 
-.venda-box-rodape{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:14px;
+.premio-total-valor {
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 6px 10px !important;
+  font-size: 0.7rem !important;
 }
 
-.venda-box .btn{
-
-    width:100%;
+.premiacao-cards {
+  grid-template-columns: 1fr 1fr !important;
+  gap: 10px !important;
 }
 
-/* ========================================
-   ATRAÇÕES
-======================================== */
+.premio-cinema.ouro { grid-column: span 2 !important; }
+.card-presencial    { grid-column: span 2 !important; }
 
-.atracoes-grid{
+.ouro .valor-premio  { font-size: 2rem !important; }
+.prata .valor-premio,
+.bronze .valor-premio,
+.card-presencial .valor-premio { font-size: 1.7rem !important; }
 
-    display:grid;
-
-    grid-template-columns:1fr !important;
-
-    gap:22px;
+.btn-adquirir-cartela {
+  width: 100% !important;
+  font-size: 0.85rem !important;
+  padding: 13px 18px !important;
 }
 
-.artista-card{
+.premiacao-rodape {
+  flex-direction: column !important;
+  gap: 7px !important;
+}
+.premiacao-rodape .chip { width: 100% !important; justify-content: center !important; }
 
-    padding:22px !important;
+/* ============================================
+   PRODUTOS — 1 coluna
+============================================ */
+.venda-container {
+  grid-template-columns: 1fr !important;
+  gap: 14px !important;
 }
 
-.artista-card img{
+.produtos-cinema-topo .wrap { text-align: center; }
 
-    width:100%;
-
-    max-width:240px;
-
-    margin:auto;
-
-    display:block;
+/* barra de selos de venda quebra linha */
+.venda-selos,
+.produtos-barra-selos {
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 8px 14px !important;
+  font-size: 11px !important;
 }
 
-.artista-card h3{
+/* ============================================
+   DUAL SECTION — Programação + Atrações empilhadas
+============================================ */
+.dual-section-wrap { padding: 28px 0 !important; }
 
-    font-size:28px !important;
-
-    text-align:center;
+.dual-section-grid {
+  grid-template-columns: 1fr !important;
+  gap: 24px !important;
 }
 
-/* ========================================
-   GALERIA
-======================================== */
+.dual-programacao { gap: 10px !important; }
+.mini-cartaz { width: 70px !important; }
 
-.galeria-grid-premium{
-
-    display:grid;
-
-    grid-template-columns:1fr !important;
-
-    gap:14px;
+.dual-col .show-premium-card { flex-direction: row !important; }
+.dual-col .show-image-area {
+  width: 120px !important;
+  min-width: 120px !important;
+  height: auto !important;
 }
 
-.foto-premium,
-.foto-premium.grande,
-.foto-premium.vertical{
+/* ============================================
+   GALERIA — vista aérea full + 2 colunas
+============================================ */
+.galeria-cinema { padding: 28px 0 !important; }
 
-    height:240px !important;
-
-    grid-column:auto !important;
-
-    grid-row:auto !important;
+.estatisticas-evento {
+  grid-template-columns: 1fr 1fr !important;
+  gap: 8px !important;
 }
 
-/* ========================================
-   STATS
-======================================== */
-
-.stats-grid{
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(2,1fr);
-
-    gap:16px;
+.galeria-grid-premium {
+  grid-template-columns: 1fr 1fr !important;
+  grid-template-rows: auto !important;
+  gap: 8px !important;
 }
 
-.stat-card{
-
-    min-height:160px;
-
-    padding:20px;
+.galeria-grid-premium .foto-premium:nth-child(1) {
+  grid-column: 1 / 3 !important;
+  grid-row: auto !important;
+  height: 180px !important;
+}
+.galeria-grid-premium .foto-premium:nth-child(n+2) {
+  grid-column: auto !important;
+  grid-row: auto !important;
+  height: 120px !important;
 }
 
-.stat-card h3{
+/* ============================================
+   LOCALIZAÇÃO — 1 coluna
+============================================ */
+.localizacao-premium { padding: 28px 0 !important; }
 
-    font-size:22px !important;
-
-    line-height:1.2;
+.local-grid-3col {
+  grid-template-columns: 1fr !important;
+  gap: 14px !important;
 }
 
-/* ========================================
-   LOCALIZAÇÃO
-======================================== */
+.local-mapa-col .mapa-box {
+  min-height: 220px !important;
+}
+.local-mapa-col .mapa-box iframe { min-height: 220px !important; }
 
-.localizacao-grid{
+/* ============================================
+   PARCEIROS — 3 colunas
+============================================ */
+.parceiros-premium { padding: 28px 0 !important; }
 
-    display:grid;
-
-    grid-template-columns:1fr !important;
-
-    gap:22px;
+.parceiros-grid {
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 8px !important;
 }
 
-.local-info-card{
+.parceiro-card { height: 80px !important; }
 
-    padding:22px;
+/* ============================================
+   ENQUETE + VIP — empilhados
+============================================ */
+.enquete-vip-wrap {
+  grid-template-columns: 1fr !important;
+  gap: 14px !important;
 }
 
-.local-info-card h3{
+.cta-enquete-wrap,
+.vip-box { padding: 22px 18px !important; }
 
-    font-size:18px !important;
+.btn-enquete-premium {
+  font-size: 0.85rem !important;
+  padding: 14px 16px !important;
 }
 
-.mapa-box iframe{
-
-    width:100% !important;
-
-    min-height:320px !important;
-}
-
-/* ========================================
-   PARCEIROS
-======================================== */
-
-.parceiros-grid{
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(2,1fr) !important;
-
-    gap:14px !important;
-}
-
-.parceiro-card{
-
-    height:100px !important;
-
-    padding:8px !important;
-}
-
-.parceiro-card img{
-
-    width:100% !important;
-
-    height:100% !important;
-
-    object-fit:contain !important;
-}
-
-/* ========================================
-   ENQUETE
-======================================== */
-
-.cta-enquete-wrap{
-
-    padding:24px;
-}
-
-/* ========================================
-   VIP
-======================================== */
-
-.vip-box{
-
-    padding:26px;
-}
-
-.vip-box h2{
-
-    font-size:22px !important;
-}
-
-/* ========================================
+/* ============================================
    FOOTER
-======================================== */
+============================================ */
+footer#mainFooter { padding: 24px 16px !important; }
+footer#mainFooter p:first-child { font-size: 13px !important; text-align: center !important; }
 
-.footer-grid{
-
-    display:grid;
-
-    grid-template-columns:1fr !important;
-
-    gap:20px;
-
-    text-align:center;
+/* ============================================
+   BOTÃO ATENDIMENTO flutuante
+============================================ */
+.btn-atendimento,
+#btnAtendimento {
+  bottom: 14px !important;
+  right: 14px !important;
+  font-size: 12px !important;
+  padding: 10px 16px !important;
 }
 
-/* ========================================
-   BOTÃO FLUTUANTE
-======================================== */
+} /* fim @media 768px */
 
-.btn-atendimento-fixo{
+/* ============================================================
+   TELAS MUITO PEQUENAS (≤ 400px)
+============================================================ */
+@media screen and (max-width: 400px) {
 
-    right:14px;
+.hero-v4__title { font-size: 1.6rem !important; }
 
-    bottom:14px;
+.hero-v4__actions { grid-template-columns: 1fr !important; }
 
-    transform:scale(.9);
-}
+.premiacao-cards { grid-template-columns: 1fr !important; }
+.premio-cinema.ouro,
+.card-presencial { grid-column: span 1 !important; }
 
-}
+.parceiros-grid { grid-template-columns: repeat(2, 1fr) !important; }
 
-/* ========================================
-   MICRO CELULARES
-======================================== */
+.estatisticas-evento { grid-template-columns: 1fr !important; }
 
-@media screen and (max-width:480px){
-
-.hero-left h2{
-
-    font-size:40px !important;
-}
-
-.section-header-center h2,
-.titulo-premiacao h2{
-
-    font-size:30px !important;
-}
-
-.hero-description,
-.section-header-center p{
-
-    font-size:14px !important;
-}
-
-.time-block{
-
-    height:72px;
-}
-
-.time-block span{
-
-    font-size:22px;
-}
-
-.venda-box img{
-
-    height:200px !important;
-}
-
-.price-box{
-
-    font-size:38px !important;
-}
-
-.parceiro-card{
-
-    height:88px !important;
-}
+.hero-v4__countdown { gap: 4px !important; }
+.hero-v4__count-number { font-size: 1.1rem !important; }
 
 }

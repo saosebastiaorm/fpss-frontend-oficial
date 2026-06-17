@@ -480,3 +480,13 @@
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
 }
+
+/* ---- BOTÃO CHURRASCO ANTECIPADO ---- */
+.hero-v4__button--churrasco {
+  background: linear-gradient(135deg, #e67e00, #cc6600);
+  color: #ffffff;
+}
+.hero-v4__button--churrasco:hover {
+  background: linear-gradient(135deg, #ff8c00, #e67300);
+  transform: translateY(-2px);
+}
