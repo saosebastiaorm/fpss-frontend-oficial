@@ -100,23 +100,47 @@
   box-shadow: 0 4px 18px rgba(0,0,0,0.08) !important;
 }
 
-/* marca d'água de dinheiro no canto do card */
+/* imagem de dinheiro no espaço vazio à direita (altura do badge/topo) */
 .premio-cinema::after {
   content: "";
   position: absolute;
-  bottom: 8px;
-  right: 8px;
-  width: 130px;
+  top: 18px;
+  right: 14px;
+  width: 135px;
   height: 85px;
   background: url('../assets/imagens/premios/dinheiro.png') no-repeat center / contain;
-  opacity: 0.28;
-  transform: rotate(-8deg);
+  opacity: 1;
+  transform: rotate(-6deg);
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.18));
 }
 
-/* garante que o conteúdo fica acima da marca d'água */
-.premio-cinema > * { position: relative; z-index: 1; }
+/* neutraliza hover-3d/float que conflitam com a cédula no 1º prêmio */
+.premio-cinema.ouro {
+  transform-style: flat !important;
+  perspective: none !important;
+  animation: none !important;
+}
+
+.premio-cinema.ouro:hover {
+  transform: translateY(-5px) !important;
+}
+
+/* garante que aparece também no 1º prêmio (ouro) */
+.premio-cinema.ouro::after {
+  content: "";
+  display: block;
+}
+
+/* badge, valor e breakdown ficam acima da cédula */
+.topo-premio,
+.valor-premio,
+.breakdown-premio,
+.presencial-info {
+  position: relative;
+  z-index: 2;
+}
 
 .premio-cinema:hover {
   transform: translateY(-5px);
