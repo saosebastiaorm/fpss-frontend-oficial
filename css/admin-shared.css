@@ -8,8 +8,8 @@
    ===================================================================== */
 
 :root{
-  --admin-bg: #e6ebf2;
-  --admin-bg-grad: linear-gradient(160deg, #e6ebf2 0%, #dde4ee 100%);
+  --admin-bg: #d7dfe9;
+  --admin-bg-grad: linear-gradient(160deg, #dde4ee 0%, #c9d3e1 100%);
   --admin-card-bg: #ffffff;
   --admin-border: #d7dee8;
   --admin-text: #1f2937;
@@ -67,7 +67,7 @@ body.admin-page .box{
   width: 100%;
   max-width: 1300px;
   margin: 0 auto;
-  padding: 32px 28px;
+  padding: 22px 24px;
   background: var(--admin-card-bg);
   border-radius: var(--admin-radius);
   box-shadow: var(--admin-shadow);
@@ -170,16 +170,38 @@ body.admin-page .top-nav a.ativo{
 }
 
 /* =====================================================================
-   GRID DE CARDS (dashboard central, métricas)
+   GRID DE CAMPOS DE FORMULÁRIO / CARDS DE DASHBOARD
+   Usa flexbox em vez de CSS grid: assim, quando a última linha tem
+   menos campos que as anteriores, eles se espalham e ocupam o espaço
+   sobrando em vez de deixar colunas vazias em branco.
    ===================================================================== */
 body.admin-page .grid{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 18px;
-  margin: 18px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 14px 0;
 }
 
-body.admin-page .card{
+body.admin-page .grid > *{
+  flex: 1 1 190px;
+  min-width: 0;
+}
+
+/* card "solto" usado como envelope simples de formulário (produtos, parceiros) */
+body.admin-page > .container > .card,
+body.admin-page .card.form-card{
+  background: #fff;
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius-sm);
+  padding: 20px;
+}
+
+/* card de métrica/atalho dentro do grid do dashboard — centralizado, com hover,
+   e botão sempre ancorado na base (mesmo com descrições de tamanhos diferentes) */
+body.admin-page .grid > .card{
+  flex: 1 1 200px;
+  display: flex;
+  flex-direction: column;
   background: #fbfcfe;
   border: 1px solid var(--admin-border);
   border-radius: var(--admin-radius-sm);
@@ -187,9 +209,18 @@ body.admin-page .card{
   text-align: center;
   transition: .2s;
 }
-body.admin-page .card:hover{
+body.admin-page .grid > .card:hover{
   box-shadow: 0 6px 18px rgba(31,41,55,0.10);
   transform: translateY(-2px);
+}
+
+body.admin-page .grid > .card p{
+  flex: 1;
+}
+
+body.admin-page .grid > .card .btn{
+  margin-top: 14px;
+  align-self: stretch;
 }
 
 body.admin-page .card .icone{
@@ -292,6 +323,13 @@ body.admin-page .btn-excluir:hover{
 
 body.admin-page .btn-novo{
   background: var(--admin-primary);
+}
+
+body.admin-page .btn-secundario{
+  background: #6b7785;
+}
+body.admin-page .btn-secundario:hover{
+  background: #54606c;
 }
 
 /* botão de logout injetado via JS (admin.js / parceiros-admin.js) */

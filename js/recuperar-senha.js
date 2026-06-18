@@ -55,7 +55,15 @@ const { error } =
         console.error(error);
 
         msg.style.color = "red";
-        msg.innerText = error.message;
+
+        const mensagemUtil =
+            error.message &&
+            error.message.trim() !== "" &&
+            error.message.trim() !== "{}";
+
+        msg.innerText = mensagemUtil
+            ? error.message
+            : "Não foi possível enviar o e-mail agora. Tente novamente em alguns minutos.";
 
         return;
 
