@@ -88,6 +88,17 @@ body.admin-page.admin-auth .box{
   max-width: 420px;
 }
 
+/* espaçamento entre campos e botão, e botão de largura cheia
+   (essas páginas não usam .input-group, então sem isso os
+   campos/botão ficavam colados e o botão desalinhado à esquerda) */
+body.admin-page.admin-auth input{
+  margin-bottom: 14px;
+}
+body.admin-page.admin-auth button{
+  width: 100%;
+  margin-top: 4px;
+}
+
 .topo,
 .login-box .logo-area{
   text-align: center;

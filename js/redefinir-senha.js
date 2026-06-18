@@ -29,6 +29,21 @@ btnSalvar.disabled = true;
 msg.style.color = "#666";
 msg.innerText = "Verificando link de redefinição...";
 
+/* Reforço: o Supabase emite esse evento oficial quando processa
+   um link de recuperação de senha. Cobre o caso de conexões
+   lentas, onde os 300ms da verificação abaixo não seriam suficientes. */
+supabaseClient.auth.onAuthStateChange((event, session) => {
+
+    if (event === "PASSWORD_RECOVERY" && session) {
+
+        sessaoPronta = true;
+        btnSalvar.disabled = false;
+        msg.innerText = "";
+
+    }
+
+});
+
 (async function garantirSessao(){
 
     try{
