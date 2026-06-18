@@ -1,565 +1,65 @@
 /* ========================================
-   RESET
-======================================== */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-/* ========================================
-   BODY
-======================================== */
-
-body{
-
-    font-family: Arial, Helvetica, sans-serif;
-
-    background:
-    linear-gradient(
-    180deg,
-    #140000 0%,
-    #220000 100%);
-
-    color:#fff;
-
-    min-height:100vh;
-
-    padding:40px 20px;
-}
-
-/* ========================================
-   CONTAINER
-======================================== */
-
-.container{
-
-    width:100%;
-
-    max-width:1400px;
-
-    margin:0 auto;
-}
-
-/* ========================================
-   TOPO
-======================================== */
-
-.topo{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:20px;
-
-    flex-wrap:wrap;
-
-    margin-bottom:30px;
-}
-
-.topo h1{
-
-    font-size:42px;
-
-    font-weight:900;
-
-    color:#fff;
-
-    text-shadow:
-    0 4px 20px rgba(0,0,0,.4);
-}
-
-/* ========================================
-   MENU ADMIN
-======================================== */
-
-.menu-admin{
-
-    display:flex;
-
-    gap:14px;
-
-    flex-wrap:wrap;
-
-    margin-bottom:30px;
-}
-
-.menu-admin a{
-
-    text-decoration:none;
-
-    padding:12px 18px;
-
-    border-radius:14px;
-
-    background:
-    rgba(255,255,255,.08);
-
-    border:
-    1px solid rgba(255,255,255,.08);
-
-    color:#fff;
-
-    font-weight:700;
-
-    transition:.3s;
-}
-
-.menu-admin a:hover,
-.menu-admin a.ativo{
-
-    background:
-    linear-gradient(
-    135deg,
-    #ffb300,
-    #ffd54f);
-
-    color:#000;
-
-    transform:translateY(-2px);
-}
-
-/* ========================================
-   CARD PRINCIPAL
-======================================== */
-
-.card{
-
-    background:
-    linear-gradient(
-    145deg,
-    rgba(255,255,255,.08),
-    rgba(255,255,255,.03));
-
-    border:
-    1px solid rgba(255,255,255,.08);
-
-    border-radius:26px;
-
-    padding:32px;
-
-    margin-bottom:40px;
-
-    backdrop-filter:blur(10px);
-
-    box-shadow:
-    0 20px 50px rgba(0,0,0,.35);
-}
-
-/* ========================================
-   GRID FORMULÁRIO
-======================================== */
-
-.grid{
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(auto-fit,minmax(220px,1fr));
-
-    gap:22px;
-}
-
-/* ========================================
-   LABELS
-======================================== */
-
-label{
-
-    display:block;
-
-    margin-bottom:8px;
-
-    color:#ffcc00;
-
-    font-size:14px;
-
-    font-weight:800;
-}
-
-/* ========================================
-   INPUTS
-======================================== */
-
-input,
-select,
-textarea{
-
-    width:100%;
-
-    padding:14px 16px;
-
-    border:none;
-
-    border-radius:14px;
-
-    background:#fff;
-
-    color:#111;
-
-    font-size:15px;
-
-    outline:none;
-
-    transition:.3s;
-}
-
-textarea{
-
-    min-height:120px;
-
-    resize:vertical;
-}
-
-input:focus,
-select:focus,
-textarea:focus{
-
-    box-shadow:
-    0 0 0 3px rgba(255,193,7,.35);
-}
-
-/* ========================================
-   UPLOAD
+   ESPECÍFICO DE PRODUTOS/PARCEIROS — UPLOAD DE IMAGEM
+   (o restante do visual — fundo, container, menu, card, grid,
+   inputs, botões, tabela — agora vem de css/admin-shared.css)
 ======================================== */
 
 .upload-horizontal{
-
-    display:grid;
-
-    grid-template-columns:
-    2fr
-    auto
-    1.5fr
-    auto;
-
-    gap:14px;
-
-    align-items:center;
+    display: grid;
+    grid-template-columns: 2fr auto 1.5fr auto;
+    gap: 14px;
+    align-items: center;
 }
 
-/* ========================================
-   FILE BUTTON
-======================================== */
-
 .file-label{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:8px;
-
-    background:
-    linear-gradient(
-    135deg,
-    #ffb300,
-    #ffd54f);
-
-    color:#000;
-
-    padding:14px 18px;
-
-    border-radius:14px;
-
-    font-weight:800;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-    white-space:nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #f3f5f9;
+    color: #1f2937;
+    padding: 11px 18px;
+    border-radius: 8px;
+    border: 1px solid #d7dee8;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .2s;
+    white-space: nowrap;
 }
 
 .file-label:hover{
-
-    transform:
-    translateY(-2px)
-    scale(1.02);
+    background: #e9edf4;
 }
 
 .file-label input{
-    display:none;
-}
-
-/* ========================================
-   BOTÕES
-======================================== */
-
-button,
-.btn-upload,
-.btn-novo{
-
-    border:none;
-
-    border-radius:14px;
-
-    cursor:pointer;
-
-    font-weight:900;
-
-    transition:.3s;
-}
-
-button{
-
-    padding:16px 24px;
-
-    background:
-    linear-gradient(
-    135deg,
-    #00c853,
-    #00e676);
-
-    color:#fff;
-
-    font-size:15px;
-
-    box-shadow:
-    0 10px 25px rgba(0,0,0,.25);
-}
-
-button:hover{
-
-    transform:
-    translateY(-2px)
-    scale(1.03);
+    display: none;
 }
 
 .btn-upload{
-
-    background:
-    linear-gradient(
-    135deg,
-    #ff9800,
-    #ffc107);
-
-    color:#000;
-
-    padding:14px 20px;
+    background: #8b0000;
+    color: #fff;
+    padding: 11px 20px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .2s;
 }
 
-.btn-novo{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    text-decoration:none;
-
-    padding:16px 24px;
-
-    background:
-    linear-gradient(
-    135deg,
-    #ff9800,
-    #ffd54f);
-
-    color:#000;
-
-    font-weight:900;
+.btn-upload:hover{
+    background: #6e0000;
 }
 
-/* ========================================
-   STATUS UPLOAD
-======================================== */
-
-small{
-
-    display:block;
-
-    margin-top:10px;
-
-    color:#ffd54f;
-
-    font-weight:700;
+small#statusUploadImagem,
+small#statusUploadLogo{
+    display: block;
+    margin-top: 8px;
+    color: #5b6b7c;
+    font-weight: 600;
 }
-
-/* ========================================
-   TABELA
-======================================== */
-
-table{
-
-    width:100%;
-
-    border-collapse:collapse;
-
-    overflow:hidden;
-
-    border-radius:24px;
-
-    background:
-    rgba(255,255,255,.05);
-
-    backdrop-filter:blur(10px);
-
-    box-shadow:
-    0 15px 40px rgba(0,0,0,.25);
-}
-
-/* ========================================
-   HEADER TABELA
-======================================== */
-
-thead{
-
-    background:
-    linear-gradient(
-    90deg,
-    #ff9800,
-    #ffd54f);
-}
-
-thead th{
-
-    color:#000;
-
-    font-weight:900;
-
-    padding:18px 14px;
-
-    text-align:left;
-
-    font-size:14px;
-}
-
-/* ========================================
-   BODY TABELA
-======================================== */
-
-tbody td{
-
-    padding:16px 14px;
-
-    border-bottom:
-    1px solid rgba(255,255,255,.08);
-
-    color:#fff;
-
-    vertical-align:middle;
-
-    font-size:14px;
-}
-
-tbody tr{
-
-    transition:.3s;
-}
-
-tbody tr:hover{
-
-    background:
-    rgba(255,255,255,.05);
-}
-
-/* ========================================
-   IMAGEM PRODUTO
-======================================== */
-
-td img{
-
-    width:70px;
-
-    height:70px;
-
-    object-fit:cover;
-
-    border-radius:14px;
-
-    border:
-    2px solid rgba(255,255,255,.08);
-}
-
-/* ========================================
-   BOTÃO EDITAR
-======================================== */
-
-td button{
-
-    padding:10px 14px;
-
-    font-size:13px;
-
-    border-radius:10px;
-}
-
-/* ========================================
-   RESPONSIVO
-======================================== */
 
 @media(max-width:1100px){
-
     .upload-horizontal{
-
-        grid-template-columns:1fr;
+        grid-template-columns: 1fr;
     }
-
-}
-
-@media(max-width:900px){
-
-    table{
-
-        display:block;
-
-        overflow-x:auto;
-
-        white-space:nowrap;
-    }
-
-}
-
-@media(max-width:700px){
-
-    body{
-        padding:20px 12px;
-    }
-
-    .topo h1{
-        font-size:28px;
-    }
-
-    .card{
-        padding:20px;
-    }
-
-    .menu-admin{
-        gap:10px;
-    }
-
-    .menu-admin a{
-
-        font-size:13px;
-
-        padding:10px 14px;
-    }
-
-}
-
-@media(max-width:520px){
-
-    .grid{
-        grid-template-columns:1fr;
-    }
-
-    input,
-    select,
-    textarea{
-        font-size:14px;
-    }
-
-    th,
-    td{
-        font-size:13px;
-    }
-
 }

@@ -6,6 +6,12 @@
   <title>FPSS Admin - Parceiros</title>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Roboto:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/admin-shared.css">
   <link rel="stylesheet" href="../css/admin-produtos.css">
   <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
 
@@ -20,12 +26,13 @@
       text-transform: uppercase;
     }
     .selo-cota.diamante { background: #d6f3ff; color: #036c8a; }
+    .selo-cota.rubi      { background: #ffd9e6; color: #9d0042; }
     .selo-cota.ouro     { background: #fef3cd; color: #8a6000; }
     .selo-cota.prata    { background: #eceff1; color: #444b51; }
     .selo-cota.bronze   { background: #f3e0d2; color: #8a4a1c; }
   </style>
 </head>
-<body>
+<body class="admin-page">
 
 <div class="container">
 
@@ -57,6 +64,7 @@
         <label>Cota de Patrocínio</label>
         <select id="cota">
           <option value="diamante">💎 Diamante</option>
+          <option value="rubi">❤️ Rubi</option>
           <option value="ouro">🥇 Ouro</option>
           <option value="prata">🥈 Prata</option>
           <option value="bronze" selected>🥉 Bronze</option>

@@ -149,8 +149,12 @@
     border-top: 4px solid #38bdf8;
 }
 
+.parceiro-card--rubi{
+    border-top: 4px solid #e0115f;
+}
+
 .parceiro-card--ouro{
-    border-top: 4px solid #d4a000;
+    border-top: 4px solid #ffc107;
 }
 
 .parceiro-card--prata{

@@ -222,6 +222,9 @@ function novoParceiro(){
 ===================================================== */
 async function editarParceiro(id){
 
+    const btnSalvarEl = document.querySelector('button[onclick="salvarParceiro()"]');
+    if(btnSalvarEl) btnSalvarEl.disabled = true;
+
     const { data, error } = await supabaseClient
         .from("parceiros")
         .select("*")
@@ -232,6 +235,7 @@ async function editarParceiro(id){
 
         alert("Não foi possível carregar este parceiro.");
         console.error(error);
+        if(btnSalvarEl) btnSalvarEl.disabled = false;
 
         return;
 
@@ -244,6 +248,8 @@ async function editarParceiro(id){
     document.getElementById("ordem").value = data.ordem ?? 0;
     document.getElementById("ativo").value = String(!!data.ativo);
     document.getElementById("logoUrl").value = data.logo_url || "";
+
+    if(btnSalvarEl) btnSalvarEl.disabled = false;
 
     window.scrollTo({ top: 0, behavior: "smooth" });
 

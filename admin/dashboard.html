@@ -6,102 +6,12 @@
   <title>FPSS Administração Central</title>
   <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
 
-  <style>
-    *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
-      font-family:Arial,sans-serif;
-    }
-
-    body{
-      background:linear-gradient(135deg,#8b1111,#c91d1d);
-      min-height:100vh;
-      padding:30px;
-      color:#fff;
-    }
-
-    .container{
-      max-width:1200px;
-      margin:auto;
-    }
-
-    .topo{
-      text-align:center;
-      margin-bottom:35px;
-    }
-
-    .topo h1{
-      font-size:42px;
-      margin-bottom:10px;
-    }
-
-    .topo p{
-      font-size:18px;
-      opacity:0.95;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:20px;
-    }
-
-    .card{
-      background:#ffffff;
-      color:#222;
-      border-radius:18px;
-      padding:25px;
-      text-align:center;
-      box-shadow:0 8px 25px rgba(0,0,0,0.18);
-      transition:0.25s;
-    }
-
-    .card:hover{
-      transform:translateY(-6px);
-    }
-
-    .icone{
-      font-size:48px;
-      margin-bottom:15px;
-    }
-
-    .card h2{
-      font-size:22px;
-      color:#8b1111;
-      margin-bottom:10px;
-    }
-
-    .card p{
-      font-size:14px;
-      margin-bottom:18px;
-      color:#555;
-      min-height:40px;
-    }
-
-    .btn{
-      display:inline-block;
-      text-decoration:none;
-      background:#228b22;
-      color:#fff;
-      padding:12px 18px;
-      border-radius:10px;
-      font-weight:bold;
-    }
-
-    .btn.red{
-      background:#8b1111;
-    }
-
-    .rodape{
-      margin-top:35px;
-      text-align:center;
-      font-size:14px;
-      opacity:0.9;
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Roboto:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/admin-shared.css">
 </head>
-<body>
+<body class="admin-page">
 
 <div class="container">
 
@@ -125,14 +35,6 @@
       <p>Cadastrar produtos, imagens, preços e estoque.</p>
       <a href="/admin/produtos.html" class="btn">Abrir Produtos</a>
     </div>
-
-    <div class="card">
-      <div class="icone">🤝</div>
-      <h2>Parceiros</h2>
-      <p>Cadastrar parceiros, logos e cota de patrocínio (Diamante/Ouro/Prata/Bronze).</p>
-      <a href="/admin/parceiros.html" class="btn">Abrir Parceiros</a>
-    </div>
-
 
     <div class="card">
       <div class="icone">📋</div>

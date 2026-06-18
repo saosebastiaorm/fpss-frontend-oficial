@@ -1,0 +1,68 @@
+/* ========================================
+   ESPECÍFICO DO LEITOR QR
+======================================== */
+
+#reader{
+  margin-top: 20px;
+  width: 100%;
+}
+#reader video{
+  width: 100% !important;
+  border-radius: 12px;
+}
+
+.resultado{
+  margin-top: 25px;
+  padding: 20px;
+  background: #fafbfd;
+  border-radius: 10px;
+  display: none;
+  text-align: left;
+  border: 1px solid var(--admin-border);
+}
+
+.ok{
+  color: #1d7f2a;
+  font-weight: bold;
+}
+
+.linha{
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.bloqueio{
+  color: var(--admin-danger);
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 15px;
+}
+
+.sucesso{
+  color: #1d7f2a;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 15px;
+}
+
+.btn-trocar-camera{
+  margin-top: 15px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+}
+.btn-trocar-camera:hover{
+  opacity: 0.9;
+}
+
+/* Remove botão flutuante de compra dentro do admin */
+.admin-page .botao-flutuante,
+.admin-page .botao-comprar-flutuante,
+.admin-page .comprar-flutuante{
+  display: none !important;
+}
