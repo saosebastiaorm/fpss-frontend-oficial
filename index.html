@@ -61,7 +61,7 @@ content="assets/imagens/og-image.jpg">
 <body>
   <div class="scroll-progress" id="scrollProgress"></div>
   <div class="barra-urgencia">
-    🔥 EVENTO OFICIAL FPSS • CHURRASCOS E CARTELAS LIMITADOS • GARANTA JÁ
+    <span class="barra-urgencia__full">🔥 EVENTO OFICIAL FPSS • CHURRASCOS E CARTELAS LIMITADOS • GARANTA JÁ</span><span class="barra-urgencia__compact">🔥 CARTELAS E CHURRASCOS LIMITADOS • GARANTA JÁ</span>
   </div>
 
  <div class="topbar-master" id="topbarMaster">
@@ -1049,19 +1049,8 @@ document.getElementById("parceirosGrid");
 
 parceiros.forEach((logo,index)=>{
 
-let classe = "";
-
-if(index === 0 || index === 8){
-classe = "ouro";
-}
-
-if(index === 3 || index === 11){
-classe = "rubi";
-}
-
-if(index === 5){
-classe = "prata";
-}
+const cores = ["ouro","rubi","prata"];
+let classe = "parceiro-card--" + cores[index % cores.length];
 
 parceirosGrid.innerHTML += `
 

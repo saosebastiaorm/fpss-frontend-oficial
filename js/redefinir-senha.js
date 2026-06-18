@@ -15,7 +15,79 @@ const supabaseClient = supabase.createClient(
 const btnSalvar = document.getElementById("btnSalvar");
 const msg = document.getElementById("msg");
 
+/* =====================================================
+   GARANTIR SESSÃO A PARTIR DO LINK DO E-MAIL
+   O Supabase pode mandar o token de duas formas:
+   1) PKCE: ?code=xxxxx na URL (versões mais novas)
+   2) Implícito: #access_token=xxxx no hash (versões antigas)
+   Sem isso, updateUser() falha porque não sabe qual
+   usuário está trocando a senha.
+===================================================== */
+let sessaoPronta = false;
+
+btnSalvar.disabled = true;
+msg.style.color = "#666";
+msg.innerText = "Verificando link de redefinição...";
+
+(async function garantirSessao(){
+
+    try{
+
+        const params = new URLSearchParams(window.location.search);
+        const code = params.get("code");
+
+        if(code){
+            const { error } =
+                await supabaseClient.auth.exchangeCodeForSession(code);
+
+            if(error){
+                console.error("Erro ao validar código:", error);
+            }
+        }
+
+        /* Dá um instante pro supabase-js processar o hash
+           (#access_token=...), caso o link seja do tipo antigo */
+        await new Promise(resolve => setTimeout(resolve, 300));
+
+        const { data } = await supabaseClient.auth.getSession();
+
+        if(data && data.session){
+
+            sessaoPronta = true;
+            btnSalvar.disabled = false;
+            msg.innerText = "";
+
+        }else{
+
+            msg.style.color = "red";
+            msg.innerText =
+                "Link inválido ou expirado. Solicite um novo link em 'Esqueceu sua senha?'.";
+
+        }
+
+    }catch(err){
+
+        console.error("Erro ao verificar sessão:", err);
+
+        msg.style.color = "red";
+        msg.innerText =
+            "Não foi possível validar o link. Solicite um novo.";
+
+    }
+
+})();
+
 btnSalvar.addEventListener("click", async () => {
+
+    if(!sessaoPronta){
+
+        msg.style.color = "red";
+        msg.innerText =
+            "Link inválido ou expirado. Solicite um novo link em 'Esqueceu sua senha?'.";
+
+        return;
+
+    }
 
     msg.innerText = "";
 

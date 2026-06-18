@@ -33,15 +33,22 @@ btnEnviar.addEventListener("click", async () => {
 
     }
 
-    const { error } =
-        await supabaseClient.auth.resetPasswordForEmail(
-            email,
-            {
-redirectTo:
-    window.location.origin +
-    "/fpss-frontend/admin/redefinir-senha.html"
-            }
-        );
+const { error } =
+    await supabaseClient.auth.resetPasswordForEmail(
+        email,
+        {
+            // Calcula o caminho de redefinir-senha.html a partir da própria
+            // página atual, em vez de fixar "/fpss-frontend/admin/...".
+            // Assim funciona igual no Live Server e em produção, esteja o
+            // site na raiz do domínio ou dentro de uma subpasta.
+            redirectTo:
+                window.location.origin +
+                window.location.pathname.replace(
+                    "recuperar-senha.html",
+                    "redefinir-senha.html"
+                )
+        }
+    );
 
     if (error) {
 
