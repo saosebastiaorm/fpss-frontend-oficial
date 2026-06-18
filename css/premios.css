@@ -127,12 +127,6 @@
   transform: translateY(-5px) !important;
 }
 
-/* garante que aparece também no 1º prêmio (ouro) */
-.premio-cinema.ouro::after {
-  content: "";
-  display: block;
-}
-
 /* badge, valor e breakdown ficam acima da cédula */
 .topo-premio,
 .valor-premio,
@@ -232,7 +226,6 @@
 .descricao-premio { display: none !important; }
 .divisor-card     { display: none !important; }
 .efeito-brilho    { display: none !important; }
-.ouro::after      { display: none !important; }
 .ouro::before, .prata::before,
 .bronze::before, .card-presencial::before { display: none !important; }
 

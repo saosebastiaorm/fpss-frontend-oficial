@@ -139,7 +139,7 @@
 }
 
 .section-header-center h2 {
-  font-size: 52px;
+  font-size: 38px;
   color: #7a0916;
   margin-bottom: 15px;
   font-weight: 900;
@@ -711,4 +711,11 @@
   .galeria-grid-premium .foto-premium:nth-child(3) { grid-column:2/3; grid-row:2/3; }
   .galeria-grid-premium .foto-premium:nth-child(4) { grid-column:1/2; grid-row:3/4; }
   .galeria-grid-premium .foto-premium:nth-child(5) { grid-column:2/3; grid-row:3/4; }
+}
+
+/* =====================================================
+   CARD DE ESTATÍSTICA — sem cédula (removida a pedido)
+===================================================== */
+.stat-card {
+  position: relative;
 }
