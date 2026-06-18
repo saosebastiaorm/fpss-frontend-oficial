@@ -141,21 +141,24 @@
     transform: scale(1.05);
 }
 
-/* DESTAQUES */
+/* DESTAQUES — 4 cotas de patrocínio (nomes próprios pra não colidir
+   com .ouro/.prata/.rubi usadas nos cards de prêmio, que têm
+   border-top:4px !important e vazavam pros cards de parceiro) */
 
-.parceiro-card.ouro{
-    border:
-    1px solid rgba(255,196,0,.45);
+.parceiro-card--diamante{
+    border-top: 4px solid #38bdf8;
 }
 
-.parceiro-card.prata{
-    border:
-    1px solid rgba(255,255,255,.25);
+.parceiro-card--ouro{
+    border-top: 4px solid #d4a000;
 }
 
-.parceiro-card.rubi{
-    border:
-    1px solid rgba(255,0,0,.35);
+.parceiro-card--prata{
+    border-top: 4px solid #9aa0a6;
+}
+
+.parceiro-card--bronze{
+    border-top: 4px solid #b87333;
 }
 
 /* ========================================

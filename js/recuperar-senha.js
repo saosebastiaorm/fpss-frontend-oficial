@@ -37,15 +37,15 @@ const { error } =
     await supabaseClient.auth.resetPasswordForEmail(
         email,
         {
-            // Calcula o caminho de redefinir-senha.html a partir da própria
-            // página atual, em vez de fixar "/fpss-frontend/admin/...".
-            // Assim funciona igual no Live Server e em produção, esteja o
-            // site na raiz do domínio ou dentro de uma subpasta.
+            // Funciona tanto com URL "tradicional" (.../recuperar-senha.html)
+            // quanto com URL limpa (.../recuperar-senha, sem extensão — que é
+            // o caso em produção, por causa do cleanUrls:true no vercel.json).
+            // O .html no final só é mantido SE já existia na URL atual.
             redirectTo:
                 window.location.origin +
                 window.location.pathname.replace(
-                    "recuperar-senha.html",
-                    "redefinir-senha.html"
+                    /recuperar-senha(\.html)?$/,
+                    "redefinir-senha$1"
                 )
         }
     );

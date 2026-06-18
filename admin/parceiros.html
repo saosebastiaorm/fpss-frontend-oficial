@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FPSS Admin - Parceiros</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="../css/admin-produtos.css">
+  <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+
+  <style>
+    /* Selo de cota — só nesta página, pra preview dentro da tabela */
+    .selo-cota {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+    .selo-cota.diamante { background: #d6f3ff; color: #036c8a; }
+    .selo-cota.ouro     { background: #fef3cd; color: #8a6000; }
+    .selo-cota.prata    { background: #eceff1; color: #444b51; }
+    .selo-cota.bronze   { background: #f3e0d2; color: #8a4a1c; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="topo">
+    <h1>🤝 FPSS Admin - Parceiros</h1>
+    <button class="btn-novo" onclick="novoParceiro()">➕ Novo Parceiro</button>
+  </div>
+
+  <div class="menu-admin">
+    <a href="/admin/dashboard.html">Admin Central</a>
+    <a href="/admin/dashboard-metricas.html">Dashboard</a>
+    <a href="/admin/produtos.html">Produtos</a>
+    <a href="/admin/parceiros.html" class="ativo">Parceiros</a>
+    <a href="/">Site Oficial</a>
+  </div>
+
+  <div class="card">
+
+    <input type="hidden" id="parceiroId">
+
+    <div class="grid">
+
+      <div>
+        <label>Nome (uso interno, não aparece pro público)</label>
+        <input type="text" id="nome" placeholder="Ex: Agro Forte">
+      </div>
+
+      <div>
+        <label>Cota de Patrocínio</label>
+        <select id="cota">
+          <option value="diamante">💎 Diamante</option>
+          <option value="ouro">🥇 Ouro</option>
+          <option value="prata">🥈 Prata</option>
+          <option value="bronze" selected>🥉 Bronze</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Link (opcional — site/Instagram/WhatsApp do parceiro)</label>
+        <input type="text" id="link" placeholder="https://...">
+      </div>
+
+      <div>
+        <label>Ordem de exibição</label>
+        <input type="number" id="ordem" value="0">
+      </div>
+
+      <div>
+        <label>Status</label>
+        <select id="ativo">
+          <option value="true">Ativo</option>
+          <option value="false">Inativo</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div style="margin-top:20px;">
+      <label>Logo do Parceiro</label>
+
+      <div class="upload-horizontal">
+
+        <input
+          type="text"
+          id="logoUrl"
+          placeholder="URL da logo será preenchida automaticamente após o envio"
+          readonly
+        >
+
+        <label class="file-label">
+          📁 Escolher Imagem
+          <input
+            type="file"
+            id="logoArquivo"
+            accept="image/*"
+          >
+        </label>
+
+        <button
+          type="button"
+          class="btn-upload"
+          onclick="uploadLogoParceiro()"
+        >
+          🚀 Enviar Logo
+        </button>
+
+      </div>
+
+      <small id="statusUploadLogo"></small>
+    </div>
+
+    <div style="margin-top:20px;">
+      <button onclick="salvarParceiro()">💾 SALVAR PARCEIRO</button>
+    </div>
+
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Logo</th>
+        <th>Nome</th>
+        <th>Cota</th>
+        <th>Status</th>
+        <th>Ordem</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+
+    <tbody id="tabelaParceiros">
+      <tr>
+        <td colspan="6">Carregando...</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<script src="../js/parceiros-admin.js"></script>
+
+</body>
+</html>
