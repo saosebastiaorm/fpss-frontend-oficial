@@ -59,7 +59,39 @@ small#statusUploadLogo{
 }
 
 @media(max-width:1100px){
+
     .upload-horizontal{
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    /* campo de URL é só leitura/resultado — fica pequeno e discreto */
+    .upload-horizontal input#imagem,
+    .upload-horizontal input#logoUrl{
+        flex: 1 1 100%;
+        padding: 6px 10px;
+        font-size: 11px;
+        color: #8a93a3;
+        background: #f7f8fa;
+        order: 3;
+    }
+
+    .upload-horizontal .file-label{
+        flex: 1 1 calc(45% - 8px);
+        padding: 9px 10px;
+        font-size: 12px;
+        order: 1;
+        white-space: normal;
+    }
+
+    .upload-horizontal input[type="text"]:not(#imagem):not(#logoUrl){
+        flex: 1 1 calc(45% - 8px);
+        order: 1;
+    }
+
+    .upload-horizontal .btn-upload{
+        flex: 1 1 100%;
+        order: 2;
     }
 }

@@ -493,8 +493,8 @@ body.admin-page .mini-btn{
     gap: 8px;
   }
   body.admin-page .grid > *{
-    flex: 1 1 calc(50% - 8px);
-    min-width: 110px;
+    flex: 1 1 calc(33% - 8px);
+    min-width: 90px;
   }
   body.admin-page .grid > .campo-curto{
     flex: 1 1 calc(33% - 8px);
