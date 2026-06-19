@@ -14,6 +14,21 @@
   display: inline;
 }
 
+/* lista "Vendas abertas agora / Lotes antecipados / ..." —
+   no desktop usa gap:28px (ok lá), mas no mobile os itens
+   quebram linha e esse mesmo gap vira espaço vertical enorme */
+@media screen and (max-width: 980px) {
+  .produtos-urgencia-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px !important;
+    padding: 14px 18px;
+  }
+  .urgencia-item {
+    font-size: 12px;
+  }
+}
+
 .btn-header-buy__compact {
   display: none;
 }
@@ -158,8 +173,8 @@ html, body {
   display: none !important;
   position: absolute !important;
   top: 100% !important;
-  right: 8px !important;
-  left: auto !important;
+  left: 0 !important;
+  right: auto !important;
   width: 230px !important;
   max-width: 80vw !important;
   height: auto !important;
@@ -611,6 +626,14 @@ footer#mainFooter p:first-child { font-size: 13px !important; text-align: center
 .btn-atendimento-fixo::before {
   content: "💬";
   font-size: 20px;
+}
+
+.btn-voltar-topo {
+  bottom: 68px !important;
+  right: 14px !important;
+  width: 40px !important;
+  height: 40px !important;
+  font-size: 16px !important;
 }
 
 } /* fim @media 768px */

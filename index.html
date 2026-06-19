@@ -1101,6 +1101,10 @@ carregarParceirosSite();
 </div>
 
 
+  <button class="btn-voltar-topo" id="btnVoltarTopo" aria-label="Voltar ao topo" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+    ⬆️
+  </button>
+
   <a href="https://wa.me/556992014424" class="btn-atendimento-fixo" id="atendimentoFixo" target="_blank">
     💬 Atendimento
   </a>
@@ -1118,7 +1122,65 @@ carregarParceirosSite();
   </footer>
 
   <script>
+    const CACHE_KEY_PRODUTOS = "fpss_cache_produtos_home";
+
+    function renderizarProdutos(produtosAtivos) {
+      const container = document.getElementById("produtosContainer");
+      if (!container || !produtosAtivos.length) return;
+
+      container.innerHTML = "";
+
+      produtosAtivos.forEach(produto => {
+        let link = `venda/compra-produtos.html?produto=${produto.codigo}`;
+        const imgUrl = produto.imagem || "css/img/placeholder.jpg";
+        const preco = Number(produto.preco).toFixed(2).replace(".", ",");
+        const descricao = produto.descricao || "Produto oficial FPSS 2027";
+
+        container.innerHTML += `
+          <div class="venda-box hover-3d">
+            <img src="${imgUrl}" alt="${produto.nome}" loading="lazy">
+            <div class="venda-box-conteudo">
+              <div>
+                <h3>${produto.nome}</h3>
+                <ul class="info-list">
+                  <li>✔ ${descricao}</li>
+                </ul>
+              </div>
+              <div class="venda-box-rodape">
+                <div class="price-box">R$ ${preco}</div>
+                <a href="${link}" class="btn green full">🛒 COMPRAR AGORA</a>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    /* Mostra o cache salvo (de uma visita anterior) na hora, sem
+       esperar a rede — assim a pessoa já vê produtos imediatamente
+       em vez de ficar olhando "Carregando..." enquanto o servidor
+       gratuito (Render) "desperta" depois de um tempo parado. */
+    function mostrarCacheProdutos() {
+      try {
+        const cache = localStorage.getItem(CACHE_KEY_PRODUTOS);
+        if (!cache) return false;
+
+        const { produtos } = JSON.parse(cache);
+        if (!produtos || !produtos.length) return false;
+
+        renderizarProdutos(produtos);
+        return true;
+
+      } catch (erro) {
+        console.error("Erro ao ler cache de produtos:", erro);
+        return false;
+      }
+    }
+
     async function carregarProdutosHome() {
+
+      const tinhaCache = mostrarCacheProdutos();
+
       try {
         let baseUrl = "https://api.festasaosebastiao.com.br";
         if (typeof FPSS_CONFIG !== 'undefined' && FPSS_CONFIG.BACKEND_URL) {
@@ -1128,41 +1190,30 @@ carregarParceirosSite();
         const resposta = await fetch(`${baseUrl}/admin/produtos`);
         const texto = await resposta.text();
         let dados = JSON.parse(texto);
-        const container = document.getElementById("produtosContainer");
-        if (!container || !dados.sucesso || !dados.produtos.length) return;
 
-        container.innerHTML = "";
+        if (!dados.sucesso || !dados.produtos.length) return;
+
         const ativos = dados.produtos.filter(p => p.ativo === true);
 
-        ativos.forEach(produto => {
-          let link = `venda/compra-produtos.html?produto=${produto.codigo}`;
-          const imgUrl = produto.imagem || "css/img/placeholder.jpg";
-          const preco = Number(produto.preco).toFixed(2).replace(".", ",");
-          const descricao = produto.descricao || "Produto oficial FPSS 2027";
+        renderizarProdutos(ativos);
 
-          container.innerHTML += `
-            <div class="venda-box hover-3d">
-              <img src="${imgUrl}" alt="${produto.nome}" loading="lazy">
-              <div class="venda-box-conteudo">
-                <div>
-                  <h3>${produto.nome}</h3>
-                  <ul class="info-list">
-                    <li>✔ ${descricao}</li>
-                  </ul>
-                </div>
-                <div class="venda-box-rodape">
-                  <div class="price-box">R$ ${preco}</div>
-                  <a href="${link}" class="btn green full">🛒 COMPRAR AGORA</a>
-                </div>
-              </div>
-            </div>
-          `;
-        });
+        localStorage.setItem(
+          CACHE_KEY_PRODUTOS,
+          JSON.stringify({ produtos: ativos, salvoEm: Date.now() })
+        );
 
       } catch (erro) {
-        const container = document.getElementById("produtosContainer");
-        if (container) container.innerHTML = "<p style='color:#999;padding:20px;text-align:center'>Não foi possível carregar os produtos. Tente novamente.</p>";
+
         console.error("Erro produtos home:", erro);
+
+        /* só mostra a mensagem de erro se não tínhamos nada (nem
+           cache) pra mostrar — se já tem cache na tela, é melhor
+           deixar os produtos "antigos" visíveis do que trocar por
+           uma mensagem de erro */
+        if (!tinhaCache) {
+          const container = document.getElementById("produtosContainer");
+          if (container) container.innerHTML = "<p style='color:#999;padding:20px;text-align:center'>Não foi possível carregar os produtos. Tente novamente.</p>";
+        }
       }
     }
 
@@ -1422,5 +1473,23 @@ progress + "%";
 });
 
 </script>
+<script>
+(function(){
+  const btnTopo = document.getElementById("btnVoltarTopo");
+  if(!btnTopo) return;
+
+  function checarScroll(){
+    if(window.scrollY > 400){
+      btnTopo.classList.add("visivel");
+    }else{
+      btnTopo.classList.remove("visivel");
+    }
+  }
+
+  window.addEventListener("scroll", checarScroll, { passive: true });
+  checarScroll();
+})();
+</script>
+
 </body>
 </html>

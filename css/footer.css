@@ -26,6 +26,42 @@
       transform: translateY(-2px) scale(1.02);
     }
 
+    /* botão "voltar ao topo" — fica empilhado em cima do
+       atendimento, só aparece depois que a pessoa rola a página */
+    .btn-voltar-topo {
+      position: fixed;
+      bottom: 90px;
+      right: 25px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #8b0000;
+      color: #ffffff;
+      border: none;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 20px rgba(139, 0, 0, 0.30);
+      cursor: pointer;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .btn-voltar-topo.visivel {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .btn-voltar-topo:hover {
+      background: #6e0000;
+      transform: translateY(-2px);
+    }
+
     /* Esconde o atendimento dinamicamente se o menu open estiver ativo no mobile */
     .topbar-master.menu-open ~ .btn-atendimento-fixo {
       opacity: 0 !important;

@@ -1,6 +1,86 @@
 const API = "https://api.festasaosebastiao.com.br";
+const CACHE_KEY_PRODUTOS_ADMIN = "fpss_cache_produtos_admin";
+
+function renderizarTabelaProdutos(produtos){
+
+  const tabela = document.getElementById("tabelaProdutos");
+
+  if(!produtos.length){
+    tabela.innerHTML = `<tr><td colspan="9">Nenhum produto encontrado.</td></tr>`;
+    return;
+  }
+
+  tabela.innerHTML = produtos.map(produto => `
+    <tr>
+      <td>${produto.codigo}</td>
+
+      <td>
+        <img
+          src="${produto.imagem || 'https://via.placeholder.com/60x60?text=Sem+Imagem'}"
+          alt="${produto.nome}"
+          style="width:60px;height:60px;object-fit:cover;border-radius:8px;border:1px solid #ccc;"
+        >
+      </td>
+
+      <td>${produto.nome}</td>
+
+      <td>R$ ${Number(produto.preco).toFixed(2).replace(".", ",")}</td>
+
+      <td>${produto.estoque}</td>
+
+      <td>${produto.tipo}</td>
+
+      <td>
+        <span class="status ${produto.ativo ? "ativo" : "inativo"}">
+          ${produto.ativo ? "Ativo" : "Inativo"}
+        </span>
+      </td>
+
+      <td>${produto.ordem}</td>
+
+      <td>
+        <button
+          class="btn-editar"
+          onclick='editarProduto(${JSON.stringify(produto)})'
+        >
+          ✏️ Editar
+        </button>
+        <button
+          class="btn-excluir"
+          onclick="excluirProduto('${produto.id}')"
+        >
+          🗑️ Excluir
+        </button>
+      </td>
+    </tr>
+  `).join("");
+
+}
+
+/* mostra o que foi salvo numa visita anterior, na hora, sem
+   esperar a rede — útil principalmente quando o backend (Render,
+   plano gratuito) está "dormindo" e demora pra responder */
+function mostrarCacheProdutosAdmin(){
+  try{
+    const cache = localStorage.getItem(CACHE_KEY_PRODUTOS_ADMIN);
+    if(!cache) return false;
+
+    const { produtos } = JSON.parse(cache);
+    if(!produtos || !produtos.length) return false;
+
+    renderizarTabelaProdutos(produtos);
+    return true;
+
+  }catch(erro){
+    console.error("Erro ao ler cache de produtos:", erro);
+    return false;
+  }
+}
 
 async function carregarProdutos(){
+
+  const tinhaCache = mostrarCacheProdutosAdmin();
+
   try{
     const res = await fetch(`${API}/admin/produtos`);
     const texto = await res.text();
@@ -10,65 +90,32 @@ async function carregarProdutos(){
     try{
       data = JSON.parse(texto);
     }catch{
-      alert("❌ Backend retornou erro inesperado.");
+      if(!tinhaCache) alert("❌ Backend retornou erro inesperado.");
       return;
     }
-
-    const tabela = document.getElementById("tabelaProdutos");
 
     if(!data.sucesso || !data.produtos.length){
-      tabela.innerHTML = `<tr><td colspan="9">Nenhum produto encontrado.</td></tr>`;
+      if(!tinhaCache){
+        document.getElementById("tabelaProdutos").innerHTML =
+          `<tr><td colspan="9">Nenhum produto encontrado.</td></tr>`;
+      }
       return;
     }
 
-    tabela.innerHTML = data.produtos.map(produto => `
-      <tr>
-        <td>${produto.codigo}</td>
+    renderizarTabelaProdutos(data.produtos);
 
-        <td>
-          <img
-            src="${produto.imagem || 'https://via.placeholder.com/60x60?text=Sem+Imagem'}"
-            alt="${produto.nome}"
-            style="width:60px;height:60px;object-fit:cover;border-radius:8px;border:1px solid #ccc;"
-          >
-        </td>
-
-        <td>${produto.nome}</td>
-
-        <td>R$ ${Number(produto.preco).toFixed(2).replace(".", ",")}</td>
-
-        <td>${produto.estoque}</td>
-
-        <td>${produto.tipo}</td>
-
-        <td>
-          <span class="status ${produto.ativo ? "ativo" : "inativo"}">
-            ${produto.ativo ? "Ativo" : "Inativo"}
-          </span>
-        </td>
-
-        <td>${produto.ordem}</td>
-
-        <td>
-          <button
-            class="btn-editar"
-            onclick='editarProduto(${JSON.stringify(produto)})'
-          >
-            ✏️ Editar
-          </button>
-          <button
-            class="btn-excluir"
-            onclick="excluirProduto('${produto.id}')"
-          >
-            🗑️ Excluir
-          </button>
-        </td>
-      </tr>
-    `).join("");
+    localStorage.setItem(
+      CACHE_KEY_PRODUTOS_ADMIN,
+      JSON.stringify({ produtos: data.produtos, salvoEm: Date.now() })
+    );
 
   }catch{
-    document.getElementById("tabelaProdutos").innerHTML =
-      `<tr><td colspan="9">Erro ao carregar.</td></tr>`;
+
+    /* só mostra erro se não tínhamos nada (nem cache) pra exibir */
+    if(!tinhaCache){
+      document.getElementById("tabelaProdutos").innerHTML =
+        `<tr><td colspan="9">Erro ao carregar.</td></tr>`;
+    }
   }
 }
 
