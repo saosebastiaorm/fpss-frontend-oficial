@@ -26,7 +26,7 @@
     Escaneie QR Code automaticamente ou consulte por Código / CPF
   </p>
 
-    <div class="menu-admin">
+      <div class="menu-admin">
     <a href="/admin/dashboard.html">Admin Central</a>
     <a href="/admin/dashboard-metricas.html">Dashboard</a>
     <a href="/admin/produtos.html">Produtos</a>
@@ -34,6 +34,7 @@
     <a href="/admin/pedidos.html">Pedidos</a>
     <a href="/admin/retirada.html" class="ativo">Retirada</a>
     <a href="/admin/leitor.html">Leitor</a>
+    <a href="/admin/usuarios.html">Usuários</a>
     <a href="/">Site Oficial</a>
   </div>
 
@@ -68,7 +69,9 @@
   </div>
 
   <div id="scannerArea" style="display:none;">
+    <button id="btnFecharScanner" onclick="toggleScanner()" aria-label="Fechar câmera">✕</button>
     <div id="reader"></div>
+    <p id="scannerDica">Aponte a câmera para o QR Code</p>
   </div>
 
   <div id="erro" class="erro"></div>

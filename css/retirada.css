@@ -93,24 +93,70 @@
   color: #fff;
 }
 
+/* =====================================================
+   SCANNER EM TELA CHEIA
+   (antes era uma caixinha pequena dentro da página;
+   agora cobre a tela inteira, como em outros apps)
+===================================================== */
 #scannerArea{
-  margin-top: 15px;
-  margin-bottom: 20px;
-  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 #reader{
   width: 100%;
-  max-width: 280px;
-  margin: 0 auto;
-  border: 3px solid var(--admin-primary);
-  border-radius: 14px;
+  height: 100%;
+  max-width: none;
+  margin: 0;
+  border: none;
+  border-radius: 0;
   overflow: hidden;
   background: #000;
 }
 #reader video{
   width: 100% !important;
-  height: auto !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+#btnFecharScanner{
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.3);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 100000;
+}
+
+#scannerDica{
+  position: absolute;
+  bottom: 32px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+  z-index: 100000;
+  margin: 0;
+  pointer-events: none;
 }
 
 .busca-linha input{
@@ -178,11 +224,6 @@
     width: 100%;
     max-width: none;
     font-size: 16px;
-  }
-
-  #reader{
-    max-width: 190px;
-    max-height: 190px;
   }
 
   .resultado{

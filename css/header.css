@@ -320,24 +320,14 @@ pulseButton 2.5s infinite;
 }
 
 /* =========================================
-   COMPENSA HEADER FIXO
+   (removido) COMPENSA HEADER FIXO
+   Não é mais necessário: o header usa position:sticky
+   (desktop e mobile), que já reserva seu próprio espaço
+   no fluxo normal da página — sem precisar de padding
+   artificial no body. Essa regra antiga (de quando o
+   header era position:fixed) estava criando um espaço
+   em branco extra no topo da página.
 ========================================= */
-
-body{
-
-    padding-top:var(--header-height);
-
-}
-
-/* MOBILE */
-
-@media (max-width:768px){
-
-body{
-    padding-top:74px;
-}
-
-}
 
 @keyframes pulseButton{
 

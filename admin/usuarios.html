@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FPSS Admin - Usuários</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Roboto:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/admin-shared.css">
+  <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+
+</head>
+<body class="admin-page">
+
+<div class="container">
+
+  <div class="topo">
+    <h1>👤 FPSS Admin - Usuários</h1>
+    <button class="btn-novo" onclick="novoUsuario()">➕ Novo Usuário</button>
+  </div>
+
+  <div class="menu-admin">
+    <a href="/admin/dashboard.html">Admin Central</a>
+    <a href="/admin/dashboard-metricas.html">Dashboard</a>
+    <a href="/admin/produtos.html">Produtos</a>
+    <a href="/admin/parceiros.html">Parceiros</a>
+    <a href="/admin/pedidos.html">Pedidos</a>
+    <a href="/admin/retirada.html">Retirada</a>
+    <a href="/admin/leitor.html">Leitor</a>
+    <a href="/admin/usuarios.html" class="ativo">Usuários</a>
+    <a href="/">Site Oficial</a>
+  </div>
+
+  <p style="color:#5b6b7c;font-size:13px;margin:-6px 0 18px;">
+    Só usuários com perfil administrativo aparecem e podem ser cadastrados aqui.
+    Essa página, e a criação de novos acessos, é restrita a administradores.
+  </p>
+
+  <div id="erro" class="erro"></div>
+
+  <div class="card form-card" id="formCard" style="display:none;">
+
+    <input type="hidden" id="usuarioId">
+
+    <div class="grid">
+
+      <div>
+        <label>Nome</label>
+        <input type="text" id="nome" placeholder="Nome completo">
+      </div>
+
+      <div>
+        <label>E-mail</label>
+        <input type="email" id="email" placeholder="email@exemplo.com">
+      </div>
+
+      <div>
+        <label>Senha</label>
+        <input type="password" id="senha" placeholder="Mínimo 6 caracteres">
+      </div>
+
+    </div>
+
+    <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;">
+      <button onclick="salvarUsuario()">💾 Salvar Usuário</button>
+      <button onclick="cancelarFormulario()" class="btn-secundario">Cancelar</button>
+    </div>
+
+  </div>
+
+  <div class="tabela-wrap">
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>E-mail</th>
+          <th>Perfil</th>
+          <th>Criado em</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+
+      <tbody id="tabelaUsuarios"></tbody>
+
+    </table>
+
+  </div>
+
+  <div class="rodape">
+    6ª FPSS 2027 • Administração de Usuários
+  </div>
+
+</div>
+
+<script src="/js/usuarios-admin.js"></script>
+
+</body>
+</html>

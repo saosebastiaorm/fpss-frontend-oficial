@@ -14,6 +14,13 @@
   display: inline;
 }
 
+.btn-header-buy__compact {
+  display: none;
+}
+.btn-header-buy__full {
+  display: inline;
+}
+
 @media screen and (max-width: 980px) {
 
 /* ============================================
@@ -222,10 +229,17 @@ html, body {
 .btn-header-buy {
   display: inline-flex !important;
   align-items: center !important;
-  padding: 8px 12px !important;
+  padding: 7px 10px !important;
   font-size: 11px !important;
   white-space: nowrap !important;
   border-radius: 6px !important;
+}
+
+.btn-header-buy__full {
+  display: none !important;
+}
+.btn-header-buy__compact {
+  display: inline !important;
 }
 
 /* overlay escuro quando menu aberto */
@@ -515,6 +529,7 @@ html, body {
 .galeria-grid-premium {
   grid-template-columns: 1fr 1fr !important;
   grid-template-rows: auto !important;
+  grid-auto-rows: auto !important;
   gap: 8px !important;
 }
 
@@ -581,12 +596,21 @@ footer#mainFooter p:first-child { font-size: 13px !important; text-align: center
 /* ============================================
    BOTÃO ATENDIMENTO flutuante
 ============================================ */
-.btn-atendimento,
-#btnAtendimento {
+.btn-atendimento-fixo {
   bottom: 14px !important;
   right: 14px !important;
-  font-size: 12px !important;
-  padding: 10px 16px !important;
+  width: 44px !important;
+  height: 44px !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  font-size: 0 !important;
+  gap: 0 !important;
+  justify-content: center !important;
+}
+
+.btn-atendimento-fixo::before {
+  content: "💬";
+  font-size: 20px;
 }
 
 } /* fim @media 768px */

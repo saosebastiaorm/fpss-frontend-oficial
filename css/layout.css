@@ -402,20 +402,6 @@
   line-height: 1.5;
 }
 
-.galeria-grid-premium{
-
-    display: grid;
-
-    grid-template-columns:
-    repeat(4, 1fr);
-
-    grid-auto-rows: 260px;
-
-    gap: 22px;
-
-    margin-top: 60px;
-}
-
 .foto-premium{
 
     position:relative;

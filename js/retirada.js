@@ -377,7 +377,7 @@ async function toggleScanner() {
       { facingMode: "environment" },
       {
         fps:10,
-        qrbox:{ width:220, height:220 }
+        qrbox:{ width:260, height:260 }
       },
       processarCodigoLido
     );
@@ -417,7 +417,7 @@ async function trocarCamera() {
       { facingMode: novoModo },
       {
         fps:10,
-        qrbox:{ width:220, height:220 }
+        qrbox:{ width:260, height:260 }
       },
       processarCodigoLido
     );
