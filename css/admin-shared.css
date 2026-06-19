@@ -198,6 +198,18 @@ body.admin-page .grid > *{
   min-width: 0;
 }
 
+/* tamanhos proporcionais ao conteúdo real de cada campo —
+   em vez de todo campo ocupar o mesmo espaço */
+body.admin-page .grid > .campo-curto{
+  flex: 0 1 100px;
+}
+body.admin-page .grid > .campo-medio{
+  flex: 1 1 140px;
+}
+body.admin-page .grid > .campo-nome{
+  flex: 3 1 240px;
+}
+
 /* card "solto" usado como envelope simples de formulário (produtos, parceiros) */
 body.admin-page > .container > .card,
 body.admin-page .card.form-card{
@@ -473,5 +485,43 @@ body.admin-page .mini-btn{
     display: block;
     overflow-x: auto;
     white-space: nowrap;
+  }
+
+  /* formulários (produtos, parceiros, usuários...) — campos
+     curtos lado a lado, nome ocupa a linha inteira */
+  body.admin-page .grid{
+    gap: 8px;
+  }
+  body.admin-page .grid > *{
+    flex: 1 1 calc(50% - 8px);
+    min-width: 110px;
+  }
+  body.admin-page .grid > .campo-curto{
+    flex: 1 1 calc(33% - 8px);
+    min-width: 80px;
+  }
+  body.admin-page .grid > .campo-nome{
+    flex: 1 1 100%;
+  }
+
+  body.admin-page label{
+    font-size: 11px;
+    margin-bottom: 4px;
+  }
+
+  body.admin-page input[type="text"],
+  body.admin-page input[type="email"],
+  body.admin-page input[type="password"],
+  body.admin-page input[type="number"],
+  body.admin-page input[type="search"],
+  body.admin-page select,
+  body.admin-page textarea{
+    padding: 9px 11px;
+    font-size: 13px;
+  }
+
+  body.admin-page > .container > .card,
+  body.admin-page .card.form-card{
+    padding: 14px;
   }
 }

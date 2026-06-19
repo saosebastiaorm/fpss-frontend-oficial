@@ -12,6 +12,7 @@ const API_BASE = "https://api.festasaosebastiao.com.br";
 
 let usuarioLogadoId = null;
 let tokenAcesso = null;
+let usuariosCache = [];
 
 /* =====================================================
    INICIALIZAÇÃO
@@ -148,20 +149,29 @@ async function carregarUsuarios() {
 
         tabela.innerHTML = "";
 
+        usuariosCache = dados.usuarios;
+
         dados.usuarios.forEach(usuario => {
 
             const dataCriacao = usuario.created_at
                 ? new Date(usuario.created_at).toLocaleDateString("pt-BR")
                 : "-";
 
+            const perfilLabel = usuario.role === "admin"
+                ? "Administrador"
+                : "Padrão";
+
             const linha = document.createElement("tr");
 
             linha.innerHTML = `
                 <td>${usuario.nome || "-"}</td>
                 <td>${usuario.email || "-"}</td>
-                <td>${usuario.role || "-"}</td>
+                <td>${perfilLabel}</td>
                 <td>${dataCriacao}</td>
                 <td>
+                    <button class="btn-editar" onclick="editarUsuario('${usuario.id}')">
+                        ✏️ Editar
+                    </button>
                     <button class="btn-excluir" onclick="excluirUsuario('${usuario.id}')">
                         🗑️ Excluir
                     </button>
@@ -182,7 +192,7 @@ async function carregarUsuarios() {
 }
 
 /* =====================================================
-   FORMULÁRIO
+   FORMULÁRIO — NOVO USUÁRIO
 ===================================================== */
 function novoUsuario() {
 
@@ -190,8 +200,41 @@ function novoUsuario() {
     document.getElementById("nome").value = "";
     document.getElementById("email").value = "";
     document.getElementById("senha").value = "";
+    document.getElementById("papel").value = "admin";
+
+    document.getElementById("formTitulo").innerText = "Novo Usuário";
+    document.getElementById("campoEmail").style.display = "block";
+    document.getElementById("campoSenha").style.display = "block";
 
     document.getElementById("formCard").style.display = "block";
+
+}
+
+/* =====================================================
+   FORMULÁRIO — EDITAR USUÁRIO EXISTENTE
+   (e-mail e senha não são editáveis aqui — só nome e papel)
+===================================================== */
+function editarUsuario(id) {
+
+    const usuario = usuariosCache.find(u => u.id === id);
+
+    if (!usuario) {
+        alert("Usuário não encontrado. Atualize a página e tente novamente.");
+        return;
+    }
+
+    document.getElementById("usuarioId").value = usuario.id;
+    document.getElementById("nome").value = usuario.nome || "";
+    document.getElementById("email").value = usuario.email || "";
+    document.getElementById("senha").value = "";
+    document.getElementById("papel").value = usuario.role === "admin" ? "admin" : "padrao";
+
+    document.getElementById("formTitulo").innerText = "Editar Usuário";
+    document.getElementById("campoEmail").style.display = "none";
+    document.getElementById("campoSenha").style.display = "none";
+
+    document.getElementById("formCard").style.display = "block";
+    document.getElementById("formCard").scrollIntoView({ behavior: "smooth", block: "start" });
 
 }
 
@@ -200,39 +243,63 @@ function cancelarFormulario() {
 }
 
 /* =====================================================
-   SALVAR (CRIAR) USUÁRIO
+   SALVAR — DECIDE ENTRE CRIAR (POST) OU EDITAR (PUT)
 ===================================================== */
 async function salvarUsuario() {
 
+    const id = document.getElementById("usuarioId").value;
     const nome = document.getElementById("nome").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const senha = document.getElementById("senha").value;
+    const papel = document.getElementById("papel").value;
 
     const erroDiv = document.getElementById("erro");
     erroDiv.innerText = "";
 
-    if (!nome || !email || !senha) {
-        erroDiv.innerText = "❌ Preencha nome, e-mail e senha.";
-        return;
-    }
-
-    if (senha.length < 6) {
-        erroDiv.innerText = "❌ A senha precisa ter pelo menos 6 caracteres.";
+    if (!nome) {
+        erroDiv.innerText = "❌ Preencha o nome.";
         return;
     }
 
     try {
 
-        const res = await fetch(`${API_BASE}/admin/usuarios`, {
-            method: "POST",
-            headers: headersComToken(),
-            body: JSON.stringify({ nome, email, password: senha })
-        });
+        let res;
+
+        if (id) {
+
+            /* MODO EDIÇÃO */
+            res = await fetch(`${API_BASE}/admin/usuarios/${id}`, {
+                method: "PUT",
+                headers: headersComToken(),
+                body: JSON.stringify({ nome, role: papel })
+            });
+
+        } else {
+
+            /* MODO CRIAÇÃO */
+            const email = document.getElementById("email").value.trim();
+            const senha = document.getElementById("senha").value;
+
+            if (!email || !senha) {
+                erroDiv.innerText = "❌ Preencha e-mail e senha.";
+                return;
+            }
+
+            if (senha.length < 6) {
+                erroDiv.innerText = "❌ A senha precisa ter pelo menos 6 caracteres.";
+                return;
+            }
+
+            res = await fetch(`${API_BASE}/admin/usuarios`, {
+                method: "POST",
+                headers: headersComToken(),
+                body: JSON.stringify({ nome, email, password: senha, role: papel })
+            });
+
+        }
 
         const dados = await res.json();
 
         if (!dados.sucesso) {
-            erroDiv.innerText = "❌ " + (dados.erro || "Erro ao criar usuário.");
+            erroDiv.innerText = "❌ " + (dados.erro || "Erro ao salvar usuário.");
             return;
         }
 
@@ -242,7 +309,7 @@ async function salvarUsuario() {
     } catch (erro) {
 
         console.error("ERRO SALVAR USUARIO:", erro);
-        erroDiv.innerText = "❌ Erro de conexão ao criar usuário.";
+        erroDiv.innerText = "❌ Erro de conexão ao salvar usuário.";
 
     }
 

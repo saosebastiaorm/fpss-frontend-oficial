@@ -61,7 +61,7 @@ content="assets/imagens/og-image.jpg">
 <body>
   <div class="scroll-progress" id="scrollProgress"></div>
   <div class="barra-urgencia">
-    <span class="barra-urgencia__full">🔥 EVENTO OFICIAL FPSS • CHURRASCOS E CARTELAS LIMITADOS • GARANTA JÁ</span><span class="barra-urgencia__compact">🔥 CARTELAS E CHURRASCOS LIMITADOS • GARANTA JÁ</span>
+    🔥 EVENTO OFICIAL FPSS • CHURRASCOS E CARTELAS LIMITADOS • GARANTA JÁ
   </div>
 
  <div class="topbar-master" id="topbarMaster">
@@ -104,7 +104,7 @@ content="assets/imagens/og-image.jpg">
         </a>
 
         <a href="#comprar" class="btn-header-buy">
-            <span class="btn-header-buy__full">🛒 Comprar Agora</span><span class="btn-header-buy__compact">Comprar</span>
+            🛒 Comprar Agora
         </a>
 
     </div>
@@ -1020,61 +1020,57 @@ content="assets/imagens/og-image.jpg">
 
 </section>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 
-const parceiros = [
+const PARCEIROS_SUPABASE_URL = "https://gffmgqvidgswvwnhyife.supabase.co";
+const PARCEIROS_SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdmZm1ncXZpZGdzd3Z3bmh5aWZlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4NDgwMDgsImV4cCI6MjA5MzQyNDAwOH0.YyzDah9VPMjTbOjNJAQbod6NWzIo5v7gCbhlaZ2qVPg";
 
-"parceiro1.png",
-"parceiro2.png",
-"parceiro3.png",
-"parceiro4.png",
-"parceiro5.png",
-"parceiro6.png",
-"parceiro7.png",
-"parceiro8.png",
-"parceiro9.png",
-"parceiro10.png",
-"parceiro11.png",
-"parceiro12.png",
-"parceiro13.png",
-"parceiro14.png",
-"parceiro15.png",
-"parceiro16.png",
-"parceiro17.png",
-"parceiro18.png"
-];
+const parceirosClient = supabase.createClient(
+    PARCEIROS_SUPABASE_URL,
+    PARCEIROS_SUPABASE_KEY
+);
 
-const parceirosGrid =
-document.getElementById("parceirosGrid");
+const parceirosGrid = document.getElementById("parceirosGrid");
 
-parceiros.forEach((logo,index)=>{
+/* Ordem de prioridade visual das cotas — diamante aparece primeiro */
+const ORDEM_COTA = { diamante: 0, rubi: 1, ouro: 2, prata: 3, bronze: 4 };
 
-let classe = "";
+async function carregarParceirosSite(){
 
-if(index === 0 || index === 8){
-classe = "ouro";
+    const { data, error } = await parceirosClient
+        .from("parceiros")
+        .select("*")
+        .eq("ativo", true);
+
+    if(error){
+        console.error("Erro ao carregar parceiros:", error);
+        return;
+    }
+
+    const parceiros = (data || []).sort((a, b) => {
+        const cotaA = ORDEM_COTA[a.cota] ?? 9;
+        const cotaB = ORDEM_COTA[b.cota] ?? 9;
+        if(cotaA !== cotaB) return cotaA - cotaB;
+        return (a.ordem ?? 0) - (b.ordem ?? 0);
+    });
+
+    parceirosGrid.innerHTML = parceiros.map(p => {
+
+        const classe = "parceiro-card--" + (p.cota || "bronze");
+        const conteudoLogo = `<img src="${p.logo_url}" loading="lazy" alt="Parceiro FPSS">`;
+
+        if(p.link){
+            return `<a href="${p.link}" target="_blank" rel="noopener" class="parceiro-card hover-3d ${classe}">${conteudoLogo}</a>`;
+        }
+
+        return `<div class="parceiro-card hover-3d ${classe}">${conteudoLogo}</div>`;
+
+    }).join("");
+
 }
 
-if(index === 3 || index === 11){
-classe = "rubi";
-}
-
-if(index === 5){
-classe = "prata";
-}
-
-parceirosGrid.innerHTML += `
-
-<div class="parceiro-card hover-3d ${classe}">
-    <img
-    src="assets/imagens/parceiros/${logo}"
-    loading="lazy"
-    alt="Parceiro FPSS">
-</div>
-
-`;
-
-});
+carregarParceirosSite();
 
 </script>
 

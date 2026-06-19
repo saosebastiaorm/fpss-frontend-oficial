@@ -141,9 +141,9 @@
     transform: scale(1.05);
 }
 
-/* DESTAQUES — 4 cotas de patrocínio (nomes próprios pra não colidir
-   com .ouro/.prata/.rubi usadas nos cards de prêmio, que têm
-   border-top:4px !important e vazavam pros cards de parceiro) */
+/* DESTAQUES — 5 cotas de patrocínio (nomes próprios, com prefixo
+   parceiro-card--, pra não colidir com .ouro/.prata/.rubi usadas em
+   outras partes do site, como os cards de prêmio) */
 
 .parceiro-card--diamante{
     border-top: 4px solid #38bdf8;
