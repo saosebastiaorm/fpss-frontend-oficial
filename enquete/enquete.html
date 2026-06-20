@@ -7,6 +7,13 @@
 
   <title>Enquete Oficial • 6ª FPSS 2027</title>
 
+    <link rel="stylesheet" href="../css/font-global.css">
+  <link rel="stylesheet" href="../design-system.css">
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="stylesheet" href="../css/design-system-v2.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Roboto:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/layout.css">
   <link rel="stylesheet" href="../css/components.css">
@@ -151,35 +158,61 @@
 
 <body>
 
+  <div class="scroll-progress" id="scrollProgress"></div>
   <div class="barra-urgencia">
-    🔥 PARTICIPAR DA ENQUETE E CONCORRER A UMA CAMISETA OFICIAL DA FESTA!
+    <span class="barra-urgencia__full">🔥 EVENTO OFICIAL FPSS • CHURRASCOS E CARTELAS LIMITADOS • GARANTA JÁ</span><span class="barra-urgencia__compact">🔥 CARTELAS E CHURRASCOS LIMITADOS • GARANTA JÁ</span>
   </div>
 
-  <div class="topbar-master" id="topbarMaster">
+ <div class="topbar-master" id="topbarMaster">
+
     <div class="wrap">
-      <div class="header-main">
-        
-        <button class="menu-toggle" id="menuToggle" onclick="document.getElementById('topbarMaster').classList.toggle('menu-open'); event.stopPropagation();">☰</button>
 
-        <div class="brand-area">
-          <div class="brand-text">
+  <div class="header-main">
+
+    <button class="menu-toggle" id="menuToggle">
+        ☰
+    </button>
+
+    <div class="brand-area">
+        <img
+          src="../assets/imagens/logo/fpss/fpss-logo.png"
+          alt="Logo 6ª FPSS"
+          class="logo-menu-img"
+        >
+        <div class="brand-text">
             <h1>6ª FPSS 2027</h1>
-            <p>Festa de São Sebastião</p>
-          </div>
+            <p>Festa do Padroeiro São Sebastião</p>
         </div>
-
-        <nav class="menu-master">
-          <a href="../index.html">Início</a>
-          <a href="../index.html#comprar">Prêmios</a>
-          <a href="./enquete.html">Enquete</a>
-          <a href="../index.html#vip">Grupo VIP</a>
-        </nav>
-
-        <a href="../index.html#comprar" class="btn-header-buy">🛒 COMPRAR AGORA</a>
-
-      </div>
     </div>
-  </div>
+
+    <nav class="menu-master">
+
+        <a href="../index.html">Início</a>
+        <a href="../index.html#comprar">Prêmios</a>
+        <a href="../cliente/login.html">👤 Meus Pedidos</a>
+        <a href="../enquete/enquete.html" class="active">Enquete</a>
+        <a href="../vip.html">💚 Grupo VIP</a>
+        <a href="../doacao/doacao.html">Doações</a>
+
+    </nav>
+
+    <div class="header-ctas">
+
+        <a href="../vip.html" class="btn-header-whatsapp">
+            💚 Grupo WhatsApp
+        </a>
+
+        <a href="../index.html#comprar" class="btn-header-buy">
+            <span class="btn-header-buy__full">🛒 Comprar Agora</span><span class="btn-header-buy__compact">Comprar</span>
+        </a>
+
+    </div>
+
+</div>
+
+    </div>
+
+</div>
 
   <main class="wrap">
     <div class="enquete-container">
@@ -438,5 +471,44 @@
       });
     });
   </script>
+
+<script>
+(function(){
+  const menuToggle = document.getElementById("menuToggle");
+  const menuMaster = document.querySelector(".menu-master");
+
+  function abrirMenu() {
+    if (menuMaster) menuMaster.classList.add("aberto");
+  }
+  function fecharMenu() {
+    if (menuMaster) menuMaster.classList.remove("aberto");
+  }
+
+  if (menuToggle && menuMaster) {
+
+    menuToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (menuMaster.classList.contains("aberto")) {
+        fecharMenu();
+      } else {
+        abrirMenu();
+      }
+    });
+
+    document.addEventListener("click", (e) => {
+      if (menuMaster.classList.contains("aberto")) {
+        if (!menuMaster.contains(e.target) && e.target !== menuToggle) {
+          fecharMenu();
+        }
+      }
+    });
+
+    menuMaster.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", fecharMenu);
+    });
+  }
+})();
+</script>
+
 </body>
 </html>

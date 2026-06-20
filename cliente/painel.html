@@ -5,11 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Painel do Cliente - FPSS</title>
 
+  <link rel="stylesheet" href="../css/font-global.css">
+  <link rel="stylesheet" href="../design-system.css">
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="stylesheet" href="../css/design-system-v2.css">
   <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/footer.css">
   <link rel="stylesheet" href="../css/conversao-master.css">
+  <link rel="stylesheet" href="../css/mobile.css">
   <link rel="stylesheet" href="../css/painel-cliente.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Roboto:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
 
   <style>
@@ -23,6 +32,29 @@
       padding:20px;
       font-family:Arial,sans-serif;
       color:#333;
+    }
+
+    /* garante que o cabeçalho padrão do site não seja afetado
+       pelo CSS específico desta página (cores/fontes corretas) */
+    body.topbar-master,
+    .topbar-master,
+    .topbar-master *{
+      box-sizing: border-box;
+    }
+    .topbar-master .brand-text h1{
+      font-family:'Merriweather', Georgia, serif !important;
+      color:#ffffff !important;
+    }
+    .topbar-master .brand-text p{
+      font-family:'Roboto', Arial, sans-serif !important;
+      color:#ffffff !important;
+    }
+    .topbar-master .menu-master a{
+      font-family:'Roboto', Arial, sans-serif !important;
+      color:#ffffff !important;
+    }
+    .topbar-master .menu-toggle{
+      color:#ffffff !important;
     }
 
     .painel-box{
@@ -709,11 +741,193 @@
   border:2px solid #16a34a;
 }
 
+/* =====================================================
+   VERSÃO COMPACTA DO MODAL DE QR
+   (substitui as definições anteriores, sem precisar de
+   scroll — fontes e espaçamentos reduzidos)
+===================================================== */
+.modal-qr-conteudo{
+  max-width:420px !important;
+  max-height:90vh !important;
+  padding:18px !important;
+  overflow-y:auto !important;
+}
+
+.modal-qr-conteudo h2{
+  font-size:18px !important;
+  margin-bottom:8px !important;
+}
+
+.qr-cabecalho{
+  flex-direction:column !important;
+  gap:10px !important;
+  margin-bottom:10px !important;
+}
+
+.titulo-produto-qr{
+  font-size:18px !important;
+  margin-bottom:8px !important;
+}
+
+.imagem-produto-qr{
+  width:70px !important;
+  height:70px !important;
+  margin:6px auto !important;
+}
+
+.horario-retirada-box{
+  font-size:13px !important;
+  padding:8px !important;
+  margin:8px 0 !important;
+  line-height:1.35 !important;
+}
+
+.status-pago-box{
+  font-size:13px !important;
+  padding:8px !important;
+  margin:8px 0 !important;
+}
+
+#qrcodeCliente{
+  margin:10px auto !important;
+}
+
+#qrcodeCliente canvas,
+#qrcodeCliente img{
+  width:130px !important;
+  height:130px !important;
+  margin:8px auto !important;
+}
+
+.qr-lado-direito{
+  width:100% !important;
+}
+
+.btn-download-qr,
+.btn-imprimir-qr{
+  padding:8px 14px !important;
+  font-size:13px !important;
+  margin:5px 0 !important;
+  width:100%;
+}
+
+.dados-retirada-grid{
+  gap:6px !important;
+  margin-top:8px !important;
+}
+
+.dado-item{
+  padding:6px !important;
+}
+
+.dado-item strong{
+  font-size:11px !important;
+  margin-bottom:2px !important;
+}
+
+.dado-item span{
+  font-size:12px !important;
+}
+
+.aviso-retirada{
+  font-size:12px !important;
+  padding:8px !important;
+  margin-top:10px !important;
+}
+
+/* =====================================================
+   LISTA DE PEDIDOS — mais compacta
+===================================================== */
+.pedido-card{
+  padding:14px !important;
+}
+
+.pedido-card h3{
+  font-size:16px !important;
+  margin-bottom:8px !important;
+}
+
+.pedido-card p{
+  font-size:13px !important;
+  margin:4px 0 !important;
+}
+
+.pedido-imagem{
+  width:80px !important;
+  height:80px !important;
+}
+
+.cliente-info{
+  padding:14px !important;
+  gap:10px !important;
+}
+
+.cliente-info p{
+  font-size:13px !important;
+}
 
   </style>
 
 </head>
 <body>
+
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="barra-urgencia">
+    <span class="barra-urgencia__full">🔥 EVENTO OFICIAL FPSS • CHURRASCOS E CARTELAS LIMITADOS • GARANTA JÁ</span><span class="barra-urgencia__compact">🔥 CARTELAS E CHURRASCOS LIMITADOS • GARANTA JÁ</span>
+  </div>
+
+ <div class="topbar-master" id="topbarMaster">
+
+    <div class="wrap">
+
+  <div class="header-main">
+
+    <button class="menu-toggle" id="menuToggle">
+        ☰
+    </button>
+
+    <div class="brand-area">
+        <img
+          src="../assets/imagens/logo/fpss/fpss-logo.png"
+          alt="Logo 6ª FPSS"
+          class="logo-menu-img"
+        >
+        <div class="brand-text">
+            <h1>6ª FPSS 2027</h1>
+            <p>Festa do Padroeiro São Sebastião</p>
+        </div>
+    </div>
+
+    <nav class="menu-master">
+
+        <a href="../index.html">Início</a>
+        <a href="../index.html#comprar">Prêmios</a>
+        <a href="../cliente/login.html" class="active">👤 Meus Pedidos</a>
+        <a href="../enquete/enquete.html">Enquete</a>
+        <a href="../vip.html">💚 Grupo VIP</a>
+        <a href="../doacao/doacao.html">Doações</a>
+
+    </nav>
+
+    <div class="header-ctas">
+
+        <a href="../vip.html" class="btn-header-whatsapp">
+            💚 Grupo WhatsApp
+        </a>
+
+        <a href="../index.html#comprar" class="btn-header-buy">
+            <span class="btn-header-buy__full">🛒 Comprar Agora</span><span class="btn-header-buy__compact">Comprar</span>
+        </a>
+
+    </div>
+
+</div>
+
+    </div>
+
+</div>
+
+
 
   <div class="painel-box">
 
@@ -745,6 +959,45 @@
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script src="../js/cliente-painel.js?v=4"></script>
+
+
+<script>
+(function(){
+  const menuToggle = document.getElementById("menuToggle");
+  const menuMaster = document.querySelector(".menu-master");
+
+  function abrirMenu() {
+    if (menuMaster) menuMaster.classList.add("aberto");
+  }
+  function fecharMenu() {
+    if (menuMaster) menuMaster.classList.remove("aberto");
+  }
+
+  if (menuToggle && menuMaster) {
+
+    menuToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (menuMaster.classList.contains("aberto")) {
+        fecharMenu();
+      } else {
+        abrirMenu();
+      }
+    });
+
+    document.addEventListener("click", (e) => {
+      if (menuMaster.classList.contains("aberto")) {
+        if (!menuMaster.contains(e.target) && e.target !== menuToggle) {
+          fecharMenu();
+        }
+      }
+    });
+
+    menuMaster.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", fecharMenu);
+    });
+  }
+})();
+</script>
 
 </body>
 </html>

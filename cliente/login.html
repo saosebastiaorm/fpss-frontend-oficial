@@ -5,103 +5,158 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Central do Cliente - FPSS</title>
 
-  <link rel="stylesheet" href="../css/base.css">
-  <link rel="stylesheet" href="../css/layout.css">
-  <link rel="stylesheet" href="../css/components.css">
-  <link rel="stylesheet" href="../css/conversao-master.css">
+<!-- font-global.css deve ser o PRIMEIRO css carregado, antes de todos os outros -->
+<link rel="stylesheet" href="../css/font-global.css">
+<link rel="stylesheet" href="../design-system.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+
+<link rel="stylesheet" href="../css/header.css">
+
+<link rel="stylesheet" href="../css/design-system-v2.css">
+
+<link rel="stylesheet" href="../css/hero.css">
+<link rel="stylesheet" href="../css/hero-v4.css">
+
+<link rel="stylesheet" href="../css/premios.css">
+<link rel="stylesheet" href="../css/produtos.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/enquete.css">
+<link rel="stylesheet" href="../css/vip.css">
+<link rel="stylesheet" href="../css/footer.css">
+<link rel="stylesheet" href="../css/conversao-master.css">
+<link rel="stylesheet" href="../css/hero-fix.css">
+<link rel="stylesheet" href="../css/mobile.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Roboto:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
   <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
 
   <style>
-    body{
-      background:linear-gradient(135deg,#8b1111,#c41515);
-      min-height:100vh;
+    body.cliente-page {
+      background-color: #fdf6ee !important;
+    }
+
+    .cliente-container{
+      min-height:calc(100vh - 200px);
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:20px;
+      padding:40px 20px;
     }
 
     .cliente-box{
       width:100%;
-      max-width:520px;
+      max-width:480px;
       background:#ffffff;
-      border-radius:24px;
-      padding:35px;
-      box-shadow:0 15px 40px rgba(0,0,0,.25);
-      border-top:6px solid #ffd700;
+      border-radius:20px;
+      padding:36px 32px;
+      box-shadow:0 16px 40px rgba(139,0,0,0.08);
+      border:1px solid #f0e4d4;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .cliente-box::before{
+      content:"";
+      position:absolute;
+      top:0; left:0; right:0;
+      height:6px;
+      background:linear-gradient(90deg,#8b0000,#cc0000);
     }
 
     .cliente-topo{
       text-align:center;
-      margin-bottom:28px;
+      margin-bottom:24px;
     }
 
-.logo-central{
-      width:110px;
-      height:110px;
-      margin:0 auto 18px;
-      border-radius:22px;
-      border:4px solid #ffd700;
-      background:#fff8dc;
+    .logo-central{
+      width:90px;
+      height:90px;
+      margin:0 auto 16px;
+      border-radius:18px;
+      border:3px solid #8b0000;
+      background:#fdf6ee;
       display:flex;
       align-items:center;
       justify-content:center;
-      box-shadow:0 8px 18px rgba(0,0,0,.12);
       overflow:hidden;
-}
+    }
 
-.logo-central img{
+    .logo-central img{
       width:100%;
       height:100%;
       object-fit:cover;
-}
+    }
 
     .cliente-topo h1{
-      color:#8b1111;
-      font-size:2rem;
-      margin-bottom:8px;
+      font-family:'Merriweather', Georgia, serif;
+      color:#8b0000;
+      font-size:24px;
+      margin-bottom:6px;
     }
 
     .cliente-topo p{
-      color:#555;
+      color:#5b6b7c;
+      font-size:13px;
       font-weight:600;
     }
 
     .campo{
-      margin-bottom:18px;
+      margin-bottom:16px;
+      text-align:left;
     }
 
     .campo label{
       display:block;
-      font-weight:800;
-      margin-bottom:8px;
-      color:#333;
+      font-weight:700;
+      margin-bottom:6px;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:0.5px;
+      color:#374151;
     }
 
     .campo input{
       width:100%;
-      padding:14px;
-      border:1px solid #ccc;
-      border-radius:12px;
-      font-size:1rem;
+      padding:12px 14px;
+      border:1px solid #e2d9ca;
+      background:#fdfbf8;
+      border-radius:9px;
+      font-size:14px;
+      font-family:'Roboto', Arial, sans-serif;
+      color:#1f2937;
       box-sizing:border-box;
+      outline:none;
+      transition:.2s;
+    }
+
+    .campo input:focus{
+      border-color:#8b0000;
+      box-shadow:0 0 0 3px rgba(139,0,0,0.10);
+      background:#fff;
     }
 
     .btn-login{
       width:100%;
-      padding:18px;
+      padding:15px;
       border:none;
-      border-radius:14px;
+      border-radius:11px;
       background:linear-gradient(135deg,#1faa4a,#16a34a);
       color:#fff;
-      font-size:1.2rem;
-      font-weight:900;
+      font-size:15px;
+      font-weight:800;
+      text-transform:uppercase;
       cursor:pointer;
-      box-shadow:0 8px 18px rgba(0,0,0,.18);
+      box-shadow:0 8px 22px rgba(22,163,74,0.30);
+      transition:.2s;
     }
 
     .btn-login:hover{
       transform:translateY(-2px);
+      box-shadow:0 10px 26px rgba(22,163,74,0.40);
     }
 
     .ajuda-links{
@@ -113,23 +168,89 @@
     }
 
     .ajuda-links a{
-      color:#8b1111;
+      color:#8b0000;
       font-weight:700;
       text-decoration:none;
+      font-size:14px;
     }
 
     .seguranca{
-      margin-top:22px;
-      background:#f8f9fa;
-      padding:14px;
-      border-radius:12px;
-      font-size:.9rem;
-      color:#555;
+      margin-top:20px;
+      background:#fdf6ee;
+      padding:13px;
+      border-radius:10px;
+      font-size:13px;
+      color:#5b6b7c;
+      text-align:center;
+    }
+
+    footer.cliente-footer{
+      background:#ffffff;
+      border-top:1px solid #f0e4d4;
+      padding:15px 0;
       text-align:center;
     }
   </style>
 </head>
-<body>
+<body class="cliente-page">
+
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="barra-urgencia">
+    <span class="barra-urgencia__full">🔥 EVENTO OFICIAL FPSS • CHURRASCOS E CARTELAS LIMITADOS • GARANTA JÁ</span><span class="barra-urgencia__compact">🔥 CARTELAS E CHURRASCOS LIMITADOS • GARANTA JÁ</span>
+  </div>
+
+ <div class="topbar-master" id="topbarMaster">
+
+    <div class="wrap">
+
+  <div class="header-main">
+
+    <button class="menu-toggle" id="menuToggle">
+        ☰
+    </button>
+
+    <div class="brand-area">
+        <img
+          src="../assets/imagens/logo/fpss/fpss-logo.png"
+          alt="Logo 6ª FPSS"
+          class="logo-menu-img"
+        >
+        <div class="brand-text">
+            <h1>6ª FPSS 2027</h1>
+            <p>Festa do Padroeiro São Sebastião</p>
+        </div>
+    </div>
+
+    <nav class="menu-master">
+
+        <a href="../index.html">Início</a>
+        <a href="../index.html#comprar">Prêmios</a>
+        <a href="../cliente/login.html" class="active">👤 Meus Pedidos</a>
+        <a href="../enquete/enquete.html">Enquete</a>
+        <a href="../doacao/doacao.html">Doações</a>
+
+    </nav>
+
+    <div class="header-ctas">
+
+        <a href="../vip.html" class="btn-header-whatsapp">
+            💚 Grupo WhatsApp
+        </a>
+
+        <a href="../index.html#comprar" class="btn-header-buy">
+            <span class="btn-header-buy__full">🛒 Comprar Agora</span><span class="btn-header-buy__compact">Comprar</span>
+        </a>
+
+    </div>
+
+</div>
+
+    </div>
+
+</div>
+
+
+<div class="cliente-container">
 
   <div class="cliente-box">
 
@@ -166,9 +287,56 @@
 
     <div class="seguranca">
      🔒 Seus dados são protegidos. Apenas CPF + WhatsApp cadastrado liberam acesso.
+    </div>
 
   </div>
- 
+
+</div>
+
+<footer class="cliente-footer">
+  <p style="margin:0;font-size:13px;font-weight:600;color:#4b5563;">6ª Festa do Padroeiro São Sebastião • 6ª FPSS 2027</p>
+</footer>
+
+
+<script>
+(function(){
+  const menuToggle = document.getElementById("menuToggle");
+  const menuMaster = document.querySelector(".menu-master");
+
+  function abrirMenu() {
+    if (menuMaster) menuMaster.classList.add("aberto");
+  }
+  function fecharMenu() {
+    if (menuMaster) menuMaster.classList.remove("aberto");
+  }
+
+  if (menuToggle && menuMaster) {
+
+    menuToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (menuMaster.classList.contains("aberto")) {
+        fecharMenu();
+      } else {
+        abrirMenu();
+      }
+    });
+
+    document.addEventListener("click", (e) => {
+      if (menuMaster.classList.contains("aberto")) {
+        if (!menuMaster.contains(e.target) && e.target !== menuToggle) {
+          fecharMenu();
+        }
+      }
+    });
+
+    menuMaster.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", fecharMenu);
+    });
+  }
+})();
+</script>
+
+
 <script src="../js/cliente-login.js"></script>
 </body>
 </html>

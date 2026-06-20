@@ -8,106 +8,221 @@
 
 <title>Doação FPSS</title>
 
+<!-- font-global.css deve ser o PRIMEIRO css carregado, antes de todos os outros -->
+<link rel="stylesheet" href="../css/font-global.css">
+<link rel="stylesheet" href="../design-system.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+
+<link rel="stylesheet" href="../css/header.css">
+
+<link rel="stylesheet" href="../css/design-system-v2.css">
+
+<link rel="stylesheet" href="../css/hero.css">
+<link rel="stylesheet" href="../css/hero-v4.css">
+
+<link rel="stylesheet" href="../css/premios.css">
+<link rel="stylesheet" href="../css/produtos.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/enquete.css">
+<link rel="stylesheet" href="../css/vip.css">
+<link rel="stylesheet" href="../css/footer.css">
+<link rel="stylesheet" href="../css/conversao-master.css">
+<link rel="stylesheet" href="../css/hero-fix.css">
+<link rel="stylesheet" href="../css/mobile.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Roboto:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+
 <style>
 
-/* RESET */
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial, sans-serif;
+body.doacao-page {
+  background-color: #fdf6ee !important;
 }
 
-/* FUNDO */
-body{
-  background:linear-gradient(135deg,#8b1111,#c61f1f);
-}
-
-/* CENTRALIZA */
-.container{
-  min-height:100vh;
+.doacao-container{
+  min-height:calc(100vh - 200px);
   display:flex;
   justify-content:center;
   align-items:center;
-  padding:20px;
+  padding:40px 20px;
 }
 
-/* CAIXA */
-.box{
+.doacao-box{
   width:100%;
-  max-width:500px;
+  max-width:520px;
   background:#fff;
-  padding:30px;
+  padding:36px 32px;
   border-radius:20px;
-  box-shadow:0 20px 50px rgba(0,0,0,.3);
+  box-shadow:0 16px 40px rgba(139,0,0,0.08);
+  border:1px solid #f0e4d4;
+  position:relative;
+  overflow:hidden;
 }
 
-/* TITULO */
-h1{
+.doacao-box::before{
+  content:"";
+  position:absolute;
+  top:0; left:0; right:0;
+  height:6px;
+  background:linear-gradient(90deg,#8b0000,#cc0000);
+}
+
+.doacao-box h1{
+  font-family:'Merriweather', Georgia, serif;
   text-align:center;
-  color:#8b1111;
-  margin-bottom:10px;
+  color:#8b0000;
+  font-size:26px;
+  margin-bottom:8px;
 }
 
-p{
+.doacao-box > p{
   text-align:center;
-  margin-bottom:20px;
-  color:#555;
-}
-
-/* LABEL */
-label{
-  display:block;
-  margin-bottom:5px;
+  margin-bottom:24px;
+  color:#5b6b7c;
   font-size:14px;
-  font-weight:bold;
-  color:#333;
 }
 
-/* CAMPOS */
-input, select, textarea{
-  width:100%;
-  padding:14px;
-  margin-bottom:15px;
-  border-radius:10px;
-  border:1px solid #ddd;
-  font-size:15px;
+.doacao-box label{
+  display:block;
+  margin-bottom:6px;
+  font-size:12px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+  color:#374151;
 }
 
-/* BOTAO */
-button{
+.doacao-box input,
+.doacao-box select,
+.doacao-box textarea{
   width:100%;
-  padding:16px;
-  background:#1fae42;
+  padding:12px 14px;
+  margin-bottom:16px;
+  border-radius:9px;
+  border:1px solid #e2d9ca;
+  background:#fdfbf8;
+  font-size:14px;
+  font-family:'Roboto', Arial, sans-serif;
+  color:#1f2937;
+  outline:none;
+  transition:.2s;
+  box-sizing:border-box;
+}
+
+.doacao-box input:focus,
+.doacao-box select:focus,
+.doacao-box textarea:focus{
+  border-color:#8b0000;
+  box-shadow:0 0 0 3px rgba(139,0,0,0.10);
+  background:#fff;
+}
+
+.doacao-box button{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:15px;
+  background:linear-gradient(135deg,#1fae42,#16a34a);
   color:#fff;
   border:none;
-  border-radius:12px;
-  font-size:16px;
-  font-weight:bold;
+  border-radius:11px;
+  font-size:15px;
+  font-weight:800;
+  text-transform:uppercase;
   cursor:pointer;
-  transition:.3s;
+  transition:.2s;
+  box-shadow:0 8px 22px rgba(22,163,74,0.30);
 }
 
-button:hover{
-  transform:scale(1.03);
+.doacao-box button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 26px rgba(22,163,74,0.40);
 }
 
-/* MSG */
 #msg{
   margin-top:15px;
   text-align:center;
-  font-weight:bold;
+  font-weight:700;
+}
+
+footer.doacao-footer{
+  background:#ffffff;
+  border-top:1px solid #f0e4d4;
+  padding:15px 0;
+  text-align:center;
 }
 
 </style>
 
 </head>
 
-<body>
+<body class="doacao-page">
 
-<div class="container">
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="barra-urgencia">
+    <span class="barra-urgencia__full">🔥 EVENTO OFICIAL FPSS • CHURRASCOS E CARTELAS LIMITADOS • GARANTA JÁ</span><span class="barra-urgencia__compact">🔥 CARTELAS E CHURRASCOS LIMITADOS • GARANTA JÁ</span>
+  </div>
 
-<div class="box">
+ <div class="topbar-master" id="topbarMaster">
+
+    <div class="wrap">
+
+  <div class="header-main">
+
+    <button class="menu-toggle" id="menuToggle">
+        ☰
+    </button>
+
+    <div class="brand-area">
+        <img
+          src="../assets/imagens/logo/fpss/fpss-logo.png"
+          alt="Logo 6ª FPSS"
+          class="logo-menu-img"
+        >
+        <div class="brand-text">
+            <h1>6ª FPSS 2027</h1>
+            <p>Festa do Padroeiro São Sebastião</p>
+        </div>
+    </div>
+
+    <nav class="menu-master">
+
+        <a href="../index.html">Início</a>
+        <a href="../index.html#comprar">Prêmios</a>
+        <a href="../cliente/login.html">👤 Meus Pedidos</a>
+        <a href="../enquete/enquete.html">Enquete</a>
+        <a href="../vip.html">💚 Grupo VIP</a>
+        <a href="../doacao/doacao.html" class="active">Doações</a>
+
+    </nav>
+
+    <div class="header-ctas">
+
+        <a href="../vip.html" class="btn-header-whatsapp">
+            💚 Grupo WhatsApp
+        </a>
+
+        <a href="../index.html#comprar" class="btn-header-buy">
+            <span class="btn-header-buy__full">🛒 Comprar Agora</span><span class="btn-header-buy__compact">Comprar</span>
+        </a>
+
+    </div>
+
+</div>
+
+    </div>
+
+</div>
+
+
+<div class="doacao-container">
+
+<div class="doacao-box">
 
 <h1>🙏 Apoie a Festa</h1>
 
@@ -120,7 +235,7 @@ button:hover{
 
 <label>WhatsApp</label>
 <input type="tel" name="whatsapp" required>
-  
+
 <label>Cidade</label>
 <input type="text" name="cidade" required>
 
@@ -146,7 +261,6 @@ button:hover{
 <label>Valor (se for dinheiro)</label>
 <input type="number" name="valor_doacao">
 
-  <!-- CAMPO DINÂMICO -->
 <div id="campoComprovante" style="display:none;">
 
   <label>Anexar comprovante</label>
@@ -158,16 +272,57 @@ button:hover{
 
 </form>
 
-
-</form>
-
 <div id="msg"></div>
 
 </div>
 
 </div>
 
+<footer class="doacao-footer">
+  <p style="margin:0;font-size:13px;font-weight:600;color:#4b5563;">6ª Festa do Padroeiro São Sebastião • 6ª FPSS 2027</p>
+</footer>
+
+
+<script>
+(function(){
+  const menuToggle = document.getElementById("menuToggle");
+  const menuMaster = document.querySelector(".menu-master");
+
+  function abrirMenu() {
+    if (menuMaster) menuMaster.classList.add("aberto");
+  }
+  function fecharMenu() {
+    if (menuMaster) menuMaster.classList.remove("aberto");
+  }
+
+  if (menuToggle && menuMaster) {
+
+    menuToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (menuMaster.classList.contains("aberto")) {
+        fecharMenu();
+      } else {
+        abrirMenu();
+      }
+    });
+
+    document.addEventListener("click", (e) => {
+      if (menuMaster.classList.contains("aberto")) {
+        if (!menuMaster.contains(e.target) && e.target !== menuToggle) {
+          fecharMenu();
+        }
+      }
+    });
+
+    menuMaster.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", fecharMenu);
+    });
+  }
+})();
+</script>
+
+
 <script src="../js/doacao.js"></script>
-  
+
 </body>
 </html>
