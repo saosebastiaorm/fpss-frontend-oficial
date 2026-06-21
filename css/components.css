@@ -553,6 +553,15 @@
     scale(1.02);
 }
 
+/* Versão mais sóbria pros cards de produto (.venda-box): a rotação 3D
+   completa deslocava o botão "Comprar Agora" o suficiente pra o mouse
+   "escapar" da área dele durante o hover, causando um tremor (o hover
+   entra e sai repetidamente) e cliques perdidos. Aqui só sobe e cresce
+   um pouco, sem rotação, então o botão nunca sai de debaixo do cursor. */
+.venda-box.hover-3d:hover{
+    transform: translateY(-6px) scale(1.01);
+}
+
 /* ========================================
    LIGHTBOX PREMIUM
 ======================================== */

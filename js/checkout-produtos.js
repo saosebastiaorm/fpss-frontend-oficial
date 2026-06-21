@@ -192,6 +192,13 @@ document.getElementById("btnSubmit").addEventListener("click", async function(){
         return;
     }
 
+    if(!horario_retirada){
+        alert("Selecione o horário previsto para a retirada.");
+        document.getElementById("horario_retirada").focus();
+        resetBotao();
+        return;
+    }
+
     if(PRECO_UNITARIO <= 0){
         alert("Erro ao carregar preço do produto.");
         resetBotao();

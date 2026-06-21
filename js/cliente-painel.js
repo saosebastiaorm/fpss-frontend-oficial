@@ -406,7 +406,7 @@ window.abrirQRRetirada = function(
     </h3>
 
     <div class="horario-retirada-box">
-      🕒 HORÁRIO PREVISTO DA RETIRADA (Informado no momento da compra): ${horario}   HS
+      🕒 HORÁRIO PREVISTO DA RETIRADA (Informado no momento da compra): ${horario && horario !== "null" ? horario + " HS" : "Não informado"}
     </div>
 
     <div class="status-pago-box">
@@ -418,7 +418,7 @@ window.abrirQRRetirada = function(
   <div class="qr-lado-direito">
 
     <div
-    id="qrcode"
+    id="qrcodeCliente"
     style="
         display:flex;
         justify-content:center;
@@ -766,31 +766,6 @@ window.abrirPixPagamento = function(
 
 </div>
 
-
-
-<div
-  style="
-    width:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    margin:25px 0;
-  "
->
-  <div
-    id="qrcodePixPagamento"
-    style="
-      padding:15px;
-      background:#ffffff;
-      border:1px solid #e5e5e5;
-      border-radius:12px;
-      box-shadow:0 2px 8px rgba(0,0,0,.08);
-    "
-  ></div>
-
-
-  
-</div>
 
 
 <div
