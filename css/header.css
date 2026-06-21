@@ -274,9 +274,9 @@ pulseButton 2.5s infinite;
 
     justify-content:center !important;
 
-    padding:6px 7px !important;
+    padding:7px 10px !important;
 
-    font-size:8px !important;
+    font-size:11px !important;
 
     line-height:1.15 !important;
 
@@ -284,7 +284,7 @@ pulseButton 2.5s infinite;
 
     min-height:32px !important;
 
-    max-width:72px !important;
+    max-width:none !important;
 
     min-width:0 !important;
 
@@ -292,7 +292,7 @@ pulseButton 2.5s infinite;
 
     text-align:center !important;
 
-    white-space:normal !important;
+    white-space:nowrap !important;
 
     flex-shrink:1 !important;
 

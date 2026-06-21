@@ -237,8 +237,14 @@ html, body {
   flex-shrink: 0 !important;
 }
 
+/* Cartela e Churrasco — ambos visíveis no mobile, lado a lado e compactos */
 .btn-header-whatsapp {
-  display: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 7px 10px !important;
+  font-size: 11px !important;
+  white-space: nowrap !important;
+  border-radius: 6px !important;
 }
 
 .btn-header-buy {
