@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprovante de Cartela - FPSS</title>
+
+    <link rel="stylesheet" href="../css/comprovante.css">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</head>
+<body>
+
+<div class="comprovante" id="comprovante">
+
+    <h1>🎟️ Comprovante de Cartela FPSS</h1>
+
+    <div class="sub">
+        6ª Festa do Padroeiro São Sebastião 2027<br>
+        <small>Comprovante oficial de pagamento da cartela do bingo</small>
+    </div>
+
+    <div class="linha">
+        <strong>Status do Pagamento:</strong>
+        <span id="statusPagamento"></span>
+    </div>
+
+    <div class="linha">
+        <strong>Tipo de Cartela:</strong>
+        <span id="tipoCartela"></span>
+    </div>
+
+    <div class="linha">
+        <strong>Número da Cartela:</strong>
+        <span id="numeroCartela"></span>
+    </div>
+
+    <div class="linha">
+        <strong>CPF:</strong>
+        <span id="cpf"></span>
+    </div>
+
+    <div class="linha">
+        <strong>Nome:</strong>
+        <span id="nome"></span>
+    </div>
+
+    <div class="linha">
+        <strong>Telefone:</strong>
+        <span id="telefone"></span>
+    </div>
+
+    <div class="linha">
+        <strong>Valor Pago:</strong>
+        <span id="valor"></span>
+    </div>
+
+    <div class="linha">
+        <strong>Vai participar da festa:</strong>
+        <span id="vaiNaFesta"></span>
+    </div>
+
+    <div class="linha">
+        <strong>Data da Compra:</strong>
+        <span id="dataCompra"></span>
+    </div>
+
+    <div class="linha">
+        <strong>Data/Hora do Pagamento:</strong>
+        <span id="dataPagamento"></span>
+    </div>
+
+    <div class="linha">
+        <strong>Código do Comprovante:</strong>
+        <span id="comprovanteId"></span>
+    </div>
+
+    <!-- Bloco exclusivo para cartela digital: baixar/imprimir o PDF da cartela -->
+    <div id="blocoCartelaDigital" style="display:none;">
+        <p><strong>Sua cartela para impressão:</strong></p>
+        <a id="linkPdfCartela" href="#" target="_blank" class="btn btn-print" style="display:inline-block; text-decoration:none; text-align:center;">
+            📄 BAIXAR CARTELA EM PDF
+        </a>
+    </div>
+
+    <div class="rodape">
+        ⚠️ <strong>IMPORTANTE (OBRIGATÓRIO):</strong><br>
+        <span id="instrucaoFisica">Apresente este comprovante junto com a cartela física e o CPF no dia da festa.</span>
+        <span id="instrucaoDigital" style="display:none;">Imprima a cartela em PDF e leve-a no dia do evento, junto com o CPF.</span><br>
+        Confira o número da cartela antes do dia do sorteio.<br>
+        Este documento funciona como comprovante oficial de pagamento FPSS.
+    </div>
+
+    <div class="acoes">
+        <button class="btn btn-print" onclick="imprimirComprovante()">
+            📄 SALVAR PDF / IMPRIMIR
+        </button>
+
+        <button class="btn btn-share" onclick="compartilharComprovante()">
+            📲 COMPARTILHAR IMAGEM
+        </button>
+    </div>
+
+</div>
+
+<script src="../js/cartela-comprovante.js"></script>
+
+</body>
+</html>

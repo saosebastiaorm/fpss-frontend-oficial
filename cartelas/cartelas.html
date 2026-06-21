@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+
+<title>Cartelas do Bingo — 6ª Festa do Padroeiro São Sebastião</title>
+
+<!-- font-global.css deve ser o PRIMEIRO css carregado, antes de todos os outros -->
+<link rel="stylesheet" href="../css/font-global.css">
+<link rel="stylesheet" href="../design-system.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+
+<link rel="stylesheet" href="../css/header.css">
+
+<link rel="stylesheet" href="../css/design-system-v2.css">
+
+<link rel="stylesheet" href="../css/hero.css">
+<link rel="stylesheet" href="../css/hero-v4.css">
+
+<link rel="stylesheet" href="../css/premios.css">
+<link rel="stylesheet" href="../css/produtos.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/enquete.css">
+<link rel="stylesheet" href="../css/vip.css">
+<link rel="stylesheet" href="../css/footer.css">
+<link rel="stylesheet" href="../css/conversao-master.css">
+<link rel="stylesheet" href="../css/hero-fix.css">
+<link rel="stylesheet" href="../css/mobile.css">
+<link rel="stylesheet" href="../css/cartelas.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Roboto:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+</head>
+
+<body class="cartelas-page-body">
+
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="barra-urgencia">
+    <span class="barra-urgencia__full">🔥 EVENTO OFICIAL FPSS • CHURRASCOS E CARTELAS LIMITADOS • GARANTA JÁ</span><span class="barra-urgencia__compact">🔥 CARTELAS E CHURRASCOS LIMITADOS • GARANTA JÁ</span>
+  </div>
+
+ <div class="topbar-master" id="topbarMaster">
+
+    <div class="wrap">
+
+  <div class="header-main">
+
+    <button class="menu-toggle" id="menuToggle">
+        ☰
+    </button>
+
+    <div class="brand-area">
+        <img
+          src="../assets/imagens/logo/fpss/fpss-logo.png"
+          alt="Logo 6ª FPSS"
+          class="logo-menu-img"
+        >
+        <div class="brand-text">
+            <h1>6ª FPSS 2027</h1>
+            <p>Festa do Padroeiro São Sebastião</p>
+        </div>
+    </div>
+
+    <nav class="menu-master">
+
+        <a href="../index.html">Início</a>
+        <a href="../index.html#comprar">Prêmios</a>
+        <a href="../cliente/login.html">👤 Meus Pedidos</a>
+        <a href="../cartelas/cartelas.html" class="active">🎟️ Cartelas</a>
+        <a href="../enquete/enquete.html">Enquete</a>
+        <a href="../vip.html">💚 Grupo VIP</a>
+        <a href="../doacao/doacao.html">Doações</a>
+
+    </nav>
+
+    <div class="header-ctas">
+
+        <a href="../cartelas/cartelas.html" class="btn-header-whatsapp">
+            🎟️ Minha Cartela
+        </a>
+
+        <a href="../index.html#comprar" class="btn-header-buy">
+            <span class="btn-header-buy__full">🍖 Churrasco Antecipado</span><span class="btn-header-buy__compact">Churrasco</span>
+        </a>
+
+    </div>
+
+</div>
+
+    </div>
+
+</div>
+
+<main class="cartelas-page">
+
+  <div class="cartelas-aviso-teste" id="avisoModoTeste">
+    <i class="ti ti-alert-triangle"></i>
+    <span>Sistema em fase de testes — pagamento simbólico de R$ 0,01. Vendas oficiais abrem em breve.</span>
+  </div>
+
+  <h1 class="cartelas-titulo">Cartelas do Bingo</h1>
+  <p class="cartelas-subtitulo">Pague sua cartela física ou compre uma cartela digital pelo site</p>
+
+  <div class="cartelas-tabs">
+    <button class="cartelas-tab ativo" id="tabFisica" onclick="mostrarAba('fisica')">Cartela física</button>
+    <button class="cartelas-tab" id="tabDigital" onclick="mostrarAba('digital')">Cartela digital</button>
+  </div>
+
+  <!-- ===================== FORMULÁRIO — CARTELA FÍSICA ===================== -->
+  <section class="cartelas-painel" id="painelFisica">
+    <form id="formCartelaFisica" novalidate>
+
+      <p class="cartelas-painel-desc">Informe o número que está impresso no canhoto da sua cartela.</p>
+
+      <label for="numeroCartela">Número da cartela</label>
+      <input type="text" id="numeroCartela" name="numero_cartela" placeholder="Ex: 24194-68" required>
+      <p class="cartelas-feedback-numero" id="feedbackNumero"></p>
+
+      <div class="cartelas-grid-2">
+        <div>
+          <label for="nomeFisica">Nome completo</label>
+          <input type="text" id="nomeFisica" name="nome" required>
+        </div>
+        <div>
+          <label for="cpfFisica">CPF</label>
+          <input type="text" id="cpfFisica" name="cpf" placeholder="000.000.000-00" required>
+        </div>
+      </div>
+
+      <label for="telefoneFisica">WhatsApp</label>
+      <input type="text" id="telefoneFisica" name="telefone" placeholder="(69) 99999-9999" required>
+
+      <div class="cartelas-presenca">
+        <p>Você vai participar da festa no dia 24/01/2027?</p>
+        <div class="cartelas-presenca-opcoes">
+          <label><input type="radio" name="vai_na_festa" value="sim" checked> Sim, vou</label>
+          <label><input type="radio" name="vai_na_festa" value="nao"> Não vou</label>
+        </div>
+      </div>
+
+      <button type="submit" class="cartelas-btn-pagar">Gerar Pix e pagar</button>
+      <p class="cartelas-erro" id="erroFisica"></p>
+    </form>
+  </section>
+
+  <!-- ===================== FORMULÁRIO — CARTELA DIGITAL ===================== -->
+  <section class="cartelas-painel" id="painelDigital" style="display:none;">
+    <form id="formCartelaDigital" novalidate>
+
+      <p class="cartelas-painel-desc">Sem cartela física? Compre direto pelo site e imprima a sua em casa.</p>
+
+      <div class="cartelas-grid-2">
+        <div>
+          <label for="nomeDigital">Nome completo</label>
+          <input type="text" id="nomeDigital" name="nome" required>
+        </div>
+        <div>
+          <label for="cpfDigital">CPF</label>
+          <input type="text" id="cpfDigital" name="cpf" placeholder="000.000.000-00" required>
+        </div>
+      </div>
+
+      <label for="telefoneDigital">WhatsApp</label>
+      <input type="text" id="telefoneDigital" name="telefone" placeholder="(69) 99999-9999" required>
+
+      <div class="cartelas-presenca">
+        <p>Você vai participar da festa no dia 24/01/2027?</p>
+        <div class="cartelas-presenca-opcoes">
+          <label><input type="radio" name="vai_na_festa" value="sim" checked> Sim, vou</label>
+          <label><input type="radio" name="vai_na_festa" value="nao"> Não vou</label>
+        </div>
+      </div>
+
+      <p class="cartelas-aviso-digital">
+        <i class="ti ti-ticket"></i>
+        Um número de cartela será atribuído automaticamente após o pagamento.
+      </p>
+
+      <button type="submit" class="cartelas-btn-pagar">Gerar Pix e pagar</button>
+      <p class="cartelas-erro" id="erroDigital"></p>
+    </form>
+  </section>
+
+</main>
+
+<footer class="cartelas-footer" style="background:#ffffff;border-top:1px solid #f0e4d4;padding:15px 0;text-align:center;">
+  <div class="wrap">
+    <p style="margin:0;font-size:13px;font-weight:600;color:#4b5563;">6ª Festa do Padroeiro São Sebastião • 6ª FPSS 2027</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const menuToggle = document.getElementById("menuToggle");
+  const menuMaster = document.querySelector(".menu-master");
+
+  function abrirMenu() {
+    if (menuMaster) menuMaster.classList.add("aberto");
+  }
+  function fecharMenu() {
+    if (menuMaster) menuMaster.classList.remove("aberto");
+  }
+
+  if (menuToggle && menuMaster) {
+
+    menuToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (menuMaster.classList.contains("aberto")) {
+        fecharMenu();
+      } else {
+        abrirMenu();
+      }
+    });
+
+    document.addEventListener("click", (e) => {
+      if (menuMaster.classList.contains("aberto")) {
+        if (!menuMaster.contains(e.target) && e.target !== menuToggle) {
+          fecharMenu();
+        }
+      }
+    });
+
+    menuMaster.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", fecharMenu);
+    });
+  }
+})();
+</script>
+
+<script src="../js/cartelas.js"></script>
+
+</body>
+</html>

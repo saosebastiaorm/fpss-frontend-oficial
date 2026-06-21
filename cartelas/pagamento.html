@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento PIX - Cartela FPSS</title>
+
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+
+    <script src="../js/qrcode.min.js"></script>
+
+    <style>
+        body{
+            background:#f4f4f4;
+            font-family:Arial,sans-serif;
+        }
+
+        .pix-container{
+            max-width:520px;
+            width: 100%;
+            margin:10px auto;
+            background:#fff;
+            border-radius:10px;
+            padding:18px;
+            box-shadow:0 10px 20px rgba(0,0,0,0.12);
+            border-top:6px solid #228b22;
+        }
+
+        h1{
+            text-align:center;
+            color:#8b1111;
+            margin-bottom:10px;
+        }
+
+        .sub{
+            text-align:center;
+            color:#666;
+            margin-bottom:10px;
+        }
+
+        .cartela-card{
+            display:flex;
+            gap:12px;
+            align-items:center;
+            background:#fafafa;
+            border:1px solid #e5e5e5;
+            border-radius:10px;
+            padding:10px;
+            margin-bottom:12px;
+        }
+
+        .cartela-icone{
+            width:64px;
+            height:64px;
+            border-radius:8px;
+            background:#fdf6ee;
+            border:1px solid #ddd;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:28px;
+        }
+
+        .cartela-info{
+            flex:1;
+        }
+
+        .cartela-info h3{
+            margin:0 0 6px 0;
+            color:#8b1111;
+            font-size:14px;
+        }
+
+        .cartela-info p{
+            margin:4px 0;
+            font-size:15px;
+            color:#444;
+        }
+
+        .codigo-box{
+            background:#f8f9fa;
+            padding:5px 12px;
+            border-radius:8px;
+            text-align:center;
+            margin-bottom:10px;
+            border:1px solid #ddd;
+        }
+
+        .codigo{
+            font-size:22px;
+            font-weight:bold;
+            color:#8b1111;
+        }
+
+        .qrcode-area{
+            display:flex;
+            justify-content:center;
+            margin:25px 0;
+        }
+
+        #qrcode{
+            padding:6px;
+            background:#fff;
+            border:1px solid #ddd;
+            border-radius:10px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+        }
+
+        .pix-copia{
+            margin-top:20px;
+        }
+
+        .pix-copia textarea{
+            width:100%;
+            height:65px;
+            padding:8px 12px;
+            border-radius:10px;
+            border:1px solid #ccc;
+            resize:none;
+            font-size:13px;
+        }
+
+        .btn{
+            width:100%;
+            padding:12px;
+            border:none;
+            border-radius:10px;
+            font-size:15px;
+            font-weight:bold;
+            cursor:pointer;
+            margin-top:12px;
+        }
+
+        .btn-copiar{
+            background:#228b22;
+            color:#fff;
+        }
+
+        .btn-comprovante{
+            background:#8b1111;
+            color:#fff;
+        }
+
+        .status{
+            margin-top:15px;
+            text-align:center;
+            font-size:14px;
+            font-weight:bold;
+            color:#d62828;
+        }
+
+        .info{
+            margin-top:20px;
+            background:#fff8d6;
+            padding:15px;
+            border-radius:10px;
+            font-size:14px;
+            line-height:1.6;
+            border:1px solid #f4d35e;
+        }
+
+        @media(max-width:768px){
+
+            body{
+                padding:4px;
+                margin:0;
+            }
+
+            .pix-container{
+                width:100%;
+                max-width:100%;
+                margin:8px auto;
+                padding:10px;
+                border-radius:10px;
+                box-sizing:border-box;
+            }
+
+            h1{
+                font-size:24px;
+                margin-bottom:8px;
+            }
+
+            .sub{
+                font-size:11px;
+                margin-bottom:11px;
+                line-height:1.1;
+            }
+
+            .codigo-box{
+                padding:10px;
+                margin-bottom:14px;
+            }
+
+            .codigo{
+                font-size:20px;
+                word-break:break-word;
+            }
+
+            .qrcode-area{
+                margin:14px 0;
+            }
+
+            #qrcode{
+                padding:8px;
+                min-height:auto;
+            }
+
+            #qrcode img,
+            #qrcode canvas{
+                width:100px !important;
+                height:100px !important;
+            }
+
+            .pix-copia textarea{
+                height:80px;
+                font-size:12px;
+                padding:8px;
+            }
+
+            .btn{
+                padding:10px;
+                font-size:11px;
+                margin-top:8px;
+                border-radius:8px;
+            }
+
+            .status{
+                margin-top:13px;
+                font-size:12px;
+                line-height:1.1;
+            }
+
+            .info{
+                margin-top:14px;
+                padding:10px;
+                font-size:12px;
+                line-height:1.5;
+            }
+
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="pix-container">
+
+    <h1>🚀 PIX Gerado com Sucesso</h1>
+
+    <p class="sub" id="subtituloStatus">
+        Escaneie o QR Code ou copie o código PIX
+    </p>
+
+    <div class="cartela-card">
+
+        <div class="cartela-icone">🎟️</div>
+
+        <div class="cartela-info">
+
+            <h3 id="cartelaTipo">
+                Carregando...
+            </h3>
+
+            <p>
+                <strong>Número:</strong>
+                <span id="cartelaNumero">--</span>
+            </p>
+
+            <p>
+                <strong>Valor:</strong>
+                <span id="cartelaValor">--</span>
+            </p>
+
+        </div>
+
+    </div>
+
+    <div
+        class="codigo-box"
+        id="codigoResumo"
+        style="
+            background:#eef8ee;
+            border:1px solid #b9ddb9;
+            color:#1d5f1d;
+        "
+    >
+
+        <div style="font-size:13px;font-weight:bold;">
+            📋 Pedido Gerado com Sucesso
+        </div>
+
+        <div
+            id="codigoPedido"
+            class="codigo"
+            style="
+                color:#1d5f1d;
+                margin-top:1px;
+                font-size:21px;
+            "
+        >
+            Carregando...
+        </div>
+
+    </div>
+
+    <div class="qrcode-area">
+        <div id="qrcode"></div>
+    </div>
+
+    <div class="pix-copia" id="pixCopiaArea">
+        <label id="labelPix"><strong>Código PIX Copia e Cola:</strong></label>
+
+        <textarea id="pixCode" readonly></textarea>
+
+        <button class="btn btn-copiar" id="btnCopiarPix" onclick="copiarPix()">
+            📋 COPIAR CÓDIGO PIX
+        </button>
+
+        <button class="btn btn-comprovante" id="btnComprovante" onclick="gerarComprovante()" style="display:none;">
+            📄 VISUALIZAR COMPROVANTE
+        </button>
+    </div>
+
+    <div class="status" id="statusPagamento">
+        ⏳ Aguardando pagamento...
+    </div>
+
+    <div class="info" id="infoFinal">
+        ⚠️ <strong>IMPORTANTE:</strong><br>
+        Guarde o comprovante e apresente-o junto com a sua cartela (e o CPF) no dia da festa.
+    </div>
+
+</div>
+
+<script src="../js/cartela-pagamento.js"></script>
+
+</body>
+</html>
