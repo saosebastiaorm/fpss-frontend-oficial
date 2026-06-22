@@ -81,6 +81,7 @@ async function verificarPagamento() {
         cartelaPixData.status_interno = dados.status_interno || "";
         cartelaPixData.data_pagamento = dados.data_pagamento || cartelaPixData.data_pagamento || null;
         cartelaPixData.comprovante_id = dados.cartela?.comprovante_id || cartelaPixData.comprovante_id || null;
+        cartelaPixData.pdf_url = dados.cartela?.pdf_url || cartelaPixData.pdf_url || null;
 
         localStorage.setItem("cartelaPixData", JSON.stringify(cartelaPixData));
 
