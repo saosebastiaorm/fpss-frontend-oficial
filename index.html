@@ -169,13 +169,16 @@ content="assets/imagens/og-image.jpg">
 
 </div>
 
+
 <!-- ================================================
    CARROSSEL — SCROLL CONTÍNUO INFINITO
+   Cada slide inteiro agora é clicável (não só o botão),
+   usando <a> envolvendo todo o conteúdo do slide.
 ================================================ -->
 <section class="fpss-carrossel">
   <div class="fpss-carrossel__runner">
 
-    <div class="fpss-carrossel__slide">
+    <a href="#comprar" class="fpss-carrossel__slide">
       <div class="fpss-carrossel__img-wrap">
         <img src="assets/imagens/galeria/churrasco.jpg" alt="Churrasco" loading="lazy"
              onerror="this.parentElement.style.background='linear-gradient(135deg,#8b0000,#cc0000)';this.style.display='none'">
@@ -186,11 +189,11 @@ content="assets/imagens/og-image.jpg">
           <strong>Churrasco no Espeto</strong>
           <span>Garanta já antecipado o seu churrasco no espeto!</span>
         </div>
-        <a href="#comprar" class="fpss-carrossel__btn">COMPRAR AGORA →</a>
+        <span class="fpss-carrossel__btn">COMPRAR AGORA →</span>
       </div>
-    </div>
+    </a>
 
-    <div class="fpss-carrossel__slide">
+    <a href="cartelas/cartelas.html" class="fpss-carrossel__slide">
       <div class="fpss-carrossel__img-wrap">
         <img src="assets/imagens/eventos/vi-fpss/cartela-bingo.png" alt="Cartela" loading="lazy"
              onerror="this.parentElement.style.background='linear-gradient(135deg,#7a5000,#b8860b)';this.style.display='none'">
@@ -201,11 +204,11 @@ content="assets/imagens/og-image.jpg">
           <strong>13 chances de ganhar</strong>
           <span>R$ 25 mil em dinheiro sorteados na hora!</span>
         </div>
-        <a href="cartelas/cartelas.html" class="fpss-carrossel__btn">GARANTIR CARTELA →</a>
+        <span class="fpss-carrossel__btn">GARANTIR CARTELA →</span>
       </div>
-    </div>
+    </a>
 
-    <div class="fpss-carrossel__slide">
+    <a href="vip.html" class="fpss-carrossel__slide">
       <div class="fpss-carrossel__img-wrap fpss-carrossel__img-wrap--green">
         <img src="assets/icons/whatsapp.png" alt="WhatsApp" loading="lazy"
              style="width:60%;height:60%;object-fit:contain;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)"
@@ -217,12 +220,11 @@ content="assets/imagens/og-image.jpg">
           <strong>Entre no Grupo WhatsApp</strong>
           <span>Novidades, sorteios e informações em primeira mão!</span>
         </div>
-        <a href="vip.html"
-           class="fpss-carrossel__btn fpss-carrossel__btn--green">ENTRAR NO GRUPO →</a>
+        <span class="fpss-carrossel__btn fpss-carrossel__btn--green">ENTRAR NO GRUPO →</span>
       </div>
-    </div>
+    </a>
 
-    <div class="fpss-carrossel__slide">
+    <a href="#comprar" class="fpss-carrossel__slide">
       <div class="fpss-carrossel__img-wrap fpss-carrossel__img-wrap--dark">
         <span class="fpss-carrossel__big-icon">📅</span>
       </div>
@@ -232,12 +234,12 @@ content="assets/imagens/og-image.jpg">
           <strong>Programação do dia</strong>
           <span>10h Missa • 11h Almoço & Show • 15h Sorteio • 17h Show de Prêmios</span>
         </div>
-        <a href="#comprar" class="fpss-carrossel__btn">PARTICIPAR →</a>
+        <span class="fpss-carrossel__btn">PARTICIPAR →</span>
       </div>
-    </div>
+    </a>
 
     <!-- Duplicata para loop infinito -->
-    <div class="fpss-carrossel__slide">
+    <a href="#comprar" class="fpss-carrossel__slide">
       <div class="fpss-carrossel__img-wrap">
         <img src="assets/imagens/galeria/churrasco.jpg" alt="Churrasco" loading="lazy"
              onerror="this.parentElement.style.background='linear-gradient(135deg,#8b0000,#cc0000)';this.style.display='none'">
@@ -248,11 +250,11 @@ content="assets/imagens/og-image.jpg">
           <strong>Churrasco no Espeto</strong>
           <span>Garanta já antecipado o seu churrasco no espeto!</span>
         </div>
-        <a href="#comprar" class="fpss-carrossel__btn">COMPRAR AGORA →</a>
+        <span class="fpss-carrossel__btn">COMPRAR AGORA →</span>
       </div>
-    </div>
+    </a>
 
-    <div class="fpss-carrossel__slide">
+    <a href="cartelas/cartelas.html" class="fpss-carrossel__slide">
       <div class="fpss-carrossel__img-wrap">
         <img src="assets/imagens/eventos/vi-fpss/cartela-bingo.png" alt="Cartela" loading="lazy"
              onerror="this.parentElement.style.background='linear-gradient(135deg,#7a5000,#b8860b)';this.style.display='none'">
@@ -263,11 +265,11 @@ content="assets/imagens/og-image.jpg">
           <strong>13 chances de ganhar</strong>
           <span>R$ 25 mil em dinheiro sorteados na hora!</span>
         </div>
-        <a href="cartelas/cartelas.html" class="fpss-carrossel__btn">GARANTIR CARTELA →</a>
+        <span class="fpss-carrossel__btn">GARANTIR CARTELA →</span>
       </div>
-    </div>
+    </a>
 
-    <div class="fpss-carrossel__slide">
+    <a href="vip.html" class="fpss-carrossel__slide">
       <div class="fpss-carrossel__img-wrap fpss-carrossel__img-wrap--green">
         <img src="assets/icons/whatsapp.png" alt="WhatsApp" loading="lazy"
              style="width:60%;height:60%;object-fit:contain;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)"
@@ -279,12 +281,11 @@ content="assets/imagens/og-image.jpg">
           <strong>Entre no Grupo WhatsApp</strong>
           <span>Novidades, sorteios e informações em primeira mão!</span>
         </div>
-        <a href="vip.html"
-           class="fpss-carrossel__btn fpss-carrossel__btn--green">ENTRAR NO GRUPO →</a>
+        <span class="fpss-carrossel__btn fpss-carrossel__btn--green">ENTRAR NO GRUPO →</span>
       </div>
-    </div>
+    </a>
 
-    <div class="fpss-carrossel__slide">
+    <a href="#comprar" class="fpss-carrossel__slide">
       <div class="fpss-carrossel__img-wrap fpss-carrossel__img-wrap--dark">
         <span class="fpss-carrossel__big-icon">📅</span>
       </div>
@@ -294,9 +295,9 @@ content="assets/imagens/og-image.jpg">
           <strong>Programação do dia</strong>
           <span>10h Missa • 11h Almoço & Show • 15h Sorteio • 17h Show de Prêmios</span>
         </div>
-        <a href="#comprar" class="fpss-carrossel__btn">PARTICIPAR →</a>
+        <span class="fpss-carrossel__btn">PARTICIPAR →</span>
       </div>
-    </div>
+    </a>
 
   </div>
 </section>
@@ -324,6 +325,12 @@ content="assets/imagens/og-image.jpg">
   height: 130px;
   border-right: 1px solid rgba(255,255,255,.10);
   flex-shrink: 0;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .2s;
+}
+.fpss-carrossel__slide:hover {
+  background: rgba(255,255,255,.06);
 }
 
 .fpss-carrossel__img-wrap {
@@ -361,7 +368,7 @@ content="assets/imagens/og-image.jpg">
   white-space:nowrap; font-family:'Merriweather',Georgia,serif;
 }
 
-.fpss-carrossel__body span {
+.fpss-carrossel__body span:not(.fpss-carrossel__btn) {
   color:rgba(255,255,255,.65); font-size:0.82rem;
   line-height:1.4; font-family:'Roboto',sans-serif; white-space:nowrap;
 }
@@ -374,7 +381,7 @@ content="assets/imagens/og-image.jpg">
   text-transform:uppercase; letter-spacing:.4px; white-space:nowrap;
   transition:background .2s; flex-shrink:0; font-family:'Roboto',sans-serif;
 }
-.fpss-carrossel__btn:hover { background:rgba(255,255,255,.24); }
+.fpss-carrossel__slide:hover .fpss-carrossel__btn { background:rgba(255,255,255,.24); }
 .fpss-carrossel__btn--green { background:rgba(22,163,74,.55); border-color:rgba(22,163,74,.75); }
 .fpss-carrossel__dots { display:none; }
 
