@@ -152,6 +152,26 @@
   margin: 0;
 }
 
+.cartelas-presenca.erro {
+  border-color: #cc0000;
+  background: #fff5f5;
+  animation: cartelas-shake 0.3s;
+}
+
+.cartelas-presenca.erro p {
+  color: #cc0000;
+}
+
+.cartelas-presenca.erro .cartelas-presenca-opcoes label {
+  border-color: #cc0000;
+}
+
+@keyframes cartelas-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
 .cartelas-aviso-digital {
   display: flex;
   align-items: center;

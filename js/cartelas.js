@@ -75,12 +75,30 @@ async function enviarFormulario(form, tipo) {
   const btn = form.querySelector("button[type='submit']");
   const elementoErro = form.querySelector(".cartelas-erro");
 
-  const textoOriginal = btn.textContent;
-  btn.textContent = "Gerando Pix...";
-  btn.disabled = true;
   elementoErro.textContent = "";
 
   const formData = new FormData(form);
+
+  // valida se a pessoa escolheu Sim/Não na pergunta de presença,
+  // já que esse campo não vem mais pré-selecionado
+  const idBlocoPresenca = tipo === "fisica" ? "presencaFisica" : "presencaDigital";
+  const blocoPresenca = document.getElementById(idBlocoPresenca);
+  const vaiNaFestaSelecionado = formData.get("vai_na_festa");
+
+  if (!vaiNaFestaSelecionado) {
+    if (blocoPresenca) {
+      blocoPresenca.classList.add("erro");
+      blocoPresenca.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+    elementoErro.textContent = "Por favor, informe se você vai participar da festa.";
+    return;
+  } else if (blocoPresenca) {
+    blocoPresenca.classList.remove("erro");
+  }
+
+  const textoOriginal = btn.textContent;
+  btn.textContent = "Gerando Pix...";
+  btn.disabled = true;
 
   const dados = {
     nome: formData.get("nome")?.trim(),
@@ -135,3 +153,14 @@ async function enviarFormulario(form, tipo) {
     btn.disabled = false;
   }
 }
+
+/* ===================================================
+   Remove o destaque de erro assim que a pessoa escolhe
+   uma opção de presença (sem precisar tentar enviar de novo)
+=================================================== */
+document.querySelectorAll('input[name="vai_na_festa"]').forEach((radio) => {
+  radio.addEventListener("change", () => {
+    const bloco = radio.closest(".cartelas-presenca");
+    if (bloco) bloco.classList.remove("erro");
+  });
+});
