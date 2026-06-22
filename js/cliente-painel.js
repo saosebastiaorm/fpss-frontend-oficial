@@ -1,5 +1,40 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+  /* =====================================================
+     Controla qual seção (cartelas, pedidos, ou as duas)
+     fica visível, para não poluir a tela quando a pessoa
+     usa um filtro específico de uma das duas.
+  ===================================================== */
+  function mostrarApenasSecao(secao) {
+
+    const blocoCartelas = document.getElementById("blocoSecaoCartelas");
+    const blocoPedidos = document.getElementById("blocoSecaoPedidos");
+    const btnVerTudo = document.getElementById("btnVerTudoPainel");
+
+    if (secao === "cartelas") {
+      if (blocoCartelas) blocoCartelas.style.display = "";
+      if (blocoPedidos) blocoPedidos.style.display = "none";
+    } else if (secao === "pedidos") {
+      if (blocoCartelas) blocoCartelas.style.display = "none";
+      if (blocoPedidos) blocoPedidos.style.display = "";
+    } else {
+      if (blocoCartelas) blocoCartelas.style.display = "";
+      if (blocoPedidos) blocoPedidos.style.display = "";
+    }
+
+    if (btnVerTudo) {
+      btnVerTudo.style.display = secao === "todos" ? "none" : "block";
+    }
+  }
+
+  const btnVerTudo = document.getElementById("btnVerTudoPainel");
+  if (btnVerTudo) {
+    btnVerTudo.addEventListener("click", () => {
+      document.querySelectorAll(".filtro-btn, .filtro-btn-cartela").forEach(b => b.classList.remove("ativo"));
+      mostrarApenasSecao("todos");
+    });
+  }
+
   const dados = localStorage.getItem("clienteFPSS");
 
  if (!dados) {
@@ -245,6 +280,10 @@ botoesFiltro.forEach(botao => {
     botoesFiltro.forEach(b => b.classList.remove("ativo"));
     botao.classList.add("ativo");
 
+    // ao usar um filtro de PEDIDO, mostra a seção de pedidos
+    // e esconde a de cartelas (evita poluir a tela com as duas)
+    mostrarApenasSecao("pedidos");
+
     const filtro = botao.dataset.filtro;
 
     const pedidosFiltrados = listaPedidos.filter(pedido => {
@@ -390,6 +429,10 @@ listaContainer.innerHTML =
 
       botoesFiltroCartela.forEach(b => b.classList.remove("ativo"));
       botao.classList.add("ativo");
+
+      // ao usar um filtro de CARTELA, mostra só a seção de
+      // cartelas e esconde a de pedidos
+      mostrarApenasSecao("cartelas");
 
       const filtro = botao.dataset.filtroCartela;
 
