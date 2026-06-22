@@ -217,6 +217,32 @@
   justify-content:center;
 }
 
+.grupo-filtros{
+  background:linear-gradient(135deg,#fffaf0,#f8f3ea);
+  border:1px solid #ecd9b0;
+  border-radius:18px;
+  padding:20px;
+  margin-bottom:30px;
+}
+
+.grupo-filtros .filtros-pedidos{
+  margin-bottom:14px;
+}
+
+.grupo-filtros .filtros-pedidos:last-child{
+  margin-bottom:0;
+}
+
+.grupo-filtros-label{
+  text-align:center;
+  font-weight:800;
+  color:#8b1111;
+  font-size:13px;
+  text-transform:uppercase;
+  letter-spacing:.4px;
+  margin-bottom:10px;
+}
+
 .filtro-btn{
   padding:10px 18px;
   border:none;
@@ -953,8 +979,8 @@
   <div class="painel-box">
 
     <div class="painel-header">
-      <h1>📄 Meus Pedidos FPSS</h1>
-      <p>Acompanhe pagamentos, retirada e histórico completo.</p>
+      <h1>📄 Central do Cliente FPSS</h1>
+      <p>Acompanhe suas cartelas, pedidos, pagamentos e histórico completo.</p>
     </div>
 
     <div class="cliente-info">
@@ -963,29 +989,40 @@
       <p><strong>📲 WhatsApp:</strong> <span id="clienteWhatsApp"></span></p>
     </div>
 
-    <div class="filtros-pedidos">
-  <button class="filtro-btn ativo" data-filtro="todos">Todos</button>
-  <button class="filtro-btn" data-filtro="pago">Pagos</button>
-  <button class="filtro-btn" data-filtro="pendente">Pendentes</button>
-  <button class="filtro-btn" data-filtro="retirado">Retirados</button>
-</div>
+    <div class="grupo-filtros">
 
-<div id="clientePedidos"></div>
+      <p class="grupo-filtros-label">🎟️ Filtrar Cartelas</p>
+      <div class="filtros-pedidos">
+        <button class="filtro-btn-cartela ativo" data-filtro-cartela="todas">Todas</button>
+        <button class="filtro-btn-cartela" data-filtro-cartela="pago">Pagas</button>
+        <button class="filtro-btn-cartela" data-filtro-cartela="pendente">Pendentes</button>
+        <button class="filtro-btn-cartela" data-filtro-cartela="fisica">Físicas</button>
+        <button class="filtro-btn-cartela" data-filtro-cartela="digital">Digitais</button>
+      </div>
 
-    <div class="painel-header" style="margin-top:40px; padding-top:20px;">
+      <p class="grupo-filtros-label">📦 Filtrar Pedidos</p>
+      <div class="filtros-pedidos">
+        <button class="filtro-btn ativo" data-filtro="todos">Todos</button>
+        <button class="filtro-btn" data-filtro="pago">Pagos</button>
+        <button class="filtro-btn" data-filtro="pendente">Pendentes</button>
+        <button class="filtro-btn" data-filtro="retirado">Retirados</button>
+      </div>
+
+    </div>
+
+    <div class="painel-header" style="margin-top:10px;">
       <h1 style="font-size:1.6rem;">🎟️ Minhas Cartelas</h1>
       <p>Cartelas físicas e digitais registradas com seu CPF.</p>
     </div>
 
-    <div class="filtros-pedidos">
-      <button class="filtro-btn-cartela ativo" data-filtro-cartela="todas">Todas</button>
-      <button class="filtro-btn-cartela" data-filtro-cartela="pago">Pagas</button>
-      <button class="filtro-btn-cartela" data-filtro-cartela="pendente">Pendentes</button>
-      <button class="filtro-btn-cartela" data-filtro-cartela="fisica">Físicas</button>
-      <button class="filtro-btn-cartela" data-filtro-cartela="digital">Digitais</button>
+    <div id="clienteCartelas"></div>
+
+    <div class="painel-header" style="margin-top:40px; padding-top:20px;">
+      <h1 style="font-size:1.6rem;">📦 Meus Pedidos</h1>
+      <p>Acompanhe pagamentos e retirada dos seus produtos.</p>
     </div>
 
-    <div id="clienteCartelas"></div>
+    <div id="clientePedidos"></div>
 
     <button id="logoutCliente" class="logout-btn">
       🚪 Sair da Central
