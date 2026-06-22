@@ -360,21 +360,56 @@ listaContainer.innerHTML =
   }
 
   const cartelasContainer = document.getElementById("clienteCartelas");
+  const listaCartelas = cliente.cartelas || [];
 
-  if (cartelasContainer) {
+  function renderizarCartelasFiltradas(lista) {
 
-    const listaCartelas = cliente.cartelas || [];
+    if (!cartelasContainer) return;
 
-    if (!listaCartelas.length) {
+    if (!lista.length) {
       cartelasContainer.innerHTML = `
         <p style="text-align:center; color:#888; padding:20px;">
-          Você ainda não tem nenhuma cartela registrada com este CPF.
+          ${
+            listaCartelas.length
+              ? "Nenhuma cartela encontrada para este filtro."
+              : "Você ainda não tem nenhuma cartela registrada com este CPF."
+          }
         </p>
       `;
     } else {
-      cartelasContainer.innerHTML = listaCartelas.map(gerarCardCartela).join("");
+      cartelasContainer.innerHTML = lista.map(gerarCardCartela).join("");
     }
   }
+
+  renderizarCartelasFiltradas(listaCartelas);
+
+  const botoesFiltroCartela = document.querySelectorAll(".filtro-btn-cartela");
+
+  botoesFiltroCartela.forEach(botao => {
+    botao.addEventListener("click", () => {
+
+      botoesFiltroCartela.forEach(b => b.classList.remove("ativo"));
+      botao.classList.add("ativo");
+
+      const filtro = botao.dataset.filtroCartela;
+
+      const cartelasFiltradas = listaCartelas.filter(cartela => {
+
+        const status = (cartela.status || "").toLowerCase();
+        const tipo = (cartela.tipo || "").toLowerCase();
+
+        if (filtro === "todas") return true;
+        if (filtro === "pago") return status === "pago";
+        if (filtro === "pendente") return status === "pendente";
+        if (filtro === "fisica") return tipo === "fisica";
+        if (filtro === "digital") return tipo === "digital";
+
+        return true;
+      });
+
+      renderizarCartelasFiltradas(cartelasFiltradas);
+    });
+  });
 
   const logout = document.getElementById("logoutCliente");
 

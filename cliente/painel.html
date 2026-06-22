@@ -236,6 +236,27 @@
   background:#8b1111;
   color:#fff;
 }
+
+.filtro-btn-cartela{
+  padding:10px 18px;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:800;
+  background:#e0f2e9;
+  color:#157a35;
+  transition:.2s;
+}
+
+.filtro-btn-cartela:hover{
+  transform:translateY(-2px);
+}
+
+.filtro-btn-cartela.ativo{
+  background:#16a34a;
+  color:#fff;
+}
+
 .pedido-topo{
   display:flex;
   gap:20px;
@@ -954,6 +975,14 @@
     <div class="painel-header" style="margin-top:40px; padding-top:20px;">
       <h1 style="font-size:1.6rem;">🎟️ Minhas Cartelas</h1>
       <p>Cartelas físicas e digitais registradas com seu CPF.</p>
+    </div>
+
+    <div class="filtros-pedidos">
+      <button class="filtro-btn-cartela ativo" data-filtro-cartela="todas">Todas</button>
+      <button class="filtro-btn-cartela" data-filtro-cartela="pago">Pagas</button>
+      <button class="filtro-btn-cartela" data-filtro-cartela="pendente">Pendentes</button>
+      <button class="filtro-btn-cartela" data-filtro-cartela="fisica">Físicas</button>
+      <button class="filtro-btn-cartela" data-filtro-cartela="digital">Digitais</button>
     </div>
 
     <div id="clienteCartelas"></div>
