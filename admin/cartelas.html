@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cartelas FPSS</title>
+  <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Roboto:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/admin-shared.css">
+
+  <style>
+    /* Cards de resumo no topo, no mesmo espírito do dashboard-metricas */
+    .resumo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .resumo-card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 14px 16px;
+      text-align: center;
+    }
+
+    .resumo-card h3 {
+      font-size: 12px;
+      color: #5b6b7c;
+      margin: 0 0 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .resumo-card .numero {
+      font-size: 24px;
+      font-weight: 800;
+      color: #8b0000;
+    }
+
+    /* Selo de tipo (física/digital) e status, na tabela */
+    .selo-tipo {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+    .selo-tipo.fisica { background: #e0e7ff; color: #3730a3; }
+    .selo-tipo.digital { background: #fef3cd; color: #8a6000; }
+
+    .selo-status {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+    .selo-status.pago { background: #d1fae5; color: #065f46; }
+    .selo-status.pendente { background: #fef3cd; color: #8a6000; }
+    .selo-status.disponivel { background: #f1f5f9; color: #475569; }
+    .selo-status.cancelado { background: #fee2e2; color: #991b1b; }
+
+    /* Toggle de lote ativo (fictício/oficial) */
+    .lote-ativo-box {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .lote-ativo-box strong {
+      color: #8b0000;
+    }
+
+    .lote-ativo-box select {
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body class="admin-page">
+
+<div class="container">
+
+  <h1>🎟️ Cartelas 6ª FPSS 2027</h1>
+  <p class="sub">Controle de cartelas físicas e digitais — pagamentos e conferência</p>
+
+  <div class="menu-admin">
+    <a href="/admin/dashboard.html">Admin Central</a>
+    <a href="/admin/dashboard-metricas.html">Dashboard</a>
+    <a href="/admin/produtos.html">Produtos</a>
+    <a href="/admin/parceiros.html">Parceiros</a>
+    <a href="/admin/pedidos.html">Pedidos</a>
+    <a href="/admin/cartelas.html" class="ativo">Cartelas</a>
+    <a href="/admin/retirada.html">Retirada</a>
+    <a href="/admin/leitor.html">Leitor</a>
+    <a href="/admin/usuarios.html">Usuários</a>
+    <a href="/">Site Oficial</a>
+  </div>
+
+  <div id="erro" class="erro"></div>
+
+  <!-- ===================== RESUMO (CARDS) ===================== -->
+  <div class="resumo-grid" id="resumoGrid">
+    <div class="resumo-card">
+      <h3>Total de Cartelas</h3>
+      <div class="numero" id="resumoTotal">--</div>
+    </div>
+    <div class="resumo-card">
+      <h3>Pagas</h3>
+      <div class="numero" id="resumoPagas">--</div>
+    </div>
+    <div class="resumo-card">
+      <h3>Pendentes</h3>
+      <div class="numero" id="resumoPendentes">--</div>
+    </div>
+    <div class="resumo-card">
+      <h3>Físicas Pagas</h3>
+      <div class="numero" id="resumoFisicas">--</div>
+    </div>
+    <div class="resumo-card">
+      <h3>Digitais Pagas</h3>
+      <div class="numero" id="resumoDigitais">--</div>
+    </div>
+    <div class="resumo-card">
+      <h3>Vão à Festa</h3>
+      <div class="numero" id="resumoPresenca">--</div>
+    </div>
+    <div class="resumo-card">
+      <h3>Receita Total</h3>
+      <div class="numero" id="resumoReceita">--</div>
+    </div>
+  </div>
+
+  <!-- ===================== BUSCA RÁPIDA (CONFERÊNCIA DO SORTEIO) ===================== -->
+  <div class="lote-ativo-box">
+    <strong>🔎 Conferência rápida:</strong>
+    <input
+      type="text"
+      id="buscaRapidaNumero"
+      placeholder="Digite o número sorteado..."
+      style="flex:1; min-width:200px; padding:8px 12px; border-radius:8px; border:1px solid #ddd;"
+      onkeydown="if(event.key==='Enter') buscarCartelaRapida()"
+    >
+    <button onclick="buscarCartelaRapida()">Buscar</button>
+  </div>
+  <div id="resultadoBuscaRapida"></div>
+
+  <!-- ===================== BUSCA E FILTROS ===================== -->
+  <input
+    type="text"
+    id="busca"
+    class="busca"
+    placeholder="Buscar por nome, CPF, número da cartela..."
+    oninput="filtrarCartelas()"
+  >
+
+  <div class="grid filtros-linha">
+
+    <div>
+      <label>Tipo</label>
+      <select id="filtroTipo" onchange="filtrarCartelas()">
+        <option value="">Todos</option>
+        <option value="fisica">Física</option>
+        <option value="digital">Digital</option>
+      </select>
+    </div>
+
+    <div>
+      <label>Status</label>
+      <select id="filtroStatus" onchange="filtrarCartelas()">
+        <option value="">Todos</option>
+        <option value="pago">Pago</option>
+        <option value="pendente">Pendente</option>
+        <option value="disponivel">Disponível</option>
+        <option value="cancelado">Cancelado</option>
+      </select>
+    </div>
+
+    <div>
+      <label>Lote</label>
+      <select id="filtroLote" onchange="filtrarCartelas()">
+        <option value="">Todos</option>
+      </select>
+    </div>
+
+    <div>
+      <label>Vai à Festa</label>
+      <select id="filtroPresenca" onchange="filtrarCartelas()">
+        <option value="">Todos</option>
+        <option value="sim">Sim</option>
+        <option value="nao">Não</option>
+      </select>
+    </div>
+
+  </div>
+
+  <div class="topbar">
+    <button onclick="carregarCartelas()">🔄 Atualizar</button>
+    <button onclick="exportarCSV()">📁 Exportar CSV</button>
+    <button onclick="limparFiltros()" class="btn-secundario">🧹 Limpar Filtros</button>
+  </div>
+
+  <div class="contador" id="contador">
+    Carregando...
+  </div>
+
+  <div class="tabela-wrap">
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nº Cartela</th>
+          <th>Nº Chance 2</th>
+          <th>Tipo</th>
+          <th>Lote</th>
+          <th>Status</th>
+          <th>Nome</th>
+          <th>CPF</th>
+          <th>WhatsApp</th>
+          <th>Valor</th>
+          <th>Vai à Festa</th>
+          <th>Data Pagamento</th>
+        </tr>
+      </thead>
+
+      <tbody id="tabelaCartelas"></tbody>
+
+    </table>
+
+  </div>
+
+</div>
+
+<script src="../js/cartelas-admin.js"></script>
+
+</body>
+</html>
