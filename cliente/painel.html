@@ -6,7 +6,7 @@
   <title>Painel do Cliente - FPSS</title>
 
   <link rel="stylesheet" href="../css/font-global.css">
-  <link rel="stylesheet" href="../design-system.css">
+  <link rel="stylesheet" href="../css/design-system.css">
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/layout.css">
   <link rel="stylesheet" href="../css/header.css">
@@ -900,23 +900,23 @@
 
     <nav class="menu-master">
 
-        <a href="../index.html">Início</a>
-        <a href="../index.html#comprar">Prêmios</a>
+        <a href="../index.html">🏠 Início</a>
+        <a href="../index.html#comprar">🏆 Prêmios</a>
         <a href="../cliente/login.html" class="active">👤 Meus Pedidos</a>
-        <a href="../enquete/enquete.html">Enquete</a>
+        <a href="../enquete/enquete.html">📝 Enquete</a>
         <a href="../vip.html">💚 Grupo VIP</a>
-        <a href="../doacao/doacao.html">Doações</a>
+        <a href="../doacao/doacao.html">🙏 Doações</a>
 
     </nav>
 
     <div class="header-ctas">
 
-        <a href="../vip.html" class="btn-header-whatsapp">
-            💚 Grupo WhatsApp
+        <a href="../cartelas/cartelas.html" class="btn-header-whatsapp">
+            <span class="btn-header-buy__full">🎟️ Minha Cartela</span><span class="btn-header-buy__compact">Cartela</span>
         </a>
 
         <a href="../index.html#comprar" class="btn-header-buy">
-            <span class="btn-header-buy__full">🛒 Comprar Agora</span><span class="btn-header-buy__compact">Comprar</span>
+            <span class="btn-header-buy__full">🍖 Churrasco Antecipado</span><span class="btn-header-buy__compact">Churrasco</span>
         </a>
 
     </div>
@@ -950,6 +950,13 @@
 </div>
 
 <div id="clientePedidos"></div>
+
+    <div class="painel-header" style="margin-top:40px; padding-top:20px;">
+      <h1 style="font-size:1.6rem;">🎟️ Minhas Cartelas</h1>
+      <p>Cartelas físicas e digitais registradas com seu CPF.</p>
+    </div>
+
+    <div id="clienteCartelas"></div>
 
     <button id="logoutCliente" class="logout-btn">
       🚪 Sair da Central

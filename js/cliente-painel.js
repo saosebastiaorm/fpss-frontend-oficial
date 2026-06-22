@@ -12,6 +12,7 @@ const cliente = JSON.parse(dados);
 
 console.log("CLIENTE COMPLETO:", cliente);
 console.log("PEDIDOS:", cliente.pedidos);
+console.log("CARTELAS:", cliente.cartelas);
 
   const nome = document.getElementById("clienteNome");
   const cpf = document.getElementById("clienteCPF");
@@ -38,12 +39,6 @@ function gerarCardPedido(pedido) {
   const statusPagamento =
     (pedido.status_pagamento || "").toLowerCase();
 
-  console.log(
-    "STATUS PAGAMENTO:",
-    pedido.codigo_pedido,
-    pedido.status_pagamento
-  );
-
   const statusRetirada =
     (pedido.status_retirada || "").toLowerCase();
 
@@ -56,72 +51,8 @@ function gerarCardPedido(pedido) {
   } else if (statusPagamento === "pendente") {
     classeStatus = "pedido-pendente";
   }
-console.log("NOME_PRODUTO:", pedido.nome_produto);
-console.log("IMAGEM_PRODUTO:", pedido.imagem_produto);
-console.log("PRODUTO_TIPO:", pedido.produto_tipo);
-console.log("PEDIDO COMPLETO:", pedido);
-
-console.log(
-  "BOTAO PIX:",
-  pedido.codigo_pedido,
-  {
-    payment_id: pedido.txid,
-    pix: pedido.pix_copia_cola,
-    qr: pedido.qr_code
-  }
-);
-
-console.log(
-  "PIX:",
-  pedido.codigo_pedido,
-  pedido.pix_copia_cola
-);
-
-console.log(
-  "QR:",
-  pedido.codigo_pedido,
-  pedido.qr_code
-);
-
-console.log(
-  "PAYMENT:",
-  pedido.codigo_pedido,
-  pedido.payment_id
-);
-
-console.log(
-  "PIX:",
-  pedido.codigo_pedido,
-  pedido.pix_copia_cola
-);
-
-console.log(
-  "QR:",
-  pedido.codigo_pedido,
-  pedido.qr_code
-);
-
-console.log(
-  "PAYMENT:",
-  pedido.codigo_pedido,
-  pedido.payment_id
-);
-console.log(
-  "QR_RETIRADA:",
-  pedido.codigo_pedido,
-  pedido.qr_code_retirada
-);
-
-console.log(
-  "STATUS TRADUZIDO:",
-  traduzirStatus(pedido.status_pagamento)
-);
 
 return `
-
-
-
-  
   <div class="pedido-card ${classeStatus}">
 
     <div class="pedido-topo">
@@ -204,9 +135,6 @@ return `
 
 </div>
 
-
-
-
           ${
   statusPagamento === "pago" &&
   statusRetirada !== "retirado"
@@ -255,7 +183,6 @@ ${
     `
     : ""
 }
-
 
       </div>
 
@@ -307,8 +234,6 @@ ${
  let pedidosHTML =
   listaPedidos.map(gerarCardPedido).join("");
 
-  
-
     pedidos.innerHTML = resumoHTML + `<div id="listaPedidosCards">${pedidosHTML}</div>`;
 
 const botoesFiltro = document.querySelectorAll(".filtro-btn");
@@ -344,6 +269,113 @@ listaContainer.innerHTML =
 
   }
 
+  /* =====================================================
+     CARTELAS DO CLIENTE — seção nova, separada dos pedidos
+     de produto. Usa o container #clienteCartelas (precisa
+     existir no painel.html).
+  ===================================================== */
+
+  function traduzirStatusCartela(status) {
+    switch ((status || "").toLowerCase()) {
+      case "pago": return "✅ Pago";
+      case "pendente": return "⏳ Pendente";
+      case "cancelado": return "❌ Cancelado";
+      case "disponivel": return "Disponível";
+      default: return status || "-";
+    }
+  }
+
+  function gerarCardCartela(cartela) {
+
+    const status = (cartela.status || "").toLowerCase();
+
+    let classeStatus = "pedido-pendente";
+    if (status === "pago") classeStatus = "pedido-pago";
+
+    const ehDigital = cartela.tipo === "digital";
+
+    return `
+      <div class="pedido-card ${classeStatus}">
+
+        <div class="pedido-topo">
+
+          <div class="pedido-imagem" style="
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:42px;
+            background:#fdf6ee;
+          ">
+            🎟️
+          </div>
+
+          <div class="pedido-info">
+
+            <h3>${ehDigital ? "Cartela Digital" : "Cartela Física"}</h3>
+
+            <p><strong>Status:</strong> ${traduzirStatusCartela(cartela.status)}</p>
+
+            <p><strong>Número:</strong> ${cartela.numero_chance1 || "-"}</p>
+
+            <p><strong>Número (chance 2):</strong> ${cartela.numero_chance2 || "-"}</p>
+
+            <p><strong>Valor:</strong> R$ ${Number(cartela.valor_pago || 0).toFixed(2).replace(".", ",")}</p>
+
+            <p><strong>Vai à festa:</strong> ${cartela.vai_na_festa === "sim" ? "✅ Sim" : cartela.vai_na_festa === "nao" ? "❌ Não" : "-"}</p>
+
+            <div class="historico-pedido">
+              <div class="historico-titulo">📅 Histórico</div>
+              <div class="historico-item">
+                <strong>💳 Pagamento:</strong>
+                ${cartela.data_pagamento ? new Date(cartela.data_pagamento).toLocaleString("pt-BR") : "Aguardando pagamento"}
+              </div>
+            </div>
+
+            ${
+              status === "pago" && ehDigital
+                ? `
+                  <button class="btn-ver-qr" onclick="window.open('${cartela.pdf_url || '#'}', '_blank')">
+                    📄 Ver/Baixar Cartela Digital
+                  </button>
+                `
+                : ""
+            }
+
+            ${
+              status === "pago" && !ehDigital
+                ? `
+                  <p style="margin-top:10px; color:#16a34a; font-weight:700;">
+                    ✅ Apresente o canhoto físico no dia da festa
+                  </p>
+                `
+                : ""
+            }
+
+          </div>
+
+        </div>
+
+      </div>
+    `;
+  }
+
+  const cartelasContainer = document.getElementById("clienteCartelas");
+
+  if (cartelasContainer) {
+
+    const listaCartelas = cliente.cartelas || [];
+
+    if (!listaCartelas.length) {
+      cartelasContainer.innerHTML = `
+        <p style="text-align:center; color:#888; padding:20px;">
+          Você ainda não tem nenhuma cartela registrada com este CPF.
+        </p>
+      `;
+    } else {
+      cartelasContainer.innerHTML = listaCartelas.map(gerarCardCartela).join("");
+    }
+  }
+
   const logout = document.getElementById("logoutCliente");
 
   if (logout) {
@@ -367,7 +399,6 @@ window.abrirQRRetirada = function(
   quantidade
 ) {
 
-
   let modal =
     document.getElementById("modalQRRetirada");
 
@@ -386,7 +417,6 @@ window.abrirQRRetirada = function(
         >
           ✖
         </button>
-
 
 <h2>🎟 QR de Retirada</h2>
 
@@ -455,7 +485,6 @@ window.abrirQRRetirada = function(
 
 <div class="dados-retirada-grid">
 
-
   <div class="dado-item">
     <strong>📄 Nº do Pedido</strong>
     <span>${codigoPedido}</span>
@@ -483,7 +512,6 @@ window.abrirQRRetirada = function(
 
 </div>
 
-
 </div>
 
 <div class="aviso-retirada">
@@ -497,14 +525,10 @@ window.abrirQRRetirada = function(
     document.body.appendChild(modal);
   }
 
-
   const qrContainer =
     document.getElementById("qrcodeCliente");
 
   qrContainer.innerHTML = "";
-
-console.log("QR GERADO:", qrCode);
-console.log(qrContainer);
 
 qrContainer.style.display = "flex";
 qrContainer.style.justifyContent = "center";
@@ -644,7 +668,6 @@ ${conteudo}
 
 window.abrirPixPagamento = function(
 
-
   codigoPedido,
   valor,
   pixCopiaCola,
@@ -657,9 +680,6 @@ window.abrirPixPagamento = function(
   dataPedido,
   horario
 ) {
-
-  console.log("PIX RECEBIDO:", pixCopiaCola);
-  console.log("QR RECEBIDO:", qrCode);
 
   const modalExistente =
     document.getElementById("modalPixPagamento");
@@ -766,8 +786,6 @@ window.abrirPixPagamento = function(
 
 </div>
 
-
-
 <div
   style="
     width:100%;
@@ -800,7 +818,6 @@ window.abrirPixPagamento = function(
     <br>
     ⏳ A confirmação do pagamento pode levar alguns segundos.
 </div>
-
 
 </div>
 <textarea
@@ -835,10 +852,6 @@ window.abrirPixPagamento = function(
   `;
 
   document.body.appendChild(modal);
-
-/* ==========================================
-   GERA O QR CODE DO PIX
-========================================== */
 
 const qrContainer =
     document.getElementById("qrcodePixPagamento");
