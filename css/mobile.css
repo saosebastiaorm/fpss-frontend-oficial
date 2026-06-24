@@ -294,7 +294,7 @@ html, body {
 .fpss-carrossel__body {
   display: flex !important;
   align-items: center !important;
-  justify-content: flex-start !important;
+  justify-content: space-between !important;
   padding: 0 12px !important;
   gap: 8px !important;
 }
@@ -333,6 +333,13 @@ html, body {
   -webkit-line-clamp: 2 !important;
   -webkit-box-orient: vertical !important;
   max-width: 100% !important;
+}
+
+.fpss-carrossel__btn {
+  font-size: 0.52rem !important;
+  padding: 7px 10px !important;
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
 }
 
 /* acelera um pouco no mobile */
@@ -419,9 +426,15 @@ html, body {
   padding: 16px !important;
 }
 
+.hero-v4__artist-image {
+  width: 110px !important;
+  height: 64px !important;
+}
+
 .hero-v4__artist-image img {
-  width: 56px !important;
-  height: 56px !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
 }
 
 .hero-v4__artist-name { font-size: 1rem !important; }
