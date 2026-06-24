@@ -1,0 +1,5272 @@
+/* =====================================================================
+   FPSS 2027 — CSS CONSOLIDADO
+   Gerado automaticamente a partir de 16 arquivos separados, na MESMA
+   ORDEM em que eram carregados no <head>, para preservar 100% da
+   cascata CSS original (nenhuma regra foi reordenada ou alterada).
+
+   Objetivo: reduzir de 16 requisições HTTP de CSS para 1, eliminando
+   o gargalo de "render-blocking requests" identificado no PageSpeed
+   Insights (~2.030ms de economia estimada).
+
+   Os 2 @import de fontes do Google (que existiam em font-global.css
+   e produtos.css) foram removidos daqui, pois a mesma fonte já é
+   carregada via <link rel="stylesheet"> no <head> do index.html —
+   manter os @import seria carregar a mesma fonte 3 vezes.
+===================================================================== */
+
+
+/* ===== INÍCIO: font-global.css ===== */
+/* =====================================================
+   FONTE GLOBAL — ESTILO G1 (Merriweather + Roboto)
+   Adicionar no <head> ANTES dos outros CSS
+   E remover o import do Poppins do <head>
+===================================================== */
+
+/* Import das fontes */
+
+/* Corpo — Roboto */
+body,
+p, li, span, a, label, input,
+textarea, select, button,
+.info-list li,
+.badge-lote,
+.descricao-premio,
+.breakdown-label,
+.breakdown-value,
+.chip,
+.section-mini-title,
+.menu-master a,
+.brand-text p {
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+/* Títulos — Merriweather */
+h1, h2, h3,
+.hero-v4__title,
+.hero-v4__artist-name,
+.titulo-premiacao h2,
+.produtos-cinema-topo h2,
+.section-header-center h2,
+.venda-box h3,
+.valor-premio,
+.price-box,
+.hero-v4__card-cta {
+  font-family: 'Merriweather', Georgia, serif;
+}
+
+/* Exceções — elementos que ficam melhor sem serif */
+.badge-premio,
+.hero-v4__badge,
+.hero-v4__artist-badge,
+.hero-v4__countdown-title,
+.hero-v4__count-number,
+.hero-v4__count-label,
+.btn-header-buy,
+.btn-header-whatsapp,
+.barra-urgencia,
+.hero-v4__button,
+.premiacao-rodape .chip,
+.urgencia-item {
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+/* ===== FIM: font-global.css ===== */
+
+/* ===== INÍCIO: design-system.css ===== */
+/* =====================================================
+   DESIGN SYSTEM - FPSS 2027
+   Versão 1.0
+   ===================================================== */
+
+:root {
+
+    /* ========= CORES ========= */
+
+    --color-primary: #8B1111;
+    --color-secondary: #F5C542;
+    --color-success: #18B95A;
+
+    --color-background: #FFFFFF;
+    --color-surface: #F8F9FA;
+
+    --color-text: #222222;
+    --color-text-light: #666666;
+
+    --color-border: #E5E7EB;
+
+    /* ========= TIPOGRAFIA ========= */
+
+    --font-family: 'Roboto', Arial, sans-serif;
+    --font-family-display: 'Merriweather', Georgia, serif;
+
+    --font-size-h1: 42px;
+    --font-size-h2: 32px;
+    --font-size-h3: 24px;
+    --font-size-h4: 20px;
+
+    --font-size-base: 16px;
+    --font-size-small: 14px;
+
+    --font-size-button: 15px;
+
+    /* ========= ESPAÇAMENTOS ========= */
+
+    --space-1: 8px;
+    --space-2: 16px;
+    --space-3: 24px;
+    --space-4: 40px;
+    --space-5: 56px;
+
+    /* ========= CONTAINER ========= */
+
+    --container-max-width: 1280px;
+
+    --container-padding: 20px;
+
+    /* ========= BORDAS ========= */
+
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+
+    /* ========= SOMBRAS ========= */
+
+    --shadow-sm: 0 2px 8px rgba(0,0,0,.08);
+
+    --shadow-md: 0 4px 16px rgba(0,0,0,.10);
+
+    --shadow-lg: 0 8px 24px rgba(0,0,0,.12);
+
+    /* ========= TRANSIÇÕES ========= */
+
+    --transition-default: .25s ease;
+
+/* HEADER */
+
+--header-height: 68px;
+
+--logo-size: 42px;
+
+--header-button-radius: 12px;
+
+--header-button-font: 13px;
+
+}
+/* =====================================================
+   COMPONENTES PADRÃO FPSS
+===================================================== */
+
+/* Container Oficial */
+
+.container-fpss{
+
+    width:100%;
+
+    max-width:var(--container-max-width);
+
+    margin:0 auto;
+
+    padding-left:var(--container-padding);
+
+    padding-right:var(--container-padding);
+
+}
+
+
+/* Seções */
+
+.section{
+
+    padding-top:var(--space-4);
+
+    padding-bottom:var(--space-4);
+
+}
+
+
+/* Card padrão */
+
+.card-fpss{
+
+    background:#fff;
+
+    border-radius:var(--radius-lg);
+
+    box-shadow:var(--shadow-sm);
+
+    padding:24px;
+
+}
+
+
+/* Título de seção */
+
+.section-title{
+
+    font-family:var(--font-family);
+
+    font-size:var(--font-size-h2);
+
+    font-weight:700;
+
+    color:var(--color-primary);
+
+    line-height:1.2;
+
+}
+
+
+/* Texto auxiliar */
+
+.text-muted{
+
+    color:var(--color-text-light);
+
+}
+
+/* =====================================================
+   BOTÕES PADRÃO
+===================================================== */
+
+.btn-fpss{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    padding:12px 24px;
+
+    border:none;
+
+    border-radius:var(--radius-md);
+
+    cursor:pointer;
+
+    font-size:var(--font-size-button);
+
+    font-family:var(--font-family);
+
+    font-weight:600;
+
+    transition:var(--transition-default);
+
+}
+
+
+/* Vermelho */
+
+.btn-fpss-primary{
+
+    background:var(--color-primary);
+
+    color:#fff;
+
+}
+
+
+/* Verde */
+
+.btn-fpss-success{
+
+    background:var(--color-success);
+
+    color:#fff;
+
+}
+
+
+/* Amarelo */
+
+.btn-fpss-secondary{
+
+    background:var(--color-secondary);
+
+    color:#111;
+
+}
+
+
+.btn-fpss:hover{
+
+    filter:brightness(1.05);
+
+}
+
+
+/* ===== FIM: design-system.css ===== */
+
+/* ===== INÍCIO: base.css ===== */
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+
+    font-family: var(--font-family);
+
+    font-size: var(--font-size-base);
+
+    color: var(--color-text);
+
+    background: var(--color-background);
+
+    line-height: 1.6;
+
+}
+
+img{
+  max-width:100%;
+  display:block;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+/* CONTAINER GLOBAL */
+.container{
+
+    width:100%;
+
+    max-width:var(--container-max-width);
+
+    margin:0 auto;
+
+    padding-left:var(--container-padding);
+
+    padding-right:var(--container-padding);
+
+}
+
+html{
+    scroll-behavior:smooth;
+
+    
+}
+
+/* ========================================
+   SCROLLBAR PREMIUM
+======================================== */
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#1a0000;
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:
+    linear-gradient(
+    to bottom,
+    #ffcc00,
+    #ff7b00);
+
+    border-radius:20px;
+}
+/* ===== FIM: base.css ===== */
+
+/* ===== INÍCIO: layout.css ===== */
+/* ==================================================
+   LAYOUT GLOBAL
+================================================== */
+
+.section{
+  padding:40px 20px;
+}
+
+.section-center{
+  text-align:center;
+}
+
+.section-white{
+  background:#fff;
+}
+
+.section-green{
+  background:linear-gradient(135deg,#0f5132,#198754);
+  color:#fff;
+}
+
+.section-red{
+  background:linear-gradient(135deg,#8b1111,#c61f1f);
+  color:#fff;
+}
+
+/* ==================================================
+   CONTAINER PADRÃO
+================================================== */
+
+.wrap{
+    width:min(1480px, calc(100% - 56px));
+    margin:0 auto;
+    padding:0;
+}
+/* ==================================================
+   ESPAÇAMENTO GLOBAL ENTRE BLOCOS
+================================================== */
+
+.hero-master{
+  padding:35px 0 20px;
+}
+
+.main-container{
+  padding-top:10px;
+}
+
+.content-grid{
+  display:flex;
+  flex-direction:column;
+  gap:26px;
+}
+
+/* ==================================================
+   PREMIAÇÃO
+================================================== */
+
+.premios-section{
+  margin-top:10px;
+}
+
+/* ==================================================
+   PRODUTOS
+================================================== */
+
+#comprar{
+  margin-top:8px;
+}
+
+/* ==================================================
+   ENQUETE
+================================================== */
+
+.enquete-callout{
+  margin-top:14px;
+  margin-bottom:18px;
+}
+
+/* ==================================================
+   VIP
+================================================== */
+
+.vip-section{
+  padding-top:10px;
+}
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width:768px){
+
+.section{
+  padding:26px 14px;
+}
+
+.hero-master{
+  padding:22px 0 14px;
+}
+
+.content-grid{
+  gap:18px;
+}
+
+.enquete-callout{
+  margin-top:10px;
+  margin-bottom:12px;
+}
+
+}
+
+/* ========================================
+   PROGRAMAÇÃO PREMIUM
+======================================== */
+
+.programacao-premium {
+  padding: 90px 0;
+  background:
+    linear-gradient(to bottom,
+    #fff8ef,
+    #fff3df);
+}
+
+.section-header-center {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-mini-title {
+  display: inline-block;
+  background: #8b1111;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.section-header-center h2 {
+  font-size: 38px;
+  color: #7a0916;
+  margin-bottom: 15px;
+  font-weight: 900;
+}
+
+.section-header-center p {
+  font-size: 18px;
+  color: #555;
+}
+
+.programacao-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 45px;
+  align-items: center;
+}
+
+.cartaz-oficial {
+  width: 100%;
+  border-radius: 28px;
+  box-shadow:
+    0 25px 70px rgba(0,0,0,0.18);
+}
+
+.timeline-box {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 20px;
+  background: white;
+  padding: 24px;
+  border-radius: 24px;
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.08);
+  transition: .3s;
+}
+
+.timeline-item:hover {
+  transform: translateY(-5px);
+}
+
+.timeline-item.destaque {
+  background:
+    linear-gradient(135deg,
+    #8b1111,
+    #b91c1c);
+  color: white;
+}
+
+.hora {
+  min-width: 75px;
+  height: 75px;
+  border-radius: 20px;
+  background: #facc15;
+  color: #7a0916;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.timeline-item h3 {
+  margin-bottom: 8px;
+  font-size: 22px;
+}
+
+.timeline-item p {
+  line-height: 1.6;
+  opacity: .92;
+}
+
+/* ========================================
+   ATRAÇÕES PREMIUM
+======================================== */
+
+.atracoes-section {
+  padding: 110px 0;
+  background:
+    linear-gradient(
+      to bottom,
+      #140404,
+      #220606
+    );
+  position: relative;
+  overflow: hidden;
+}
+
+.section-header-center.light h2,
+.section-header-center.light p {
+  color: white;
+}
+
+.atracoes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.show-premium-card {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,0.06),
+      rgba(255,255,255,0.02)
+    );
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  border-radius: 35px;
+
+  overflow: hidden;
+
+  backdrop-filter: blur(12px);
+
+  box-shadow:
+    0 25px 60px rgba(0,0,0,0.35);
+
+  transition: .4s;
+}
+
+.show-premium-card:hover {
+  transform:
+    translateY(-12px)
+    scale(1.01);
+}
+
+.show-image-area {
+  height: 420px;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255,196,0,0.18),
+      transparent 70%
+    );
+  overflow: hidden;
+}
+
+.show-main-image {
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.show-content {
+  padding: 35px;
+}
+
+.show-badge {
+  display: inline-block;
+  padding: 10px 18px;
+  background: #107a3b;
+  color: white;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.show-badge.red {
+  background: #b91c1c;
+}
+
+.show-content h3 {
+  color: white;
+  font-size: 36px;
+  margin-bottom: 18px;
+  font-weight: 900;
+}
+
+.show-content p {
+  color: rgba(255,255,255,0.75);
+  line-height: 1.8;
+  margin-bottom: 25px;
+  font-size: 16px;
+}
+
+.show-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.show-tags span {
+  background: rgba(255,255,255,0.08);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+}
+
+.btn-show-video {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 28px;
+  border-radius: 16px;
+  background: #107a3b;
+  color: white;
+  text-decoration: none;
+  font-weight: 800;
+  transition: .3s;
+}
+
+.btn-show-video:hover {
+  transform: scale(1.05);
+}
+
+.btn-show-video.red {
+  background: #dc2626;
+}
+
+/* ========================================
+   GALERIA CINEMATOGRÁFICA
+======================================== */
+
+.galeria-cinema {
+  padding: 120px 0;
+  background:
+    linear-gradient(
+      to bottom,
+      #fff8ef,
+      #ffffff
+    );
+}
+
+.estatisticas-evento {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 25px;
+  margin:
+    60px 0 70px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 24px;
+  padding: 35px 25px;
+  text-align: center;
+  box-shadow:
+    0 15px 40px rgba(0,0,0,0.08);
+}
+
+.stat-card h3 {
+  font-size: 38px;
+  color: #8b1111;
+  margin-bottom: 12px;
+  font-weight: 900;
+}
+
+.stat-card p {
+  color: #666;
+  line-height: 1.5;
+}
+
+.foto-premium{
+
+    position:relative;
+    overflow:hidden;
+    border-radius:24px;
+    height:180px;
+    background:#000;
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.18);
+    transition:.4s;
+    height: 100%;
+}
+
+
+.foto-premium.grande{
+
+    grid-column: span 2;
+    grid-row: span 2;
+    min-height: 100%;
+}
+
+.foto-premium img{
+
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.6s;
+}
+
+.foto-premium:hover img {
+  transform: scale(1.08);
+}
+
+.overlay-foto{
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:flex-end;
+
+    padding:24px;
+
+    background:
+    linear-gradient(
+    to top,
+    rgba(0,0,0,.85),
+    rgba(0,0,0,.25),
+    transparent);
+
+    color:#fff;
+}
+
+.overlay-foto h3 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+
+.overlay-foto p {
+  opacity: .9;
+  line-height: 1.6;
+}
+
+.foto-premium.vertical{
+
+    grid-column: span 3;
+
+    grid-row: span 2;
+
+    height: 380px;
+}
+.foto-premium.media{
+
+    grid-column: span 4;
+}
+
+.foto-premium:hover{
+
+    transform:
+    translateY(-6px)
+    scale(1.02);
+
+    box-shadow:
+    0 25px 50px rgba(0,0,0,.35);
+}
+
+.foto-premium:hover img{
+
+    transform:scale(1.08);
+}
+/* =====================================================
+   MELHORIAS FPSS 2027 — VERSÃO FINAL LIMPA
+===================================================== */
+
+/* ---- PROGRAMAÇÃO + ATRAÇÕES: 2 colunas lado a lado ---- */
+.dual-section-wrap {
+  background: linear-gradient(to bottom, #fdf6ee, #faebd7);
+  padding: 36px 0;
+}
+.dual-section-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+.dual-col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.dual-col__header { display: flex; flex-direction: column; gap: 6px; }
+.dual-col__title {
+  font-family: 'Merriweather', Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: #1a0000;
+  text-transform: none;
+  letter-spacing: 0;
+  margin: 0;
+}
+.dual-programacao { display: flex; gap: 12px; align-items: flex-start; }
+.mini-cartaz-wrap { flex-shrink: 0; }
+.mini-cartaz { width: 80px; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,.14); }
+
+/* Timeline na coluna */
+.dual-col .timeline-box { gap: 7px; flex: 1; display: flex; flex-direction: column; }
+.dual-col .timeline-item {
+  display: flex; gap: 10px; padding: 9px 12px;
+  border-radius: 8px; background: #fff; border: 1px solid #ede0d0;
+  align-items: center; box-shadow: 0 1px 4px rgba(0,0,0,.05);
+}
+.dual-col .timeline-item.destaque {
+  background: linear-gradient(135deg,#8b1111,#b91c1c);
+  border-color: transparent;
+}
+.dual-col .hora { min-width:40px; width:40px; height:40px; font-size:11px; border-radius:7px; flex-shrink:0; }
+.dual-col .timeline-item h3 { font-size:12px; margin-bottom:1px; color:#1a0000; font-family:'Merriweather',Georgia,serif; }
+.dual-col .timeline-item p  { font-size:10px; color:#666; line-height:1.3; opacity:1; margin:0; }
+.dual-col .timeline-item.destaque h3,
+.dual-col .timeline-item.destaque p { color:#fff !important; }
+
+/* Atrações na coluna */
+.dual-col .atracoes-grid { display:flex; flex-direction:column; gap:10px; }
+.dual-col .show-premium-card {
+  display: flex; flex-direction: row;
+  border-radius: 10px; overflow: hidden;
+  background: #fff; border: 1px solid #e8e0d8;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06); min-height:120px;
+}
+.dual-col .show-image-area {
+  width: 160px; min-width: 160px; height: 120px;
+  background: #f5f0ea; flex-shrink: 0; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.dual-col .show-main-image {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: top center; max-height: none;
+}
+.dual-col .show-content {
+  flex: 1; padding: 10px 12px; background: #fff;
+  display: flex; flex-direction: column; justify-content: center; gap: 4px;
+}
+.dual-col .show-badge { padding:2px 8px; font-size:8px; margin-bottom:4px; border-radius:3px; display:inline-block; }
+.dual-col .show-content h3 { font-size:12px; color:#1a0000; font-family:'Merriweather',Georgia,serif; margin:0; }
+.dual-col .show-content p  { font-size:10px; color:#666; line-height:1.3; margin:0; }
+.dual-col .show-tags { gap:4px; margin:4px 0; flex-wrap:wrap; display:flex; }
+.dual-col .show-tags span { padding:2px 7px; font-size:9px; background:#f5f0ea; color:#555; border:1px solid #e0d8cc; border-radius:999px; }
+.dual-col .btn-show-video { padding:5px 10px; font-size:9px; border-radius:5px; align-self:flex-start; }
+
+/* ---- GALERIA: 3 colunas, 1ª = 2 linhas ---- */
+.galeria-cinema { background:#fdf6ee; padding:32px 0; }
+.estatisticas-evento { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:16px 0 18px; }
+.stat-card { padding:14px 12px; border-radius:10px; border:1px solid #e8e0d8; box-shadow:0 1px 6px rgba(0,0,0,.05); background:#fff; }
+.stat-card h3 { font-size:1.1rem; margin-bottom:3px; }
+.stat-card p  { font-size:11px; }
+
+.galeria-grid-premium {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 140px 140px;
+  gap: 8px;
+  margin-top: 12px;
+}
+.galeria-grid-premium .foto-premium:nth-child(1) { grid-column:1/2; grid-row:1/3; height:100%; }
+.galeria-grid-premium .foto-premium:nth-child(2) { grid-column:2/3; grid-row:1/2; }
+.galeria-grid-premium .foto-premium:nth-child(3) { grid-column:3/4; grid-row:1/2; }
+.galeria-grid-premium .foto-premium:nth-child(4) { grid-column:2/3; grid-row:2/3; }
+.galeria-grid-premium .foto-premium:nth-child(5) { grid-column:3/4; grid-row:2/3; }
+/* Desativa classes antigas de span */
+.galeria-grid-premium .foto-premium.grande,
+.galeria-grid-premium .foto-premium.vertical,
+.galeria-grid-premium .foto-premium.media { grid-column:unset; grid-row:unset; }
+.galeria-grid-premium .foto-premium { border-radius:10px; height:100%; }
+.overlay-foto { padding:8px; }
+.overlay-foto h3 { font-size:11px; margin:0; }
+.overlay-foto p  { display:none; }
+
+/* ---- LOCALIZAÇÃO: 3 colunas ---- */
+.localizacao-premium { background:#fff; padding:28px 0; }
+.local-grid-3col {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 1fr;
+  gap: 14px;
+  margin-top: 24px;
+  align-items: stretch;
+}
+.local-mapa-col { display:flex; flex-direction:column; }
+.local-mapa-col .mapa-box {
+  flex: 1; min-height:300px; border-radius:10px;
+  border:1px solid #e8e0d8; overflow:hidden; position:relative;
+  box-shadow:0 2px 8px rgba(0,0,0,.07);
+}
+.local-mapa-col .mapa-box iframe {
+  position:absolute; top:0; left:0; width:100%; height:100%; border:none;
+}
+.local-info-col { display:flex; flex-direction:column; gap:7px; }
+.local-info-col .local-card {
+  display:flex; gap:9px; padding:10px 12px; border-radius:8px;
+  background:#fdf6ee; border:1px solid #e8e0d8; align-items:flex-start;
+}
+.local-info-col .local-card span { font-size:16px; }
+.local-info-col .local-card h3   { font-size:11px; color:#1a0000; font-family:'Merriweather',Georgia,serif; margin-bottom:1px; font-weight:800; }
+.local-info-col .local-card p    { font-size:10px; color:#666; }
+.local-info-col .btn-localizacao {
+  display:flex; align-items:center; justify-content:center;
+  height:36px; border-radius:7px; font-size:11px; font-weight:800;
+  background:linear-gradient(135deg,#cc0000,#990000); color:#fff;
+  text-decoration:none; margin-top:6px;
+}
+.local-extra-col { display:flex; flex-direction:column; gap:7px; }
+.local-extra-card { background:#fdf6ee; border:1px solid #e8e0d8; border-radius:8px; padding:10px 12px; flex:1; }
+.local-extra-card__icon { font-size:1.1rem; margin-bottom:4px; }
+.local-extra-card h3 { font-family:'Merriweather',Georgia,serif; font-size:11px; font-weight:900; color:#1a0000; margin-bottom:3px; }
+.local-extra-card p  { font-size:10px; color:#666; line-height:1.4; margin-bottom:5px; }
+.local-extra-card__btn { display:inline-flex; align-items:center; padding:4px 10px; border-radius:5px; background:#107a3b; color:#fff; font-size:10px; font-weight:700; text-decoration:none; }
+
+/* ---- PARCEIROS: 10 colunas, logos grandes ---- */
+.parceiros-premium { background:#fff; padding:28px 0 36px; }
+.parceiros-premium .section-header-center h2 { color:#1a0000; font-family:'Merriweather',Georgia,serif; }
+.parceiros-premium .section-header-center p  { color:#666; }
+.parceiros-grid { display:grid; grid-template-columns:repeat(8,1fr); gap:10px; margin-top:20px; }
+.parceiro-card {
+  height:90px; border-radius:10px; background:#ffffff;
+  border:1px solid #e8e0d8; display:flex; align-items:center;
+  justify-content:center; padding:8px; overflow:hidden;
+  transition:box-shadow .2s,transform .2s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.parceiro-card:hover { box-shadow:0 6px 16px rgba(0,0,0,.10); transform:translateY(-2px); }
+.parceiro-card img { width:100%; height:100%; object-fit:contain; display:block; }
+
+/* ---- ENQUETE + WHATSAPP: 2 colunas ---- */
+.enquete-vip-wrap {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:16px; padding:28px 0; background:#fff;
+}
+.cta-enquete-wrap {
+  display:flex; flex-direction:column; align-items:center;
+  justify-content:center; gap:10px; background:#fff;
+  border:1.5px solid #e8e0d8; border-radius:12px; padding:24px 20px; text-align:center;
+}
+.vip-box {
+  display:flex; flex-direction:column; align-items:center;
+  justify-content:center; gap:10px; background:#fff;
+  border:1.5px solid #e8e0d8; border-radius:12px; padding:24px 20px; text-align:center;
+}
+.vip-box h2 { font-family:'Merriweather',Georgia,serif; font-size:1rem; color:#1a0000; font-weight:900; margin:0; }
+.vip-box p  { font-size:13px; color:#555; line-height:1.5; margin:0; }
+
+/* ---- MOBILE ---- */
+@media (max-width:900px) {
+  .dual-section-grid           { grid-template-columns:1fr; }
+  .local-grid-3col             { grid-template-columns:1fr; }
+  .parceiros-grid              { grid-template-columns:repeat(4,1fr); }
+  .enquete-vip-wrap            { grid-template-columns:1fr; }
+  .dual-col .show-premium-card { flex-direction:column; }
+  .dual-col .show-image-area   { width:100%; height:120px; min-width:100%; }
+  .galeria-grid-premium        { grid-template-rows:120px 120px; }
+}
+@media (max-width:480px) {
+  .parceiros-grid { grid-template-columns:repeat(4,1fr); }
+  .galeria-grid-premium {
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:100px 100px 100px;
+  }
+  .galeria-grid-premium .foto-premium:nth-child(1) { grid-column:1/3; grid-row:1/2; }
+  .galeria-grid-premium .foto-premium:nth-child(2) { grid-column:1/2; grid-row:2/3; }
+  .galeria-grid-premium .foto-premium:nth-child(3) { grid-column:2/3; grid-row:2/3; }
+  .galeria-grid-premium .foto-premium:nth-child(4) { grid-column:1/2; grid-row:3/4; }
+  .galeria-grid-premium .foto-premium:nth-child(5) { grid-column:2/3; grid-row:3/4; }
+}
+
+/* =====================================================
+   CARD DE ESTATÍSTICA — sem cédula (removida a pedido)
+===================================================== */
+.stat-card {
+  position: relative;
+}
+
+/* ===== FIM: layout.css ===== */
+
+/* ===== INÍCIO: header.css ===== */
+
+/* =========================================
+   HEADER DESKTOP
+========================================= */
+
+.header-ctas{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+}
+/* =========================================
+   BOTÃO WHATSAPP
+========================================= */
+
+.btn-header-whatsapp{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    background:
+    linear-gradient(
+    135deg,
+    #25d366 0%,
+    #119c4d 100%
+    );
+
+    color:#ffffff;
+
+    padding:7px 24px;
+
+    border-radius:var(--header-button-radius);
+
+    font-size:var(--header-button-font);
+
+    font-weight:800;
+
+    text-decoration:none;
+
+    box-shadow:
+    0 10px 24px rgba(37,211,102,.26);
+
+    transition:all .25s ease;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.btn-header-whatsapp:hover{
+    transform:
+    translateY(-3px)
+    scale(1.03);
+
+    box-shadow:
+    0 18px 34px rgba(37,211,102,.38);
+
+    filter:brightness(1.04);
+}
+
+/* =========================================
+   BOTÃO COMPRAR
+========================================= */
+
+.btn-header-buy{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    background:
+    linear-gradient(
+    135deg,
+    #ffd54f 0%,
+    #ffb300 100%
+    );
+
+    color:#5a1a00 !important;
+
+    padding:7px 24px;
+
+    border-radius:var(--header-button-radius);
+
+    font-size:var(--header-button-font);
+
+    font-weight:900;
+
+    text-decoration:none;
+
+    text-transform:uppercase;
+
+    letter-spacing:.4px;
+
+    box-shadow:
+    0 12px 28px rgba(255,179,0,.26);
+
+    transition:all .25s ease;
+
+    position:relative;
+
+    overflow:hidden;
+
+    animation:
+pulseButton 2.5s infinite;
+}
+
+/* brilho premium */
+
+.btn-header-buy::before{
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-120%;
+
+    width:90%;
+    height:100%;
+
+    background:
+    linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.5),
+    transparent
+    );
+
+    transition:.7s;
+}
+
+.btn-header-buy:hover::before{
+    left:130%;
+}
+
+.btn-header-buy:hover{
+    transform:
+    translateY(-3px)
+    scale(1.04);
+
+    box-shadow:
+    0 18px 38px rgba(255,179,0,.38);
+
+    filter:brightness(1.03);
+}
+
+.btn-header-whatsapp:hover{
+    transform:translateY(-2px);
+}
+
+.brand-area{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo-menu-img{
+
+    width:var(--logo-size);
+
+    height:var(--logo-size);
+
+    object-fit:contain;
+
+}
+
+/* =========================================
+   HEADER MOBILE
+========================================= */
+
+@media (max-width:768px){
+
+.topbar-master{
+    padding:0 !important;
+
+    overflow:visible !important;
+
+    backdrop-filter:blur(16px);
+
+    background:rgba(20,0,0,.75);
+}
+
+.header-main{
+    display:flex !important;
+    position:relative;
+
+    overflow:visible !important;
+
+    align-items:center !important;
+
+    justify-content:space-between !important;
+
+    gap:10px !important;
+
+    padding:6px 12px !important;
+}
+
+/* LOGO */
+
+.brand-area{
+    display:flex !important;
+
+    align-items:center !important;
+
+    gap:6px !important;
+
+    flex:1 !important;
+
+    min-width:0 !important;
+
+    overflow:hidden !important;
+}
+
+.logo-menu-img{
+    width:34px !important;
+    height:34px !important;
+
+    flex-shrink:0 !important;
+}
+
+.brand-text h1{
+    font-size:15px !important;
+
+    margin:0 !important;
+
+    line-height:1 !important;
+
+    white-space:nowrap !important;
+}
+
+.brand-text p{
+    font-size:9px !important;
+
+    margin-top:2px !important;
+
+    line-height:1 !important;
+
+    white-space:nowrap !important;
+}
+
+/* ESCONDE MENU */
+
+.menu-master{
+    display:none;
+}
+
+/* BOTÕES */
+
+.header-ctas{
+    display:flex !important;
+    flex-wrap:wrap !important;
+
+    align-items:center !important;
+
+    gap:6px !important;
+
+    flex-shrink:0 !important;
+}
+.btn-header-whatsapp,
+.btn-header-buy{
+
+    display:flex !important;
+
+    align-items:center !important;
+
+    justify-content:center !important;
+
+    padding:7px 10px !important;
+
+    font-size:11px !important;
+
+    line-height:1.15 !important;
+
+    border-radius:8px !important;
+
+    min-height:32px !important;
+
+    max-width:none !important;
+
+    min-width:0 !important;
+
+    width:auto !important;
+
+    text-align:center !important;
+
+    white-space:nowrap !important;
+
+    flex-shrink:1 !important;
+
+    overflow:hidden !important;
+}
+
+}
+
+@media (max-width:360px){
+
+    .barra-urgencia{
+        font-size:10px !important;
+
+        padding:8px 10px !important;
+
+        line-height:1.3 !important;
+    }
+
+.header-main{
+    padding:8px 8px !important;
+    overflow:visible !important;
+    gap:6px !important;
+}
+
+}
+
+/* =========================================
+   (removido) COMPENSA HEADER FIXO
+   Não é mais necessário: o header usa position:sticky
+   (desktop e mobile), que já reserva seu próprio espaço
+   no fluxo normal da página — sem precisar de padding
+   artificial no body. Essa regra antiga (de quando o
+   header era position:fixed) estava criando um espaço
+   em branco extra no topo da página.
+========================================= */
+
+@keyframes pulseButton{
+
+    0%{
+        box-shadow:
+        0 0 0 0 rgba(255,174,0,.55);
+    }
+
+    70%{
+        box-shadow:
+        0 0 0 18px rgba(255,174,0,0);
+    }
+
+    100%{
+        box-shadow:
+        0 0 0 0 rgba(255,174,0,0);
+    }
+}
+
+
+/* ---- LOGO: tamanho fixo no header ---- */
+.brand-area .logo-menu-img {
+  width: 42px !important;
+  height: 42px !important;
+  max-width: 42px !important;
+  max-height: 42px !important;
+  object-fit: contain !important;
+  flex-shrink: 0 !important;
+}
+
+/* ===== FIM: header.css ===== */
+
+/* ===== INÍCIO: design-system-v2.css ===== */
+/* ==========================================================
+   FPSS 2027 - DESIGN SYSTEM V2
+   Base oficial do projeto
+========================================================== */
+
+:root{
+
+    /* CORES */
+
+    --color-primary:#8B1111;
+    --color-primary-dark:#650909;
+
+    --color-secondary:#FFD54A;
+
+    --color-success:#22C55E;
+
+    --color-white:#FFFFFF;
+
+    --color-text:#EAEAEA;
+
+    --color-text-soft:rgba(255,255,255,.82);
+
+    --color-border:rgba(255,255,255,.12);
+
+    --glass-bg:rgba(255,255,255,.08);
+
+    --glass-bg-hover:rgba(255,255,255,.14);
+
+    /* BORDAS */
+
+    --radius-xs:8px;
+    --radius-sm:12px;
+    --radius-md:16px;
+    --radius-lg:20px;
+    --radius-xl:28px;
+    --radius-pill:999px;
+
+    /* SOMBRAS */
+
+    --shadow-soft:
+    0 12px 30px rgba(0,0,0,.18);
+
+    --shadow-medium:
+    0 18px 45px rgba(0,0,0,.24);
+
+    --shadow-strong:
+    0 28px 70px rgba(0,0,0,.35);
+
+    /* FONTES */
+
+    --font-h1:44px;
+
+    --font-h2:28px;
+
+    --font-h3:22px;
+
+    --font-text:15px;
+
+    --font-small:13px;
+
+    --font-mini:11px;
+
+    /* ESPAÇAMENTOS */
+
+    --space-4:4px;
+
+    --space-8:8px;
+
+    --space-12:12px;
+
+    --space-16:16px;
+
+    --space-20:20px;
+
+    --space-24:24px;
+
+    --space-32:32px;
+
+    --space-40:40px;
+
+    --space-48:48px;
+
+    /* TRANSIÇÃO */
+
+    --transition:.25s ease;
+
+}
+/* ===== FIM: design-system-v2.css ===== */
+
+/* ===== INÍCIO: hero-v4.css ===== */
+/* ==========================================================
+   FPSS 2027 — HERO FUNDO CLARO
+   Estilo jornalístico, limpo, profissional
+   Fonte: Merriweather + Roboto
+========================================================== */
+
+.hero-v4 *,
+.hero-v4 *::before,
+.hero-v4 *::after { box-sizing: border-box; }
+
+/* ==========================================================
+   HERO — FUNDO CREME CLARO
+========================================================== */
+
+.hero-v4 {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #fdf6ee 0%, #fdf0e0 60%, #fce8d0 100%);
+  border-bottom: 3px solid #cc0000;
+}
+
+/* detalhe decorativo sutil no canto */
+.hero-v4::before {
+  content: "";
+  position: absolute;
+  top: 0; right: 0;
+  width: 420px; height: 100%;
+  background: linear-gradient(135deg, transparent 0%, rgba(204,0,0,0.04) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* esconde o background/overlay do vídeo no tema claro */
+.hero-v4__background,
+.hero-v4__overlay { display: none; }
+
+/* ==========================================================
+   CONTAINER
+========================================================== */
+
+.hero-v4__container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 36px 28px 38px;
+}
+
+/* ==========================================================
+   GRID — ESQUERDA + DIREITA
+========================================================== */
+
+.hero-v4__grid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  align-items: center;
+  gap: 40px;
+}
+
+/* ==========================================================
+   COLUNA ESQUERDA
+========================================================== */
+
+.hero-v4__left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  animation: heroFadeUp .6s ease forwards;
+}
+
+/* ==========================================================
+   BADGE
+========================================================== */
+
+.hero-v4__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 14px;
+  margin-bottom: 14px;
+  border-radius: 4px;
+  background: #cc0000;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* ==========================================================
+   TÍTULO
+========================================================== */
+
+.hero-v4__title {
+  margin: 0;
+  font-family: 'Merriweather', Georgia, serif;
+  font-size: clamp(26px, 3vw, 46px);
+  font-weight: 900;
+  line-height: 1.0;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  color: #1a0000;
+}
+
+.hero-v4__title span {
+  display: block;
+  color: #cc0000;
+}
+
+/* ==========================================================
+   SUBTÍTULO
+========================================================== */
+
+.hero-v4__subtitle {
+  margin-top: 12px;
+  max-width: 520px;
+  color: #555555;
+  font-size: 14px;
+  line-height: 1.65;
+  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* ==========================================================
+   CHIPS
+========================================================== */
+
+.hero-v4__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 16px;
+}
+
+.hero-v4__chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid #e0d0c0;
+  color: #333333;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+/* ==========================================================
+   BOTÕES — 3 NA MESMA LINHA
+========================================================== */
+
+.hero-v4__actions {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  margin-top: 22px;
+  width: 100%;
+}
+
+.hero-v4__button {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 44px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .3px;
+  transition: all .22s ease;
+  cursor: pointer;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex: 1;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* brilho no hover */
+.hero-v4__button::before {
+  content: "";
+  position: absolute;
+  top: 0; left: -130%;
+  width: 70%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,.28), transparent);
+  transition: .6s;
+}
+.hero-v4__button:hover::before { left: 130%; }
+
+/* CARTELA — vermelho pulsante */
+.hero-v4__button--primary {
+  background: linear-gradient(135deg, #cc0000, #990000);
+  color: #ffffff;
+  animation: pulseRed 2.4s infinite;
+}
+
+@keyframes pulseRed {
+  0%   { box-shadow: 0 0 0 0 rgba(204,0,0,.45); }
+  70%  { box-shadow: 0 0 0 12px rgba(204,0,0,0); }
+  100% { box-shadow: 0 0 0 0 rgba(204,0,0,0); }
+}
+
+.hero-v4__button--primary:hover {
+  background: linear-gradient(135deg, #e60000, #bb0000);
+  transform: translateY(-2px);
+}
+
+/* WHATSAPP — verde pulsante */
+.hero-v4__button--whatsapp {
+  background: linear-gradient(135deg, #25d366, #128c4a);
+  color: #ffffff;
+  animation: pulseGreen 2.4s infinite .5s;
+}
+
+@keyframes pulseGreen {
+  0%   { box-shadow: 0 0 0 0 rgba(37,211,102,.45); }
+  70%  { box-shadow: 0 0 0 12px rgba(37,211,102,0); }
+  100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+}
+
+.hero-v4__button--whatsapp:hover {
+  background: linear-gradient(135deg, #2ee870, #15a854);
+  transform: translateY(-2px);
+}
+
+/* CAMISETA — borda, discreto */
+.hero-v4__button--secondary {
+  background: #ffffff;
+  border: 1.5px solid #cc0000;
+  color: #cc0000;
+  flex: 0.8;
+}
+
+.hero-v4__button--secondary:hover {
+  background: #fff5f5;
+  transform: translateY(-2px);
+}
+
+/* esconde prova social */
+.hero-v4__social-proof { display: none; }
+
+/* ==========================================================
+   COLUNA DIREITA
+========================================================== */
+
+.hero-v4__right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: heroFadeUp .7s ease forwards;
+}
+
+/* ==========================================================
+   CARD DO ARTISTA + COUNTDOWN — COMPACTO
+========================================================== */
+
+.hero-v4__artist-card {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #e8ddd0;
+  border-left: 4px solid #cc0000;
+  border-radius: 10px;
+  padding: 14px 16px;
+  box-shadow: 0 3px 14px rgba(0,0,0,0.07);
+}
+
+.hero-v4__artist-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  background: #fff5f5;
+  border: 1px solid #ffcccc;
+  color: #cc0000;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.hero-v4__artist-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.hero-v4__artist-image {
+  width: 140px;
+  height: 80px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid #f0e0d0;
+}
+
+.hero-v4__artist-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  background: #ffffff;
+}
+
+.hero-v4__artist-info { flex: 1; }
+
+.hero-v4__artist-name {
+  margin: 0;
+  color: #1a0000;
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 1.1;
+  font-family: 'Merriweather', Georgia, serif;
+}
+
+.hero-v4__artist-description {
+  margin-top: 4px;
+  color: #777777;
+  font-size: 11px;
+  line-height: 1.4;
+  font-family: 'Roboto', sans-serif;
+}
+
+.hero-v4__divider {
+  margin: 12px 0 10px;
+  border: none;
+  height: 1px;
+  background: #f0e0d0;
+}
+
+/* COUNTDOWN */
+.hero-v4__countdown-title {
+  display: block;
+  text-align: center;
+  color: #cc0000;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.hero-v4__countdown {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.hero-v4__count-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  border-radius: 7px;
+  background: #fff8f5;
+  border: 1px solid #f0e0d0;
+}
+
+.hero-v4__count-number {
+  color: #cc0000;
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1;
+  font-family: 'Merriweather', Georgia, serif;
+}
+
+.hero-v4__count-label {
+  margin-top: 3px;
+  color: #999;
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* ALERTA DATA */
+.hero-v4__date-alert {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 7px 10px;
+  border-radius: 6px;
+  background: #fff5f5;
+  border: 1px solid #ffcccc;
+  color: #cc0000;
+  font-size: 10px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.4;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* CTA dentro do card */
+.hero-v4__card-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 10px;
+  border-radius: 7px;
+  background: linear-gradient(135deg, #cc0000, #990000);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .3px;
+  transition: .22s;
+  animation: pulseRed 2.4s infinite .9s;
+  font-family: 'Roboto', sans-serif;
+}
+
+.hero-v4__card-cta:hover {
+  background: linear-gradient(135deg, #e60000, #bb0000);
+  transform: scale(1.02);
+}
+
+/* ==========================================================
+   ANIMAÇÃO
+========================================================== */
+
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width: 1024px) {
+  .hero-v4__grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .hero-v4__left { align-items: center; text-align: center; }
+  .hero-v4__title { text-align: center; }
+  .hero-v4__subtitle { text-align: center; }
+  .hero-v4__chips { justify-content: center; }
+  .hero-v4__actions { justify-content: center; }
+  .hero-v4__right { max-width: 440px; margin: 0 auto; width: 100%; }
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 640px) {
+  .hero-v4__container { padding: 24px 16px 28px; }
+  .hero-v4__title { font-size: 24px; }
+  .hero-v4__subtitle { font-size: 13px; }
+  .hero-v4__actions {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .hero-v4__button {
+    flex: 1 1 calc(50% - 4px);
+    font-size: 11px;
+  }
+  .hero-v4__button--secondary { flex: 1 1 100%; }
+  .hero-v4__right {
+    grid-template-columns: 1fr;
+  }
+  .hero-v4__foto-principal { height: 180px; }
+  .hero-v4__count-number { font-size: 17px; }
+  .hero-v4__count-item { min-height: 44px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* ---- BOTÃO CHURRASCO ANTECIPADO ---- */
+.hero-v4__button--churrasco {
+  background: linear-gradient(135deg, #e67e00, #cc6600);
+  color: #ffffff;
+}
+.hero-v4__button--churrasco:hover {
+  background: linear-gradient(135deg, #ff8c00, #e67300);
+  transform: translateY(-2px);
+}
+
+/* ===== FIM: hero-v4.css ===== */
+
+/* ===== INÍCIO: premios.css ===== */
+/* =====================================================
+   PREMIAÇÃO FPSS 2027
+===================================================== */
+
+.premiacao-cinema {
+  padding: 52px 20px 56px;
+  background: #ffffff;
+  border-top: 3px solid #cc0000;
+  border-bottom: 1px solid #e8e0d8;
+  overflow: hidden;
+  position: relative;
+}
+
+.titulo-premiacao {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.titulo-premiacao span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: #cc0000;
+  color: #ffffff !important;
+  padding: 5px 16px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.titulo-premiacao h2 {
+  font-family: 'Merriweather', Georgia, serif !important;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #111111 !important;
+  line-height: 1.1;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+.titulo-premiacao p { display: none; }
+
+/* BARRA INFO */
+.premio-total-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+  background: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 9px 20px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  white-space: nowrap;
+}
+
+.premio-total-bar .linha,
+.premio-total-bar .linha.inv { display: none; }
+
+.premio-total-valor {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: #555 !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.premio-total-valor strong { color: #cc0000 !important; font-weight: 800; }
+.premio-total-valor .sep   { color: #ccc; }
+
+/* GRID */
+.premiacao-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  align-items: stretch;
+}
+
+.premio-4-row { display: contents; }
+
+/* CARD */
+.premio-cinema {
+  position: relative;
+  border-radius: 12px;
+  padding: 22px 18px;
+  overflow: hidden;
+  transition: transform .25s ease, box-shadow .25s ease;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff !important;
+  border: 1px solid #e8e0d8 !important;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.08) !important;
+}
+
+/* imagem de dinheiro no espaço vazio à direita (altura do badge/topo) */
+.premio-cinema::after {
+  content: "";
+  position: absolute;
+  top: 18px;
+  right: 14px;
+  width: 135px;
+  height: 85px;
+  background: url('../assets/imagens/premios/dinheiro.png') no-repeat center / contain;
+  opacity: 1;
+  transform: rotate(-6deg);
+  pointer-events: none;
+  z-index: 1;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.18));
+}
+
+/* neutraliza hover-3d/float que conflitam com a cédula no 1º prêmio */
+.premio-cinema.ouro {
+  transform-style: flat !important;
+  perspective: none !important;
+  animation: none !important;
+}
+
+.premio-cinema.ouro:hover {
+  transform: translateY(-5px) !important;
+}
+
+/* badge, valor e breakdown ficam acima da cédula */
+.topo-premio,
+.valor-premio,
+.breakdown-premio,
+.presencial-info {
+  position: relative;
+  z-index: 2;
+}
+
+.premio-cinema:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.13) !important;
+}
+
+/* bordas coloridas */
+.ouro            { border-top: 4px solid #d4a000 !important; }
+.prata           { border-top: 4px solid #cc0000 !important; }
+.bronze          { border-top: 4px solid #b02020 !important; }
+.card-presencial { border-top: 4px solid #e67e00 !important; }
+
+/* BADGE */
+.topo-premio { margin-bottom: 12px; }
+
+.badge-premio {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 11px;
+  border-radius: 4px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
+}
+
+.ouro .badge-premio            { background: #fef3cd !important; color: #8a6000 !important; border: 1px solid #e6c96a; }
+.prata .badge-premio           { background: #fde8e8 !important; color: #aa0000 !important; border: 1px solid #f5b8b8; }
+.bronze .badge-premio          { background: #fdeaea !important; color: #9b2020 !important; border: 1px solid #f0b0b0; }
+.card-presencial .badge-premio { background: #fff0e0 !important; color: #b85c00 !important; border: 1px solid #f5c880; }
+
+/* VALOR */
+.valor-premio {
+  font-family: 'Merriweather', Georgia, serif !important;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.ouro .valor-premio            { font-size: 2.1rem; color: #b8860b !important; }
+.prata .valor-premio           { font-size: 1.75rem; color: #111111 !important; }
+.bronze .valor-premio          { font-size: 1.75rem; color: #111111 !important; }
+.card-presencial .valor-premio { font-size: 1.75rem; color: #c05000 !important; }
+
+/* BREAKDOWN */
+.breakdown-premio {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 10px;
+  border-top: 1px solid #eeeeee;
+  margin-top: auto;
+}
+
+.breakdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.breakdown-label {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.63rem;
+  color: #999 !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.breakdown-value {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.74rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.ouro .breakdown-value            { color: #a07010 !important; }
+.prata .breakdown-value           { color: #cc0000 !important; }
+.bronze .breakdown-value          { color: #b02020 !important; }
+.card-presencial .breakdown-value { color: #c05000 !important; }
+
+.breakdown-dot { flex:1; border-bottom: 1px dashed #e8e8e8; }
+
+/* esconder elementos legados */
+.descricao-premio { display: none !important; }
+.divisor-card     { display: none !important; }
+.efeito-brilho    { display: none !important; }
+.ouro::before, .prata::before,
+.bronze::before, .card-presencial::before { display: none !important; }
+
+/* BOTÃO ADQUIRIR */
+.premiacao-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+.btn-adquirir-cartela {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 11px 40px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #cc0000, #990000);
+  color: #ffffff !important;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 900;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all .25s ease;
+  animation: pulseRed 2.5s infinite;
+}
+
+@keyframes pulseRed {
+  0%   { box-shadow: 0 0 0 0 rgba(204,0,0,0.45); }
+  70%  { box-shadow: 0 0 0 14px rgba(204,0,0,0); }
+  100% { box-shadow: 0 0 0 0 rgba(204,0,0,0); }
+}
+
+.btn-adquirir-cartela:hover {
+  transform: translateY(-3px) scale(1.02);
+  background: linear-gradient(135deg, #e60000, #bb0000);
+}
+
+/* RODAPÉ */
+.premiacao-rodape {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+.premiacao-rodape .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 13px;
+  border-radius: 4px;
+  background: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  color: #555 !important;
+  font-size: 0.70rem;
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+}
+
+.premiacao-rodape .chip span { color: #cc0000 !important; font-weight: 700; }
+
+/* RESPONSIVO */
+@media (max-width: 900px) {
+  .premiacao-cards { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .premio-cinema.ouro { grid-column: span 2; }
+  .card-presencial    { grid-column: span 2; }
+}
+
+@media (max-width: 560px) {
+  .premiacao-cinema { padding: 32px 12px 36px; }
+  .titulo-premiacao h2 { font-size: 1.6rem; }
+  .premiacao-cards { grid-template-columns: 1fr; gap: 10px; }
+  .premio-cinema.ouro, .card-presencial { grid-column: span 1; }
+  .btn-adquirir-cartela { width: 100%; font-size: 0.88rem; padding: 13px 20px; }
+}
+
+/* ===== FIM: premios.css ===== */
+
+/* ===== INÍCIO: produtos.css ===== */
+/* ==================================================
+   PRODUTOS FPSS 2027 — COMERCIAL + URGÊNCIA
+   Fonte: Merriweather + Roboto (estilo G1)
+================================================== */
+
+
+/* ==================================================
+   SEÇÃO TOPO — CABEÇALHO UNIFICADO
+================================================== */
+
+.produtos-cinema-topo {
+  text-align: center;
+  padding: 52px 20px 0;
+  background: #fff;
+  margin-bottom: 0;
+}
+
+.section-mini-title {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 20px;
+  border-radius: 4px;
+  background: #cc0000;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  font-family: 'Roboto', sans-serif;
+  box-shadow: none;
+}
+
+.produtos-cinema-topo h2 {
+  font-family: 'Merriweather', Georgia, serif;
+  font-size: 2.2rem;
+  line-height: 1.15;
+  color: #111111;
+  font-weight: 900;
+  text-transform: none;
+  margin-bottom: 10px;
+  text-shadow: none;
+}
+
+.produtos-cinema-topo p {
+  max-width: 580px;
+  margin: 0 auto 0;
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* barra de urgência global */
+.produtos-urgencia-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  background: #fff8f0;
+  border-top: 1px solid #ffe0b2;
+  border-bottom: 1px solid #ffe0b2;
+  padding: 10px 20px;
+  margin-top: 20px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.urgencia-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #a55200;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.urgencia-item .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #e53935;
+  animation: blink 1.2s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.2; }
+}
+
+/* ==================================================
+   SEÇÃO PRINCIPAL
+================================================== */
+
+.produtos-premium-section {
+  padding: 36px 20px 60px;
+  background: #ffffff;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* esconde o segundo cabeçalho duplicado */
+.produtos-premium-section .section-header-center {
+  display: none;
+}
+
+/* ==================================================
+   GRID — 3 COLUNAS
+================================================== */
+
+.venda-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ==================================================
+   CARD — COMPACTO
+================================================== */
+
+.venda-box {
+  position: relative;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: transform .22s ease, box-shadow .22s ease;
+  min-height: auto;
+}
+
+.venda-box::before { display: none; }
+
+.venda-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.11);
+}
+
+.venda-box::after {
+  content: "⚡ LOTE LIMITADO";
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  background: #e53935;
+  color: #fff;
+  font-size: 0.52rem;
+  font-weight: 900;
+  letter-spacing: 0.6px;
+  padding: 3px 8px;
+  border-radius: 0 10px 0 7px;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* ==================================================
+   IMAGEM — MENOR
+================================================== */
+
+.venda-box img {
+  width: 100%;
+  min-width: 100%;
+  height: 130px;
+  object-fit: cover;
+  object-position: center;
+  background: #f5f5f5;
+  padding: 0;
+  border-radius: 10px 10px 0 0;
+  display: block;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* ==================================================
+   CONTEÚDO
+================================================== */
+
+.venda-box-conteudo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px 14px 14px;
+}
+
+/* ==================================================
+   TÍTULO
+================================================== */
+
+.venda-box h3 {
+  font-family: 'Merriweather', Georgia, serif;
+  color: #111111;
+  font-size: 0.92rem;
+  line-height: 1.2;
+  font-weight: 900;
+  margin-bottom: 5px;
+}
+
+/* ==================================================
+   INFO
+================================================== */
+
+.info-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 8px;
+}
+
+.info-list li {
+  color: #666;
+  font-size: 0.70rem;
+  line-height: 1.4;
+  margin-bottom: 2px;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* ==================================================
+   BADGE LOTE
+================================================== */
+
+.badge-lote { display: none; }
+
+/* ==================================================
+   RODAPÉ
+================================================== */
+
+.venda-box-rodape {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #f0f0f0;
+}
+
+/* ==================================================
+   PREÇO
+================================================== */
+
+.price-box {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.price-box::before {
+  content: "por apenas";
+  font-size: 0.54rem;
+  font-weight: 600;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-bottom: 1px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.price-box {
+  color: #cc0000;
+  font-size: 1.3rem;
+  line-height: 1;
+  font-weight: 900;
+  font-family: 'Merriweather', Georgia, serif;
+}
+
+/* ==================================================
+   BOTÃO
+================================================== */
+
+.venda-box .btn.green.full {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  flex: 1;
+  padding: 9px 10px;
+  border-radius: 7px;
+  background: linear-gradient(135deg, #107a3b, #15803d);
+  color: #ffffff !important;
+  text-decoration: none;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  box-shadow: 0 3px 10px rgba(21,128,61,0.28);
+  transition: .22s;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  animation: pulseGreen 2.2s infinite;
+}
+
+@keyframes pulseGreen {
+  0%   { box-shadow: 0 0 0 0 rgba(21,128,61,0.38); }
+  70%  { box-shadow: 0 0 0 8px rgba(21,128,61,0); }
+  100% { box-shadow: 0 0 0 0 rgba(21,128,61,0); }
+}
+
+.venda-box .btn.green.full:hover {
+  transform: scale(1.03);
+  background: linear-gradient(135deg, #15803d, #166534);
+}
+
+/* ==================================================
+   LOADING
+================================================== */
+
+.loading-box {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 30px;
+  color: #999;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.85rem;
+}
+
+/* ==================================================
+   RESPONSIVO
+================================================== */
+
+@media (max-width: 1024px) {
+  .venda-container { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+}
+
+@media (max-width: 560px) {
+  .venda-container { grid-template-columns: 1fr; gap: 8px; }
+  .venda-box img   { height: 160px; }
+  .venda-box-rodape { flex-direction: row; align-items: center; }
+}
+
+/* ===== FIM: produtos.css ===== */
+
+/* ===== INÍCIO: components.css ===== */
+
+/* BOTÕES */
+.btn{
+  display:inline-block;
+  padding:14px 22px;
+  border-radius:10px;
+  font-weight:bold;
+  transition:.3s;
+}
+
+.btn.green{
+  background:#15792e;
+  color:#fff;
+}
+
+.btn.red {
+    background: linear-gradient(135deg, #ff8c00, #ffcc00);
+    color: #ffffff;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+}
+
+.btn.red:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+}
+
+.btn:hover{
+  transform:scale(1.05);
+}
+
+/* CARD PADRÃO */
+.card-box{
+  background:#fff;
+  max-width:600px;
+  margin:0 auto;
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 15px 40px rgba(0,0,0,.2);
+}
+
+/* INPUTS PADRÃO */
+.input{
+  width:100%;
+  padding:14px;
+  margin-bottom:12px;
+  border-radius:10px;
+  border:1px solid #ddd;
+}
+
+/* ========================================
+   PARCEIROS PREMIUM
+======================================== */
+
+.parceiros-premium{
+
+    position: relative;
+
+    padding: 120px 0;
+
+    background:
+    radial-gradient(circle at top,
+    rgba(255,174,0,.08),
+    transparent 30%),
+
+    linear-gradient(
+    to bottom,
+    #130000,
+    #220000);
+
+    overflow: hidden;
+}
+
+/* GRID */
+
+.parceiros-grid{
+
+    display: grid;
+
+    grid-template-columns: repeat(8,1fr);
+
+    gap: 10px;
+
+    margin-top: 20px;
+
+    width: 100%;
+}
+
+/* CARD */
+
+.parceiro-card{
+
+    position: relative;
+
+    height: 90px;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 8px;
+
+    background: #ffffff;
+
+    border: 1px solid #e8e0d8;
+
+    box-shadow: 0 2px 6px rgba(0,0,0,.05);
+
+    transition: .25s;
+}
+
+/* HOVER */
+
+.parceiro-card:hover{
+    transform: translateY(-2px);
+    border-color: #e0d0c0;
+    box-shadow: 0 6px 16px rgba(0,0,0,.10);
+}
+
+/* LOGOS */
+.parceiro-card img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    transition: .25s;
+    padding: 2px;
+    transform: scale(1.15);
+}
+
+
+.parceiro-card:hover img{
+    transform: scale(1.05);
+}
+
+/* DESTAQUES — 5 cotas de patrocínio (nomes próprios, com prefixo
+   parceiro-card--, pra não colidir com .ouro/.prata/.rubi usadas em
+   outras partes do site, como os cards de prêmio) */
+
+.parceiro-card--diamante{
+    border-top: 4px solid #38bdf8;
+}
+
+.parceiro-card--rubi{
+    border-top: 4px solid #e0115f;
+}
+
+.parceiro-card--ouro{
+    border-top: 4px solid #ffc107;
+}
+
+.parceiro-card--prata{
+    border-top: 4px solid #9aa0a6;
+}
+
+.parceiro-card--bronze{
+    border-top: 4px solid #b87333;
+}
+
+/* ========================================
+   RESPONSIVO PARCEIROS
+======================================== */
+
+@media(max-width:1400px){
+    .parceiros-grid{ grid-template-columns: repeat(8,1fr); }
+}
+
+@media(max-width:1100px){
+    .parceiros-grid{ grid-template-columns: repeat(6,1fr); }
+}
+
+@media(max-width:768px){
+    .parceiros-premium{ padding: 28px 0; }
+    .parceiros-grid{ grid-template-columns: repeat(4,1fr); gap: 8px; }
+    .parceiro-card{ height: 80px; padding: 6px; }
+    .parceiro-card img{ padding: 3px; }
+}
+
+@media(max-width:520px){
+    .parceiros-grid{ grid-template-columns: repeat(3,1fr); }
+}
+
+/* ========================================
+   LOCALIZAÇÃO PREMIUM
+======================================== */
+
+.localizacao-premium{
+
+    padding:120px 0;
+
+    background:
+    linear-gradient(
+    to bottom,
+    #140404,
+    #220606);
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.localizacao-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    1.2fr .8fr;
+
+    gap:40px;
+
+    margin-top:60px;
+
+    align-items:stretch;
+}
+
+/* MAPA */
+
+.mapa-box{
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:30px;
+
+    min-height:520px;
+
+    box-shadow:
+    0 25px 60px rgba(0,0,0,.35);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+}
+
+.mapa-box iframe{
+
+    width:100%;
+
+    height:100%;
+
+    border:none;
+
+    filter:
+    grayscale(.1)
+    contrast(1.05)
+    brightness(.95);
+}
+
+/* INFO */
+
+.info-localizacao{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+}
+
+.local-card{
+
+    display:flex;
+
+    gap:18px;
+
+    align-items:flex-start;
+
+    padding:24px;
+
+    border-radius:24px;
+
+    background:
+    linear-gradient(
+    145deg,
+    rgba(255,255,255,.08),
+    rgba(255,255,255,.03));
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(12px);
+
+    transition:.3s;
+}
+
+.local-card:hover{
+
+    transform:
+    translateY(-5px);
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.25);
+}
+
+.local-card span{
+
+    font-size:30px;
+}
+
+.local-card h3{
+
+    color:#fff;
+
+    font-size:22px;
+
+    margin-bottom:6px;
+
+    font-weight:800;
+}
+
+.local-card p{
+
+    color:
+    rgba(255,255,255,.75);
+
+    line-height:1.6;
+}
+
+/* BOTÃO */
+
+.btn-localizacao{
+
+    margin-top:10px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    height:68px;
+
+    border-radius:20px;
+
+    background:
+    linear-gradient(
+    135deg,
+    #facc15,
+    #ffae00);
+
+    color:#4a0404;
+
+    font-weight:900;
+
+    font-size:16px;
+
+    text-decoration:none;
+
+    transition:.3s;
+
+    box-shadow:
+    0 15px 30px rgba(255,174,0,.25);
+}
+
+.btn-localizacao:hover{
+
+    transform:
+    translateY(-4px)
+    scale(1.02);
+}
+
+/* RESPONSIVO */
+
+@media(max-width:980px){
+
+.localizacao-grid{
+
+    grid-template-columns:1fr;
+}
+
+.mapa-box{
+
+    min-height:400px;
+}
+
+}
+
+/* ========================================
+   ANIMAÇÕES CINEMATOGRÁFICAS
+======================================== */
+
+/* ESTADO INICIAL */
+
+.reveal{
+
+    opacity: 0;
+
+    transform:
+    translateY(70px)
+    scale(.96);
+
+    filter: blur(8px);
+
+    transition:
+    opacity 1s ease,
+    transform 1s ease,
+    filter 1s ease;
+}
+
+/* QUANDO APARECE */
+
+.reveal.active{
+
+    opacity: 1;
+
+    transform:
+    translateY(0)
+    scale(1);
+
+    filter: blur(0);
+}
+
+/* DELAYS */
+
+.delay-1{
+    transition-delay: .1s;
+}
+
+.delay-2{
+    transition-delay: .2s;
+}
+
+.delay-3{
+    transition-delay: .3s;
+}
+
+.delay-4{
+    transition-delay: .4s;
+}
+
+.delay-5{
+    transition-delay: .5s;
+}
+
+/* HOVER PREMIUM GLOBAL */
+
+.hover-glow{
+
+    transition:
+    transform .35s ease,
+    box-shadow .35s ease;
+}
+
+.hover-glow:hover{
+
+    transform:
+    translateY(-8px)
+    scale(1.02);
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,.25);
+}
+
+/* ========================================
+   FLOATING PREMIUM
+======================================== */
+
+.float{
+
+    animation:
+    floating 5s ease-in-out infinite;
+}
+
+@keyframes floating{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+}
+
+/* ========================================
+   GLOW PREMIUM
+======================================== */
+
+.glow-premium{
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.glow-premium::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:300px;
+    height:300px;
+
+    background:
+    radial-gradient(
+    circle,
+    rgba(255,174,0,.22),
+    transparent 70%);
+
+    top:-120px;
+    right:-120px;
+
+    animation:
+    glowMove 7s linear infinite;
+
+    pointer-events:none;
+}
+
+@keyframes glowMove{
+
+    0%{
+        transform:rotate(0deg);
+    }
+
+    100%{
+        transform:rotate(360deg);
+    }
+}
+
+/* ========================================
+   3D HOVER
+======================================== */
+
+.hover-3d{
+
+    transform-style:
+    preserve-3d;
+
+    perspective:1000px;
+
+    transition:.35s;
+}
+
+.hover-3d:hover{
+
+    transform:
+    rotateX(4deg)
+    rotateY(-4deg)
+    translateY(-8px)
+    scale(1.02);
+}
+
+/* Versão mais sóbria pros cards de produto (.venda-box): a rotação 3D
+   completa deslocava o botão "Comprar Agora" o suficiente pra o mouse
+   "escapar" da área dele durante o hover, causando um tremor (o hover
+   entra e sai repetidamente) e cliques perdidos. Aqui só sobe e cresce
+   um pouco, sem rotação, então o botão nunca sai de debaixo do cursor. */
+.venda-box.hover-3d:hover{
+    transform: translateY(-6px) scale(1.01);
+}
+
+/* ========================================
+   LIGHTBOX PREMIUM
+======================================== */
+
+.lightbox-premium{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    rgba(0,0,0,.92);
+
+    backdrop-filter:
+    blur(12px);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.35s;
+
+    z-index:99999;
+}
+
+/* ATIVO */
+
+.lightbox-premium.active{
+
+    opacity:1;
+
+    visibility:visible;
+}
+
+/* IMAGEM */
+
+.lightbox-premium img{
+
+    max-width:92%;
+
+    max-height:90vh;
+
+    border-radius:24px;
+
+    box-shadow:
+    0 25px 80px rgba(0,0,0,.5);
+
+    transform:
+    scale(.85);
+
+    transition:.35s;
+}
+
+.lightbox-premium.active img{
+
+    transform:
+    scale(1);
+}
+
+/* FECHAR */
+
+.lightbox-close{
+
+    position:absolute;
+
+    top:30px;
+    right:40px;
+
+    width:54px;
+    height:54px;
+
+    border-radius:50%;
+
+    background:
+    rgba(255,255,255,.12);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#fff;
+
+    font-size:26px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.lightbox-close:hover{
+
+    transform:rotate(90deg);
+
+    background:
+    rgba(255,255,255,.2);
+}
+
+/* ========================================
+   SCROLL PROGRESS
+======================================== */
+
+.scroll-progress{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:0%;
+
+    height:4px;
+
+    background:
+    linear-gradient(
+    90deg,
+    #ffcc00,
+    #ff7b00);
+
+    z-index:999999;
+
+    box-shadow:
+    0 0 15px rgba(255,174,0,.6);
+}
+/* =====================================================
+   MELHORIAS FPSS 2027 — SEÇÕES SEM FUNDO PRETO
+===================================================== */
+
+/* Programação: fundo creme */
+.programacao-premium { background:linear-gradient(to bottom,#fdf6ee,#faebd7) !important; padding:40px 0 !important; }
+
+/* Atrações: fundo branco */
+.atracoes-section { background:#ffffff !important; padding:40px 0 !important; }
+.section-header-center.light h2 { color:#1a0000 !important; }
+.section-header-center.light p  { color:#555 !important; }
+
+/* Localização: fundo branco */
+.localizacao-premium { background:#ffffff !important; padding:28px 0 !important; }
+.localizacao-premium .section-header-center.light h2 { color:#1a0000 !important; font-family:'Merriweather',Georgia,serif !important; text-transform:none !important; }
+.localizacao-premium .section-header-center.light p  { color:#666 !important; }
+/* Cards localização no modo antigo (fallback) */
+.local-card { background:#fdf6ee !important; border:1px solid #e8e0d8 !important; }
+.local-card h3 { color:#1a0000 !important; }
+.local-card p  { color:#555 !important; }
+.btn-localizacao { background:linear-gradient(135deg,#cc0000,#990000) !important; color:#fff !important; }
+
+/* Parceiros: fundo branco */
+.parceiros-premium { background:#ffffff !important; padding:28px 0 !important; }
+
+/* ===== FIM: components.css ===== */
+
+/* ===== INÍCIO: enquete.css ===== */
+
+/* =========================
+RESET ISOLADO FPSS
+========================= */
+.enquete-fpss{
+  width:100% !important;
+  min-height:100vh !important;
+  display:flex !important;
+  justify-content:center !important;
+  align-items:center !important;
+  padding:40px 15px !important;
+  background:linear-gradient(135deg,#8b1111,#c61f1f) !important;
+}
+
+/* =========================
+CAIXA CENTRAL
+========================= */
+.enquete-fpss .enquete-box{
+  width:100% !important;
+  max-width:620px !important;
+  margin:0 auto !important;
+  background:#ffffff !important;
+  padding:30px !important;
+  border-radius:18px !important;
+  box-shadow:0 25px 60px rgba(0,0,0,.35) !important;
+}
+
+/* =========================
+TÍTULO PRINCIPAL
+========================= */
+.enquete-fpss .enquete-box h1{
+  text-align:center !important;
+  color:#8b1111 !important;
+  font-size:26px !important;
+  margin-bottom:10px !important;
+  font-weight:800 !important;
+}
+
+/* =========================
+SUBTEXTO
+========================= */
+.enquete-fpss .enquete-box p{
+  text-align:center !important;
+  color:#555 !important;
+  margin-bottom:20px !important;
+}
+
+/* =========================
+SEÇÕES
+========================= */
+.enquete-fpss .enquete-box h2{
+  margin-top:22px !important;
+  margin-bottom:10px !important;
+  font-size:18px !important;
+  color:#8b1111 !important;
+  border-left:5px solid #c61f1f !important;
+  padding-left:10px !important;
+  font-weight:700 !important;
+}
+
+/* =========================
+LABELS
+========================= */
+.enquete-fpss .enquete-box label{
+  display:block !important;
+  margin-top:12px !important;
+  margin-bottom:6px !important;
+  font-weight:700 !important;
+  font-size:14px !important;
+  color:#333 !important;
+}
+
+/* =========================
+INPUTS PADRÃO FPSS
+========================= */
+.enquete-fpss .enquete-box input,
+.enquete-fpss .enquete-box select,
+.enquete-fpss .enquete-box textarea{
+  width:100% !important;
+  padding:12px !important;
+  border-radius:10px !important;
+  border:1px solid #ddd !important;
+  font-size:15px !important;
+  outline:none !important;
+  background:#fff !important;
+  transition:0.2s !important;
+}
+
+/* FOCO (VERMELHO FPSS FORTE) */
+.enquete-fpss .enquete-box input:focus,
+.enquete-fpss .enquete-box select:focus,
+.enquete-fpss .enquete-box textarea:focus{
+  border:2px solid #8b1111 !important;
+  box-shadow:0 0 8px rgba(139,17,17,.35) !important;
+}
+
+/* =========================
+TEXTAREA
+========================= */
+.enquete-fpss .enquete-box textarea{
+  min-height:90px !important;
+  resize:vertical !important;
+}
+
+/* =========================
+BOTÃO FPSS (FORTE CONVERSÃO)
+========================= */
+.enquete-fpss .enquete-box button{
+  width:100% !important;
+  margin-top:22px !important;
+  padding:15px !important;
+  border:none !important;
+  border-radius:12px !important;
+  background:linear-gradient(135deg,#1fae42,#179238) !important;
+  color:#fff !important;
+  font-size:18px !important;
+  font-weight:800 !important;
+  cursor:pointer !important;
+  transition:0.25s !important;
+}
+
+/* hover */
+.enquete-fpss .enquete-box button:hover{
+  transform:scale(1.02) !important;
+}
+
+/* =========================
+MENSAGEM
+========================= */
+#msg{
+  margin-top:15px !important;
+  text-align:center !important;
+  font-weight:bold !important;
+}
+
+/* =========================
+RESPONSIVO
+========================= */
+@media (max-width:480px){
+
+  .enquete-fpss .enquete-box{
+    padding:20px !important;
+  }
+
+  .enquete-fpss .enquete-box h1{
+    font-size:22px !important;
+  }
+
+}
+
+/* =========================
+TOPO ENQUETE FPSS (NOVO VISUAL)
+========================= */
+.enquete-topo{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+/* BADGE SUPERIOR */
+.badge-enquete{
+  display:inline-block;
+  background:#8b1111;
+  color:#fff;
+  padding:6px 12px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:bold;
+  margin-bottom:10px;
+  letter-spacing:0.5px;
+}
+
+/* TÍTULO PRINCIPAL */
+.enquete-topo h1{
+  font-size:24px;
+  color:#8b1111;
+  font-weight:900;
+  margin-bottom:10px;
+  line-height:1.2;
+}
+
+/* TEXTO SECUNDÁRIO */
+.enquete-topo p{
+  color:#555;
+  font-size:15px;
+  line-height:1.4;
+  margin-bottom:10px;
+}
+
+/* ALERTA DE CONVERSÃO */
+.alerta-topo{
+  display:inline-block;
+  margin-top:8px;
+  background:#fff3cd;
+  color:#856404;
+  padding:8px 12px;
+  border-radius:10px;
+  font-size:13px;
+  font-weight:bold;
+}
+
+    /* ====================================================================
+       BOTÃO DA ENQUETE TOTALMENTE DESTACADO E COM VIDA (ALTA CONVERSÃO)
+    ==================================================================== */
+    /* ==================================================
+   ENQUETE PREMIUM
+================================================== */
+
+.enquete-callout{
+    width:100%;
+    padding:34px 20px 20px;
+}
+
+.enquete-callout .wrap{
+    max-width:1100px;
+    margin:0 auto;
+}
+
+.cta-enquete-wrap{
+    background:#ffffff;
+    border-radius:28px;
+
+    padding:26px 24px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.06);
+
+    border:1px solid #ececec;
+}
+
+/* ==================================================
+   BOTÃO PRINCIPAL
+================================================== */
+
+.btn-enquete-premium{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    max-width:760px;
+    width:100%;
+
+    padding:18px 28px;
+
+    border-radius:18px;
+
+    background:
+    linear-gradient(
+    135deg,
+    #ff1744 0%,
+    #c2185b 100%
+    );
+
+    color:#fff;
+    text-decoration:none;
+
+    font-size:18px;
+    font-weight:900;
+
+    line-height:1.4;
+
+    text-transform:uppercase;
+
+    letter-spacing:.4px;
+
+    box-shadow:
+    0 12px 28px rgba(194,24,91,.28);
+
+    transition:.25s ease;
+}
+
+.btn-enquete-premium:hover{
+    transform:
+    translateY(-3px)
+    scale(1.01);
+
+    box-shadow:
+    0 18px 36px rgba(194,24,91,.34);
+
+    filter:brightness(1.03);
+}
+
+/* ==================================================
+   SUBTEXTO
+================================================== */
+
+.enquete-subtexto{
+    margin-top:14px;
+
+    text-align:center;
+
+    color:#64748b;
+
+    font-size:14px;
+    font-weight:600;
+}
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width:768px){
+
+.enquete-callout{
+    padding:24px 14px;
+}
+
+.cta-enquete-wrap{
+    padding:18px;
+    border-radius:22px;
+}
+
+.btn-enquete-premium{
+    font-size:14px;
+    padding:15px 18px;
+    border-radius:14px;
+    line-height:1.35;
+}
+
+.enquete-subtexto{
+    font-size:12px;
+}
+
+}
+
+/* ===== FIM: enquete.css ===== */
+
+/* ===== INÍCIO: vip.css ===== */
+/* ================================
+FPSS VIP - VISUAL PROFISSIONAL
+=============================== */
+
+.vip-fpss{
+  padding:90px 20px;
+  background:transparent !important;
+  background-color:#f7f1e8 !important;
+  display:flex;
+  justify-content:center;
+}
+
+/* CAIXA PRINCIPAL */
+.vip-box{
+  max-width:620px;
+  width:100%;
+  background:linear-gradient(180deg,#ffffff,#fff8ef);
+  padding:48px 34px;
+  border-radius:26px;
+  box-shadow:0 24px 70px rgba(0,0,0,.35);
+  text-align:center;
+  border-top:6px solid #ffd700;
+  position:relative;
+}
+
+/* TÍTULO */
+.vip-box h2{
+  font-size:36px;
+  color:#8b1111;
+  margin-bottom:10px;
+  line-height:1.12;
+  font-weight:900;
+  text-transform:uppercase;
+}
+
+/* TEXTO */
+.vip-box p{
+  color:#555;
+  font-size:16px;
+  margin-bottom:28px;
+  line-height:1.6;
+  font-weight:600;
+}
+
+/* ================================
+GRUPOS + LABELS
+=============================== */
+.vip-form-group{
+  text-align:left;
+  margin-bottom:22px;
+}
+
+.vip-form-group label{
+  display:block !important;
+  font-size:15px !important;
+  font-weight:900 !important;
+  color:#8b1111 !important;
+  margin-bottom:10px !important;
+  padding-left:2px !important;
+  letter-spacing:.2px;
+  opacity:1 !important;
+  visibility:visible !important;
+}
+
+/* ================================
+INPUTS (ESTILO PREMIUM)
+=============================== */
+.vip-box input{
+  width:100%;
+  padding:19px 16px;
+  border:3px solid #8f8068;
+  border-radius:14px;
+  font-size:15px;
+  font-weight:700;
+  background:#ffffff;
+  color:#222;
+  transition:.25s;
+  outline:none;
+  margin-bottom:0;
+  box-shadow:
+    inset 0 2px 4px rgba(0,0,0,.04),
+    0 3px 6px rgba(0,0,0,.08);
+}
+
+/* FOCO */
+.vip-box input:focus{
+  border-color:#8b1111;
+  background:#fff;
+  box-shadow:
+    0 0 0 4px rgba(139,17,17,.12),
+    0 4px 10px rgba(139,17,17,.08);
+}
+
+/* PLACEHOLDER */
+.vip-box input::placeholder{
+  color:#999;
+}
+
+/* ================================
+BOTÃO
+=============================== */
+/* ================================
+BOTÃO
+=============================== */
+.vip-box button{
+  width:100%;
+  padding:21px;
+  border:none;
+  border-radius:14px;
+  background:linear-gradient(135deg,#16a34a,#22c55e);
+  color:#fff;
+  font-size:20px;
+  font-weight:900;
+  letter-spacing:.5px;
+  cursor:pointer;
+  transition:.25s;
+  margin-top:16px;
+  box-shadow:0 14px 32px rgba(31,174,66,.30);
+  border-bottom:4px solid rgba(0,0,0,.18);
+}
+
+
+/* HOVER */
+.vip-box button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 15px 30px rgba(31,174,66,.35);
+}
+
+/* MENSAGEM */
+#msgVIP{
+  margin-top:18px;
+  font-weight:800;
+  font-size:15px;
+  color:#15803d;
+  text-align:center;
+}
+
+/* ================================
+RESPONSIVO
+=============================== */
+@media(max-width:600px){
+
+  .vip-box{
+    padding:28px 20px;
+  }
+
+  .vip-box h2{
+    font-size:24px;
+  }
+
+}
+
+
+/* ==================================================
+   BLOCO VIP WHATSAPP
+================================================== */
+
+.vip-box{
+    max-width:540px;
+    margin:0 auto;
+}
+
+
+/* ===== FIM: vip.css ===== */
+
+/* ===== INÍCIO: footer.css ===== */
+
+
+    /* ====================================================================
+       CONTROLE E REESTRUTURAÇÃO DO ATENDIMENTO E DO RODAPÉ (FIM DO PRETO GIGANTE)
+    ==================================================================== */
+    .btn-atendimento-fixo {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+      color: #ffffff !important;
+      padding: 14px 24px;
+      border-radius: 50px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(18, 140, 126, 0.25);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      transition: opacity 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn-atendimento-fixo:hover {
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    /* botão "voltar ao topo" — fica empilhado em cima do
+       atendimento, só aparece depois que a pessoa rola a página */
+    .btn-voltar-topo {
+      position: fixed;
+      bottom: 90px;
+      right: 25px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #8b0000;
+      color: #ffffff;
+      border: none;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 20px rgba(139, 0, 0, 0.30);
+      cursor: pointer;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .btn-voltar-topo.visivel {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .btn-voltar-topo:hover {
+      background: #6e0000;
+      transform: translateY(-2px);
+    }
+
+    /* Esconde o atendimento dinamicamente se o menu open estiver ativo no mobile */
+    .topbar-master.menu-open ~ .btn-atendimento-fixo {
+      opacity: 0 !important;
+      pointer-events: none;
+    }
+
+    footer {
+      background-color: #ffffff !important; /* Substituído o fundo preto por branco limpo */
+      border-top: 1px solid #e5e7eb !important;
+      padding: 15px 0 !important; /* Altura da comissão reduzida e compacta */
+      margin-top: 20px !important;
+    }
+
+/* =====================================================
+   FOOTER REDESENHADO — FPSS 2027
+===================================================== */
+
+footer#mainFooter {
+  background: linear-gradient(135deg, #8b0000, #6b0000) !important;
+  border-top: none !important;
+  padding: 28px 0 !important;
+  margin-top: 0 !important;
+}
+
+footer#mainFooter .wrap {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+footer#mainFooter p:first-child {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  font-family: 'Merriweather', Georgia, serif !important;
+  margin: 0 !important;
+  text-align: center !important;
+}
+
+footer#mainFooter p:nth-child(2) {
+  font-size: 12px !important;
+  color: rgba(255,255,255,0.65) !important;
+  margin: 0 !important;
+  text-align: center !important;
+}
+
+footer#mainFooter a[href="admin/login.html"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  margin-top: 6px !important;
+  padding: 7px 18px !important;
+  border-radius: 6px !important;
+  background: rgba(255,255,255,0.10) !important;
+  border: 1px solid rgba(255,255,255,0.20) !important;
+  color: rgba(255,255,255,0.75) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  text-decoration: none !important;
+  transition: background .2s !important;
+}
+
+footer#mainFooter a[href="admin/login.html"]:hover {
+  background: rgba(255,255,255,0.20) !important;
+  color: #ffffff !important;
+}
+
+/* ===== FIM: footer.css ===== */
+
+/* ===== INÍCIO: conversao-master.css ===== */
+/* =====================================================
+   6ª FPSS 2027 • CONVERSAO MASTER LIMPO
+   Apenas ajustes globais temporários
+===================================================== */
+
+/* =====================================================
+   BARRA SUPERIOR
+===================================================== */
+
+.barra-urgencia{
+    position:relative;
+    z-index:1000;
+    background:#facc15;
+    color:#111111;
+    text-align:center;
+    padding:11px 14px;
+    font-weight:800;
+    font-size:14px;
+    line-height:1.4;
+}
+
+/* =====================================================
+   HEADER DESKTOP
+===================================================== */
+
+.topbar-master{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:2147483646;
+
+    overflow:visible !important;
+
+    width:100%;
+
+    background:linear-gradient(
+        180deg,
+        #8b0000,
+        #b30000
+    );
+
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
+}
+
+.header-main{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:30px;
+
+    width:100%;
+
+    min-height:48px;
+
+    padding-top:6px;
+
+    padding-bottom:6px;
+
+}
+.menu-master{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:26px;
+
+    margin-left:auto;
+
+    margin-right:auto;
+
+}
+
+/* Garante que todos os links do menu fiquem brancos e nítidos,
+   independente da cor de texto herdada do <body> de cada página
+   (algumas páginas, como enquete.html, têm color escuro no body,
+   e sem essa regra explícita o link "puxava" essa cor herdada,
+   ficando apagado em vez de branco como os demais). */
+.menu-master a{
+    color:#ffffff;
+}
+
+.menu-master a:hover{
+    color:#ffd54f;
+}
+.header-ctas{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    justify-self:end;
+
+}
+.menu-toggle{
+    display:none;
+}
+
+/* =====================================================
+   FAIXA INTERMEDIARIA -- antes do hamburguer assumir
+   Evita o menu quebrar em varias linhas quando a janela
+   ainda nao atingiu o breakpoint mobile (980px), mas ja
+   nao tem espaco pra caber tudo numa linha so.
+
+   A causa raiz era que os botoes CTA do header (Minha
+   Cartela / Churrasco Antecipado) so trocavam pro texto
+   compacto dentro do breakpoint mobile (768px do
+   mobile.css). Entre 768px e a largura desktop total,
+   sempre usavam o texto completo, que e longo demais
+   pra caber ao lado do menu nessa faixa intermediaria.
+===================================================== */
+@media (max-width:1500px){
+
+    .menu-master{
+        gap:14px;
+    }
+
+    .menu-master a{
+        font-size:13px;
+        white-space:nowrap;
+    }
+
+    .brand-text{
+        max-width:160px;
+    }
+
+    .brand-text h1{
+        font-size:16px;
+        white-space:nowrap;
+    }
+
+    .brand-text p{
+        font-size:10px;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+    }
+
+    /* troca os CTAs pro texto compacto, igual já acontece no mobile */
+    .btn-header-buy__full{
+        display:none;
+    }
+    .btn-header-buy__compact{
+        display:inline;
+    }
+
+    .btn-header-whatsapp,
+    .btn-header-buy{
+        padding:7px 14px;
+        font-size:12px;
+    }
+
+}
+
+@media (max-width:1080px){
+
+    .menu-master{
+        gap:10px;
+    }
+
+    .header-ctas{
+        gap:6px;
+    }
+
+}
+
+.brand-text h1{
+    margin:0;
+    color:#ffffff;
+    font-size:20px;
+    font-weight:900;
+}
+
+.brand-text p{
+    margin:0;
+    color:#fecaca;
+    font-size:11px;
+}
+
+
+
+.menu-master a[href="cliente/login.html"]{
+
+    color:#ffd54f;
+
+    font-weight:800;
+
+    position:relative;
+
+}
+
+.menu-master a[href="cliente/login.html"]:hover{
+
+    color:#ffffff;
+
+}
+
+.menu-master a[href="cliente/login.html"]::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    bottom:-4px;
+
+    width:100%;
+    height:2px;
+
+    background:#ffd54f;
+
+    border-radius:20px;
+
+}
+.menu-toggle{
+    display:none;
+}
+
+@media (max-width:980px){
+
+    .menu-toggle{
+        display:flex !important;
+        align-items:center;
+        justify-content:center;
+
+        width:42px;
+        height:42px;
+
+        border:none;
+        border-radius:10px;
+
+        background:#ffffff;
+        color:#8b0000;
+
+        font-size:24px;
+        font-weight:900;
+
+        cursor:pointer;
+    }
+
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width:768px){
+
+body{
+    overflow-x:hidden;
+}
+
+/* HEADER */
+
+.topbar-master{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    z-index:999999;
+
+    overflow:visible !important;
+
+    height:auto !important;
+
+    background:#8b0000;
+}
+
+.header-main{
+    min-height:44px;
+    padding:6px 12px;
+    gap:10px;
+}
+
+.brand-area{
+    max-width:150px;
+}
+
+.brand-text h1{
+    font-size:15px;
+    line-height:1;
+}
+
+.brand-text p{
+    font-size:10px;
+    line-height:1.1;
+}
+
+.brand-area img,
+.logo img{
+    width:38px;
+    height:38px;
+}
+
+/* MENU */
+
+
+
+/* BOTÕES */
+
+
+
+.btn-header-whatsapp,
+.btn-header-buy{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    min-height:40px;
+
+    padding:8px 10px;
+
+    border-radius:10px;
+
+    font-size:10px;
+    font-weight:800;
+
+    line-height:1.1;
+
+    white-space:nowrap;
+}
+
+/* WHATSAPP FLOAT */
+
+.whatsapp-float,
+.atendimento-float{
+    transform:scale(.82);
+    right:6px;
+    bottom:8px;
+}
+
+}
+/* ===== FIM: conversao-master.css ===== */
+
+/* ===== INÍCIO: hero-fix.css ===== */
+/* =====================================================
+   HERO FIX — Restaura hero para estado correto do ZIP
+   Deve ser carregado DEPOIS de todos os outros CSS
+===================================================== */
+
+/* Força fundo creme no hero */
+.hero-v4 {
+  background: linear-gradient(135deg, #fdf6ee 0%, #fdf0e0 60%, #fce8d0 100%) !important;
+  border-bottom: 3px solid #cc0000 !important;
+  min-height: unset !important;
+}
+
+/* Remove qualquer overlay/background herdado */
+.hero-v4__background,
+.hero-v4__overlay { display: none !important; }
+
+/* Grid: 2 colunas */
+.hero-v4__grid {
+  display: grid !important;
+  grid-template-columns: 1fr 420px !important;
+  align-items: center !important;
+  gap: 40px !important;
+}
+
+/* Coluna esquerda */
+.hero-v4__left {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  animation: heroFadeUp .6s ease forwards !important;
+}
+
+/* Badge */
+.hero-v4__badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 5px 14px !important;
+  margin-bottom: 14px !important;
+  border-radius: 4px !important;
+  background: #cc0000 !important;
+  color: #ffffff !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1.2px !important;
+  border: none !important;
+  backdrop-filter: none !important;
+}
+
+/* Título */
+.hero-v4__title {
+  margin: 0 !important;
+  font-family: 'Merriweather', Georgia, serif !important;
+  font-size: clamp(26px, 3vw, 46px) !important;
+  font-weight: 900 !important;
+  line-height: 1.0 !important;
+  letter-spacing: -1px !important;
+  text-transform: uppercase !important;
+  color: #1a0000 !important;
+  text-shadow: none !important;
+}
+
+.hero-v4__title span {
+  display: block !important;
+  color: #cc0000 !important;
+}
+
+/* Subtítulo */
+.hero-v4__subtitle {
+  margin-top: 12px !important;
+  color: #555555 !important;
+  font-size: 14px !important;
+  line-height: 1.65 !important;
+  font-weight: 400 !important;
+  font-family: 'Roboto', Arial, sans-serif !important;
+}
+
+/* Chips */
+.hero-v4__chip {
+  background: #ffffff !important;
+  border: 1px solid #e0d0c0 !important;
+  color: #333333 !important;
+}
+
+/* Botões */
+.hero-v4__button--primary {
+  background: linear-gradient(135deg, #cc0000, #990000) !important;
+  color: #ffffff !important;
+}
+
+.hero-v4__button--whatsapp {
+  background: linear-gradient(135deg, #25d366, #128c4a) !important;
+  color: #ffffff !important;
+}
+
+.hero-v4__button--secondary {
+  background: #ffffff !important;
+  border: 1.5px solid #cc0000 !important;
+  color: #cc0000 !important;
+}
+
+/* Card artista */
+.hero-v4__artist-card {
+  background: #ffffff !important;
+  border: 1px solid #e8ddd0 !important;
+  border-left: 4px solid #cc0000 !important;
+  border-radius: 10px !important;
+  padding: 14px 16px !important;
+  box-shadow: 0 3px 14px rgba(0,0,0,0.07) !important;
+  animation: heroFadeUp .7s ease forwards !important;
+}
+
+.hero-v4__artist-badge {
+  background: #fff5f5 !important;
+  border: 1px solid #ffcccc !important;
+  color: #cc0000 !important;
+  border-radius: 4px !important;
+}
+
+.hero-v4__artist-name { color: #1a0000 !important; font-family: 'Merriweather', Georgia, serif !important; }
+.hero-v4__artist-description { color: #777 !important; }
+.hero-v4__countdown-title { color: #cc0000 !important; }
+
+.hero-v4__count-item {
+  background: #fff8f5 !important;
+  border: 1px solid #f0e0d0 !important;
+  border-radius: 7px !important;
+}
+
+.hero-v4__count-number { color: #cc0000 !important; font-family: 'Merriweather', Georgia, serif !important; }
+.hero-v4__count-label { color: #999 !important; }
+
+.hero-v4__date-alert {
+  background: #fff5f5 !important;
+  border: 1px solid #ffcccc !important;
+  color: #cc0000 !important;
+}
+
+.hero-v4__card-cta {
+  background: linear-gradient(135deg, #cc0000, #990000) !important;
+  color: #ffffff !important;
+}
+
+.hero-v4__divider { background: #f0e0d0 !important; }
+
+/* Coluna direita */
+.hero-v4__right {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .hero-v4__grid { grid-template-columns: 1fr !important; }
+  .hero-v4__left { align-items: center !important; text-align: center !important; }
+  .hero-v4__title { text-align: center !important; }
+  .hero-v4__subtitle { text-align: center !important; }
+  .hero-v4__chips { justify-content: center !important; }
+  .hero-v4__actions { justify-content: center !important; }
+  .hero-v4__right { max-width: 440px !important; margin: 0 auto !important; width: 100% !important; }
+}
+
+@media (max-width: 640px) {
+  .hero-v4__title { font-size: 24px !important; }
+  .hero-v4__actions { flex-wrap: wrap !important; gap: 8px !important; }
+  .hero-v4__button { flex: 1 1 calc(50% - 4px) !important; font-size: 11px !important; }
+  .hero-v4__button--secondary { flex: 1 1 100% !important; }
+}
+
+/* ===== FIM: hero-fix.css ===== */
+
+/* ===== INÍCIO: mobile.css ===== */
+/* ============================================================
+   MOBILE FPSS 2027 — RESPONSIVIDADE NÍVEL G1
+   Trabalha apenas em telas ≤ 768px.
+   Desktop permanece intacto.
+============================================================ */
+
+/* padrão (desktop e qualquer tela acima do breakpoint mobile):
+   mostra o texto completo da barra de urgência, esconde o compacto.
+   O media query abaixo inverte isso só no mobile. */
+.barra-urgencia__compact {
+  display: none;
+}
+.barra-urgencia__full {
+  display: inline;
+}
+
+/* lista "Vendas abertas agora / Lotes antecipados / ..." —
+   no desktop usa gap:28px (ok lá), mas no mobile os itens
+   quebram linha e esse mesmo gap vira espaço vertical enorme */
+@media screen and (max-width: 980px) {
+  .produtos-urgencia-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px !important;
+    padding: 14px 18px;
+  }
+  .urgencia-item {
+    font-size: 12px;
+  }
+}
+
+.btn-header-buy__compact {
+  display: none;
+}
+.btn-header-buy__full {
+  display: inline;
+}
+
+@media screen and (max-width: 980px) {
+
+/* ============================================
+   RESET GLOBAL
+============================================ */
+html, body {
+  width: 100% !important;
+  overflow-x: clip !important;
+}
+
+.wrap {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+/* ============================================
+   BARRA DE URGÊNCIA (topo amarelo) — agora visível no
+   mobile também, fixa e empilhada acima do header.
+   Usa um texto mais curto (span __compact) pra caber
+   numa linha só em telas pequenas.
+============================================ */
+.urgencia-master {
+  display: none !important;
+}
+
+/* normal flow (não fixa) — rola e desaparece junto com a página,
+   igual já acontece no desktop. Só o header (abaixo) fica sticky. */
+.barra-urgencia {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  width: 100% !important;
+  height: 34px !important;
+  z-index: 999 !important;
+  padding: 0 14px !important;
+  font-size: 11px !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.barra-urgencia__full {
+  display: none !important;
+}
+.barra-urgencia__compact {
+  display: inline !important;
+}
+
+/* ============================================
+   HEADER
+   sticky em vez de fixed: fica no fluxo normal da página
+   (logo abaixo da barra) e só "cola" no topo quando o
+   scroll alcança ele — mesmo comportamento do desktop.
+============================================ */
+.topbar-master {
+  position: sticky !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 1000 !important;
+  padding: 0 !important;
+}
+
+.header-main {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 8px !important;
+  padding: 8px 14px !important;
+  min-height: 56px !important;
+  flex-wrap: nowrap !important;
+  position: relative !important;
+}
+
+/* botão hambúrguer visível */
+.menu-toggle {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  order: 1;
+  font-size: 24px !important;
+  background: transparent !important;
+  border: none !important;
+  color: #fff !important;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.brand-area {
+  order: 2;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+
+.logo-menu-img {
+  width: 36px !important;
+  height: 36px !important;
+  flex-shrink: 0 !important;
+}
+
+.brand-text { min-width: 0 !important; }
+
+.brand-text h1 {
+  font-size: 15px !important;
+  line-height: 1.1 !important;
+  white-space: nowrap !important;
+  margin: 0 !important;
+}
+
+.brand-text p {
+  font-size: 9px !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  margin: 0 !important;
+}
+
+/* menu de navegação vira dropdown compacto abaixo do header.
+   position:absolute (relativo ao .header-main, que já é
+   position:relative) em vez de fixed com pixel fixo — assim
+   ele sempre aparece colado embaixo do header, esteja ele no
+   fluxo normal (antes de rolar) ou "sticky" no topo (depois). */
+.menu-master {
+  display: none !important;
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  right: auto !important;
+  width: 230px !important;
+  max-width: 80vw !important;
+  height: auto !important;
+  max-height: calc(100vh - 80px) !important;
+  background: linear-gradient(160deg, #8b0000, #6a0000) !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  padding: 10px !important;
+  gap: 2px !important;
+  z-index: 2000 !important;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.40) !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(255,255,255,0.10) !important;
+  overflow-y: auto !important;
+  transform: none !important;
+  transition: opacity .2s ease !important;
+  opacity: 0;
+  margin: 0 !important;
+}
+
+.menu-master::before { display: none !important; }
+
+.menu-master.aberto {
+  display: flex !important;
+  opacity: 1;
+  animation: menuFadeDown .22s ease !important;
+}
+
+@keyframes menuFadeDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* botão X de fechar — não precisa no dropdown */
+.menu-fechar { display: none !important; }
+
+.menu-master a {
+  width: 100% !important;
+  padding: 12px 14px !important;
+  font-size: 14px !important;
+  color: #fff !important;
+  border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+  text-align: left !important;
+  border-radius: 6px !important;
+  transition: background .2s !important;
+}
+
+.menu-master a:last-child { border-bottom: none !important; }
+
+.menu-master a:active,
+.menu-master a:hover {
+  background: rgba(255,255,255,0.12) !important;
+}
+
+/* CTAs do header escondidos no mobile (já estão no menu/hero) */
+.header-ctas {
+  order: 3;
+  display: flex !important;
+  gap: 6px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Cartela e Churrasco — ambos visíveis no mobile, lado a lado e compactos */
+.btn-header-whatsapp {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 7px 10px !important;
+  font-size: 11px !important;
+  white-space: nowrap !important;
+  border-radius: 6px !important;
+}
+
+.btn-header-buy {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 7px 10px !important;
+  font-size: 11px !important;
+  white-space: nowrap !important;
+  border-radius: 6px !important;
+}
+
+.btn-header-buy__full {
+  display: none !important;
+}
+.btn-header-buy__compact {
+  display: inline !important;
+}
+
+/* overlay escuro quando menu aberto */
+.menu-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1999;
+}
+.menu-overlay.ativo { display: block; }
+
+/* ============================================
+   CARROSSEL — 1 slide por vez, com descrição
+============================================ */
+.fpss-carrossel__slide {
+  width: 100vw !important;
+  height: auto !important;
+  min-height: 96px !important;
+  padding: 10px 0 !important;
+}
+
+.fpss-carrossel__img-wrap {
+  width: 76px !important;
+  min-width: 76px !important;
+  height: 76px !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+.fpss-carrossel__body {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0 12px !important;
+  gap: 8px !important;
+}
+
+.fpss-carrossel__texto {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+.fpss-carrossel__tag {
+  font-size: 0.5rem !important;
+  padding: 2px 6px !important;
+  width: fit-content !important;
+}
+
+.fpss-carrossel__body strong {
+  font-size: 0.74rem !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: block !important;
+  max-width: 100% !important;
+}
+
+.fpss-carrossel__body span {
+  display: block !important;
+  font-size: 0.6rem !important;
+  line-height: 1.25 !important;
+  color: rgba(255,255,255,0.62) !important;
+  white-space: normal !important;
+  overflow: hidden !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  max-width: 100% !important;
+}
+
+.fpss-carrossel__btn {
+  font-size: 0.52rem !important;
+  padding: 7px 10px !important;
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+}
+
+/* acelera um pouco no mobile */
+.fpss-carrossel__runner { animation-duration: 24s !important; }
+
+/* ============================================
+   HERO V4 — empilhado
+============================================ */
+.hero-v4 {
+  padding: 24px 0 28px !important;
+}
+
+.hero-v4__container { padding: 0 16px !important; }
+
+.hero-v4__grid {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 22px !important;
+}
+
+.hero-v4__left {
+  align-items: flex-start !important;
+  text-align: left !important;
+  order: 1;
+}
+
+.hero-v4__badge {
+  font-size: 9px !important;
+  padding: 4px 11px !important;
+  margin-bottom: 12px !important;
+}
+
+.hero-v4__title {
+  font-size: 1.9rem !important;
+  line-height: 1.08 !important;
+  text-align: left !important;
+}
+
+.hero-v4__subtitle {
+  font-size: 0.9rem !important;
+  text-align: left !important;
+  margin: 10px 0 0 !important;
+}
+
+.hero-v4__chips {
+  justify-content: flex-start !important;
+  gap: 6px !important;
+  margin-top: 14px !important;
+}
+
+.hero-v4__chip {
+  font-size: 0.72rem !important;
+  padding: 5px 10px !important;
+}
+
+/* botões do hero: 2 por linha, largos */
+.hero-v4__actions {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 8px !important;
+  width: 100% !important;
+  margin-top: 18px !important;
+  justify-content: stretch !important;
+}
+
+.hero-v4__button {
+  width: 100% !important;
+  justify-content: center !important;
+  font-size: 0.74rem !important;
+  padding: 12px 8px !important;
+  text-align: center !important;
+}
+
+/* card direito ocupa largura total */
+.hero-v4__right {
+  order: 2;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+}
+
+.hero-v4__artist-card {
+  width: 100% !important;
+  padding: 16px !important;
+}
+
+.hero-v4__artist-image {
+  width: 110px !important;
+  height: 64px !important;
+}
+
+.hero-v4__artist-image img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+
+.hero-v4__artist-name { font-size: 1rem !important; }
+
+.hero-v4__countdown {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 6px !important;
+}
+
+.hero-v4__count-number { font-size: 1.3rem !important; }
+.hero-v4__count-label  { font-size: 0.6rem !important; }
+
+.hero-v4__date-alert {
+  font-size: 0.68rem !important;
+  line-height: 1.4 !important;
+  text-align: center !important;
+}
+
+.hero-v4__card-cta {
+  font-size: 0.82rem !important;
+  padding: 12px !important;
+}
+
+/* ============================================
+   PREMIAÇÃO — cards empilhados
+============================================ */
+.premiacao-cinema { padding: 36px 0 40px !important; }
+
+.titulo-premiacao h2 { font-size: 1.6rem !important; }
+
+.premio-total-bar {
+  white-space: normal !important;
+  padding: 10px 14px !important;
+  width: 100% !important;
+}
+
+.premio-total-valor {
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 6px 10px !important;
+  font-size: 0.7rem !important;
+}
+
+.premiacao-cards {
+  grid-template-columns: 1fr 1fr !important;
+  gap: 10px !important;
+}
+
+.premio-cinema.ouro { grid-column: span 2 !important; }
+.card-presencial    { grid-column: span 2 !important; }
+
+.ouro .valor-premio  { font-size: 2rem !important; }
+.prata .valor-premio,
+.bronze .valor-premio,
+.card-presencial .valor-premio { font-size: 1.7rem !important; }
+
+.btn-adquirir-cartela {
+  width: 100% !important;
+  font-size: 0.85rem !important;
+  padding: 13px 18px !important;
+}
+
+.premiacao-rodape {
+  flex-direction: column !important;
+  gap: 7px !important;
+}
+.premiacao-rodape .chip { width: 100% !important; justify-content: center !important; }
+
+/* ============================================
+   PRODUTOS — 1 coluna
+============================================ */
+.venda-container {
+  grid-template-columns: 1fr !important;
+  gap: 14px !important;
+}
+
+.produtos-cinema-topo .wrap { text-align: center; }
+
+/* barra de selos de venda quebra linha */
+.venda-selos,
+.produtos-barra-selos {
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 8px 14px !important;
+  font-size: 11px !important;
+}
+
+/* ============================================
+   DUAL SECTION — Programação + Atrações empilhadas
+============================================ */
+.dual-section-wrap { padding: 28px 0 !important; }
+
+.dual-section-grid {
+  grid-template-columns: 1fr !important;
+  gap: 24px !important;
+}
+
+.dual-programacao { gap: 10px !important; }
+.mini-cartaz { width: 70px !important; }
+
+.dual-col .show-premium-card { flex-direction: row !important; }
+.dual-col .show-image-area {
+  width: 120px !important;
+  min-width: 120px !important;
+  height: auto !important;
+}
+
+/* ============================================
+   GALERIA — vista aérea full + 2 colunas
+============================================ */
+.galeria-cinema { padding: 28px 0 !important; }
+
+.estatisticas-evento {
+  grid-template-columns: 1fr 1fr !important;
+  gap: 8px !important;
+}
+
+.galeria-grid-premium {
+  grid-template-columns: 1fr 1fr !important;
+  grid-template-rows: auto !important;
+  grid-auto-rows: auto !important;
+  gap: 8px !important;
+}
+
+.galeria-grid-premium .foto-premium:nth-child(1) {
+  grid-column: 1 / 3 !important;
+  grid-row: auto !important;
+  height: 180px !important;
+}
+.galeria-grid-premium .foto-premium:nth-child(n+2) {
+  grid-column: auto !important;
+  grid-row: auto !important;
+  height: 120px !important;
+}
+
+/* ============================================
+   LOCALIZAÇÃO — 1 coluna
+============================================ */
+.localizacao-premium { padding: 28px 0 !important; }
+
+.local-grid-3col {
+  grid-template-columns: 1fr !important;
+  gap: 14px !important;
+}
+
+.local-mapa-col .mapa-box {
+  min-height: 220px !important;
+}
+.local-mapa-col .mapa-box iframe { min-height: 220px !important; }
+
+/* ============================================
+   PARCEIROS — 3 colunas
+============================================ */
+.parceiros-premium { padding: 28px 0 !important; }
+
+.parceiros-grid {
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 8px !important;
+}
+
+.parceiro-card { height: 80px !important; }
+
+/* ============================================
+   ENQUETE + VIP — empilhados
+============================================ */
+.enquete-vip-wrap {
+  grid-template-columns: 1fr !important;
+  gap: 14px !important;
+}
+
+.cta-enquete-wrap,
+.vip-box { padding: 22px 18px !important; }
+
+.btn-enquete-premium {
+  font-size: 0.85rem !important;
+  padding: 14px 16px !important;
+}
+
+/* ============================================
+   FOOTER
+============================================ */
+footer#mainFooter { padding: 24px 16px !important; }
+footer#mainFooter p:first-child { font-size: 13px !important; text-align: center !important; }
+
+/* ============================================
+   BOTÃO ATENDIMENTO flutuante
+============================================ */
+.btn-atendimento-fixo {
+  bottom: 14px !important;
+  right: 14px !important;
+  width: 44px !important;
+  height: 44px !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  font-size: 0 !important;
+  gap: 0 !important;
+  justify-content: center !important;
+}
+
+.btn-atendimento-fixo::before {
+  content: "💬";
+  font-size: 20px;
+}
+
+.btn-voltar-topo {
+  bottom: 68px !important;
+  right: 14px !important;
+  width: 40px !important;
+  height: 40px !important;
+  font-size: 16px !important;
+}
+
+} /* fim @media 768px */
+
+/* ============================================================
+   TELAS MUITO PEQUENAS (≤ 400px)
+============================================================ */
+@media screen and (max-width: 400px) {
+
+.hero-v4__title { font-size: 1.6rem !important; }
+
+.hero-v4__actions { grid-template-columns: 1fr !important; }
+
+.premiacao-cards { grid-template-columns: 1fr !important; }
+.premio-cinema.ouro,
+.card-presencial { grid-column: span 1 !important; }
+
+.parceiros-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+.estatisticas-evento { grid-template-columns: 1fr !important; }
+
+.hero-v4__countdown { gap: 4px !important; }
+.hero-v4__count-number { font-size: 1.1rem !important; }
+
+}
+
+/* ============================================================
+   REDES SOCIAIS — mobile
+============================================================ */
+@media screen and (max-width: 980px) {
+  .redes-sociais-premium { padding: 28px 0 32px !important; }
+  .redes-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; margin-top: 18px !important; }
+  .rede-card { padding: 13px 12px !important; gap: 10px !important; border-radius: 12px !important; }
+  .rede-card__icon { width: 38px !important; height: 38px !important; min-width: 38px !important; border-radius: 9px !important; }
+  .rede-card__icon svg { width: 19px !important; height: 19px !important; }
+  .rede-card__nome { font-size: 0.82rem !important; }
+  .rede-card__desc { font-size: 0.62rem !important; line-height: 1.25 !important; }
+  .rede-card__seta { display: none !important; }
+  .redes-rodape { font-size: 0.66rem !important; margin-top: 18px !important; flex-direction: column !important; gap: 4px !important; }
+  .redes-rodape__sep { display: none !important; }
+}
+
+@media screen and (max-width: 400px) {
+  .redes-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ===== FIM: mobile.css ===== */
