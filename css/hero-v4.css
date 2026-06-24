@@ -294,18 +294,26 @@
 .hero-v4__artist-content {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
 }
 
 .hero-v4__artist-image {
-  width: 64px;
+  width: 140px;
+  height: 80px;
   flex-shrink: 0;
-  border-radius: 8px;
+  border-radius: 10px;
   overflow: hidden;
   border: 2px solid #f0e0d0;
 }
 
-.hero-v4__artist-image img { width: 100%; display: block; }
+.hero-v4__artist-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  background: #ffffff;
+}
 
 .hero-v4__artist-info { flex: 1; }
 

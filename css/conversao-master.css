@@ -90,6 +90,75 @@
 .menu-toggle{
     display:none;
 }
+
+/* =====================================================
+   FAIXA INTERMEDIARIA -- antes do hamburguer assumir
+   Evita o menu quebrar em varias linhas quando a janela
+   ainda nao atingiu o breakpoint mobile (980px), mas ja
+   nao tem espaco pra caber tudo numa linha so.
+
+   A causa raiz era que os botoes CTA do header (Minha
+   Cartela / Churrasco Antecipado) so trocavam pro texto
+   compacto dentro do breakpoint mobile (768px do
+   mobile.css). Entre 768px e a largura desktop total,
+   sempre usavam o texto completo, que e longo demais
+   pra caber ao lado do menu nessa faixa intermediaria.
+===================================================== */
+@media (max-width:1500px){
+
+    .menu-master{
+        gap:14px;
+    }
+
+    .menu-master a{
+        font-size:13px;
+        white-space:nowrap;
+    }
+
+    .brand-text{
+        max-width:160px;
+    }
+
+    .brand-text h1{
+        font-size:16px;
+        white-space:nowrap;
+    }
+
+    .brand-text p{
+        font-size:10px;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+    }
+
+    /* troca os CTAs pro texto compacto, igual já acontece no mobile */
+    .btn-header-buy__full{
+        display:none;
+    }
+    .btn-header-buy__compact{
+        display:inline;
+    }
+
+    .btn-header-whatsapp,
+    .btn-header-buy{
+        padding:7px 14px;
+        font-size:12px;
+    }
+
+}
+
+@media (max-width:1080px){
+
+    .menu-master{
+        gap:10px;
+    }
+
+    .header-ctas{
+        gap:6px;
+    }
+
+}
+
 .brand-text h1{
     margin:0;
     color:#ffffff;
