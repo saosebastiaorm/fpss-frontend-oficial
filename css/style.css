@@ -253,7 +253,7 @@ a {
 .price-box {
   font-size: 28px; /* Preço marcante, sem exagero físico na tela */
   font-weight: 900;
-  color: #1fae42;
+  color: #15792e;
   margin-bottom: 12px;
 }
 
@@ -276,7 +276,7 @@ a {
 }
 
 .btn.green {
-  background: #1fae42;
+  background: #15792e;
   color: #fff;
 }
 

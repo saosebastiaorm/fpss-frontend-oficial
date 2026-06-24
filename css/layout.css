@@ -297,7 +297,7 @@
 .show-badge {
   display: inline-block;
   padding: 10px 18px;
-  background: #16a34a;
+  background: #107a3b;
   color: white;
   border-radius: 999px;
   font-size: 12px;
@@ -344,7 +344,7 @@
   justify-content: center;
   padding: 16px 28px;
   border-radius: 16px;
-  background: #16a34a;
+  background: #107a3b;
   color: white;
   text-decoration: none;
   font-weight: 800;
@@ -641,7 +641,7 @@
 .local-extra-card__icon { font-size:1.1rem; margin-bottom:4px; }
 .local-extra-card h3 { font-family:'Merriweather',Georgia,serif; font-size:11px; font-weight:900; color:#1a0000; margin-bottom:3px; }
 .local-extra-card p  { font-size:10px; color:#666; line-height:1.4; margin-bottom:5px; }
-.local-extra-card__btn { display:inline-flex; align-items:center; padding:4px 10px; border-radius:5px; background:#16a34a; color:#fff; font-size:10px; font-weight:700; text-decoration:none; }
+.local-extra-card__btn { display:inline-flex; align-items:center; padding:4px 10px; border-radius:5px; background:#107a3b; color:#fff; font-size:10px; font-weight:700; text-decoration:none; }
 
 /* ---- PARCEIROS: 10 colunas, logos grandes ---- */
 .parceiros-premium { background:#fff; padding:28px 0 36px; }
