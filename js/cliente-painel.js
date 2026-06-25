@@ -390,6 +390,16 @@ listaContainer.innerHTML =
                 : ""
             }
 
+            ${
+              status === "pendente"
+                ? `
+                  <button class="btn-ver-qr" onclick="window.retomarPagamentoCartela(${cartela.id})">
+                    💳 Pagar agora
+                  </button>
+                `
+                : ""
+            }
+
           </div>
 
         </div>
@@ -970,3 +980,154 @@ window.copiarPix = function() {
 
   alert("PIX copiado!");
 };
+
+/* =====================================================
+   RETOMAR PAGAMENTO DE CARTELA PENDENTE
+   Chamado pelo botão "Pagar agora" no card de uma cartela
+   com status "pendente". Gera um Pix NOVO para essa cartela
+   (o Pix anterior expira em 1h e pode estar vencido) e exibe
+   o QR code num modal, no mesmo padrão visual já usado para
+   pagamento de produtos.
+===================================================== */
+window.retomarPagamentoCartela = async function(cartelaId) {
+
+  const botoes = document.querySelectorAll(`button[onclick="window.retomarPagamentoCartela(${cartelaId})"]`);
+  botoes.forEach(b => {
+    b.disabled = true;
+    b.textContent = "Gerando Pix...";
+  });
+
+  try {
+
+    const resposta = await fetch(
+      `${window.FPSS_CONFIG.BACKEND_URL}/cartelas/${cartelaId}/retomar-pagamento`,
+      { method: "POST" }
+    );
+
+    const dados = await resposta.json();
+
+    if (!dados.sucesso) {
+      alert(dados.erro || "Não foi possível gerar o Pix. Tente novamente.");
+      return;
+    }
+
+    abrirPixCartela(
+      dados.numero_cartela,
+      dados.numero_chance2,
+      dados.valor,
+      dados.pixCopiaECola
+    );
+
+  } catch (erro) {
+    console.error("ERRO RETOMAR PAGAMENTO CARTELA:", erro);
+    alert("Erro de conexão ao gerar o Pix. Verifique sua internet e tente novamente.");
+
+  } finally {
+    botoes.forEach(b => {
+      b.disabled = false;
+      b.textContent = "💳 Pagar agora";
+    });
+  }
+};
+
+/* =====================================================
+   MODAL DE PIX — CARTELA
+   Versão simplificada do modal de pagamento (sem campos de
+   produto/quantidade/retirada, que não se aplicam a cartelas).
+===================================================== */
+function abrirPixCartela(numeroCartela, numeroChance2, valor, pixCopiaCola) {
+
+  const modalExistente = document.getElementById("modalPixPagamento");
+  if (modalExistente) {
+    modalExistente.remove();
+  }
+
+  const modal = document.createElement("div");
+  modal.id = "modalPixPagamento";
+  modal.className = "modal-overlay";
+
+  modal.innerHTML = `
+    <div class="modal-pix-conteudo">
+      <button
+        class="fechar-modal"
+        onclick="document.getElementById('modalPixPagamento').remove()"
+      >
+        ✖
+      </button>
+
+      <h2>💳 Pagamento PIX — Cartela</h2>
+
+      <div class="pix-info-grid">
+
+        <div class="pix-info-item">
+          <strong>🎟️ Número</strong>
+          <span>${numeroCartela || "-"}</span>
+        </div>
+
+        <div class="pix-info-item">
+          <strong>🎟️ Número (chance 2)</strong>
+          <span>${numeroChance2 || "-"}</span>
+        </div>
+
+        <div
+          class="pix-info-item destaque"
+          style="grid-column:1 / -1; background:#eefcf2; border:2px solid #2dbb55;"
+        >
+          <strong style="font-size:16px; color:#157a35;">💰 Valor</strong>
+          <span style="font-size:24px; font-weight:700; color:#157a35;">
+            R$ ${Number(valor).toFixed(2).replace(".", ",")}
+          </span>
+        </div>
+
+      </div>
+
+      <div style="width:100%; display:flex; justify-content:center; margin:25px 0;">
+        <div
+          id="qrcodePixPagamento"
+          style="padding:15px; background:#ffffff; border:1px solid #e5e5e5; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,.08);"
+        ></div>
+      </div>
+
+      <div style="text-align:center; color:#666; font-size:15px; margin-top:-8px; margin-bottom:18px; line-height:1.6;">
+        📱 Escaneie o QR Code utilizando o aplicativo do seu banco.
+        <br>
+        ⏳ A confirmação do pagamento pode levar alguns segundos.
+      </div>
+
+      <textarea
+        id="pixCopiaCola"
+        readonly
+        style="width:100%; min-height:80px; margin-top:10px; padding:10px; font-size:13px; font-family:monospace; border:1px solid #d5d5d5; border-radius:8px; resize:none; box-sizing:border-box; word-break:break-all; overflow-wrap:anywhere; background:#fafafa;"
+      >${pixCopiaCola}</textarea>
+
+      <button onclick="copiarPix()" class="btn-pagar-agora">
+        📋 COPIAR CÓDIGO PIX
+      </button>
+
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  const qrContainer = document.getElementById("qrcodePixPagamento");
+
+  if (qrContainer) {
+    qrContainer.innerHTML = "";
+    qrContainer.style.display = "flex";
+    qrContainer.style.justifyContent = "center";
+    qrContainer.style.alignItems = "center";
+    qrContainer.style.margin = "25px auto";
+    qrContainer.style.padding = "18px";
+    qrContainer.style.background = "#ffffff";
+    qrContainer.style.border = "2px solid #eeeeee";
+    qrContainer.style.borderRadius = "14px";
+    qrContainer.style.boxShadow = "0 4px 12px rgba(0,0,0,.10)";
+    qrContainer.style.width = "fit-content";
+
+    new QRCode(qrContainer, {
+      text: pixCopiaCola || "",
+      width: 240,
+      height: 240
+    });
+  }
+}
