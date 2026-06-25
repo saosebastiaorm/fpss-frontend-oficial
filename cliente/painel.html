@@ -343,7 +343,7 @@
   padding:12px;
   border:none;
   border-radius:10px;
-  background:#16a34a;
+  background:#107a3b;
   color:#fff;
   font-weight:700;
   font-size:15px;
@@ -357,6 +357,34 @@
 
 .btn-ver-qr:hover{
   transform:translateY(-2px);
+}
+
+/* Botão "Pagar agora" — cor distinta do .btn-ver-qr (verde, usado
+   para ações já concluídas como baixar a cartela paga). Vermelho
+   sinaliza ação pendente/urgente, consistente com outros CTAs do site. */
+.btn-pagar-cartela{
+  width:100%;
+  margin-top:10px;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:#cc0000;
+  color:#fff;
+  font-weight:700;
+  font-size:15px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.btn-pagar-cartela:hover{
+  opacity:.9;
+  transform:translateY(-2px);
+}
+
+.btn-pagar-cartela:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+  transform:none;
 }
 
 #modalQRRetirada{

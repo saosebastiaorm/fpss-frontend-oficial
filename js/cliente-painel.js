@@ -393,7 +393,7 @@ listaContainer.innerHTML =
             ${
               status === "pendente"
                 ? `
-                  <button class="btn-ver-qr" onclick="window.retomarPagamentoCartela(${cartela.id})">
+                  <button class="btn-pagar-cartela" onclick="window.retomarPagamentoCartela(${cartela.id})">
                     💳 Pagar agora
                   </button>
                 `
