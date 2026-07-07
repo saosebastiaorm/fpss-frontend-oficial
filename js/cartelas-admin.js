@@ -30,7 +30,9 @@ function formatarData(dataISO) {
 async function carregarResumo() {
   try {
 
-    const res = await fetch(`${API_BASE}/admin/cartelas/resumo`);
+    const res = await fetch(`${API_BASE}/admin/cartelas/resumo`, {
+      headers: window.fpssAdminAuth.authHeaders()
+    });
     const dados = await res.json();
 
     if (!dados.sucesso) return;
@@ -94,7 +96,9 @@ async function carregarCartelas() {
 
     document.getElementById("erro").innerHTML = "";
 
-    const res = await fetch(`${API_BASE}/admin/cartelas`);
+    const res = await fetch(`${API_BASE}/admin/cartelas`, {
+      headers: window.fpssAdminAuth.authHeaders()
+    });
     const dados = await res.json();
 
     if (!dados.sucesso) {
@@ -209,7 +213,9 @@ async function buscarCartelaRapida() {
 
   try {
 
-    const res = await fetch(`${API_BASE}/admin/cartelas/buscar/${encodeURIComponent(numero)}`);
+    const res = await fetch(`${API_BASE}/admin/cartelas/buscar/${encodeURIComponent(numero)}`, {
+      headers: window.fpssAdminAuth.authHeaders()
+    });
     const dados = await res.json();
 
     if (!dados.sucesso || !dados.cartela) {
@@ -324,4 +330,10 @@ function exportarCSV() {
 /* =========================================
    START
 ========================================= */
-carregarCartelas();
+/* Verifica se é admin logado ANTES de carregar os dados.
+   Se não estiver autenticado, admin-auth.js redireciona para o login. */
+document.addEventListener("DOMContentLoaded", async () => {
+  const sessao = await window.fpssAdminAuth.verificarSessao();
+  if (!sessao) return; // redirecionado para login
+  carregarCartelas();
+});

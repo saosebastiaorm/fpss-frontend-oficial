@@ -140,6 +140,8 @@
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/js/admin-auth.js"></script>
 <script>
 const API_BASE = "https://api.festasaosebastiao.com.br";
 
@@ -220,7 +222,8 @@ async function carregarPedidos() {
     document.getElementById("erro").innerHTML = "";
 
     const res = await fetch(
-      `${API_BASE}/admin/pedidos`
+      `${API_BASE}/admin/pedidos`,
+      { headers: window.fpssAdminAuth.authHeaders() }
     );
 
     const dados = await res.json();
@@ -472,7 +475,13 @@ function exportarCSV() {
 /* =========================================
    START
 ========================================= */
-carregarPedidos();
+/* Verifica se é admin logado ANTES de carregar os pedidos.
+   Se não estiver autenticado, admin-auth.js redireciona para o login. */
+document.addEventListener("DOMContentLoaded", async () => {
+  const sessao = await window.fpssAdminAuth.verificarSessao();
+  if (!sessao) return; // redirecionado para login
+  carregarPedidos();
+});
 </script>
 
 </body>

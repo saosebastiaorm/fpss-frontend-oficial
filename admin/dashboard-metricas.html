@@ -87,6 +87,8 @@
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/js/admin-auth.js"></script>
 <script>
 /* =========================================
    CONFIG API
@@ -111,7 +113,9 @@ async function carregarDashboard() {
 
     document.getElementById("erro").innerHTML = "";
 
-    const res = await fetch(`${API_BASE}/admin/dashboard`);
+    const res = await fetch(`${API_BASE}/admin/dashboard`, {
+      headers: window.fpssAdminAuth.authHeaders()
+    });
 
     const dados = await res.json();
 
@@ -155,12 +159,15 @@ async function carregarDashboard() {
 /* =========================================
    AUTO START
 ========================================= */
-carregarDashboard();
-
-/* =========================================
-   AUTO REFRESH
-========================================= */
-setInterval(carregarDashboard, 30000);
+/* Verifica se é admin logado ANTES de carregar o dashboard.
+   Se não estiver autenticado, admin-auth.js redireciona para o login.
+   O auto-refresh só é ativado após a sessão ser confirmada. */
+document.addEventListener("DOMContentLoaded", async () => {
+  const sessao = await window.fpssAdminAuth.verificarSessao();
+  if (!sessao) return; // redirecionado para login
+  carregarDashboard();
+  setInterval(carregarDashboard, 30000);
+});
 </script>
 
 </body>

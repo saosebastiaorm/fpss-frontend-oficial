@@ -82,7 +82,9 @@ async function carregarProdutos(){
   const tinhaCache = mostrarCacheProdutosAdmin();
 
   try{
-    const res = await fetch(`${API}/admin/produtos`);
+    const res = await fetch(`${API}/admin/produtos`, {
+      headers: window.fpssAdminAuth.authHeaders()
+    });
     const texto = await res.text();
 
     let data;
@@ -176,6 +178,7 @@ async function uploadImagemProduto(){
 
     const res = await fetch(`${API}/admin/upload-imagem`, {
       method:"POST",
+      headers: window.fpssAdminAuth.authHeaders(),
       body:formData
     });
 
@@ -212,7 +215,8 @@ async function excluirProduto(id){
   try{
 
     const res = await fetch(`${API}/admin/produtos/${id}`, {
-      method: "DELETE"
+      method: "DELETE",
+      headers: window.fpssAdminAuth.authHeaders()
     });
 
     const data = await res.json();
@@ -257,9 +261,9 @@ async function salvarProduto(){
 
     const res = await fetch(`${API}/admin/produtos`, {
       method:"POST",
-      headers:{
+      headers: window.fpssAdminAuth.authHeaders({
         "Content-Type":"application/json"
-      },
+      }),
       body: JSON.stringify(produto)
     });
 
@@ -290,4 +294,10 @@ async function salvarProduto(){
   }
 }
 
-carregarProdutos();
+/* Inicialização: verifica se é admin logado ANTES de carregar os dados.
+   Se não estiver autenticado, admin-auth.js redireciona para o login. */
+document.addEventListener("DOMContentLoaded", async () => {
+  const sessao = await window.fpssAdminAuth.verificarSessao();
+  if (!sessao) return; // redirecionado para login
+  carregarProdutos();
+});
