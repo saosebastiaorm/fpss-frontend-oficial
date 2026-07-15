@@ -35,6 +35,44 @@
       margin-bottom: 20px;
     }
 
+    .banner-sorteio {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: linear-gradient(135deg, #cc0000 0%, #8b0000 100%);
+      color: #fff;
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 14px rgba(139,0,0,0.25);
+    }
+
+    .banner-sorteio-icone {
+      font-size: 42px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .banner-sorteio-texto {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .banner-sorteio-texto strong {
+      display: block;
+      font-size: 17px;
+      margin-bottom: 4px;
+      font-family: 'Merriweather', Georgia, serif;
+    }
+
+    .banner-sorteio-texto span {
+      display: block;
+      margin-top: 8px;
+      font-size: 12.5px;
+      opacity: 0.9;
+      font-style: italic;
+    }
+
     .enquete-intro p {
       color: #4b5563;
       font-size: 13px;
@@ -213,6 +251,17 @@
         <p>Por favor, preencha a ficha completa abaixo para registrar suas opiniões e validar sua inscrição no sorteio!</p>
       </div>
 
+      <div class="banner-sorteio">
+        <div class="banner-sorteio-icone">👕</div>
+        <div class="banner-sorteio-texto">
+          <strong>Participe e concorra!</strong>
+          Responda nossa enquete e concorra a uma linda
+          <b>camiseta oficial da festa</b>, que será sorteada
+          durante o almoço no dia do evento. 🎉
+          <span>Ao enviar, você receberá seu número da sorte — guarde bem!</span>
+        </div>
+      </div>
+
       <form id="formEnquete">
         
         <div class="form-grid-3">
@@ -312,7 +361,19 @@
                 <input type="radio" name="p2" value="Espaço Kids Maior">
                 🎈 Expandir a Área Infantil e de Brinquedos
               </label>
+              <label class="opcao-item">
+                <input type="radio" name="p2" value="Outra">
+                ✏️ Outra melhoria (escreva abaixo)
+              </label>
             </div>
+            <input
+              type="text"
+              id="p2_outro"
+              name="p2_outro"
+              placeholder="Qual melhoria você sugere?"
+              maxlength="200"
+              style="display:none; margin-top:10px; width:100%; padding:10px; box-sizing:border-box;"
+            >
           </div>
         </div>
 
@@ -399,6 +460,20 @@
       const form = document.getElementById("formEnquete");
       const msg = document.getElementById("msgEnquete");
 
+      // Mostra/esconde o campo de texto "Outra" da pergunta 2 conforme a escolha
+      const campoP2Outro = document.getElementById("p2_outro");
+      document.querySelectorAll('input[name="p2"]').forEach((radio) => {
+        radio.addEventListener("change", () => {
+          if (radio.value === "Outra" && radio.checked) {
+            campoP2Outro.style.display = "block";
+            campoP2Outro.focus();
+          } else {
+            campoP2Outro.style.display = "none";
+            campoP2Outro.value = "";
+          }
+        });
+      });
+
       // Inicializa o cliente do Supabase utilizando as chaves injetadas do config.js
       const supabaseUrl = window.FPSS_CONFIG?.SUPABASE_URL || "https://gffmgqvidgswvwnhyife.supabase.co";
       const supabaseKey = window.FPSS_CONFIG?.SUPABASE_ANON_KEY;
@@ -412,7 +487,16 @@
 
       form.addEventListener("submit", async function(e) {
         e.preventDefault(); // Trava o recarregamento indesejado da tela
-        
+
+        // Se marcou "Outra" na pergunta 2, exige que escreva a sugestão
+        const p2Selecionada = document.querySelector('input[name="p2"]:checked');
+        if (p2Selecionada && p2Selecionada.value === "Outra" && !campoP2Outro.value.trim()) {
+          msg.style.color = "red";
+          msg.innerHTML = "❌ Você marcou \"Outra melhoria\" — por favor, escreva qual é.";
+          campoP2Outro.focus();
+          return;
+        }
+
         msg.style.color = "#333";
         msg.innerHTML = "⏳ Gravando suas informações direto no banco de dados...";
 
@@ -431,6 +515,9 @@
           comprou_antes: document.getElementById("comprou_antes").value,
           pergunta1: document.querySelector('input[name="p1"]:checked')?.value || "",
           pergunta2: document.querySelector('input[name="p2"]:checked')?.value || "",
+          pergunta2_outro: (document.querySelector('input[name="p2"]:checked')?.value === "Outra")
+            ? document.getElementById("p2_outro").value.trim()
+            : "",
           pergunta3: document.querySelector('input[name="p3"]:checked')?.value || "",
           pergunta4: document.querySelector('input[name="p4"]:checked')?.value || "",
           criado_em: dataIso,
@@ -438,16 +525,22 @@
         };
 
         try {
-          // Insere os dados diretamente na tabela do Supabase, ignorando o Render
+          // Chama a função do banco que insere e devolve APENAS o número da sorte (id).
+          // A função é uma "portinha controlada": o público não lê a tabela,
+          // só recebe o número. Dados pessoais permanecem protegidos.
           const { data, error } = await _supabase
-            .from("enquetes")
-            .insert([payload]);
+            .rpc("inserir_enquete", { dados: payload });
 
           if (error) {
             msg.style.color = "red";
             msg.innerHTML = "❌ O banco de dados recusou o salvamento: " + error.message;
             // IMPORTANTE: Não limpa o formulário em caso de erro para não perderes o que digitaste!
           } else {
+            // A função retorna o id diretamente como número (o número da sorte)
+            const numeroSorte = data ? data : null;
+            if (numeroSorte) {
+              localStorage.setItem("numeroSorteFPSS", numeroSorte);
+            }
             msg.style.color = "green";
             msg.innerHTML = "✅ Obrigado por participar. Logo será avisado sobre a data do Sorteio";
             form.reset(); // SÓ limpa o formulário após a confirmação real de gravação!

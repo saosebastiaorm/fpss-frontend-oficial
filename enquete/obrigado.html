@@ -91,6 +91,37 @@
       text-transform: uppercase;
     }
 
+    .card-numero-sorte {
+      background: linear-gradient(135deg, #cc0000 0%, #8b0000 100%);
+      color: #fff;
+      border-radius: 16px;
+      padding: 24px 20px;
+      margin: 10px 0 30px;
+      box-shadow: 0 6px 20px rgba(139,0,0,0.28);
+    }
+
+    .numero-sorte-label {
+      font-size: 15px;
+      margin: 0 0 6px;
+      opacity: 0.95;
+    }
+
+    .numero-sorte-valor {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 52px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin: 0;
+      letter-spacing: 2px;
+    }
+
+    .numero-sorte-aviso {
+      font-size: 12.5px;
+      margin: 10px 0 0;
+      opacity: 0.9;
+      line-height: 1.5;
+    }
+
     /* Botão Premium Vermelho */
     .btn-voltar {
       display: inline-flex;
@@ -206,7 +237,13 @@
       <p>Sua participação na enquete oficial foi registrada com sucesso no nosso sistema. Agradecemos muito a sua colaboração para fazermos uma festa histórica!</p>
       
       <div class="badge">🍀 Você já está concorrendo!</div>
-      
+
+      <div class="card-numero-sorte" id="cardNumeroSorte" style="display:none;">
+        <p class="numero-sorte-label">🎟️ Seu número da sorte é:</p>
+        <p class="numero-sorte-valor" id="numeroSorteValor">—</p>
+        <p class="numero-sorte-aviso">Guarde bem este número! O sorteio da camiseta oficial acontecerá durante o almoço no dia do evento.</p>
+      </div>
+
       <a href="../index.html" class="btn-voltar">Voltar para a Página Inicial</a>
     </div>
   </div>
@@ -250,6 +287,23 @@
     menuMaster.querySelectorAll("a").forEach(link => {
       link.addEventListener("click", fecharMenu);
     });
+  }
+})();
+</script>
+
+<script>
+(function(){
+  // Lê o número da sorte gerado na enquete e exibe no card destacado
+  var numero = localStorage.getItem("numeroSorteFPSS");
+  if (numero) {
+    var card = document.getElementById("cardNumeroSorte");
+    var valor = document.getElementById("numeroSorteValor");
+    if (card && valor) {
+      valor.textContent = numero;
+      card.style.display = "block";
+    }
+    // Remove após exibir, para não mostrar o mesmo número se recarregar a página
+    localStorage.removeItem("numeroSorteFPSS");
   }
 })();
 </script>
