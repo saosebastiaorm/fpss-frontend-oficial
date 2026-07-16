@@ -16,6 +16,20 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Roboto:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+<style>
+.cartelas-preview-wrap {
+  display:flex; justify-content:center; margin:0 0 24px;
+}
+.cartelas-preview-img {
+  max-width:280px; width:100%; height:auto;
+  border-radius:14px; box-shadow:0 8px 24px rgba(0,0,0,0.15);
+  border:1px solid #f0e4d4;
+}
+@media (max-width:480px) {
+  .cartelas-preview-img { max-width:220px; }
+}
+</style>
+
 </head>
 
 <body class="cartelas-page-body">
@@ -85,6 +99,10 @@
 
   <h1 class="cartelas-titulo">Cartelas do Bingo</h1>
   <p class="cartelas-subtitulo">Pague sua cartela física ou compre uma cartela digital pelo site</p>
+
+  <div class="cartelas-preview-wrap">
+    <img src="../assets/imagens/cartelas/cartela-exemplo.png" alt="Exemplo da cartela oficial" class="cartelas-preview-img">
+  </div>
 
   <div class="cartelas-tabs">
     <button class="cartelas-tab ativo" id="tabFisica" onclick="mostrarAba('fisica')">Cartela física</button>
