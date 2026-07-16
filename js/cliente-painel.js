@@ -227,32 +227,50 @@ ${
   `;
 }
 
-  const listaPedidos = cliente.pedidos || [];
+  let listaPedidos = cliente.pedidos || [];
 
-  const totalPedidos = listaPedidos.length;
+  let filtroAtivoPedidos = "todos";
 
-  const pagos = listaPedidos.filter(
-    p => (p.status_pagamento || "").toLowerCase() === "pago"
-  ).length;
+  function filtrarPedidos(lista, filtro) {
+    return lista.filter(pedido => {
+      const statusPagamento = (pedido.status_pagamento || "").toLowerCase();
+      const statusRetirada = (pedido.status_retirada || "").toLowerCase();
 
-  const pendentes = listaPedidos.filter(
-    p => (p.status_pagamento || "").toLowerCase() === "pendente"
-  ).length;
+      if (filtro === "todos") return true;
+      if (filtro === "pago") return statusPagamento === "pago";
+      if (filtro === "pendente") return statusPagamento === "pendente";
+      if (filtro === "retirado") return statusRetirada === "retirado";
 
-  const retirados = listaPedidos.filter(
-    p => (p.status_retirada || "").toLowerCase() === "retirado"
-  ).length;
+      return true;
+    });
+  }
 
-  const naoRetirados = listaPedidos.filter(
-    p => (p.status_retirada || "").toLowerCase() !== "retirado"
-  ).length;
+  function renderizarPedidos() {
 
-  const totalInvestido = listaPedidos.reduce(
-    (acc, p) => acc + Number(p.valor_total || 0),
-    0
-  );
+    if (!pedidos) return;
 
-  if (pedidos) {
+    const totalPedidos = listaPedidos.length;
+
+    const pagos = listaPedidos.filter(
+      p => (p.status_pagamento || "").toLowerCase() === "pago"
+    ).length;
+
+    const pendentes = listaPedidos.filter(
+      p => (p.status_pagamento || "").toLowerCase() === "pendente"
+    ).length;
+
+    const retirados = listaPedidos.filter(
+      p => (p.status_retirada || "").toLowerCase() === "retirado"
+    ).length;
+
+    const naoRetirados = listaPedidos.filter(
+      p => (p.status_retirada || "").toLowerCase() !== "retirado"
+    ).length;
+
+    const totalInvestido = listaPedidos.reduce(
+      (acc, p) => acc + Number(p.valor_total || 0),
+      0
+    );
 
     let resumoHTML = `
       <div class="pedido-card resumo-cliente">
@@ -266,47 +284,136 @@ ${
       </div>
     `;
 
- let pedidosHTML =
-  listaPedidos.map(gerarCardPedido).join("");
+    const pedidosFiltrados = filtrarPedidos(listaPedidos, filtroAtivoPedidos);
+    const pedidosHTML = pedidosFiltrados.map(gerarCardPedido).join("");
 
     pedidos.innerHTML = resumoHTML + `<div id="listaPedidosCards">${pedidosHTML}</div>`;
-
-const botoesFiltro = document.querySelectorAll(".filtro-btn");
-const listaContainer = document.getElementById("listaPedidosCards");
-
-botoesFiltro.forEach(botao => {
-  botao.addEventListener("click", () => {
-
-    botoesFiltro.forEach(b => b.classList.remove("ativo"));
-    botao.classList.add("ativo");
-
-    // ao usar um filtro de PEDIDO, mostra a seção de pedidos
-    // e esconde a de cartelas (evita poluir a tela com as duas)
-    mostrarApenasSecao("pedidos");
-
-    const filtro = botao.dataset.filtro;
-
-    const pedidosFiltrados = listaPedidos.filter(pedido => {
-
-      const statusPagamento = (pedido.status_pagamento || "").toLowerCase();
-      const statusRetirada = (pedido.status_retirada || "").toLowerCase();
-
-      if (filtro === "todos") return true;
-      if (filtro === "pago") return statusPagamento === "pago";
-      if (filtro === "pendente") return statusPagamento === "pendente";
-      if (filtro === "retirado") return statusRetirada === "retirado";
-
-      return true;
-
-    });
-
-listaContainer.innerHTML =
-  pedidosFiltrados.map(gerarCardPedido).join("");
-
-  });
-});
-
   }
+
+  renderizarPedidos();
+
+  const botoesFiltro = document.querySelectorAll(".filtro-btn");
+
+  botoesFiltro.forEach(botao => {
+    botao.addEventListener("click", () => {
+
+      botoesFiltro.forEach(b => b.classList.remove("ativo"));
+      botao.classList.add("ativo");
+
+      // ao usar um filtro de PEDIDO, mostra a seção de pedidos
+      // e esconde a de cartelas (evita poluir a tela com as duas)
+      mostrarApenasSecao("pedidos");
+
+      filtroAtivoPedidos = botao.dataset.filtro;
+
+      renderizarPedidos();
+    });
+  });
+
+  /* =====================================================
+     ATUALIZAÇÃO AUTOMÁTICA DOS PEDIDOS (a cada 8 segundos)
+
+     O problema: os dados do painel vêm do localStorage,
+     gravado só no momento do login. Se o administrativo
+     marcar um produto como "retirado" depois disso, o
+     celular do cliente não fica sabendo sozinho.
+
+     A solução: reconsultar o servidor periodicamente e,
+     se algum status mudou, atualizar a tela na hora.
+  ===================================================== */
+
+  async function verificarAtualizacoesPedidos() {
+
+    if (!listaPedidos.length) return;
+
+    try {
+
+      const API_URL =
+        window.FPSS_CONFIG?.BACKEND_URL ||
+        "https://api.festasaosebastiao.com.br";
+
+      const resposta = await fetch(`${API_URL}/cliente-login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          cpf: (cliente.cpf || "").replace(/\D/g, ""),
+          telefone: (cliente.telefone || cliente.whatsapp || "").replace(/\D/g, "")
+        })
+      });
+
+      const resultado = await resposta.json();
+
+      if (!resultado.sucesso || !resultado.cliente) return;
+
+      const pedidosNovos = resultado.cliente.pedidos || [];
+
+      // Detecta se algum pedido ACABOU de ser marcado como retirado
+      let algumFoiRetiradoAgora = false;
+
+      pedidosNovos.forEach(novo => {
+        const antigo = listaPedidos.find(
+          p => p.codigo_pedido === novo.codigo_pedido
+        );
+        const statusAntigo = (antigo?.status_retirada || "").toLowerCase();
+        const statusNovo = (novo.status_retirada || "").toLowerCase();
+
+        if (antigo && statusAntigo !== "retirado" && statusNovo === "retirado") {
+          algumFoiRetiradoAgora = true;
+        }
+      });
+
+      // Atualiza a lista em memória e no localStorage
+      listaPedidos = pedidosNovos;
+      cliente.pedidos = pedidosNovos;
+      localStorage.setItem("clienteFPSS", JSON.stringify(cliente));
+
+      // Re-renderiza a tela com os dados atualizados
+      renderizarPedidos();
+
+      if (algumFoiRetiradoAgora) {
+
+        // Fecha o QR se estiver aberto (evita confusão: cliente vendo
+        // o QR de um produto que já foi retirado)
+        const modalAberto = document.getElementById("modalQRRetirada");
+        if (modalAberto) modalAberto.remove();
+
+        mostrarAvisoRetirada();
+      }
+
+    } catch (erro) {
+      console.log("Falha ao verificar atualizações de pedidos:", erro);
+    }
+  }
+
+  function mostrarAvisoRetirada() {
+
+    const aviso = document.createElement("div");
+
+    aviso.style.cssText = `
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #16a34a, #15803d);
+      color: #fff;
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+      z-index: 99999;
+      text-align: center;
+      max-width: 90%;
+    `;
+
+    aviso.textContent = "✅ Um dos seus produtos foi confirmado como retirado!";
+
+    document.body.appendChild(aviso);
+
+    setTimeout(() => aviso.remove(), 6000);
+  }
+
+  setInterval(verificarAtualizacoesPedidos, 8000);
 
   /* =====================================================
      CARTELAS DO CLIENTE — seção nova, separada dos pedidos
