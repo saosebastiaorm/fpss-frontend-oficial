@@ -185,6 +185,18 @@
             text-align:center;
         }
 
+        .contador-expira{
+            margin-top:8px;
+            text-align:center;
+            font-size:12.5px;
+            color:#8a6d3b;
+        }
+
+        .contador-expira.perto-de-expirar{
+            color:#d62828;
+            font-weight:bold;
+        }
+
         .barra-processando-container{
             margin-top:10px;
             height:6px;
@@ -381,6 +393,8 @@
         ⏳ Aguardando pagamento...
     </div>
 
+    <div class="contador-expira" id="contadorExpira"></div>
+
     <div class="aviso-processando" id="avisoProcessando">
         📱 Escaneie o QR Code ou copie o código Pix acima e finalize o pagamento no aplicativo do seu banco.<br>
         Ainda não identificamos nenhum pagamento. Assim que você pagar, confirmamos automaticamente aqui — normalmente em poucos segundos.<br>
@@ -392,7 +406,8 @@
     </div>
 
     <div class="aviso-processando" id="avisoGerandoCartela" style="display:none; background:#eef8ee; border-color:#b9ddb9; color:#1d5f1d;">
-        ✅ Pagamento confirmado! Estamos gerando sua cartela digital, aguarde mais alguns instantes...
+        ✅ Pagamento confirmado! Estamos gerando sua cartela digital, aguarde mais alguns instantes...<br>
+        Se preferir, você também pode fechar esta página e visualizar ou imprimir sua cartela depois, quando quiser, no <strong>Painel do Cliente</strong>.
         <div class="barra-processando-container">
             <div class="barra-processando" style="background:#2f9e44;"></div>
         </div>

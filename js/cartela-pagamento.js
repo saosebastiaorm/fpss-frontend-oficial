@@ -26,6 +26,50 @@ function preencherDadosCartela() {
 
 preencherDadosCartela();
 
+/* ===================================================
+   CONTADOR REGRESSIVO — mostra quanto tempo falta antes
+   da reserva expirar (1h, mesmo prazo do Pix da Sicredi)
+=================================================== */
+let intervaloContador = null;
+
+function iniciarContadorExpiracao() {
+
+    const elemento = document.getElementById("contadorExpira");
+    if (!elemento || !cartelaPixData.expira_em) return;
+
+    const expiraEm = new Date(cartelaPixData.expira_em).getTime();
+
+    function atualizar() {
+
+        // Se já está pago, ou já mostrando expirado, não precisa mais do contador
+        if ((cartelaPixData.status_interno || "").toLowerCase() === "pago") {
+            elemento.textContent = "";
+            clearInterval(intervaloContador);
+            return;
+        }
+
+        const restanteMs = expiraEm - Date.now();
+
+        if (restanteMs <= 0) {
+            elemento.textContent = "";
+            clearInterval(intervaloContador);
+            return;
+        }
+
+        const minutos = Math.floor(restanteMs / 60000);
+        const segundos = Math.floor((restanteMs % 60000) / 1000);
+        const textoTempo = `${minutos}:${String(segundos).padStart(2, "0")}`;
+
+        elemento.textContent = `⏱️ Essa reserva expira em ${textoTempo} — pague antes desse prazo`;
+        elemento.classList.toggle("perto-de-expirar", restanteMs < 5 * 60 * 1000);
+    }
+
+    atualizar();
+    intervaloContador = setInterval(atualizar, 1000);
+}
+
+iniciarContadorExpiracao();
+
 function gerarQr(texto) {
     document.getElementById("qrcode").innerHTML = "";
 
@@ -95,7 +139,52 @@ async function verificarPagamento() {
 
         const avisoProcessando = document.getElementById("avisoProcessando");
         const avisoGerandoCartela = document.getElementById("avisoGerandoCartela");
+        const contadorExpira = document.getElementById("contadorExpira");
         const ehDigital = cartelaPixData.tipo === "digital";
+
+        /* ===== RESERVA EXPIRADA (não pagou a tempo) ===== */
+        if ((dados.status_interno || "").toLowerCase() === "expirado") {
+
+            clearInterval(intervaloContador);
+            if (contadorExpira) contadorExpira.textContent = "";
+            if (avisoProcessando) avisoProcessando.style.display = "none";
+            if (avisoGerandoCartela) avisoGerandoCartela.style.display = "none";
+
+            document.getElementById("statusPagamento").innerHTML =
+                "⚠️ RESERVA EXPIRADA";
+            document.getElementById("statusPagamento").style.color = "#d62828";
+
+            document.getElementById("btnComprovante").style.display = "none";
+            document.getElementById("btnVerCartela").style.display = "none";
+            document.getElementById("btnCopiarPix").style.display = "none";
+            document.getElementById("labelPix").style.display = "none";
+            document.getElementById("pixCode").style.display = "none";
+
+            document.getElementById("qrcode").innerHTML = `
+                <div style="padding:18px; text-align:center; color:#8b1111; font-weight:bold;">
+                    ⚠️ O tempo pra pagar essa cartela esgotou e ela foi liberada.<br>
+                    <span style="font-weight:normal; font-size:13px;">
+                        Não se preocupe, é só gerar um novo Pix pra tentar de novo.
+                    </span>
+                </div>
+            `;
+
+            document.getElementById("subtituloStatus").innerHTML =
+                "Reserva expirada";
+
+            const infoFinalExpirado = document.getElementById("infoFinal");
+            if (infoFinalExpirado) {
+                infoFinalExpirado.innerHTML = `
+                    <div style="text-align:center;">
+                        <button class="btn btn-copiar" onclick="window.location.href='/cartelas/cartelas.html'">
+                            🔄 GERAR NOVO PIX
+                        </button>
+                    </div>
+                `;
+            }
+
+            return;
+        }
 
         if ((dados.status_interno || "").toLowerCase() === "pago") {
 
@@ -129,6 +218,9 @@ async function verificarPagamento() {
 
             document.getElementById("statusPagamento").innerHTML = "✅ PAGAMENTO APROVADO!";
             document.getElementById("statusPagamento").style.color = "green";
+
+            clearInterval(intervaloContador);
+            if (contadorExpira) contadorExpira.textContent = "";
 
             document.getElementById("btnComprovante").style.display = "block";
             document.getElementById("btnVerCartela").style.display = ehDigital ? "block" : "none";
