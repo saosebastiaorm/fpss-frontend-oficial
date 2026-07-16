@@ -51,6 +51,18 @@ async function carregarResumo() {
 }
 
 /* =========================================
+   PRESENÇA NA FESTA — trata os 3 valores possíveis
+   (sim / talvez / nao). Antes só tratava sim/nao e
+   "talvez" caía silenciosamente no "-".
+========================================= */
+function renderPresenca(valor) {
+  if (valor === "sim") return "✅ Sim";
+  if (valor === "talvez") return "🤔 Talvez";
+  if (valor === "nao") return "❌ Não";
+  return "-";
+}
+
+/* =========================================
    DATA DE RESERVA — mostra quando o Pix foi gerado.
    Se ainda está "pendente" e já passou de 1h (mesmo prazo
    de expiração usado no backend), sinaliza visualmente que
@@ -106,7 +118,7 @@ function renderCartelas(lista) {
         <td>${cartela.cpf_comprador || "-"}</td>
         <td>${cartela.whatsapp_comprador || "-"}</td>
         <td>${cartela.valor_pago ? moeda(cartela.valor_pago) : "-"}</td>
-        <td>${cartela.vai_na_festa === "sim" ? "✅ Sim" : cartela.vai_na_festa === "nao" ? "❌ Não" : "-"}</td>
+        <td>${renderPresenca(cartela.vai_na_festa)}</td>
         <td>${renderDataReserva(cartela)}</td>
         <td>${formatarData(cartela.data_pagamento)}</td>
       </tr>
