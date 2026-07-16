@@ -390,7 +390,7 @@ content="assets/imagens/og-image.jpg">
    coloridas do título, forçando-as pequenas, em bloco e brancas. */
 #vitrineDigitalTitulo {
   display: inline-block !important;
-  font-size: 2.6rem !important;
+  font-size: 1.7rem !important;
   line-height: 1.15 !important;
   white-space: nowrap !important;
   overflow: visible !important;
@@ -418,6 +418,16 @@ content="assets/imagens/og-image.jpg">
 #vitrineDigitalTitulo span:nth-child(12) { color:#FBBC05 !important; }
 #vitrineDigitalTitulo span:nth-child(13) { color:#4285F4 !important; }
 #vitrineDigitalTitulo span:nth-child(14) { color:#EA4335 !important; }
+
+/* ===== CARROSSEL COM 2 COLUNAS NO CELULAR =====
+   O mobile.css/site.css força width:100vw (1 slide por vez, ocupando
+   a tela toda). Aqui usamos um seletor mais específico (2 classes)
+   pra vencer isso e mostrar 2 slides lado a lado no celular. */
+@media screen and (max-width: 980px) {
+  .fpss-carrossel__runner .fpss-carrossel__slide {
+    width: 48vw !important;
+  }
+}
 
 .fpss-carrossel__big-icon {
   position:absolute; top:50%; left:50%;
