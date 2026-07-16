@@ -80,8 +80,8 @@ function gerarQr(texto) {
 
     new QRCode(document.getElementById("qrcode"), {
         text: texto,
-        width: 150,
-        height: 150
+        width: 130,
+        height: 130
     });
 }
 
@@ -90,7 +90,7 @@ document.getElementById("pixCode").value = codigoPix;
 
 if (cartelaPixData.qr_code) {
     document.getElementById("qrcode").innerHTML =
-        `<img src="data:image/png;base64,${cartelaPixData.qr_code}" style="width:116px;">`;
+        `<img src="data:image/png;base64,${cartelaPixData.qr_code}" style="width:100px;">`;
 } else {
     gerarQr(codigoPix);
 }
