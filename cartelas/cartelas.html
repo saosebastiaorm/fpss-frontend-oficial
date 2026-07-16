@@ -55,6 +55,20 @@
 .cartelas-aviso-digital { margin:8px 0 !important; font-size:0.85rem !important; }
 .cartelas-btn-pagar { padding:10px !important; margin-top:10px !important; }
 .cartelas-titulo { margin:0 0 4px !important; }
+.cartelas-page { max-width:1000px !important; margin-left:auto !important; margin-right:auto !important; }
+
+/* Nome + CPF + WhatsApp numa linha só (cartela física) */
+.cartelas-grid-3 {
+  display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;
+  margin-top:0 !important;
+}
+@media (max-width:700px) {
+  .cartelas-grid-3 { grid-template-columns:1fr; }
+}
+
+/* Reduz o vão grande depois do campo "Número da cartela" */
+#numeroCartela { margin-bottom:2px !important; }
+.cartelas-feedback-numero { margin:2px 0 4px !important; min-height:0 !important; }
 </style>
 
 </head>
@@ -148,7 +162,7 @@
       <input type="text" id="numeroCartela" name="numero_cartela" placeholder="Ex: 24194-68" required>
       <p class="cartelas-feedback-numero" id="feedbackNumero"></p>
 
-      <div class="cartelas-grid-2">
+      <div class="cartelas-grid-3">
         <div>
           <label for="nomeFisica">Nome completo</label>
           <input type="text" id="nomeFisica" name="nome" required>
@@ -157,10 +171,11 @@
           <label for="cpfFisica">CPF</label>
           <input type="text" id="cpfFisica" name="cpf" placeholder="000.000.000-00" required>
         </div>
+        <div>
+          <label for="telefoneFisica">WhatsApp</label>
+          <input type="text" id="telefoneFisica" name="telefone" placeholder="(69) 99999-9999" required>
+        </div>
       </div>
-
-      <label for="telefoneFisica">WhatsApp</label>
-      <input type="text" id="telefoneFisica" name="telefone" placeholder="(69) 99999-9999" required>
 
       <div class="cartelas-presenca" id="presencaFisica">
         <p>Você vai participar da festa no dia 24/01/2027? <span style="color:#cc0000;">*</span></p>
@@ -195,6 +210,32 @@
 
       <label for="telefoneDigital">WhatsApp</label>
       <input type="text" id="telefoneDigital" name="telefone" placeholder="(69) 99999-9999" required>
+
+      <div class="cartelas-grid-3">
+        <div>
+          <label for="cepDigital">CEP</label>
+          <input type="text" id="cepDigital" name="cep" placeholder="00000-000" required>
+        </div>
+        <div>
+          <label for="cidadeDigital">Cidade</label>
+          <input type="text" id="cidadeDigital" name="cidade" required>
+        </div>
+        <div>
+          <label for="bairroDigital">Bairro</label>
+          <input type="text" id="bairroDigital" name="bairro" required>
+        </div>
+      </div>
+
+      <div class="cartelas-grid-2">
+        <div>
+          <label for="ruaDigital">Rua / Logradouro</label>
+          <input type="text" id="ruaDigital" name="rua" placeholder="Av, Rua, Travessa..." required>
+        </div>
+        <div>
+          <label for="numeroDigital">Número / Complemento</label>
+          <input type="text" id="numeroDigital" name="numero_endereco" placeholder="Nº, apto ou referência" required>
+        </div>
+      </div>
 
       <div class="cartelas-presenca" id="presencaDigital">
         <p>Você vai participar da festa no dia 24/01/2027? <span style="color:#cc0000;">*</span></p>
@@ -262,6 +303,38 @@
 </script>
 
 <script src="../js/cartelas.js"></script>
+
+<script>
+(function(){
+  // Máscara e busca automática de endereço pelo CEP (cartela digital)
+  const cep = document.getElementById("cepDigital");
+  if (!cep) return;
+
+  cep.addEventListener("input", function () {
+    let v = this.value.replace(/\D/g, "").slice(0, 8);
+    if (v.length > 5) v = v.replace(/^(\d{5})(\d+)/, "$1-$2");
+    this.value = v;
+  });
+
+  cep.addEventListener("blur", async function () {
+    let v = this.value.replace(/\D/g, "");
+    if (v.length !== 8) return;
+
+    try {
+      const res = await fetch(`https://viacep.com.br/ws/${v}/json/`);
+      const data = await res.json();
+
+      if (!data.erro) {
+        document.getElementById("cidadeDigital").value = data.localidade || "";
+        document.getElementById("bairroDigital").value = data.bairro || "";
+        document.getElementById("ruaDigital").value = data.logradouro || "";
+      }
+    } catch (e) {
+      console.log("Erro ao buscar CEP:", e);
+    }
+  });
+})();
+</script>
 
 </body>
 </html>

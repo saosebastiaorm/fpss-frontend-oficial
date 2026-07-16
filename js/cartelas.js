@@ -111,6 +111,16 @@ async function enviarFormulario(form, tipo) {
     dados.numero_cartela = formData.get("numero_cartela")?.trim();
   }
 
+  if (tipo === "digital") {
+    // Endereço — necessário na cartela digital (não existe canhoto físico
+    // com esses dados, diferente da cartela física)
+    dados.cep = formData.get("cep")?.trim();
+    dados.cidade = formData.get("cidade")?.trim();
+    dados.bairro = formData.get("bairro")?.trim();
+    dados.rua = formData.get("rua")?.trim();
+    dados.numero_endereco = formData.get("numero_endereco")?.trim();
+  }
+
   const endpoint = tipo === "fisica" ? "/cartelas/pix-fisica" : "/cartelas/pix-digital";
 
   try {
