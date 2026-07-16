@@ -51,6 +51,32 @@ async function carregarResumo() {
 }
 
 /* =========================================
+   DATA DE RESERVA — mostra quando o Pix foi gerado.
+   Se ainda está "pendente" e já passou de 1h (mesmo prazo
+   de expiração usado no backend), sinaliza visualmente que
+   essa reserva já deveria ter sido liberada.
+========================================= */
+function renderDataReserva(cartela) {
+
+  if (!cartela.reservado_em) return "-";
+
+  const textoData = formatarData(cartela.reservado_em);
+
+  if (cartela.status !== "pendente") {
+    return textoData;
+  }
+
+  const passouUmaHora =
+    (Date.now() - new Date(cartela.reservado_em).getTime()) > 60 * 60 * 1000;
+
+  if (passouUmaHora) {
+    return `${textoData}<br><span style="color:#991b1b; font-weight:700; font-size:11px;">⚠️ expirada, aguardando liberação</span>`;
+  }
+
+  return textoData;
+}
+
+/* =========================================
    RENDER TABELA
 ========================================= */
 function renderCartelas(lista) {
@@ -62,7 +88,7 @@ function renderCartelas(lista) {
     `Total exibido: ${lista.length}`;
 
   if (!lista.length) {
-    tabela.innerHTML = `<tr><td colspan="12">Nenhuma cartela encontrada.</td></tr>`;
+    tabela.innerHTML = `<tr><td colspan="13">Nenhuma cartela encontrada.</td></tr>`;
     return;
   }
 
@@ -81,6 +107,7 @@ function renderCartelas(lista) {
         <td>${cartela.whatsapp_comprador || "-"}</td>
         <td>${cartela.valor_pago ? moeda(cartela.valor_pago) : "-"}</td>
         <td>${cartela.vai_na_festa === "sim" ? "✅ Sim" : cartela.vai_na_festa === "nao" ? "❌ Não" : "-"}</td>
+        <td>${renderDataReserva(cartela)}</td>
         <td>${formatarData(cartela.data_pagamento)}</td>
       </tr>
     `;
@@ -240,6 +267,7 @@ async function buscarCartelaRapida() {
         <div class="linha"><strong>Nome do comprador:</strong> ${c.nome_comprador || "-"}</div>
         <div class="linha"><strong>CPF:</strong> ${c.cpf_comprador || "-"}</div>
         <div class="linha"><strong>WhatsApp:</strong> ${c.whatsapp_comprador || "-"}</div>
+        <div class="linha"><strong>Data da reserva (Pix gerado):</strong> ${formatarData(c.reservado_em)}</div>
         <div class="linha"><strong>Data do pagamento:</strong> ${formatarData(c.data_pagamento)}</div>
         <div class="linha"><strong>Comprovante:</strong> ${c.comprovante_id || "-"}</div>
       </div>
@@ -277,6 +305,7 @@ function exportarCSV() {
     "WhatsApp",
     "Valor Pago",
     "Vai à Festa",
+    "Data Reserva",
     "Data Pagamento",
     "Comprovante"
   ];
@@ -293,6 +322,7 @@ function exportarCSV() {
     c.whatsapp_comprador || "",
     c.valor_pago || "",
     c.vai_na_festa || "",
+    c.reservado_em || "",
     c.data_pagamento || "",
     c.comprovante_id || ""
   ]);
