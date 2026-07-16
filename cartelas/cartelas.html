@@ -17,16 +17,24 @@
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Roboto:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
+.cartelas-intro-grid {
+  display:flex; align-items:center; justify-content:space-between;
+  gap:20px; margin:0 0 20px; flex-wrap:wrap;
+}
+.cartelas-intro-grid .cartelas-subtitulo {
+  flex:1; min-width:200px; margin:0;
+}
 .cartelas-preview-wrap {
-  display:flex; justify-content:center; margin:0 0 24px;
+  display:flex; justify-content:center; flex-shrink:0; margin:0;
 }
 .cartelas-preview-img {
-  max-width:280px; width:100%; height:auto;
-  border-radius:14px; box-shadow:0 8px 24px rgba(0,0,0,0.15);
+  width:110px; height:auto;
+  border-radius:10px; box-shadow:0 4px 14px rgba(0,0,0,0.15);
   border:1px solid #f0e4d4;
 }
-@media (max-width:480px) {
-  .cartelas-preview-img { max-width:220px; }
+@media (max-width:600px) {
+  .cartelas-intro-grid { flex-direction:column; text-align:center; }
+  .cartelas-preview-img { width:130px; }
 }
 </style>
 
@@ -98,10 +106,12 @@
   </div>
 
   <h1 class="cartelas-titulo">Cartelas do Bingo</h1>
-  <p class="cartelas-subtitulo">Pague sua cartela física ou compre uma cartela digital pelo site</p>
 
-  <div class="cartelas-preview-wrap">
-    <img src="../assets/imagens/cartelas/cartela-exemplo.png" alt="Exemplo da cartela oficial" class="cartelas-preview-img">
+  <div class="cartelas-intro-grid">
+    <p class="cartelas-subtitulo">Pague sua cartela física ou compre uma cartela digital pelo site</p>
+    <div class="cartelas-preview-wrap">
+      <img src="../assets/imagens/cartelas/cartela-exemplo.png" alt="Exemplo da cartela oficial" class="cartelas-preview-img">
+    </div>
   </div>
 
   <div class="cartelas-tabs">
