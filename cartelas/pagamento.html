@@ -162,6 +162,40 @@
             border:1px solid #f4d35e;
         }
 
+        .aviso-processando{
+            margin-top:12px;
+            background:#eef4ff;
+            border:1px solid #b9cdf0;
+            color:#1d3f6f;
+            padding:12px 14px;
+            border-radius:10px;
+            font-size:13px;
+            line-height:1.5;
+            text-align:center;
+        }
+
+        .barra-processando-container{
+            margin-top:10px;
+            height:6px;
+            width:100%;
+            background:#dbe6fb;
+            border-radius:4px;
+            overflow:hidden;
+        }
+
+        .barra-processando{
+            height:100%;
+            width:35%;
+            background:#3b6fd6;
+            border-radius:4px;
+            animation: barraProcessandoAnda 1.4s ease-in-out infinite;
+        }
+
+        @keyframes barraProcessandoAnda{
+            0%{ transform:translateX(-120%); }
+            100%{ transform:translateX(340%); }
+        }
+
         @media(max-width:768px){
 
             body{
@@ -326,6 +360,15 @@
 
     <div class="status" id="statusPagamento">
         ⏳ Aguardando pagamento...
+    </div>
+
+    <div class="aviso-processando" id="avisoProcessando">
+        Estamos processando seu pagamento. Isso pode levar alguns instantes.<br>
+        Você pode aguardar aqui, ou fechar esta página e conferir o status depois em
+        <strong>Meus Pedidos → Minha Cartela</strong>.
+        <div class="barra-processando-container">
+            <div class="barra-processando"></div>
+        </div>
     </div>
 
     <div class="info" id="infoFinal">

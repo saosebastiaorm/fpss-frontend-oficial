@@ -95,6 +95,9 @@ async function verificarPagamento() {
             document.getElementById("labelPix").style.display = "none";
             document.getElementById("pixCode").style.display = "none";
 
+            const avisoProcessandoPago = document.getElementById("avisoProcessando");
+            if (avisoProcessandoPago) avisoProcessandoPago.style.display = "none";
+
             const ehDigital = cartelaPixData.tipo === "digital";
 
             document.getElementById("qrcode").innerHTML = `
@@ -126,6 +129,9 @@ async function verificarPagamento() {
             document.getElementById("btnCopiarPix").style.display = "block";
             document.getElementById("labelPix").style.display = "block";
             document.getElementById("pixCode").style.display = "block";
+
+            const avisoProcessandoAguardando = document.getElementById("avisoProcessando");
+            if (avisoProcessandoAguardando) avisoProcessandoAguardando.style.display = "block";
 
             document.getElementById("subtituloStatus").innerHTML =
                 "Escaneie o QR Code ou copie o código PIX";
