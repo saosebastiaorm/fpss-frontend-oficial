@@ -67,6 +67,14 @@ function gerarComprovante() {
     window.open("comprovante.html", "_blank");
 }
 
+function verCartelaDigital() {
+    if (!cartelaPixData.pdf_url) {
+        alert("Sua cartela ainda está sendo gerada, aguarde mais alguns instantes.");
+        return;
+    }
+    window.open(cartelaPixData.pdf_url, "_blank");
+}
+
 async function verificarPagamento() {
 
     if (!cartelaPixData.txid) return;
@@ -85,20 +93,48 @@ async function verificarPagamento() {
 
         localStorage.setItem("cartelaPixData", JSON.stringify(cartelaPixData));
 
+        const avisoProcessando = document.getElementById("avisoProcessando");
+        const avisoGerandoCartela = document.getElementById("avisoGerandoCartela");
+        const ehDigital = cartelaPixData.tipo === "digital";
+
         if ((dados.status_interno || "").toLowerCase() === "pago") {
+
+            // Cartela digital confirmada mas a arte ainda não terminou de
+            // ser gerada/enviada (raro, mas pode acontecer) — avisa que já
+            // pagou e que falta só a etapa final, sem mostrar botões ainda.
+            const aindaGerandoCartela = ehDigital && !cartelaPixData.pdf_url;
+
+            if (avisoProcessando) avisoProcessando.style.display = "none";
+
+            if (aindaGerandoCartela) {
+
+                if (avisoGerandoCartela) avisoGerandoCartela.style.display = "block";
+
+                document.getElementById("statusPagamento").innerHTML = "✅ Pagamento confirmado!";
+                document.getElementById("statusPagamento").style.color = "green";
+
+                document.getElementById("btnComprovante").style.display = "none";
+                document.getElementById("btnVerCartela").style.display = "none";
+                document.getElementById("btnCopiarPix").style.display = "none";
+                document.getElementById("labelPix").style.display = "none";
+                document.getElementById("pixCode").style.display = "none";
+
+                document.getElementById("subtituloStatus").innerHTML =
+                    "🎟️ Gerando sua cartela digital...";
+
+                return;
+            }
+
+            if (avisoGerandoCartela) avisoGerandoCartela.style.display = "none";
 
             document.getElementById("statusPagamento").innerHTML = "✅ PAGAMENTO APROVADO!";
             document.getElementById("statusPagamento").style.color = "green";
 
             document.getElementById("btnComprovante").style.display = "block";
+            document.getElementById("btnVerCartela").style.display = ehDigital ? "block" : "none";
             document.getElementById("btnCopiarPix").style.display = "none";
             document.getElementById("labelPix").style.display = "none";
             document.getElementById("pixCode").style.display = "none";
-
-            const avisoProcessandoPago = document.getElementById("avisoProcessando");
-            if (avisoProcessandoPago) avisoProcessandoPago.style.display = "none";
-
-            const ehDigital = cartelaPixData.tipo === "digital";
 
             document.getElementById("qrcode").innerHTML = `
                 <div style="
@@ -113,11 +149,11 @@ async function verificarPagamento() {
 
             document.getElementById("subtituloStatus").innerHTML =
                 ehDigital
-                    ? "📄 Baixe e imprima sua cartela no comprovante"
+                    ? "📄 Visualize sua cartela ou o comprovante nos botões acima"
                     : "📦 Guarde o comprovante para apresentar no dia da festa";
 
             document.getElementById("infoFinal").innerHTML = ehDigital
-                ? "⚠️ <strong>IMPORTANTE:</strong><br>Imprima a cartela disponível no comprovante e leve-a no dia do evento."
+                ? "⚠️ <strong>IMPORTANTE:</strong><br>Salve ou imprima sua cartela e leve-a no dia do evento."
                 : "⚠️ <strong>IMPORTANTE:</strong><br>Apresente o comprovante junto com a cartela física e o CPF no dia da festa.";
 
         } else {
@@ -126,12 +162,13 @@ async function verificarPagamento() {
             document.getElementById("statusPagamento").style.color = "#d62828";
 
             document.getElementById("btnComprovante").style.display = "none";
+            document.getElementById("btnVerCartela").style.display = "none";
             document.getElementById("btnCopiarPix").style.display = "block";
             document.getElementById("labelPix").style.display = "block";
             document.getElementById("pixCode").style.display = "block";
 
-            const avisoProcessandoAguardando = document.getElementById("avisoProcessando");
-            if (avisoProcessandoAguardando) avisoProcessandoAguardando.style.display = "block";
+            if (avisoProcessando) avisoProcessando.style.display = "block";
+            if (avisoGerandoCartela) avisoGerandoCartela.style.display = "none";
 
             document.getElementById("subtituloStatus").innerHTML =
                 "Escaneie o QR Code ou copie o código PIX";
@@ -143,6 +180,20 @@ async function verificarPagamento() {
         console.log("Erro ao verificar pagamento da cartela.", e);
     }
 }
+
+/* ===================================================
+   Verifica na hora quando a aba/janela volta a ficar em
+   primeiro plano — evita esperar até 5s a mais (ou minutos,
+   já que navegadores pausam o setInterval em segundo plano
+   enquanto a pessoa está no app do banco pagando).
+=================================================== */
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) verificarPagamento();
+});
+
+window.addEventListener("focus", () => {
+  verificarPagamento();
+});
 
 verificarPagamento();
 setInterval(verificarPagamento, 5000);

@@ -144,6 +144,11 @@
             color:#fff;
         }
 
+        .btn-ver-cartela{
+            background:#1d5f1d;
+            color:#fff;
+        }
+
         .status{
             margin-top:15px;
             text-align:center;
@@ -356,6 +361,10 @@
         <button class="btn btn-comprovante" id="btnComprovante" onclick="gerarComprovante()" style="display:none;">
             📄 VISUALIZAR COMPROVANTE
         </button>
+
+        <button class="btn btn-ver-cartela" id="btnVerCartela" onclick="verCartelaDigital()" style="display:none;">
+            🎫 VER MINHA CARTELA
+        </button>
     </div>
 
     <div class="status" id="statusPagamento">
@@ -369,6 +378,13 @@
         <strong>Meus Pedidos → Minha Cartela</strong>.
         <div class="barra-processando-container">
             <div class="barra-processando"></div>
+        </div>
+    </div>
+
+    <div class="aviso-processando" id="avisoGerandoCartela" style="display:none; background:#eef8ee; border-color:#b9ddb9; color:#1d5f1d;">
+        ✅ Pagamento confirmado! Estamos gerando sua cartela digital, aguarde mais alguns instantes...
+        <div class="barra-processando-container">
+            <div class="barra-processando" style="background:#2f9e44;"></div>
         </div>
     </div>
 
