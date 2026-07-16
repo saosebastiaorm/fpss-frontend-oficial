@@ -406,12 +406,16 @@ content="assets/imagens/og-image.jpg">
 
 .fpss-carrossel__body strong {
   color:#3d0000; font-size:1.05rem; font-weight:900;
-  white-space:nowrap; font-family:'Merriweather',Georgia,serif;
+  white-space:normal; font-family:'Merriweather',Georgia,serif;
+  display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical;
+  overflow:hidden; line-height:1.25;
 }
 
 .fpss-carrossel__body span {
   color:rgba(61,0,0,.62); font-size:0.82rem;
-  line-height:1.4; font-family:'Roboto',sans-serif; white-space:nowrap;
+  line-height:1.4; font-family:'Roboto',sans-serif; white-space:normal;
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;
+  overflow:hidden;
   transition: color .2s;
 }
 .fpss-carrossel__slide:hover .fpss-carrossel__body span {
