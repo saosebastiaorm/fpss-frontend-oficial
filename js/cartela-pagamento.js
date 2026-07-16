@@ -195,5 +195,15 @@ window.addEventListener("focus", () => {
   verificarPagamento();
 });
 
+/* ===================================================
+   Se a pessoa usar o botão "voltar" do navegador pra chegar
+   nesta página (ela pode vir do cache — bfcache), força uma
+   nova checagem imediata, garantindo que o status mostrado
+   nunca fique desatualizado.
+=================================================== */
+window.addEventListener("pageshow", (evento) => {
+  if (evento.persisted) verificarPagamento();
+});
+
 verificarPagamento();
 setInterval(verificarPagamento, 5000);

@@ -260,7 +260,10 @@ async function enviarFormulario(form, tipo) {
 
       // Não remove o overlay aqui de propósito — a página vai mudar
       // (redirect), então ele some junto com a troca de tela.
-      window.location.href = "/cartelas/pagamento.html";
+      // location.replace (em vez de href) substitui esta página no
+      // histórico do navegador, então o botão "voltar" não retorna
+      // pra essa tela no meio do envio (com o overlay preso).
+      window.location.replace("/cartelas/pagamento.html");
       return;
 
     } else {
