@@ -76,12 +76,27 @@ content="Participe da grande festa oficial FPSS 2027.">
 property="og:image"
 content="assets/imagens/og-image.jpg">
 
-<!-- CSS consolidado: os 16 arquivos que existiam aqui (font-global, design-system,
-     base, layout, header, design-system-v2, hero-v4, premios, produtos, components,
-     enquete, vip, footer, conversao-master, hero-fix, mobile) foram combinados em
-     um único arquivo, NA MESMA ORDEM, para reduzir de 16 requisições HTTP para 1
-     (eliminando ~2.030ms de bloqueio de renderização apontado pelo PageSpeed). -->
-<link rel="stylesheet" href="css/site.css">
+<!-- font-global.css deve ser o PRIMEIRO css carregado, antes de todos os outros -->
+<link rel="stylesheet" href="css/font-global.css">
+<link rel="stylesheet" href="css/design-system.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+
+<link rel="stylesheet" href="css/header.css"> 
+
+<link rel="stylesheet" href="css/design-system-v2.css"> 
+
+<link rel="stylesheet" href="css/hero-v4.css">
+
+<link rel="stylesheet" href="css/premios.css">
+<link rel="stylesheet" href="css/produtos.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/enquete.css">
+<link rel="stylesheet" href="css/vip.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/conversao-master.css">
+<link rel="stylesheet" href="css/hero-fix.css">
+<link rel="stylesheet" href="css/mobile.css">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -190,7 +205,7 @@ content="assets/imagens/og-image.jpg">
       </div>
       <div class="fpss-carrossel__body">
         <div class="fpss-carrossel__texto">
-          <div class="fpss-carrossel__tag" style="background:#8a6408">🎟️ R$ 20,00</div>
+          <div class="fpss-carrossel__tag" style="background:#b8860b">🎟️ R$ 20,00</div>
           <strong>13 chances de ganhar</strong>
           <span>R$ 25 mil em dinheiro sorteados na hora!</span>
         </div>
@@ -205,7 +220,7 @@ content="assets/imagens/og-image.jpg">
       </div>
       <div class="fpss-carrossel__body">
         <div class="fpss-carrossel__texto">
-          <div class="fpss-carrossel__tag" style="background:#107a3b">💬 OFICIAL</div>
+          <div class="fpss-carrossel__tag" style="background:#16a34a">💬 OFICIAL</div>
           <strong>Entre no Grupo WhatsApp</strong>
           <span>Novidades, sorteios e informações em primeira mão!</span>
         </div>
@@ -255,7 +270,7 @@ content="assets/imagens/og-image.jpg">
       </div>
       <div class="fpss-carrossel__body">
         <div class="fpss-carrossel__texto">
-          <div class="fpss-carrossel__tag" style="background:#8a6408">🎟️ R$ 20,00</div>
+          <div class="fpss-carrossel__tag" style="background:#b8860b">🎟️ R$ 20,00</div>
           <strong>13 chances de ganhar</strong>
           <span>R$ 25 mil em dinheiro sorteados na hora!</span>
         </div>
@@ -270,7 +285,7 @@ content="assets/imagens/og-image.jpg">
       </div>
       <div class="fpss-carrossel__body">
         <div class="fpss-carrossel__texto">
-          <div class="fpss-carrossel__tag" style="background:#107a3b">💬 OFICIAL</div>
+          <div class="fpss-carrossel__tag" style="background:#16a34a">💬 OFICIAL</div>
           <strong>Entre no Grupo WhatsApp</strong>
           <span>Novidades, sorteios e informações em primeira mão!</span>
         </div>
@@ -861,7 +876,7 @@ content="assets/imagens/og-image.jpg">
       <!-- MAPA -->
       <div class="local-mapa-col">
         <div class="mapa-box">
-          <iframe src="https://www.google.com/maps?q=-11.759236,-61.742004&z=16&output=embed" allowfullscreen="" loading="lazy" title="Mapa de localização da Paróquia Nossa Senhora Aparecida — Comunidade São Sebastião"></iframe>
+          <iframe src="https://www.google.com/maps?q=-11.759236,-61.742004&z=16&output=embed" allowfullscreen="" loading="lazy"></iframe>
         </div>
       </div>
 
@@ -1307,7 +1322,7 @@ carregarParceirosSite();
           baseUrl = FPSS_CONFIG.BACKEND_URL;
         }
 
-        const resposta = await fetch(`${baseUrl}/admin/produtos`);
+        const resposta = await fetch(`${baseUrl}/produtos`);
         const texto = await resposta.text();
         let dados = JSON.parse(texto);
 
