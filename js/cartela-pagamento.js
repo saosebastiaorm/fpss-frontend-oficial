@@ -99,7 +99,7 @@ function copiarPix() {
     const campo = document.getElementById("pixCode");
     campo.select();
     campo.setSelectionRange(0, 99999);
-    navigator.clipboard.writeText(campo.value);
+    navigator.clipboard.writeText(cartelaPixData.pix_copia_cola || campo.value);
     alert("✅ Código copiado!");
 }
 

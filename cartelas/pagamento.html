@@ -96,7 +96,7 @@
         .qrcode-area{
             display:flex;
             justify-content:center;
-            margin:25px 0;
+            margin:12px 0;
         }
 
         #qrcode{
@@ -110,28 +110,33 @@
         }
 
         .pix-copia{
-            margin-top:20px;
+            margin-top:10px;
         }
 
-        .pix-copia textarea{
+        #pixCode{
             width:100%;
-            height:65px;
+            height:38px;
             padding:8px 12px;
             border-radius:10px;
             border:1px solid #ccc;
-            resize:none;
             font-size:13px;
+            white-space:nowrap;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            box-sizing:border-box;
+            background:#fafafa;
+            color:#444;
         }
 
         .btn{
             width:100%;
-            padding:12px;
+            padding:11px;
             border:none;
             border-radius:10px;
-            font-size:15px;
+            font-size:14px;
             font-weight:bold;
             cursor:pointer;
-            margin-top:12px;
+            margin-top:8px;
         }
 
         .btn-copiar{
@@ -156,7 +161,7 @@
         }
 
         .status{
-            margin-top:15px;
+            margin-top:10px;
             text-align:center;
             font-size:14px;
             font-weight:bold;
@@ -164,12 +169,12 @@
         }
 
         .info{
-            margin-top:20px;
+            margin-top:12px;
             background:#fff8d6;
-            padding:15px;
+            padding:12px;
             border-radius:10px;
-            font-size:14px;
-            line-height:1.6;
+            font-size:13px;
+            line-height:1.5;
             border:1px solid #f4d35e;
         }
 
@@ -257,24 +262,24 @@
             }
 
             .qrcode-area{
-                margin:14px 0;
+                margin:8px 0;
             }
 
             #qrcode{
-                padding:8px;
+                padding:6px;
                 min-height:auto;
             }
 
             #qrcode img,
             #qrcode canvas{
-                width:100px !important;
-                height:100px !important;
+                width:88px !important;
+                height:88px !important;
             }
 
-            .pix-copia textarea{
-                height:80px;
-                font-size:12px;
-                padding:8px;
+            #pixCode{
+                height:36px;
+                font-size:11px;
+                padding:6px 10px;
             }
 
             .btn{
@@ -370,7 +375,7 @@
     <div class="pix-copia" id="pixCopiaArea">
         <label id="labelPix"><strong>Código PIX Copia e Cola:</strong></label>
 
-        <textarea id="pixCode" readonly></textarea>
+        <input type="text" id="pixCode" readonly>
 
         <button class="btn btn-copiar" id="btnCopiarPix" onclick="copiarPix()">
             📋 COPIAR CÓDIGO PIX
