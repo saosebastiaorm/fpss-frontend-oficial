@@ -237,7 +237,7 @@ content="assets/imagens/og-image.jpg">
       <div class="fpss-carrossel__body">
         <div class="fpss-carrossel__texto">
           <div class="fpss-carrossel__tag" style="background:#4285f4">💻 CRIAÇÃO DE SITES</div>
-          <strong id="vitrineDigitalTitulo"><span>V</span><span>i</span><span>t</span><span>r</span><span>i</span><span>n</span><span>e</span> <span>D</span><span>i</span><span>g</span><span>i</span><span>t</span><span>a</span><span>l</span></strong>
+          <strong id="vitrineDigitalTitulo"><span id="vitrineDigitalLetras"><span>V</span><span>i</span><span>t</span><span>r</span><span>i</span><span>n</span><span>e</span> <span>D</span><span>i</span><span>g</span><span>i</span><span>t</span><span>a</span><span>l</span></span></strong>
           <span style="white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.35">Transforme visitas em clientes com sua vitrine no ar!</span>
         </div>
       </div>
@@ -317,7 +317,7 @@ content="assets/imagens/og-image.jpg">
       <div class="fpss-carrossel__body">
         <div class="fpss-carrossel__texto">
           <div class="fpss-carrossel__tag" style="background:#4285f4">💻 CRIAÇÃO DE SITES</div>
-          <strong id="vitrineDigitalTitulo"><span>V</span><span>i</span><span>t</span><span>r</span><span>i</span><span>n</span><span>e</span> <span>D</span><span>i</span><span>g</span><span>i</span><span>t</span><span>a</span><span>l</span></strong>
+          <strong id="vitrineDigitalTitulo"><span id="vitrineDigitalLetras"><span>V</span><span>i</span><span>t</span><span>r</span><span>i</span><span>n</span><span>e</span> <span>D</span><span>i</span><span>g</span><span>i</span><span>t</span><span>a</span><span>l</span></span></strong>
           <span style="white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.35">Transforme visitas em clientes com sua vitrine no ar!</span>
         </div>
       </div>
@@ -404,20 +404,20 @@ content="assets/imagens/og-image.jpg">
   line-height: inherit !important;
   white-space: nowrap !important;
 }
-#vitrineDigitalTitulo span:nth-child(1)  { color:#4285F4 !important; }
-#vitrineDigitalTitulo span:nth-child(2)  { color:#EA4335 !important; }
-#vitrineDigitalTitulo span:nth-child(3)  { color:#FBBC05 !important; }
-#vitrineDigitalTitulo span:nth-child(4)  { color:#4285F4 !important; }
-#vitrineDigitalTitulo span:nth-child(5)  { color:#34A853 !important; }
-#vitrineDigitalTitulo span:nth-child(6)  { color:#EA4335 !important; }
-#vitrineDigitalTitulo span:nth-child(7)  { color:#4285F4 !important; }
-#vitrineDigitalTitulo span:nth-child(8)  { color:#FBBC05 !important; }
-#vitrineDigitalTitulo span:nth-child(9)  { color:#4285F4 !important; }
-#vitrineDigitalTitulo span:nth-child(10) { color:#34A853 !important; }
-#vitrineDigitalTitulo span:nth-child(11) { color:#EA4335 !important; }
-#vitrineDigitalTitulo span:nth-child(12) { color:#FBBC05 !important; }
-#vitrineDigitalTitulo span:nth-child(13) { color:#4285F4 !important; }
-#vitrineDigitalTitulo span:nth-child(14) { color:#EA4335 !important; }
+#vitrineDigitalLetras span:nth-child(1)  { color:#4285F4 !important; }
+#vitrineDigitalLetras span:nth-child(2)  { color:#EA4335 !important; }
+#vitrineDigitalLetras span:nth-child(3)  { color:#FBBC05 !important; }
+#vitrineDigitalLetras span:nth-child(4)  { color:#4285F4 !important; }
+#vitrineDigitalLetras span:nth-child(5)  { color:#34A853 !important; }
+#vitrineDigitalLetras span:nth-child(6)  { color:#EA4335 !important; }
+#vitrineDigitalLetras span:nth-child(7)  { color:#4285F4 !important; }
+#vitrineDigitalLetras span:nth-child(8)  { color:#FBBC05 !important; }
+#vitrineDigitalLetras span:nth-child(9)  { color:#4285F4 !important; }
+#vitrineDigitalLetras span:nth-child(10) { color:#34A853 !important; }
+#vitrineDigitalLetras span:nth-child(11) { color:#EA4335 !important; }
+#vitrineDigitalLetras span:nth-child(12) { color:#FBBC05 !important; }
+#vitrineDigitalLetras span:nth-child(13) { color:#4285F4 !important; }
+#vitrineDigitalLetras span:nth-child(14) { color:#EA4335 !important; }
 
 /* ===== CARROSSEL COM 2 COLUNAS NO CELULAR =====
    O mobile.css/site.css força width:100vw (1 slide por vez, ocupando
@@ -425,7 +425,39 @@ content="assets/imagens/og-image.jpg">
    pra vencer isso e mostrar 2 slides lado a lado no celular. */
 @media screen and (max-width: 980px) {
   .fpss-carrossel__runner .fpss-carrossel__slide {
-    width: 48vw !important;
+    width: 62vw !important;
+    min-height: 160px !important;
+  }
+
+  /* título de todos os slides: quebra em até 2 linhas, em vez de
+     cortar com "..." — a coluna ficou estreita demais pra 1 linha só */
+  .fpss-carrossel__runner .fpss-carrossel__body strong {
+    white-space: normal !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    line-height: 1.15 !important;
+  }
+
+  /* subtítulo (frase menor): permite até 4 linhas, pra não cortar
+     frases mais longas nessa coluna mais estreita */
+  .fpss-carrossel__runner .fpss-carrossel__body span {
+    -webkit-line-clamp: 4 !important;
+  }
+
+  /* Vitrine Digital especificamente: fonte menor só no celular,
+     quebra em 2 linhas naturalmente (sem usar -webkit-box, que
+     causaria o mesmo problema de empilhamento das letras de antes) */
+  #vitrineDigitalTitulo {
+    font-size: 1.05rem !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    display: inline-block !important;
+    line-height: 1.15 !important;
+  }
+  #vitrineDigitalTitulo span, #vitrineDigitalLetras {
+    display: inline !important;
   }
 }
 
