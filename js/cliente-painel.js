@@ -476,6 +476,12 @@ ${
 
             <p><strong>Vai à festa:</strong> ${cartela.vai_na_festa === "sim" ? "✅ Sim" : cartela.vai_na_festa === "talvez" ? "🤔 Talvez" : cartela.vai_na_festa === "nao" ? "❌ Não" : "-"}</p>
 
+            ${
+              status === "pendente" && cartela.reservado_em
+                ? `<p class="cartela-contador-expira" data-expira="${new Date(new Date(cartela.reservado_em).getTime() + 60 * 60 * 1000).toISOString()}" style="color:#8a6d3b; font-size:13px; font-weight:600; margin:4px 0 0;"></p>`
+                : ""
+            }
+
             <div class="historico-pedido">
               <div class="historico-titulo">📅 Histórico</div>
               <div class="historico-item">
@@ -593,6 +599,39 @@ logout.addEventListener("click", () => {
   window.location.href = "login.html";
 });
   }
+
+  /* =====================================================
+     CONTADOR REGRESSIVO NOS CARDS DE CARTELA PENDENTE
+     Roda a cada segundo e atualiza qualquer elemento com
+     essa classe que estiver na tela no momento — como os
+     cards são recriados via innerHTML a cada re-render
+     (filtro clicado, atualização automática a cada 8s),
+     não precisa recriar o intervalo, só ler o DOM atual.
+  ===================================================== */
+  function atualizarContadoresCartelas() {
+
+    document.querySelectorAll(".cartela-contador-expira").forEach(elemento => {
+
+      const expiraEm = new Date(elemento.dataset.expira).getTime();
+      const restanteMs = expiraEm - Date.now();
+
+      if (restanteMs <= 0) {
+        elemento.textContent = "⚠️ Reserva expirada — atualize a página";
+        elemento.style.color = "#d62828";
+        return;
+      }
+
+      const minutos = Math.floor(restanteMs / 60000);
+      const segundos = Math.floor((restanteMs % 60000) / 1000);
+
+      elemento.textContent =
+        `⏱️ Expira em ${minutos}:${String(segundos).padStart(2, "0")} — pague antes desse prazo`;
+      elemento.style.color = restanteMs < 5 * 60 * 1000 ? "#d62828" : "#8a6d3b";
+    });
+  }
+
+  atualizarContadoresCartelas();
+  setInterval(atualizarContadoresCartelas, 1000);
 
 });
 
