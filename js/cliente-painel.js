@@ -324,7 +324,10 @@ ${
 
   async function verificarAtualizacoesPedidos() {
 
-    if (!listaPedidos.length) return;
+    // roda se a pessoa tiver QUALQUER coisa registrada — pedido de
+    // produto OU cartela — não só pedidos (senão quem só compra
+    // cartela nunca teria atualização automática)
+    if (!listaPedidos.length && !listaCartelas.length) return;
 
     try {
 
@@ -346,6 +349,7 @@ ${
       if (!resultado.sucesso || !resultado.cliente) return;
 
       const pedidosNovos = resultado.cliente.pedidos || [];
+      const cartelasNovas = resultado.cliente.cartelas || [];
 
       // Detecta se algum pedido ACABOU de ser marcado como retirado
       let algumFoiRetiradoAgora = false;
@@ -362,13 +366,16 @@ ${
         }
       });
 
-      // Atualiza a lista em memória e no localStorage
+      // Atualiza pedidos e cartelas em memória e no localStorage
       listaPedidos = pedidosNovos;
+      listaCartelas = cartelasNovas;
       cliente.pedidos = pedidosNovos;
+      cliente.cartelas = cartelasNovas;
       localStorage.setItem("clienteFPSS", JSON.stringify(cliente));
 
-      // Re-renderiza a tela com os dados atualizados
+      // Re-renderiza as duas seções com os dados atualizados
       renderizarPedidos();
+      renderizarCartelas();
 
       if (algumFoiRetiradoAgora) {
 
@@ -467,7 +474,7 @@ ${
 
             <p><strong>Valor:</strong> R$ ${Number(cartela.valor_pago || 0).toFixed(2).replace(".", ",")}</p>
 
-            <p><strong>Vai à festa:</strong> ${cartela.vai_na_festa === "sim" ? "✅ Sim" : cartela.vai_na_festa === "nao" ? "❌ Não" : "-"}</p>
+            <p><strong>Vai à festa:</strong> ${cartela.vai_na_festa === "sim" ? "✅ Sim" : cartela.vai_na_festa === "talvez" ? "🤔 Talvez" : cartela.vai_na_festa === "nao" ? "❌ Não" : "-"}</p>
 
             <div class="historico-pedido">
               <div class="historico-titulo">📅 Histórico</div>
@@ -516,7 +523,24 @@ ${
   }
 
   const cartelasContainer = document.getElementById("clienteCartelas");
-  const listaCartelas = cliente.cartelas || [];
+  let listaCartelas = cliente.cartelas || [];
+  let filtroAtivoCartelas = "todas";
+
+  function filtrarCartelas(lista, filtro) {
+    return lista.filter(cartela => {
+
+      const status = (cartela.status || "").toLowerCase();
+      const tipo = (cartela.tipo || "").toLowerCase();
+
+      if (filtro === "todas") return true;
+      if (filtro === "pago") return status === "pago";
+      if (filtro === "pendente") return status === "pendente";
+      if (filtro === "fisica") return tipo === "fisica";
+      if (filtro === "digital") return tipo === "digital";
+
+      return true;
+    });
+  }
 
   function renderizarCartelasFiltradas(lista) {
 
@@ -537,7 +561,11 @@ ${
     }
   }
 
-  renderizarCartelasFiltradas(listaCartelas);
+  function renderizarCartelas() {
+    renderizarCartelasFiltradas(filtrarCartelas(listaCartelas, filtroAtivoCartelas));
+  }
+
+  renderizarCartelas();
 
   const botoesFiltroCartela = document.querySelectorAll(".filtro-btn-cartela");
 
@@ -551,23 +579,9 @@ ${
       // cartelas e esconde a de pedidos
       mostrarApenasSecao("cartelas");
 
-      const filtro = botao.dataset.filtroCartela;
+      filtroAtivoCartelas = botao.dataset.filtroCartela;
 
-      const cartelasFiltradas = listaCartelas.filter(cartela => {
-
-        const status = (cartela.status || "").toLowerCase();
-        const tipo = (cartela.tipo || "").toLowerCase();
-
-        if (filtro === "todas") return true;
-        if (filtro === "pago") return status === "pago";
-        if (filtro === "pendente") return status === "pendente";
-        if (filtro === "fisica") return tipo === "fisica";
-        if (filtro === "digital") return tipo === "digital";
-
-        return true;
-      });
-
-      renderizarCartelasFiltradas(cartelasFiltradas);
+      renderizarCartelas();
     });
   });
 
