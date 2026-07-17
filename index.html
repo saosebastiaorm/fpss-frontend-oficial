@@ -243,7 +243,7 @@ content="assets/imagens/og-image.jpg">
       </div>
     </a>
 
-    <a href="#comprar" class="fpss-carrossel__slide">
+    <a href="#programacao" class="fpss-carrossel__slide">
       <div class="fpss-carrossel__img-wrap">
         <picture>
           <source srcset="assets/imagens/eventos/programacao-dia.webp" type="image/webp">
@@ -323,7 +323,7 @@ content="assets/imagens/og-image.jpg">
       </div>
     </a>
 
-    <a href="#comprar" class="fpss-carrossel__slide">
+    <a href="#programacao" class="fpss-carrossel__slide">
       <div class="fpss-carrossel__img-wrap">
         <picture>
           <source srcset="assets/imagens/eventos/programacao-dia.webp" type="image/webp">
@@ -344,6 +344,19 @@ content="assets/imagens/og-image.jpg">
 </section>
 
 <style>
+/* Compensa o cabeçalho fixo: sem isso, ao clicar em links do carrossel
+   que levam pra #comprar ou #programacao, o navegador rola exatamente
+   até o topo da seção — só que esse topo fica escondido atrás do
+   header fixo, dando a impressão de que "pulou pro meio" do conteúdo. */
+#comprar, #programacao {
+  scroll-margin-top: 140px;
+}
+@media (max-width: 768px) {
+  #comprar, #programacao {
+    scroll-margin-top: 110px;
+  }
+}
+
 .fpss-carrossel { position:relative; overflow:hidden; background: #ffffff; }
 
 .fpss-carrossel__runner {
@@ -378,7 +391,12 @@ content="assets/imagens/og-image.jpg">
   width: 190px; min-width: 190px; height: 130px;
   overflow: hidden; flex-shrink: 0; position: relative;
 }
-.fpss-carrossel__img-wrap img { width:100%; height:100%; object-fit:cover; display:block; filter:brightness(.85); }
+.fpss-carrossel__img-wrap img {
+  width:100%; height:100%; object-fit:cover; display:block; filter:brightness(.85);
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: none;
+}
 .fpss-carrossel__img-wrap--green { background:linear-gradient(135deg,#0a5c2a,#16a34a); }
 .fpss-carrossel__img-wrap--dark  { background:linear-gradient(135deg,#1a0a00,#3d1a00); }
 .fpss-carrossel__img-wrap--vitrine { background:#ffffff; }
@@ -830,7 +848,7 @@ content="assets/imagens/og-image.jpg">
   </div>
 </section>
 
-<section class="dual-section-wrap">
+<section class="dual-section-wrap" id="programacao">
   <div class="wrap">
     <div class="dual-section-grid">
 
@@ -1760,6 +1778,117 @@ progress + "%";
 
   window.addEventListener("scroll", checarScroll, { passive: true });
   checarScroll();
+})();
+</script>
+
+<script>
+/* =====================================================
+   CARROSSEL — ARRASTAR/DESLIZAR SEM PERDER O AUTOMÁTICO
+   A rolagem automática era 100% via CSS (@keyframes), o que
+   não dá pra combinar com arrastar via mouse/touque. Aqui o
+   JS assume o controle da posição, mantendo a mesma velocidade
+   de antes, e permite arrastar livremente — ao soltar, o
+   automático continua exatamente de onde a pessoa parou.
+===================================================== */
+(function () {
+  const carrossel = document.querySelector(".fpss-carrossel");
+  const runner = document.querySelector(".fpss-carrossel__runner");
+  if (!carrossel || !runner) return;
+
+  let larguraMetade = 0;
+  let posicaoX = 0;
+  let pausado = false;
+  let arrastando = false;
+  let inicioX = 0;
+  let posicaoInicioArraste = 0;
+  let moveuBastante = false;
+  let velocidade = 0; // px por milissegundo
+  let ultimoTimestamp = null;
+
+  function calcularMedidas() {
+    // O conteúdo do runner é duplicado 2x (pra dar loop perfeito),
+    // então metade da largura total = um conjunto completo de slides.
+    larguraMetade = runner.scrollWidth / 2;
+    // Velocidade original em CSS era: 28s pra percorrer essa metade.
+    velocidade = larguraMetade / 28000;
+  }
+
+  calcularMedidas();
+  window.addEventListener("resize", calcularMedidas);
+
+  // A partir de agora o JS controla a posição — desliga a
+  // animação CSS pra não competir com o transform aplicado aqui.
+  runner.style.animation = "none";
+
+  function passoAutomatico(timestamp) {
+
+    if (ultimoTimestamp === null) ultimoTimestamp = timestamp;
+    const delta = timestamp - ultimoTimestamp;
+    ultimoTimestamp = timestamp;
+
+    if (!pausado && !arrastando && larguraMetade > 0) {
+      posicaoX -= velocidade * delta;
+      if (Math.abs(posicaoX) >= larguraMetade) {
+        posicaoX += larguraMetade;
+      }
+      runner.style.transform = `translateX(${posicaoX}px)`;
+    }
+
+    requestAnimationFrame(passoAutomatico);
+  }
+
+  requestAnimationFrame(passoAutomatico);
+
+  // Pausa ao passar o mouse por cima (igual já era antes)
+  carrossel.addEventListener("mouseenter", () => { pausado = true; });
+  carrossel.addEventListener("mouseleave", () => { pausado = false; });
+
+  /* ===== ARRASTAR (mouse e toque, via Pointer Events cobre os dois) ===== */
+  function iniciarArraste(e) {
+    arrastando = true;
+    moveuBastante = false;
+    inicioX = e.clientX;
+    posicaoInicioArraste = posicaoX;
+    runner.style.cursor = "grabbing";
+  }
+
+  function moverArraste(e) {
+    if (!arrastando || larguraMetade === 0) return;
+
+    const delta = e.clientX - inicioX;
+    if (Math.abs(delta) > 5) moveuBastante = true;
+
+    let novaPosicao = (posicaoInicioArraste + delta) % larguraMetade;
+    if (novaPosicao > 0) novaPosicao -= larguraMetade;
+
+    posicaoX = novaPosicao;
+    runner.style.transform = `translateX(${posicaoX}px)`;
+  }
+
+  function pararArraste() {
+    if (!arrastando) return;
+    arrastando = false;
+    runner.style.cursor = "grab";
+  }
+
+  runner.addEventListener("pointerdown", iniciarArraste);
+  window.addEventListener("pointermove", moverArraste);
+  window.addEventListener("pointerup", pararArraste);
+  window.addEventListener("pointercancel", pararArraste);
+
+  // Se a pessoa realmente arrastou (não só clicou), cancela a
+  // navegação do link — senão ela seria jogada pra outra página
+  // só por tentar arrastar o carrossel.
+  runner.addEventListener("click", (e) => {
+    if (moveuBastante) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }, true);
+
+  runner.style.cursor = "grab";
+  runner.style.touchAction = "pan-y";
+  runner.style.userSelect = "none";
 })();
 </script>
 
