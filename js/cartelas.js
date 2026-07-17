@@ -255,7 +255,8 @@ async function enviarFormulario(form, tipo) {
         valor: resultado.valor,
         data_compra: new Date().toLocaleString("pt-BR"),
         pix_copia_cola: resultado.pixCopiaECola || "",
-        qr_code: resultado.qrCode || null
+        qr_code: resultado.qrCode || null,
+        expira_em: resultado.expira_em || null
       }));
 
       // Não remove o overlay aqui de propósito — a página vai mudar
