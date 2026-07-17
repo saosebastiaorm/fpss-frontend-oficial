@@ -1150,7 +1150,8 @@ window.retomarPagamentoCartela = async function(cartelaId) {
       txid: dados.txid,
       pix_copia_cola: dados.pixCopiaECola,
       qr_code: dados.qrCode || null,
-      status_interno: "pendente"
+      status_interno: "pendente",
+      expira_em: dados.expira_em || null
     };
 
     localStorage.setItem("cartelaPixData", JSON.stringify(cartelaPixData));
