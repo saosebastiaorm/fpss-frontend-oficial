@@ -247,6 +247,12 @@ pulseButton 2.5s infinite;
     white-space:nowrap !important;
 }
 
+/* Por padrão mostra o texto completo — só troca pro compacto
+   em telas bem estreitas (ver breakpoint mais abaixo) */
+.brand-subtitulo__compact{
+    display:none !important;
+}
+
 /* ESCONDE MENU */
 
 .menu-master{
@@ -298,6 +304,22 @@ pulseButton 2.5s infinite;
 
     overflow:hidden !important;
 }
+
+}
+
+/* Telas bem estreitas (celulares menores/médios, ex: 412px):
+   o texto completo "Festa do Padroeiro São Sebastião" não cabe
+   nessa largura, e ficava cortado no meio da palavra. Troca pra
+   uma versão curta, que cabe inteira sem cortar. */
+@media (max-width:430px){
+
+    .brand-subtitulo__full{
+        display:none !important;
+    }
+
+    .brand-subtitulo__compact{
+        display:inline !important;
+    }
 
 }
 
