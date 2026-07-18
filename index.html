@@ -145,7 +145,7 @@ content="assets/imagens/og-image.jpg">
     <nav class="menu-master">
 
         <a href="index.html">🏠 Início</a>
-        <a href="#comprar">🏆 Prêmios</a>
+        <a href="#premios">🏆 Prêmios</a>
         <a href="cliente/login.html">👤 Meus Pedidos</a>
         <a href="enquete/enquete.html">📝 Enquete</a>
         <a href="vip.html">💚 Grupo VIP</a>
@@ -348,11 +348,11 @@ content="assets/imagens/og-image.jpg">
    que levam pra #comprar ou #programacao, o navegador rola exatamente
    até o topo da seção — só que esse topo fica escondido atrás do
    header fixo, dando a impressão de que "pulou pro meio" do conteúdo. */
-#comprar, #programacao {
+#comprar, #programacao, #premios {
   scroll-margin-top: 140px;
 }
 @media (max-width: 768px) {
-  #comprar, #programacao {
+  #comprar, #programacao, #premios {
     scroll-margin-top: 110px;
   }
 }
@@ -680,7 +680,7 @@ content="assets/imagens/og-image.jpg">
 </section>
 
 
-<section class="premiacao-cinema reveal glow-premium">
+<section class="premiacao-cinema reveal glow-premium" id="premios">
   <div class="wrap">
 
     <div class="titulo-premiacao">
@@ -912,7 +912,12 @@ content="assets/imagens/og-image.jpg">
               <div class="show-tags">
                 <span>🎶 Sertanejo</span><span>🎤 Ao Vivo</span><span>🔥 Animação</span>
               </div>
-              <a href="https://youtu.be/yXt1UXpl-cQ?si=aY8HjcB2BZ92Fkru" target="_blank" class="btn-show-video">▶ ASSISTIR</a>
+              <div class="show-video-links" style="display:flex; flex-wrap:wrap; gap:8px;">
+                <a href="https://youtu.be/yXt1UXpl-cQ?si=aY8HjcB2BZ92Fkru" target="_blank" class="btn-show-video">▶ ASSISTIR</a>
+                <a href="https://youtu.be/ten3yGZpvEo?si=rRag5ET6CkYw6I2J" target="_blank" class="btn-show-video">▶ ASSISTIR 2</a>
+                <a href="https://www.instagram.com/reels/DM5auaXOap1/" target="_blank" class="btn-show-video">📷 VER NO INSTAGRAM</a>
+                <a href="https://www.instagram.com/reel/DL6HiWvsVIk/" target="_blank" class="btn-show-video">📷 VER NO INSTAGRAM 2</a>
+              </div>
             </div>
           </div>
 
